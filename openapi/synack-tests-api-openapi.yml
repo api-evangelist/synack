@@ -1,0 +1,465 @@
+openapi: 3.1.0
+info:
+  title: Assessment Service Assessment Groups Tests API
+  version: 1.0.0
+  description: 'APIs for managing Assessment and related operations on the Synack.
+
+    '
+  contact:
+    name: Synack Engineering
+    email: engineering@synack.com
+servers:
+- url: https://client.synack.com/api/assessment
+  description: Commercial
+- url: https://client.synack.us/api/assessment
+  description: FedRAMP (Medium)
+security:
+- bearerAuth: []
+tags:
+- name: Tests
+  description: Operations related to security tests
+paths:
+  /v1/assessments/{assessment_id}/tests:
+    get:
+      operationId: getAssessmentTests
+      summary: Retrieve all tests on an assessment
+      description: Retrieve tests associated with a specific assessment
+      tags:
+      - Tests
+      parameters:
+      - name: assessment_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: ID of the assessment
+      responses:
+        '200':
+          description: A list of tests on the assessment
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Test'
+        '403':
+          description: The user is missing sufficient privileges
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '404':
+          description: No assessment matched the given ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+  /v1/assessments/{assessment_id}/tests/{id}/approve:
+    post:
+      operationId: approveTest
+      summary: Approve a test (as a super admin)
+      description: 'Approve a test as a super admin, transitioning it from Admin Review to Synack Review status.
+
+        The test must be in Admin Review status.
+
+        '
+      tags:
+      - Tests
+      parameters:
+      - name: assessment_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: ID of the assessment
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: ID of the test
+      responses:
+        '200':
+          description: The approved test
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Test'
+        '403':
+          description: The user is missing sufficient privileges or the feature is not enabled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '404':
+          description: No assessment or test matched the given ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '409':
+          description: Test is not in Admin Review status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '422':
+          description: Failed to approve the test
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+  /v1/assessments/{assessment_id}/tests/{id}/reject:
+    post:
+      operationId: rejectTest
+      summary: Reject a test (as a super admin)
+      description: 'Reject a test as a super admin, returning it to draft status.
+
+        The test must be in Admin Review status.
+
+        '
+      tags:
+      - Tests
+      parameters:
+      - name: assessment_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: ID of the assessment
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: ID of the test
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                super_admin_reject_reason:
+                  type: string
+                  description: Reason for rejection (optional, sent back to the test submitter)
+      responses:
+        '200':
+          description: The rejected test (returned to draft status)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Test'
+        '403':
+          description: The user is missing sufficient privileges or the feature is not enabled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '404':
+          description: No assessment or test matched the given ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '409':
+          description: Test is not in Admin Review status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '422':
+          description: Failed to reject the test
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+  /v2/organizations/{organizationUid}/assessments/{assessmentUid}/tests:
+    post:
+      operationId: createAssessmentTest
+      summary: Create a test for an assessment
+      description: Create a new test for a specific assessment
+      tags:
+      - Tests
+      parameters:
+      - name: organizationUid
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique identifier of the organization
+      - name: assessmentUid
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique identifier of the assessment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - testPlan
+              properties:
+                name:
+                  type: string
+                  description: Name of the test
+                testPlan:
+                  type: string
+                  enum:
+                  - Synack365
+                  - Synack90
+                  - Synack14
+                  description: Test plan type
+                testObjective:
+                  type: string
+                  description: Objective of the test
+      responses:
+        '201':
+          description: Test created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - test
+                properties:
+                  test:
+                    $ref: '#/components/schemas/Test'
+        '400':
+          description: Failed to parse parameters
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '404':
+          description: Assessment not found
+  /v1/{org_uid}/assets/{asset_uid}/listings/tests/latest:
+    get:
+      x-mint:
+        metadata:
+          title: Get Tests for an Asset
+      summary: Returns list of latest tests details and statuses per organization and asset
+      description: Get latest tests details and statuses by organization UID and asset UID
+      operationId: getAssetListingsTestsLatest
+      tags:
+      - Tests
+      parameters:
+      - name: org_uid
+        in: path
+        description: Organization UID
+        required: true
+        schema:
+          type: string
+      - name: asset_uid
+        in: path
+        description: Asset UID
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Maximum number of results to be returned
+        schema:
+          type: integer
+      - name: order_by
+        in: query
+        description: Order By [listing_codename, listing_name]
+        schema:
+          type: string
+          default: listing_codename
+          enum:
+          - listing_codename
+          - listing_name
+      - name: order_direction
+        in: query
+        description: Order Direction [ASC DESC]
+        schema:
+          type: string
+          default: ASC
+          enum:
+          - ASC
+          - DESC
+      - name: per_page
+        in: query
+        description: Maximum number of results to be returned
+        schema:
+          type: integer
+      - name: page
+        in: query
+        description: If provided, show the provided page
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '400':
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Bearer token is missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    ProblemDetailsSubProblem:
+      type: object
+      required:
+      - name
+      - reason
+      properties:
+        name:
+          type: string
+          description: The parameter name that caused the validation error
+        reason:
+          type: string
+          description: The reason why the parameter is invalid
+    Links:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+    ProblemDetails:
+      type: object
+      required:
+      - type
+      - title
+      - organization
+      properties:
+        type:
+          type: string
+          description: A URI reference that identifies the problem type
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem
+        organization:
+          type: string
+          description: The organization UID associated with the problem
+    Data:
+      type: object
+      properties:
+        attributes: {}
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/Links'
+        meta: {}
+        relationships:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Relationship'
+        type:
+          $ref: '#/components/schemas/ResourceType'
+    ResourceType:
+      type: string
+      enum:
+      - asset_list
+      - assets_counts
+      - asset_details
+      - asset_whois
+      - asset_ports
+      - asset_providers
+      - asset_seed_groups
+      - health_check
+      - org_asset_ports
+      - org_asset_suspected_vulns
+      - org_asset_vulns
+      - org_asset_listings_tests_latest
+      - top_vulnerable_ports
+      - top_unique_ports
+      - most_recently_added_assets
+      - top_cisa_cves
+      - top_vulnerable_ips
+      - asset_gateways
+      - tags
+      - last_tested_counts
+      - last_assets_scan
+    Document:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Data'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        included:
+          type: array
+          items: {}
+        links:
+          $ref: '#/components/schemas/Links'
+        meta: {}
+    Test:
+      type: object
+      properties:
+        name:
+          type: string
+        testPlan:
+          type: string
+          enum:
+          - Synack365
+          - Synack90
+          - Synack14
+        testObjective:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+        id:
+          type: string
+        source:
+          type: string
+        status:
+          type: integer
+        title:
+          type: string
+    Relationship:
+      type: object
+      properties:
+        data: {}
+        links:
+          $ref: '#/components/schemas/Links'
+    ValidationProblemDetails:
+      allOf:
+      - $ref: '#/components/schemas/ProblemDetails'
+      - type: object
+        required:
+        - invalidParams
+        properties:
+          invalidParams:
+            type: array
+            items:
+              $ref: '#/components/schemas/ProblemDetailsSubProblem'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

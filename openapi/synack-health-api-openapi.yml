@@ -1,0 +1,130 @@
+openapi: 3.1.0
+info:
+  title: Assessment Service Assessment Groups health API
+  version: 1.0.0
+  description: 'APIs for managing Assessment and related operations on the Synack.
+
+    '
+  contact:
+    name: Synack Engineering
+    email: engineering@synack.com
+servers:
+- url: https://client.synack.com/api/assessment
+  description: Commercial
+- url: https://client.synack.us/api/assessment
+  description: FedRAMP (Medium)
+security:
+- bearerAuth: []
+tags:
+- name: health
+paths:
+  /v1/health:
+    get:
+      x-excluded: true
+      summary: Health check
+      description: get health
+      operationId: healthCheck
+      tags:
+      - health
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Document'
+        '500':
+          description: Internal Server Error
+          content:
+            text/plain:
+              schema:
+                type: string
+components:
+  schemas:
+    Links:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+    Data:
+      type: object
+      properties:
+        attributes: {}
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/Links'
+        meta: {}
+        relationships:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Relationship'
+        type:
+          $ref: '#/components/schemas/ResourceType'
+    ResourceType:
+      type: string
+      enum:
+      - asset_list
+      - assets_counts
+      - asset_details
+      - asset_whois
+      - asset_ports
+      - asset_providers
+      - asset_seed_groups
+      - health_check
+      - org_asset_ports
+      - org_asset_suspected_vulns
+      - org_asset_vulns
+      - org_asset_listings_tests_latest
+      - top_vulnerable_ports
+      - top_unique_ports
+      - most_recently_added_assets
+      - top_cisa_cves
+      - top_vulnerable_ips
+      - asset_gateways
+      - tags
+      - last_tested_counts
+      - last_assets_scan
+    Document:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Data'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        included:
+          type: array
+          items: {}
+        links:
+          $ref: '#/components/schemas/Links'
+        meta: {}
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+        id:
+          type: string
+        source:
+          type: string
+        status:
+          type: integer
+        title:
+          type: string
+    Relationship:
+      type: object
+      properties:
+        data: {}
+        links:
+          $ref: '#/components/schemas/Links'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,1070 @@
+openapi: 3.1.0
+info:
+  title: Assessment Service Assessment Groups Tags API
+  version: 1.0.0
+  description: 'APIs for managing Assessment and related operations on the Synack.
+
+    '
+  contact:
+    name: Synack Engineering
+    email: engineering@synack.com
+servers:
+- url: https://client.synack.com/api/assessment
+  description: Commercial
+- url: https://client.synack.us/api/assessment
+  description: FedRAMP (Medium)
+security:
+- bearerAuth: []
+tags:
+- name: Tags
+  description: Tags applied to seeds and seed groups.
+paths:
+  /v1/organizations/{organizationUid}/seed-groups/{seedGroupUid}/tags/batchUpdate:
+    parameters:
+    - $ref: '#/components/parameters/OrganizationUIDPath'
+    - $ref: '#/components/parameters/SeedGroupUIDPath'
+    post:
+      operationId: updateSeedGroupTags
+      tags:
+      - Tags
+      description: 'Updates a seed groups tags.
+
+        '
+      x-mint:
+        metadata:
+          title: Update Seed Group Tags
+      requestBody:
+        description: 'Tags update.
+
+          '
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchTagsUpdate'
+      responses:
+        '204':
+          $ref: '#/components/responses/204NoContent'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '409':
+          $ref: '#/components/responses/409Conflict'
+        '413':
+          $ref: '#/components/responses/413RequestEntityTooLarge'
+        '422':
+          $ref: '#/components/responses/422EntityNotProcessable'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - assetdiscovery_ow
+  /v1/vulnerability_tags:
+    get:
+      operationId: getVulnerabilityTags
+      summary: Get vulnerability tags
+      description: Retrieve a list of vulnerability tags
+      tags:
+      - Tags
+      responses:
+        '200':
+          description: Vulnerability tags retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag_2'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createVulnerabilityTag
+      summary: Create a vulnerability tag
+      description: Create a new vulnerability tag
+      tags:
+      - Tags
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              properties:
+                name:
+                  type: string
+                  description: Name of the tag
+      responses:
+        '201':
+          description: Tag created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag_2'
+        '400':
+          description: Bad request
+  /v1/vulnerability_tags/{id}:
+    put:
+      operationId: updateVulnerabilityTag
+      summary: Update a vulnerability tag
+      description: Update an existing vulnerability tag
+      tags:
+      - Tags
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Tag ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: New name for the tag
+      responses:
+        '200':
+          description: Tag updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag_2'
+        '400':
+          description: Bad request
+        '404':
+          description: Tag not found
+    delete:
+      operationId: deleteVulnerabilityTag
+      summary: Delete a vulnerability tag
+      description: Delete a vulnerability tag
+      tags:
+      - Tags
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Tag ID
+      responses:
+        '204':
+          description: Tag deleted successfully
+        '404':
+          description: Tag not found
+  /v1/assessment_tags:
+    get:
+      summary: Retrieve a list of assessments tags
+      description: Retrieve all assessments tags defined by your organization including the number of assessments they are associated with.
+      tags:
+      - Tags
+      responses:
+        '200':
+          description: A list of organization's assessments tags
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                    name:
+                      type: string
+                      description: custom assessment tag
+                    count:
+                      type: integer
+                      format: int64
+                      description: number of assessments the tag is associated with
+                  required:
+                  - id
+                  - name
+                  - count
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+    post:
+      summary: Create a new assessment tag
+      description: Create a new tag and associate it with an assessment. Only organization admins are able to create new tags.
+      tags:
+      - Tags
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the tag
+                assessment_id:
+                  type: string
+                  description: ID of the assessment to tag
+              required:
+              - name
+              - assessment_id
+      responses:
+        '201':
+          description: The newly created tag
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                  name:
+                    type: string
+                    description: custom assessment tag
+                required:
+                - id
+                - name
+        '400':
+          description: Tag name is missing or is invalid (e.g. exists already)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '404':
+          description: Requesting party is missing admin privileges or assessment not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '422':
+          description: Tag creation failed unexpectedly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+  /v1/assessment_tags/{id}:
+    put:
+      summary: Update the name of an assessment tag record
+      description: Update the name of a tag. Only organization admins are able to update tags.
+      tags:
+      - Tags
+      parameters:
+      - name: id
+        in: path
+        description: ID of the assessment tag
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The new name of the tag
+              required:
+              - name
+      responses:
+        '200':
+          description: The updated assessment tag record
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                  name:
+                    type: string
+                    description: custom assessment tag
+                required:
+                - id
+                - name
+        '400':
+          description: Missing required request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '404':
+          description: Requesting party is missing admin privileges or no tag corresponding to the given ID was found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '422':
+          description: Tag update failed unexpectedly (an array of error messages is returned in the response)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+    delete:
+      summary: Remove an assessment tag record
+      description: Remove a tag. Only organization admins are able to delete tags.
+      tags:
+      - Tags
+      parameters:
+      - name: id
+        in: path
+        description: ID of the assessment tag
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Tag was successfully removed
+        '404':
+          description: Requesting party is missing admin privileges or no tag corresponding to the given ID was found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '422':
+          description: Tag deletion failed unexpectedly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+  /v1/{org_uid}/tags:
+    get:
+      x-mint:
+        metadata:
+          title: Get Tags for an Organization
+      summary: Returns list of tags per org
+      description: Get Tags by Organization
+      operationId: getTags
+      tags:
+      - Tags
+      parameters:
+      - name: org_uid
+        in: path
+        description: Organization UID
+        required: true
+        schema:
+          type: string
+      - name: search
+        in: query
+        description: Search for tags
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: limit
+        in: query
+        description: Maximum number of tags results to be returned
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '400':
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Bearer token is missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v1.0/organizations/{orgUid}/tags:
+    parameters:
+    - $ref: '#/components/parameters/OrganizationUIDPath_2'
+    post:
+      operationId: postTags
+      tags:
+      - Tags
+      description: "Create new tags. \n409 Conflict is logged as warn if the name matches the name of a tag that already exists in a given org uid.\n"
+      x-mint:
+        metadata:
+          title: Create Asset Tags
+      requestBody:
+        description: Tags to create.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTags'
+      responses:
+        '201':
+          $ref: '#/components/responses/PaginatedTagsResponse'
+        '400':
+          $ref: '#/components/responses/400BadRequest_2'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '413':
+          $ref: '#/components/responses/413RequestEntityTooLarge_2'
+        '422':
+          $ref: '#/components/responses/422EntityNotProcessable'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - tag_gw
+        - tag_gr
+        - tag_ow
+        - tag_or
+        - tag_lw
+        - tag_lr
+        - asset_gw
+        - asset_gr
+        - asset_boss_ow
+        - asset_client_ow
+        - asset_or
+        - asset_boss_lw
+        - asset_client_lw
+        - asset_lr
+    delete:
+      operationId: deleteTags
+      tags:
+      - Tags
+      description: 'Deletes tags.
+
+        '
+      x-mint:
+        metadata:
+          title: Delete Asset Tags
+      requestBody:
+        description: Tags to delete.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteTags'
+      responses:
+        '204':
+          $ref: '#/components/responses/204NoContent'
+        '400':
+          $ref: '#/components/responses/400BadRequest_2'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - tag_gw
+        - tag_ow
+        - asset_gw
+        - asset_boss_ow
+        - asset_client_ow
+    patch:
+      operationId: patchTags
+      tags:
+      - Tags
+      description: 'Attach/detach entities to/from org uids and/or tag uids.
+
+        '
+      x-mint:
+        metadata:
+          title: Attach/Detach Tags to Assets.
+      requestBody:
+        description: Tags to patch.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchTags'
+      responses:
+        '204':
+          $ref: '#/components/responses/204NoContent'
+        '400':
+          $ref: '#/components/responses/400BadRequest_2'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '413':
+          $ref: '#/components/responses/413RequestEntityTooLarge_2'
+        '422':
+          $ref: '#/components/responses/422EntityNotProcessable'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - tag_gw
+        - tag_gr
+        - tag_ow
+        - tag_or
+        - tag_lw
+        - tag_lr
+        - asset_gw
+        - asset_gr
+        - asset_boss_ow
+        - asset_client_ow
+        - asset_or
+        - asset_boss_lw
+        - asset_client_lw
+        - asset_lr
+  /v1.0/organizations/{orgUid}/tags/{tagUid}:
+    parameters:
+    - $ref: '#/components/parameters/OrganizationUIDPath_2'
+    - $ref: '#/components/parameters/TagUIDPath'
+    put:
+      operationId: putTags
+      tags:
+      - Tags
+      description: 'Updates tag name by tag uid.
+
+        '
+      x-mint:
+        metadata:
+          title: Update Tag Name
+      requestBody:
+        description: Update tag's name
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTag'
+      responses:
+        '204':
+          $ref: '#/components/responses/204NoContent'
+        '400':
+          $ref: '#/components/responses/400BadRequest_2'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '409':
+          $ref: '#/components/responses/409Conflict'
+        '412':
+          $ref: '#/components/responses/412PreconditionFailed'
+        '422':
+          $ref: '#/components/responses/422EntityNotProcessable'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - tag_gw
+        - tag_ow
+        - asset_gw
+        - asset_boss_ow
+        - asset_client_ow
+components:
+  schemas:
+    Entity:
+      allOf:
+      - type: object
+        required:
+        - uid
+        - entityType
+        properties:
+          uid:
+            $ref: '#/components/schemas/EntityUID'
+          entityType:
+            $ref: '#/components/schemas/EntityType'
+    TagUIDs:
+      type: array
+      items:
+        $ref: '#/components/schemas/TagUID'
+    Tag:
+      type: string
+      pattern: ^[-_0-9a-zA-Z]{1,16}
+    Tag_2:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        editable:
+          type: boolean
+        organization_profile_id:
+          type: integer
+    FailedValidation:
+      type: object
+      required:
+      - message
+      properties:
+        property:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+        message:
+          type: string
+          readOnly: true
+    PageOfTags:
+      type: object
+      properties:
+        tags:
+          $ref: '#/components/schemas/Tags'
+    Relationship:
+      type: object
+      properties:
+        data: {}
+        links:
+          $ref: '#/components/schemas/Links'
+    PatchTags:
+      type: object
+      required:
+      - uids
+      properties:
+        uids:
+          $ref: '#/components/schemas/TagUIDs'
+        addEntities:
+          $ref: '#/components/schemas/Entities'
+        delEntityUids:
+          $ref: '#/components/schemas/DelEntities'
+    EntityType:
+      type: string
+      enum:
+      - asset
+      - assessment
+      - seed
+      - seedGroup
+      - exploitableVulnerability
+      - suspectedVulnerability
+      description: Entity type
+    TagUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      description: Unique identifier for a tag.
+    EntityUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      description: Unique identifier for an entity.
+    Data:
+      type: object
+      properties:
+        attributes: {}
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/Links'
+        meta: {}
+        relationships:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Relationship'
+        type:
+          $ref: '#/components/schemas/ResourceType'
+    SeedGroupUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      description: Unique identifier for a seed group.
+    Tags:
+      type: array
+      items:
+        $ref: '#/components/schemas/Tag_3'
+    UpdateTag:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          $ref: '#/components/schemas/TagName'
+    DeleteTags:
+      type: object
+      required:
+      - uids
+      properties:
+        uids:
+          $ref: '#/components/schemas/TagUIDs'
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+        id:
+          type: string
+        source:
+          type: string
+        status:
+          type: integer
+        title:
+          type: string
+    Tag_3:
+      allOf:
+      - type: object
+        required:
+        - uid
+        - name
+        - orgUid
+        properties:
+          uid:
+            $ref: '#/components/schemas/TagUID'
+          name:
+            $ref: '#/components/schemas/TagName'
+          orgUid:
+            $ref: '#/components/schemas/OrgUID'
+          entities:
+            $ref: '#/components/schemas/Entities'
+    SeedUID:
+      type: string
+      pattern: ^[0-9a-f]{24}
+      description: Unique identifier for a seed.
+    ProblemDetails:
+      type: object
+      description: 'See [RFC 7807: Problem Details for HTTP APIs](https://tools.ietf.org/html/rfc7807)'
+      properties:
+        type:
+          type: string
+          readOnly: true
+        title:
+          type: string
+          readOnly: true
+        status:
+          type: integer
+          format: int32
+          minimum: 100
+          maximum: 511
+          description: HTTP Status code.
+          readOnly: true
+        detail:
+          type: string
+          description: Message detailing the problem.
+          readOnly: true
+        instance:
+          type: string
+          description: generated problem instance number to correlate with logs
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
+        failedValidations:
+          type: array
+          description: Array of indexed failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/IndexedFailedValidations'
+        maxBatchSize:
+          type: integer
+          description: Maximum processable batch size.
+          readOnly: true
+        batchSize:
+          type: integer
+          description: Batch size sent when batch is too large.
+          readOnly: true
+    IndexedFailedValidations:
+      type: object
+      properties:
+        index:
+          type: integer
+          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
+    TagName:
+      type: string
+      description: User-supplied name for this tag.
+    OrganizationUID:
+      type: string
+      pattern: ^[-_0-9a-z]{1,50}
+      description: Unique identifier for an organization.
+    ResourceType:
+      type: string
+      enum:
+      - asset_list
+      - assets_counts
+      - asset_details
+      - asset_whois
+      - asset_ports
+      - asset_providers
+      - asset_seed_groups
+      - health_check
+      - org_asset_ports
+      - org_asset_suspected_vulns
+      - org_asset_vulns
+      - org_asset_listings_tests_latest
+      - top_vulnerable_ports
+      - top_unique_ports
+      - most_recently_added_assets
+      - top_cisa_cves
+      - top_vulnerable_ips
+      - asset_gateways
+      - tags
+      - last_tested_counts
+      - last_assets_scan
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: X-Request-Id
+        error:
+          type: string
+          readOnly: true
+          description: Message detailing the problem.
+    Entities:
+      type: array
+      items:
+        $ref: '#/components/schemas/Entity'
+    DelEntities:
+      type: array
+      items:
+        $ref: '#/components/schemas/EntityUID'
+    Links:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+    BatchTagsUpdate:
+      type: object
+      description: Tags to remove and add to seeds and seed group
+      properties:
+        seedGroupTagsToDelete:
+          type: array
+          description: Array of tags to delete from the seed group.
+          items:
+            $ref: '#/components/schemas/Tag'
+        seedGroupTagsToAdd:
+          type: array
+          description: Array of tags to add to the seed group.
+          items:
+            $ref: '#/components/schemas/Tag'
+        seedUids:
+          type: array
+          description: Array of seed uids to apply tag update to.
+          items:
+            $ref: '#/components/schemas/SeedUID'
+        seedTagsToDelete:
+          type: array
+          description: Array of tags to delete from the supplied seeds.
+          items:
+            $ref: '#/components/schemas/Tag'
+        seedTagsToAdd:
+          type: array
+          description: Array of tags to add to the supplied seeds.
+          items:
+            $ref: '#/components/schemas/Tag'
+    OrgUID:
+      type: string
+      pattern: ^[0-9a-z]{1,50}
+      description: Unique identifier for an organization.
+    Document:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Data'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        included:
+          type: array
+          items: {}
+        links:
+          $ref: '#/components/schemas/Links'
+        meta: {}
+    NewTag:
+      allOf:
+      - type: object
+        required:
+        - name
+        properties:
+          name:
+            $ref: '#/components/schemas/TagName'
+          entities:
+            $ref: '#/components/schemas/Entities'
+    NewTags:
+      type: object
+      properties:
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/NewTag'
+  headers:
+    PaginationCurrentPage:
+      description: Current page in a paginated response.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    PaginationTotalPages:
+      description: Total number of pages in a paginated response.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    PaginationLimit:
+      description: Maximum number of items returned in a paginated response.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    PaginationTotalCount:
+      description: Total number of items in all pages of a paginated response.
+      schema:
+        format: int32
+        minimum: 1
+    Link:
+      description: Standard link header.
+      schema:
+        type: string
+  responses:
+    400BadRequest_2:
+      description: Bad Request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    PaginatedTagsResponse:
+      description: Paginated tags.
+      headers:
+        Pagination-Limit:
+          $ref: '#/components/headers/PaginationLimit'
+        Pagination-Current-Page:
+          $ref: '#/components/headers/PaginationCurrentPage'
+        Pagination-Total-Pages:
+          $ref: '#/components/headers/PaginationTotalPages'
+        Pagination-Total-Count:
+          $ref: '#/components/headers/PaginationTotalCount'
+        Link:
+          $ref: '#/components/headers/Link'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PageOfTags'
+    409Conflict:
+      description: Conflict.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    503ServiceUnavailable:
+      description: Service Unavailable.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    403Forbidden:
+      description: Forbidden
+    500InternalServerError:
+      description: Internal Server Error.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    404NotFound:
+      description: Not found.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    413RequestEntityTooLarge:
+      description: 'Returned generally when the size of the request body is too large to process, or specifically when the request contains too many items, typically in a bulk API operation.
+
+        '
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    412PreconditionFailed:
+      description: Precondition Failed.
+    400BadRequest:
+      description: Bad Request
+    204NoContent:
+      description: No content.
+    422EntityNotProcessable:
+      description: Entity Not Processable
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    401Unauthorized:
+      description: Unauthorized.
+    413RequestEntityTooLarge_2:
+      description: Returned generally when the size of the request body is too large to process, or specifically when the request contains too many items, typically in a bulk API operation.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+  parameters:
+    TagUIDPath:
+      name: tagUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/TagUID'
+      required: true
+      description: Unique identifier for a tag.
+    SeedGroupUIDPath:
+      name: seedGroupUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/SeedGroupUID'
+      required: true
+      description: Unique identifier for a seed group.
+    OrganizationUIDPath:
+      name: organizationUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/OrganizationUID'
+      required: true
+      description: Unique identifier for an organization group.
+    OrganizationUIDPath_2:
+      name: orgUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/OrgUID'
+      required: true
+      description: Unique identifier for an organization group.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

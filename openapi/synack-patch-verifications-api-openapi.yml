@@ -1,0 +1,131 @@
+openapi: 3.1.0
+info:
+  title: Assessment Service Assessment Groups Patch Verifications API
+  version: 1.0.0
+  description: 'APIs for managing Assessment and related operations on the Synack.
+
+    '
+  contact:
+    name: Synack Engineering
+    email: engineering@synack.com
+servers:
+- url: https://client.synack.com/api/assessment
+  description: Commercial
+- url: https://client.synack.us/api/assessment
+  description: FedRAMP (Medium)
+security:
+- bearerAuth: []
+tags:
+- name: Patch Verifications
+  description: Operations related to patch verifications
+paths:
+  /v1/vulnerabilities/{vulnerability_id}/patch_verifications:
+    get:
+      operationId: getVulnerabilityPatchVerifications
+      summary: Get vulnerability patch verifications
+      description: Retrieve patch verification requests for a specific vulnerability
+      tags:
+      - Patch Verifications
+      parameters:
+      - name: vulnerability_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Vulnerability ID
+      responses:
+        '200':
+          description: Patch verifications retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PatchVerification'
+        '404':
+          description: Vulnerability not found
+    post:
+      operationId: createVulnerabilityPatchVerification
+      summary: Create a vulnerability patch verification
+      description: Create a new patch verification request for a specific vulnerability
+      tags:
+      - Patch Verifications
+      parameters:
+      - name: vulnerability_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Vulnerability ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - message
+              properties:
+                message:
+                  type: string
+                  description: Patch verification message
+      responses:
+        '201':
+          description: Patch verification created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatchVerification'
+        '400':
+          description: Bad request
+        '404':
+          description: Vulnerability not found
+components:
+  schemas:
+    User:
+      required:
+      - assessment_ids
+      - banned
+      - email
+      - id
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        email:
+          type: string
+          description: e-mail address of the user
+        assessment_ids:
+          type: array
+          description: IDs of assessments the user has access to
+          items:
+            type: string
+        admin:
+          type: boolean
+          description: boolean flag to indicate whether the user has admin privileges (only visible to admin
+        invite_url:
+          type: string
+          description: invitation URL (only visible to admins)
+        banned:
+          type: boolean
+          description: boolean flag to indicate whether the user has been banned
+    PatchVerification:
+      type: object
+      properties:
+        id:
+          type: integer
+        message:
+          type: string
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        user:
+          $ref: '#/components/schemas/User'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

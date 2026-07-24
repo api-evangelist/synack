@@ -1,0 +1,1143 @@
+openapi: 3.1.0
+info:
+  title: Assessment Service Assessment Groups Assessments API
+  version: 1.0.0
+  description: 'APIs for managing Assessment and related operations on the Synack.
+
+    '
+  contact:
+    name: Synack Engineering
+    email: engineering@synack.com
+servers:
+- url: https://client.synack.com/api/assessment
+  description: Commercial
+- url: https://client.synack.us/api/assessment
+  description: FedRAMP (Medium)
+security:
+- bearerAuth: []
+tags:
+- name: Assessments
+  description: Assets are associated with listings.
+paths:
+  /v2/listings/{listingUid}/assets/{assetUid}:
+    parameters:
+    - $ref: '#/components/parameters/ListingUIDPath'
+    - $ref: '#/components/parameters/AssetUIDPath'
+    put:
+      operationId: putListingAsset
+      tags:
+      - Assessments
+      description: Upsert assignment of an asset to a listing.
+      x-mint:
+        metadata:
+          title: Add Asset to Assessment
+      requestBody:
+        description: Properties of the assignment of an asset to a listing.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListingAsset'
+      responses:
+        '200':
+          $ref: '#/components/responses/SingleListingAsset'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gw
+        - asset_client_ow
+        - asset_client_lw
+        - asset_boss_ow
+        - asset_boss_lw
+    delete:
+      operationId: deleteListingAsset
+      tags:
+      - Assessments
+      description: Delete the assignment of an asset to a listing.
+      x-mint:
+        metadata:
+          title: Remove Asset from Assessment
+      responses:
+        '204':
+          $ref: '#/components/responses/204NoContent'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gw
+        - asset_client_ow
+        - asset_boss_ow
+        - asset_client_lw
+        - asset_boss_lw
+  /v2/listings/{listingUid}/assets:
+    parameters:
+    - $ref: '#/components/parameters/ListingUIDPath'
+    patch:
+      operationId: patchListingAssets
+      tags:
+      - Assessments
+      description: Associate or disassociate zero or more assets from a listing. Allows the caller to provide lists of assets to add to and/or remove from being associated with a listing. Unknown assets are ignored.
+      x-mint:
+        metadata:
+          title: Add or Remove Multiple Assets to/from Asessment
+      requestBody:
+        description: Asset UIDs to add associations to and/or remove associations from the listing.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkListingAsset'
+      responses:
+        '204':
+          $ref: '#/components/responses/204NoContent'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '413':
+          $ref: '#/components/responses/413RequestEntityTooLarge'
+        '422':
+          $ref: '#/components/responses/422EntityNotProcessable'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gw
+        - asset_client_ow
+        - asset_client_lw
+        - asset_boss_ow
+        - asset_boss_lw
+    delete:
+      operationId: deleteListingAssets
+      parameters:
+      - $ref: '#/components/parameters/AssetTypeQuery'
+      tags:
+      - Assessments
+      description: Delete all the association of assets from a listing.
+      x-mint:
+        metadata:
+          title: Remove All Assets from Assessment
+      responses:
+        '204':
+          $ref: '#/components/responses/204NoContent'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gw
+        - asset_boss_ow
+        - asset_boss_lw
+        - asset_client_ow
+        - asset_client_lw
+  /v2/organizations/{organizationUid}/listings/{listingUid}/gateways:
+    parameters:
+    - $ref: '#/components/parameters/OrganizationUIDPath'
+    - $ref: '#/components/parameters/ListingUIDPath'
+    patch:
+      x-excluded: true
+      operationId: patchListingGateways
+      tags:
+      - Assessments
+      description: 'Associate or disassociate gateway ID from a listing.
+
+        Allows the caller to provide gateway ID to add to and/or remove from
+
+        being associated with a listing. Gateway ID equals to `"nil"` would disassociate.
+
+        '
+      requestBody:
+        description: Gateway ID to add or remove from the listing and every asset attached to that listing.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GatewayIDInput'
+      responses:
+        '204':
+          $ref: '#/components/responses/204NoContent'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '422':
+          $ref: '#/components/responses/422EntityNotProcessable'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+      security:
+      - OAuth2:
+        - asset_gw
+        - asset_client_ow
+        - asset_client_lw
+        - asset_boss_ow
+        - asset_boss_lw
+  /v2/listings/{listingUid}/reset-scope-rules:
+    parameters:
+    - $ref: '#/components/parameters/ListingUIDPath'
+    put:
+      x-excluded: true
+      operationId: putListingAssetsResetScopeRules
+      tags:
+      - Assessments
+      description: For every asset associated with the listing, reset the scope rules to default rules
+      responses:
+        '204':
+          $ref: '#/components/responses/204NoContent'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gw
+        - asset_boss_ow
+        - asset_boss_lw
+  /v1/assessments:
+    get:
+      operationId: getAssessments
+      summary: Get assessments (V1)
+      description: Retrieve a list of assessments for the current user's organization
+      tags:
+      - Assessments
+      parameters:
+      - name: assessment_group_id
+        in: query
+        schema:
+          type: integer
+        description: Filter by assessment group ID
+      responses:
+        '200':
+          description: Assessments retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Assessment'
+        '400':
+          description: Bad request
+  /v1/assessments/{id}:
+    get:
+      operationId: getAssessment
+      summary: Get a specific assessment (V1)
+      description: Retrieve details of a specific assessment
+      tags:
+      - Assessments
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Assessment ID
+      responses:
+        '200':
+          description: Assessment retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assessment'
+        '404':
+          description: Assessment not found
+  /v1/assessments/{id}/testing_hours:
+    get:
+      operationId: getAssessmentTestingHours
+      summary: Get testing hours for an assessment
+      description: Retrieve testing hours statistics for a specific assessment
+      tags:
+      - Assessments
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Assessment ID
+      responses:
+        '200':
+          description: Testing hours retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  stats_total:
+                    type: integer
+                  from:
+                    type: string
+                    format: date-time
+                  to:
+                    type: string
+                    format: date-time
+  /v1/assessments/{id}/updates:
+    post:
+      summary: Create new assessment update that is visible to researchers
+      description: Post a new update for the assessment
+      x-mint:
+        metadata:
+          title: Create Update for Assessment
+      tags:
+      - Assessments
+      parameters:
+      - name: id
+        in: path
+        description: UID of the assessment
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: Message you want to pass to the researchers
+                  minLength: 10
+              required:
+              - message
+      responses:
+        '201':
+          description: Assessment update created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Message of the created update
+                  assessment_id:
+                    type: string
+                    description: ID of the listing the update was created for
+                required:
+                - message
+                - assessment_id
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '403':
+          description: Forbidden - user does not have permission to update this assessment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '404':
+          description: Assessment not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+  /v2/organizations/{organizationUid}/assessments:
+    get:
+      operationId: getOrganizationAssessments
+      summary: Get assessments for an organization
+      description: Retrieve a paginated list of assessments for a specific organization with filtering and sorting options
+      tags:
+      - Assessments
+      parameters:
+      - name: organizationUid
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique identifier of the organization
+      - name: sort
+        in: query
+        schema:
+          type: string
+          default: created_at
+          enum:
+          - name
+          - created_at
+          - pending_test_count
+          - scheduled_test_count
+          - active_test_count
+          - paused_test_count
+          - completed_test_count
+          - total_vulnerability_count
+        description: Field to sort by
+      - name: sortDir
+        in: query
+        schema:
+          type: string
+          default: desc
+          enum:
+          - desc
+          - asc
+        description: Sort direction
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+        description: Page number for pagination
+      - name: perPage
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 50
+          default: 10
+        description: Number of items per page
+      - name: search
+        in: query
+        schema:
+          type: string
+        description: Search term to filter assessments by name
+      - name: types[]
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - web
+            - host
+            - api
+            - mobile
+        explode: true
+        description: Filter by assessment types
+      - name: tagIds[]
+        in: query
+        schema:
+          type: array
+          items:
+            type: integer
+        explode: true
+        description: Filter by tag IDs
+      responses:
+        '200':
+          description: Successfully retrieved assessments
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - assessments
+                - metadata
+                properties:
+                  assessments:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Assessment'
+                  metadata:
+                    type: object
+                    required:
+                    - pagination
+                    properties:
+                      pagination:
+                        $ref: '#/components/schemas/PaginationMetadata'
+        '400':
+          description: Invalid query parameters
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Organization not found
+    post:
+      operationId: createOrganizationAssessment
+      summary: Create a new assessment
+      description: Creates a new assessment for an organization
+      tags:
+      - Assessments
+      parameters:
+      - name: organizationUid
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique identifier of the organization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - authenticationSelfRegistrationEnabled
+              - orgListingGroupId
+              - categoryId
+              - ownerContactsAttributes
+              - assets
+              properties:
+                name:
+                  type: string
+                  description: Name of the assessment
+                description:
+                  type: string
+                  description: Description of the assessment
+                authenticationSelfRegistrationEnabled:
+                  type: boolean
+                  description: Whether self-registration is enabled
+                orgListingGroupId:
+                  type: integer
+                  description: ID of the organization listing group
+                gatewayId:
+                  type: string
+                  description: Gateway ID for the assessment
+                categoryId:
+                  type: integer
+                  description: Category ID for the assessment
+                tagNames:
+                  type: array
+                  items:
+                    type: string
+                  description: Names of tags to associate with the assessment
+                ownerContactsAttributes:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      userId:
+                        type: string
+                  description: Owner contact attributes
+                files:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      signedId:
+                        type: string
+                  description: File attachments
+                assets:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      uid:
+                        type: string
+                  description: Asset UIDs for the assessment
+      responses:
+        '201':
+          description: Assessment created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - assessment
+                properties:
+                  assessment:
+                    $ref: '#/components/schemas/Assessment'
+        '400':
+          description: Invalid parameters
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '422':
+          description: Invalid operation
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails_2'
+        '500':
+          description: Internal server error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails_2'
+  /v2/organizations/{organizationUid}/assessments/{assessmentUid}/stats:
+    get:
+      operationId: getAssessmentStats
+      summary: Get assessment statistics
+      description: Retrieve statistics for a specific assessment
+      tags:
+      - Assessments
+      parameters:
+      - name: organizationUid
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique identifier of the organization
+      - name: assessmentUid
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique identifier of the assessment
+      responses:
+        '200':
+          description: Assessment statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssessmentStats'
+        '404':
+          description: Assessment not found
+components:
+  schemas:
+    PaginationMetadata:
+      type: object
+      required:
+      - total
+      - page
+      - perPage
+      - totalPages
+      - first
+      - last
+      - self
+      properties:
+        total:
+          type: integer
+          minimum: 0
+        page:
+          type: integer
+          minimum: 1
+        perPage:
+          type: integer
+          minimum: 1
+        totalPages:
+          type: integer
+          minimum: 0
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        self:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+    OwnerContact:
+      type: object
+      required:
+      - id
+      - name
+      - email
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        editable:
+          type: boolean
+        organization_profile_id:
+          type: integer
+    FailedValidation:
+      type: object
+      required:
+      - message
+      properties:
+        property:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+        message:
+          type: string
+          readOnly: true
+    GatewayIDInput:
+      type: object
+      required:
+      - gatewayId
+      description: Gateway ID to associate or remove from a listing.
+      properties:
+        gatewayId:
+          $ref: '#/components/schemas/GatewayID'
+    BulkListingAsset:
+      type: object
+      description: Asset UIDs to associate to and/or remove from a listing.
+      properties:
+        add:
+          type: array
+          description: Asset UIDs to associate to the listing.
+          items:
+            $ref: '#/components/schemas/ListingAsset'
+        remove:
+          type: array
+          description: Asset UIDs to remove from the listing.
+          items:
+            $ref: '#/components/schemas/AssetUID'
+    OperationUserUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      readOnly: true
+      description: Automatically set by the server to the requesting user whenever the resource is updated. May be a user account or a service account if the action is performed by an automated.
+    ProblemDetailsSubProblem:
+      type: object
+      required:
+      - name
+      - reason
+      properties:
+        name:
+          type: string
+          description: The parameter name that caused the validation error
+        reason:
+          type: string
+          description: The reason why the parameter is invalid
+    Creatable:
+      type: object
+      required:
+      - createdAt
+      - createdBy
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Automatically set by the server to the time the request was processed whenever the resource was created.
+        createdBy:
+          $ref: '#/components/schemas/OperationUserUID'
+    UID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      readOnly: true
+      description: Unique Identifier.
+    GatewayID:
+      type: string
+      pattern: ^[0-9a-f]{16}
+      description: Identifier for Launchpoint-managed VPN gateway.
+    Scope:
+      description: 'Set to _in_-scope means automated and manual testing _should_ occur; _out_-of-scope means automated and manual testing _must not_ occur; _discovered_ means observed through automated discovery and may be automatically removed if not observed again during subseqent discovery activities.
+
+        '
+      type: string
+      enum:
+      - in
+      - out
+      - discovered
+      - blocked
+    ProblemDetails_2:
+      type: object
+      required:
+      - type
+      - title
+      - organization
+      properties:
+        type:
+          type: string
+          description: A URI reference that identifies the problem type
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem
+        organization:
+          type: string
+          description: The organization UID associated with the problem
+    ScopeRuleInclusion:
+      type: string
+      enum:
+      - in
+      - out
+    AssetListing:
+      type: object
+      description: Listings the asset is assigned to.
+      properties:
+        listingUid:
+          $ref: '#/components/schemas/ListingUID'
+        scope:
+          $ref: '#/components/schemas/Scope'
+        scopeRules:
+          description: Out of scope locations for this asset.
+          type: array
+          items:
+            $ref: '#/components/schemas/ScopeRule'
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Automatically set by the server to the time the listing asset association was created.
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Automatically set by the server to the time the listing asset association is updated.
+    WebRULE:
+      type: string
+      pattern: ^(/([a-zA-Z0-9_-~!$&'()+,;=:@.]|%[0-9a-fA-F]{2})+/)*(/?((([A-z]|[0-9]|[-_~])|%[0-9a-fA-F]{2}|[!$&'()*+,;=]|[:@])|[/?])*){0,1}//(#((([A-z]|[0-9]|[-_~.])|%[0-9a-fA-F]{2}|[!$&'()*+,;=]|[:@])|[/?])*){0,1}/?$
+      description: Rule for web asset validation
+    ProblemDetails:
+      type: object
+      description: 'See [RFC 7807: Problem Details for HTTP APIs](https://tools.ietf.org/html/rfc7807)'
+      properties:
+        type:
+          type: string
+          readOnly: true
+        title:
+          type: string
+          readOnly: true
+        status:
+          type: integer
+          format: int32
+          minimum: 100
+          maximum: 511
+          description: HTTP Status code.
+          readOnly: true
+        detail:
+          type: string
+          description: Message detailing the problem.
+          readOnly: true
+        instance:
+          type: string
+          description: generated problem instance number to correlate with logs
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
+        failedValidations:
+          type: array
+          description: Array of indexed failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/IndexedFailedValidations'
+        maxBatchSize:
+          type: integer
+          description: Maximum processable batch size.
+          readOnly: true
+        batchSize:
+          type: integer
+          description: Batch size sent when batch is too large.
+          readOnly: true
+    IndexedFailedValidations:
+      type: object
+      properties:
+        index:
+          type: integer
+          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
+    OrganizationUID:
+      type: string
+      pattern: ^[-_0-9a-z]{1,50}
+      description: Unique identifier for an organization.
+    AssessmentStats:
+      type: object
+      properties:
+        tests:
+          type: integer
+        averageRemediationDays:
+          type: integer
+        vulnerabilities:
+          $ref: '#/components/schemas/VulnerabilityCounts'
+        missions:
+          $ref: '#/components/schemas/MissionCounts'
+        coverage:
+          $ref: '#/components/schemas/CoverageData'
+    AssetUID:
+      type: string
+      pattern: ^[0-9a-f]{24}
+      description: Unique identifier for an asset.
+    Updatable:
+      allOf:
+      - $ref: '#/components/schemas/Creatable'
+      - type: object
+        properties:
+          updatedAt:
+            type: string
+            format: date-time
+            readOnly: true
+            description: Automatically set by the server to the time the request was processed whenever the resource is updated.
+          updatedBy:
+            $ref: '#/components/schemas/OperationUserUID'
+    VulnerabilityCounts:
+      type: object
+      properties:
+        inReview:
+          type: integer
+        accepted:
+          type: integer
+        acceptedOpen:
+          type: integer
+    ScopeRuleApplicability:
+      type: string
+      enum:
+      - scanners
+      - srt
+      - both
+    ScopeRuleSummary:
+      type: object
+      description: Part of the scope of an asset that is included/excluded from a specific activity.
+      required:
+      - uid
+      - rule
+      - scope
+      - appliesTo
+      properties:
+        uid:
+          $ref: '#/components/schemas/UID'
+        rule:
+          $ref: '#/components/schemas/WebRULE'
+          description: A textual definition of the scope rule. Format will vary by assetType.
+        scope:
+          $ref: '#/components/schemas/ScopeRuleInclusion'
+        appliesTo:
+          $ref: '#/components/schemas/ScopeRuleApplicability'
+    TestCounts:
+      type: object
+      required:
+      - pending
+      - scheduled
+      - active
+      - paused
+      - completed
+      properties:
+        pending:
+          type: integer
+          minimum: 0
+        scheduled:
+          type: integer
+          minimum: 0
+        active:
+          type: integer
+          minimum: 0
+        paused:
+          type: integer
+          minimum: 0
+        completed:
+          type: integer
+          minimum: 0
+    Assessment:
+      type: object
+      required:
+      - uid
+      - name
+      - createdAt
+      - type
+      - testCounts
+      - vulnerabilityCount
+      properties:
+        uid:
+          type: string
+          example: assessmentuid921
+        name:
+          type: string
+          example: My Security Assessment
+        description:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        type:
+          type: string
+          enum:
+          - web
+          - host
+          - api
+          - mobile
+          example: Web
+        testCounts:
+          $ref: '#/components/schemas/TestCounts'
+        vulnerabilityCount:
+          type: integer
+          minimum: 0
+          example: 13
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+        ownerContacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/OwnerContact'
+    ListingUID:
+      type: string
+      pattern: ^[-_0-9a-z]{1,50}
+      description: Unique identifier for an listing.
+      readOnly: true
+    ListingAsset:
+      allOf:
+      - $ref: '#/components/schemas/AssetListing'
+      - type: object
+        description: Assignment of an asset to a listing.
+        properties:
+          assetUid:
+            $ref: '#/components/schemas/AssetUID'
+    AssetType:
+      type: string
+      enum:
+      - cloudaccount
+      - host
+      - network
+      - mobileapp
+      - webapp
+    ScopeRule:
+      allOf:
+      - $ref: '#/components/schemas/ScopeRuleSummary'
+      - $ref: '#/components/schemas/Updatable'
+    CoverageData:
+      type: object
+      properties:
+        pageHits:
+          type: integer
+        classifiedTraffic:
+          type: integer
+    MissionCounts:
+      type: object
+      properties:
+        active:
+          type: integer
+        completed:
+          type: integer
+    ValidationProblemDetails:
+      allOf:
+      - $ref: '#/components/schemas/ProblemDetails_2'
+      - type: object
+        required:
+        - invalidParams
+        properties:
+          invalidParams:
+            type: array
+            items:
+              $ref: '#/components/schemas/ProblemDetailsSubProblem'
+  parameters:
+    ListingUIDPath:
+      name: listingUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/ListingUID'
+      required: true
+      description: Unique identifier for an listing.
+    OrganizationUIDPath:
+      name: organizationUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/OrganizationUID'
+      required: true
+      description: Unique identifier for an organization.
+    AssetTypeQuery:
+      name: assetType[]
+      in: query
+      schema:
+        type: array
+        items:
+          $ref: '#/components/schemas/AssetType'
+      required: false
+      explode: true
+      description: Restrict the returned asset summaries to only assets of the specified type.
+    AssetUIDPath:
+      name: assetUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/AssetUID'
+      required: true
+      description: Unique identifier for an asset.
+  responses:
+    503ServiceUnavailable:
+      description: Service Unavailable.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    403Forbidden:
+      description: Forbidden
+    500InternalServerError:
+      description: Internal Server Error.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    413RequestEntityTooLarge:
+      description: Returned generally when the size of the request body is too large to process, or specifically when the request contains too many items, typically in a bulk API operation.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    404NotFound:
+      description: Not found.
+    204NoContent:
+      description: No content.
+    SingleListingAsset:
+      description: The assignment of an asset to an listing.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ListingAsset'
+    422EntityNotProcessable:
+      description: Entity Not Processable
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    401Unauthorized:
+      description: Unauthorized.
+  headers:
+    ETag:
+      description: An identifier for a specific version of a resource
+      schema:
+        type: string
+        pattern: ^(?:W\/)?\".*\"$
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

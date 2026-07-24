@@ -1,0 +1,626 @@
+openapi: 3.1.0
+info:
+  title: Assessment Service Assessment Groups scripts API
+  version: 1.0.0
+  description: 'APIs for managing Assessment and related operations on the Synack.
+
+    '
+  contact:
+    name: Synack Engineering
+    email: engineering@synack.com
+servers:
+- url: https://client.synack.com/api/assessment
+  description: Commercial
+- url: https://client.synack.us/api/assessment
+  description: FedRAMP (Medium)
+security:
+- bearerAuth: []
+tags:
+- name: scripts
+  description: Scripts for mobile and web applications.
+paths:
+  /v2/assets/{assetUid}/scripts:
+    parameters:
+    - $ref: '#/components/parameters/AssetUIDPath'
+    get:
+      x-excluded: true
+      operationId: getAssetScripts
+      tags:
+      - scripts
+      description: Gets all scripts owned by the mobile or web application asset. Returns 409 status if the asset is not of one of these types.
+      parameters:
+      - $ref: '#/components/parameters/PerPageQuery'
+      - $ref: '#/components/parameters/PageQuery'
+      - in: query
+        name: sort
+        schema:
+          type: string
+          enum:
+          - name
+          - scriptRole
+          - createdAt
+          - updatedAt
+        description: Optional property to sort results by.
+        required: false
+      - $ref: '#/components/parameters/SortDirQuery'
+      responses:
+        '200':
+          $ref: '#/components/responses/PaginatedArrayOfAssetScripts'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '409':
+          $ref: '#/components/responses/409Conflict'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gr
+        - asset_or
+    post:
+      x-excluded: true
+      operationId: postAssetScript
+      tags:
+      - scripts
+      description: 'Adds a script to a mobile or web application asset. Returns 409 status if the asset is of any other type..
+
+        '
+      requestBody:
+        description: Script to add.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetScript'
+      responses:
+        '201':
+          $ref: '#/components/responses/SingleAssetScript'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '409':
+          $ref: '#/components/responses/409Conflict'
+        '412':
+          $ref: '#/components/responses/412PreconditionFailed'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gw
+        - asset_client_ow
+        - asset_boss_ow
+        - asset_client_lw
+        - asset_boss_lw
+  /v2/scripts/{scriptUid}:
+    parameters:
+    - $ref: '#/components/parameters/ScriptUIDPath'
+    get:
+      x-excluded: true
+      operationId: getAssetScript
+      tags:
+      - scripts
+      description: Gets an asset script.
+      responses:
+        '200':
+          $ref: '#/components/responses/SingleAssetScript'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gr
+        - asset_scan_gr
+        - asset_or
+        - asset_lr
+    delete:
+      x-excluded: true
+      operationId: deleteAssetScript
+      tags:
+      - scripts
+      description: 'Delete a script from a asset.
+
+        '
+      responses:
+        '204':
+          $ref: '#/components/responses/204NoContent'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gw
+        - asset_client_ow
+        - asset_boss_ow
+        - asset_client_lw
+        - asset_boss_lw
+    patch:
+      x-excluded: true
+      operationId: patchAssetScript
+      tags:
+      - scripts
+      description: 'Patch the properties of an asset script.
+
+        '
+      requestBody:
+        description: Script properties to patch.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRoleScriptUpdate'
+      responses:
+        '200':
+          $ref: '#/components/responses/SingleUserRoleScript'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '422':
+          $ref: '#/components/responses/422EntityNotProcessable'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gw
+        - asset_client_ow
+        - asset_boss_ow
+        - asset_client_lw
+        - asset_boss_lw
+  /v2/scripts/{scriptUid}/script-data:
+    parameters:
+    - $ref: '#/components/parameters/ScriptUIDPath'
+    get:
+      x-excluded: true
+      operationId: getAssetScriptData
+      tags:
+      - scripts
+      description: Gets the script data for an asset script.
+      responses:
+        '200':
+          description: JSON-representation of the asset script data
+          content:
+            application/json: {}
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gr
+        - asset_or
+        - asset_lr
+  /v2/user-roles/{userRoleUid}/scripts/{scriptUid}:
+    parameters:
+    - $ref: '#/components/parameters/UserRoleUIDPath'
+    - $ref: '#/components/parameters/ScriptUIDPath'
+    patch:
+      x-excluded: true
+      operationId: patchUserRoleScript
+      tags:
+      - scripts
+      description: Patch properties of a script that's been assigned to user role for a mobile or web application asset.
+      requestBody:
+        description: Updatable properties of a script to patch.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRoleScriptUpdate'
+      responses:
+        '200':
+          $ref: '#/components/responses/SingleUserRoleScript'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '422':
+          $ref: '#/components/responses/422EntityNotProcessable'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gw
+        - asset_client_ow
+        - asset_boss_ow
+        - asset_client_lw
+        - asset_boss_lw
+components:
+  headers:
+    PaginationCurrentPage:
+      description: Current page in a paginated response.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    PaginationTotalPages:
+      description: Total number of pages in a paginated response.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    PaginationLimit:
+      description: Maximum number of items returned in a paginated response.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    PaginationTotalCount:
+      description: Total number of items in all pages of a paginated response.
+      schema:
+        format: int32
+        minimum: 1
+    ETag:
+      description: An identifier for a specific version of a resource
+      schema:
+        type: string
+        pattern: ^(?:W\/)?\".*\"$
+    Link:
+      description: Standard link header.
+      schema:
+        type: string
+  parameters:
+    PerPageQuery:
+      name: perPage
+      in: query
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 5000
+      required: false
+      description: 'Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.
+
+        '
+    ScriptUIDPath:
+      name: scriptUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/UID'
+      required: true
+      description: Unique identifier for an asset script.
+    UserRoleUIDPath:
+      name: userRoleUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/UID'
+      required: true
+      description: Unique identifier for an asset user role.
+    SortDirQuery:
+      name: sortDir
+      in: query
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        default: asc
+      required: false
+      description: Direction of sort-order for items in the response.
+    AssetUIDPath:
+      name: assetUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/AssetUID'
+      required: true
+      description: Unique identifier for an asset.
+    PageQuery:
+      name: page
+      in: query
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      required: false
+      description: 'Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.
+
+        '
+  schemas:
+    FailedValidation:
+      type: object
+      required:
+      - message
+      properties:
+        property:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+        message:
+          type: string
+          readOnly: true
+    OperationUserUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      readOnly: true
+      description: Automatically set by the server to the requesting user whenever the resource is updated. May be a user account or a service account if the action is performed by an automated.
+    Creatable:
+      type: object
+      required:
+      - createdAt
+      - createdBy
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Automatically set by the server to the time the request was processed whenever the resource was created.
+        createdBy:
+          $ref: '#/components/schemas/OperationUserUID'
+    UID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      readOnly: true
+      description: Unique Identifier.
+    ScriptRole:
+      type: string
+      enum:
+      - authentication
+      - sessionValidation
+      - recordedLogin
+    ProblemDetails:
+      type: object
+      description: 'See [RFC 7807: Problem Details for HTTP APIs](https://tools.ietf.org/html/rfc7807)'
+      properties:
+        type:
+          type: string
+          readOnly: true
+        title:
+          type: string
+          readOnly: true
+        status:
+          type: integer
+          format: int32
+          minimum: 100
+          maximum: 511
+          description: HTTP Status code.
+          readOnly: true
+        detail:
+          type: string
+          description: Message detailing the problem.
+          readOnly: true
+        instance:
+          type: string
+          description: generated problem instance number to correlate with logs
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
+        failedValidations:
+          type: array
+          description: Array of indexed failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/IndexedFailedValidations'
+        maxBatchSize:
+          type: integer
+          description: Maximum processable batch size.
+          readOnly: true
+        batchSize:
+          type: integer
+          description: Batch size sent when batch is too large.
+          readOnly: true
+    IndexedFailedValidations:
+      type: object
+      properties:
+        index:
+          type: integer
+          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
+    Base64Data:
+      type: string
+      description: Base64 encoding of data.
+      example: TXkgdm9pY2UgaXMgbXkgcGFzc3dvcmQu
+    ArrayOfAssetScripts:
+      type: array
+      items:
+        $ref: '#/components/schemas/AssetScript'
+    AssetUID:
+      type: string
+      pattern: ^[0-9a-f]{24}
+      description: Unique identifier for an asset.
+    CheckerStatus:
+      type: string
+      enum:
+      - unchecked
+      - invalid
+      - valid
+      description: Status reported by automated checkers.
+    Updatable:
+      allOf:
+      - $ref: '#/components/schemas/Creatable'
+      - type: object
+        properties:
+          updatedAt:
+            type: string
+            format: date-time
+            readOnly: true
+            description: Automatically set by the server to the time the request was processed whenever the resource is updated.
+          updatedBy:
+            $ref: '#/components/schemas/OperationUserUID'
+    AssetScript:
+      allOf:
+      - type: object
+        description: Script used to test web applications.
+        properties:
+          uid:
+            $ref: '#/components/schemas/UID'
+          name:
+            type: string
+            description: Must be unique across all scripts owned by an asset.
+          scriptRole:
+            $ref: '#/components/schemas/ScriptRole'
+          scriptData:
+            $ref: '#/components/schemas/Base64Data'
+      - $ref: '#/components/schemas/Updatable'
+    UserRoleScriptUpdate:
+      type: object
+      description: Updatable properties of a script in context of a user role.
+      properties:
+        status:
+          $ref: '#/components/schemas/CheckerStatus'
+        error:
+          type: string
+          description: Optional text of error message. Server will unset this property when status is set to any value other than invalid.
+        imageCaptureUrl:
+          type: string
+          format: uri
+          description: Optional Url to image capture of the script execution.
+        lastCheckedAt:
+          type: string
+          format: date-time
+          description: The most recent date time the script was run.
+        lastSuccessfulAt:
+          type: string
+          format: date-time
+          description: The most recent date time the script was successfully run.
+    UserRoleScript:
+      allOf:
+      - type: object
+        description: Script used to test a mobile or web applications.
+        properties:
+          uid:
+            $ref: '#/components/schemas/UID'
+          status:
+            $ref: '#/components/schemas/CheckerStatus'
+          filename:
+            type: string
+            description: Generated script name.
+            readOnly: true
+          error:
+            type: string
+            description: Optional text of error message. Server will unset this property when status is set to any value other than invalid.
+          imageCaptureUrl:
+            type: string
+            format: uri
+            description: Optional Url to image capture of the script execution.
+          lastCheckedAt:
+            type: string
+            format: date-time
+            description: The most reecent date time the script was run.
+          lastSuccessfulAt:
+            type: string
+            format: date-time
+            description: The most recent date time the script was successfully run.
+  responses:
+    SingleUserRoleScript:
+      description: The current state of a user role script.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UserRoleScript'
+    PaginatedArrayOfAssetScripts:
+      description: Paginated scripts for an asset.
+      headers:
+        Pagination-Limit:
+          $ref: '#/components/headers/PaginationLimit'
+        Pagination-Current-Page:
+          $ref: '#/components/headers/PaginationCurrentPage'
+        Pagination-Total-Pages:
+          $ref: '#/components/headers/PaginationTotalPages'
+        Pagination-Total-Count:
+          $ref: '#/components/headers/PaginationTotalCount'
+        Link:
+          $ref: '#/components/headers/Link'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ArrayOfAssetScripts'
+    409Conflict:
+      description: Conflict.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    503ServiceUnavailable:
+      description: Service Unavailable.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    403Forbidden:
+      description: Forbidden
+    500InternalServerError:
+      description: Internal Server Error.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    404NotFound:
+      description: Not found.
+    412PreconditionFailed:
+      description: Precondition Failed.
+    204NoContent:
+      description: No content.
+    SingleAssetScript:
+      description: An application script.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AssetScript'
+    422EntityNotProcessable:
+      description: Entity Not Processable
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    401Unauthorized:
+      description: Unauthorized.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

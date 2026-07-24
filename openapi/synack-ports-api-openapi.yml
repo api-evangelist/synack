@@ -1,0 +1,464 @@
+openapi: 3.1.0
+info:
+  title: Assessment Service Assessment Groups ports API
+  version: 1.0.0
+  description: 'APIs for managing Assessment and related operations on the Synack.
+
+    '
+  contact:
+    name: Synack Engineering
+    email: engineering@synack.com
+servers:
+- url: https://client.synack.com/api/assessment
+  description: Commercial
+- url: https://client.synack.us/api/assessment
+  description: FedRAMP (Medium)
+security:
+- bearerAuth: []
+tags:
+- name: ports
+  description: Ports for single host assets.
+paths:
+  /v2/assets/{assetUid}/ports/{portNumber}/{portProtocol}:
+    parameters:
+    - $ref: '#/components/parameters/AssetUIDPath'
+    - $ref: '#/components/parameters/PortNumberPath'
+    - $ref: '#/components/parameters/PortProtocolPath'
+    get:
+      operationId: getHostPort
+      tags:
+      - ports
+      description: 'Retrieve a port for a host asset.
+
+        '
+      x-mint:
+        metadata:
+          title: Get Port for Host Asset
+      responses:
+        '200':
+          $ref: '#/components/responses/SinglePort'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gr
+        - asset_or
+        - asset_lr
+    put:
+      x-excluded: true
+      operationId: putHostPort
+      tags:
+      - ports
+      description: 'Upsert a port to a host asset. Will return 409 status if the asset is not a single host (i.e. a CIDR).
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/IfMatch'
+      requestBody:
+        description: Port properties to upsert.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Port'
+      responses:
+        '200':
+          $ref: '#/components/responses/SinglePort'
+        '201':
+          $ref: '#/components/responses/SinglePort'
+        '204':
+          $ref: '#/components/responses/204NoContent'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '409':
+          $ref: '#/components/responses/409Conflict'
+        '412':
+          $ref: '#/components/responses/412PreconditionFailed'
+        '422':
+          $ref: '#/components/responses/422EntityNotProcessable'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gw
+        - asset_client_ow
+        - asset_boss_ow
+        - asset_client_lw
+        - asset_boss_lw
+    patch:
+      x-excluded: true
+      operationId: patchHostPort
+      tags:
+      - ports
+      description: 'Update properties of a port belonging a single-IP host asset.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/IfMatch'
+      requestBody:
+        description: Asset properties to patch.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PortUpdate'
+      responses:
+        '200':
+          $ref: '#/components/responses/SinglePort'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '412':
+          $ref: '#/components/responses/412PreconditionFailed'
+        '422':
+          $ref: '#/components/responses/422EntityNotProcessable'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gw
+        - asset_client_ow
+        - asset_boss_ow
+        - asset_client_lw
+        - asset_boss_lw
+    delete:
+      x-excluded: true
+      operationId: deleteHostPort
+      tags:
+      - ports
+      description: 'Delete a port from a host asset. Will return 409 status if the asset is not a single host (i.e. a CIDR).
+
+        '
+      responses:
+        '204':
+          $ref: '#/components/responses/204NoContent'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '409':
+          $ref: '#/components/responses/409Conflict'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gw
+        - asset_client_ow
+        - asset_boss_ow
+        - asset_client_lw
+        - asset_boss_lw
+components:
+  schemas:
+    FailedValidation:
+      type: object
+      required:
+      - message
+      properties:
+        property:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+        message:
+          type: string
+          readOnly: true
+    PortNumber:
+      type: integer
+      format: int32
+      minimum: 0
+      maximum: 65535
+    OperationUserUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      readOnly: true
+      description: Automatically set by the server to the requesting user whenever the resource is updated. May be a user account or a service account if the action is performed by an automated.
+    Creatable:
+      type: object
+      required:
+      - createdAt
+      - createdBy
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Automatically set by the server to the time the request was processed whenever the resource was created.
+        createdBy:
+          $ref: '#/components/schemas/OperationUserUID'
+    Scope:
+      description: 'Set to _in_-scope means automated and manual testing _should_ occur; _out_-of-scope means automated and manual testing _must not_ occur; _discovered_ means observed through automated discovery and may be automatically removed if not observed again during subseqent discovery activities.
+
+        '
+      type: string
+      enum:
+      - in
+      - out
+      - discovered
+      - blocked
+    PortObservedState:
+      type: string
+      enum:
+      - open
+      - closed
+      - filtered
+      description: Observed state reported by automated scanning.
+    ProblemDetails:
+      type: object
+      description: 'See [RFC 7807: Problem Details for HTTP APIs](https://tools.ietf.org/html/rfc7807)'
+      properties:
+        type:
+          type: string
+          readOnly: true
+        title:
+          type: string
+          readOnly: true
+        status:
+          type: integer
+          format: int32
+          minimum: 100
+          maximum: 511
+          description: HTTP Status code.
+          readOnly: true
+        detail:
+          type: string
+          description: Message detailing the problem.
+          readOnly: true
+        instance:
+          type: string
+          description: generated problem instance number to correlate with logs
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
+        failedValidations:
+          type: array
+          description: Array of indexed failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/IndexedFailedValidations'
+        maxBatchSize:
+          type: integer
+          description: Maximum processable batch size.
+          readOnly: true
+        batchSize:
+          type: integer
+          description: Batch size sent when batch is too large.
+          readOnly: true
+    IndexedFailedValidations:
+      type: object
+      properties:
+        index:
+          type: integer
+          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
+    PortUpdate:
+      type: object
+      properties:
+        scope:
+          $ref: '#/components/schemas/Scope'
+        service:
+          type: string
+          description: 'Name of service running on port. Will use the [Service Name and Transport Protocol Port Number Registry](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml) for well-known ports.
+
+            '
+        observedState:
+          $ref: '#/components/schemas/PortObservedState'
+    PortProtocol:
+      type: string
+      enum:
+      - tcp
+      - udp
+    AssetUID:
+      type: string
+      pattern: ^[0-9a-f]{24}
+      description: Unique identifier for an asset.
+    Updatable:
+      allOf:
+      - $ref: '#/components/schemas/Creatable'
+      - type: object
+        properties:
+          updatedAt:
+            type: string
+            format: date-time
+            readOnly: true
+            description: Automatically set by the server to the time the request was processed whenever the resource is updated.
+          updatedBy:
+            $ref: '#/components/schemas/OperationUserUID'
+    Port:
+      allOf:
+      - type: object
+        required:
+        - scope
+        - observedState
+        properties:
+          number:
+            $ref: '#/components/schemas/PortNumber'
+          protocol:
+            $ref: '#/components/schemas/PortProtocol'
+          scope:
+            $ref: '#/components/schemas/Scope'
+          service:
+            type: string
+            description: 'Name of (expected) service running on port. Will use the [Service Name and Transport Protocol Port Number Registry](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml) for well-known ports.
+
+              '
+          observedState:
+            $ref: '#/components/schemas/PortObservedState'
+          detectedService:
+            type: string
+            description: 'Name of detected service running on port according to fingerprinting.
+
+              '
+            readOnly: true
+          detectedProductName:
+            type: string
+            description: 'Name of software product running on port according to fingerprinting.
+
+              '
+            readOnly: true
+          detectedProductVersion:
+            type: string
+            description: Version of software product running on port according to fingerprinting.
+            readOnly: true
+          detectedProductConfidenceLevel:
+            type: integer
+            format: int
+            minimum: 1
+            maximum: 10
+            description: Confidence level of detected product on port according to fingerprinting.
+            readOnly: true
+          detectedProductCPE:
+            type: string
+            description: 'CPE for detected product according to fingerprinting.
+
+              '
+            readOnly: true
+          serviceBanner:
+            type: string
+            description: Port banner according to fingerprinting.
+            readOnly: true
+      - $ref: '#/components/schemas/Updatable'
+  parameters:
+    IfMatch:
+      name: If-Match
+      in: header
+      required: true
+      description: 'Used to prevent the lost-update problem. The operation will only
+
+        continue if the ETag of the resource matches the supplied value;
+
+        other was a 412 status will be returned. Provide a returned
+
+        ETag value or * to force the operation.
+
+        '
+      schema:
+        type: string
+        pattern: ^(?:\".*\"|\*)$
+    PortNumberPath:
+      name: portNumber
+      in: path
+      schema:
+        $ref: '#/components/schemas/PortNumber'
+      required: true
+      description: Port number.
+    AssetUIDPath:
+      name: assetUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/AssetUID'
+      required: true
+      description: Unique identifier for an asset.
+    PortProtocolPath:
+      name: portProtocol
+      in: path
+      schema:
+        $ref: '#/components/schemas/PortProtocol'
+      required: true
+      description: Port protocol.
+  responses:
+    409Conflict:
+      description: Conflict.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    503ServiceUnavailable:
+      description: Service Unavailable.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    403Forbidden:
+      description: Forbidden
+    404NotFound:
+      description: Not found.
+    SinglePort:
+      description: The current state of a host port.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Port'
+    500InternalServerError:
+      description: Internal Server Error.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    412PreconditionFailed:
+      description: Precondition Failed.
+    204NoContent:
+      description: No content.
+    422EntityNotProcessable:
+      description: Entity Not Processable
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    401Unauthorized:
+      description: Unauthorized.
+  headers:
+    ETag:
+      description: An identifier for a specific version of a resource
+      schema:
+        type: string
+        pattern: ^(?:W\/)?\".*\"$
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

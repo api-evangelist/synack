@@ -1,0 +1,460 @@
+openapi: 3.1.0
+info:
+  title: Assessment Service Assessment Groups Vulnerabilities API
+  version: 1.0.0
+  description: 'APIs for managing Assessment and related operations on the Synack.
+
+    '
+  contact:
+    name: Synack Engineering
+    email: engineering@synack.com
+servers:
+- url: https://client.synack.com/api/assessment
+  description: Commercial
+- url: https://client.synack.us/api/assessment
+  description: FedRAMP (Medium)
+security:
+- bearerAuth: []
+tags:
+- name: Vulnerabilities
+  description: Operations related to security vulnerabilities
+paths:
+  /v1/vulnerabilities:
+    get:
+      operationId: getVulnerabilities
+      summary: Get vulnerabilities
+      description: Retrieve a paginated list of vulnerabilities with filtering options
+      tags:
+      - Vulnerabilities
+      parameters:
+      - name: filter[search]
+        in: query
+        schema:
+          type: string
+        description: Search term for vulnerabilities
+      - name: filter[status_id]
+        in: query
+        schema:
+          type: integer
+        description: Filter by vulnerability status ID
+      - name: filter[updated_within]
+        in: query
+        schema:
+          type: integer
+        description: Filter by vulnerabilities updated within specified seconds
+      - name: filter[updated_since]
+        in: query
+        schema:
+          type: string
+          format: date-time
+        description: Filter by vulnerabilities updated since specified date
+      - name: filter[include_attachments]
+        in: query
+        schema:
+          type: boolean
+        description: Include vulnerability attachments
+      - name: page[number]
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+        description: Page number
+      - name: page[size]
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 50
+          default: 50
+        description: Page size
+      responses:
+        '200':
+          description: Vulnerabilities retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vulnerability'
+        '400':
+          description: Bad request
+  /v1/vulnerabilities/{id}:
+    get:
+      operationId: getVulnerability
+      summary: Get a specific vulnerability
+      description: Retrieve details of a specific vulnerability
+      tags:
+      - Vulnerabilities
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Vulnerability ID
+      responses:
+        '200':
+          description: Vulnerability retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vulnerability'
+        '404':
+          description: Vulnerability not found
+    patch:
+      operationId: updateVulnerability
+      summary: Update a vulnerability
+      description: Update a specific vulnerability's status or tags
+      tags:
+      - Vulnerabilities
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Vulnerability ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status_id:
+                  type: integer
+                  description: New vulnerability status ID
+                tags:
+                  type: array
+                  items:
+                    type: integer
+                  description: Array of tag IDs
+                tag_list:
+                  type: array
+                  items:
+                    type: string
+                  description: Array of tag names
+      responses:
+        '200':
+          description: Vulnerability updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vulnerability'
+        '400':
+          description: Bad request
+        '404':
+          description: Vulnerability not found
+        '422':
+          description: Unprocessable entity
+  /v1/{org_uid}/assets/{asset_uid}/vulns:
+    get:
+      x-mint:
+        metadata:
+          title: Get Vulnerabilities for an Asset
+      summary: Returns list of exploitable vulnerabilities on a given organization and asset uid
+      description: Get exploitable vulnerabilities by organization and assets uid
+      operationId: getAssetVulnerabilities
+      tags:
+      - Vulnerabilities
+      parameters:
+      - name: org_uid
+        in: path
+        description: Organization UID
+        required: true
+        schema:
+          type: string
+      - name: asset_uid
+        in: path
+        description: Asset UID
+        required: true
+        schema:
+          type: string
+      - name: statuses[]
+        in: query
+        description: Vulnerability status
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: vuln_cvss[]
+        in: query
+        description: Vulnerability CVSS range [0.0-0.0, 0.1-3.9, 4.0-6.9, 7.0-8.9, 9.0-10.0]
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: patch_verification[]
+        in: query
+        description: Patch verification status [requested failed cancelled verified blocked]
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: order_by
+        in: query
+        description: Order by [title, severity, created_at, status]
+        schema:
+          type: string
+          default: severity
+          enum:
+          - title
+          - severity
+          - created_at
+          - status
+      - name: order_direction
+        in: query
+        description: Order direction [asc desc]
+        schema:
+          type: string
+          default: asc
+          enum:
+          - asc
+          - desc
+      - name: per_page
+        in: query
+        description: Maximum number of results to be returned
+        schema:
+          type: integer
+      - name: page
+        in: query
+        description: If provided, show the provided page
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Bearer token is missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v1/{org_uid}/metrics/vulnerabilities/exploitable:
+    get:
+      x-mint:
+        metadata:
+          title: Get Top 5 CISA Known Exploitable Vulnerabilities
+      summary: Returns top-5 CISA known-exploitable vulnerabilities
+      description: Get top-5 CISA known-exploitable vulnerabilities.
+      operationId: getTopCISACVEs
+      tags:
+      - Vulnerabilities
+      parameters:
+      - name: org_uid
+        in: path
+        description: Organization UID
+        required: true
+        schema:
+          type: string
+      - name: listing_uid
+        in: query
+        description: Listing UID. If `false` is provided, it will return count of assets that does not belong to any listing nor seed group
+        schema:
+          type: string
+      - name: seed_group_uid
+        in: query
+        description: Seed group UID.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Maximum number of CISA CVEs results to be returned
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '400':
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Bearer token is missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Vulnerability:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        severity:
+          type: string
+          enum:
+          - Critical
+          - High
+          - Medium
+          - Low
+          - Informational
+        status:
+          type: string
+        cvss_score:
+          type: number
+          format: float
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+    Links:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        editable:
+          type: boolean
+        organization_profile_id:
+          type: integer
+    Attachment:
+      type: object
+      properties:
+        id:
+          type: integer
+        filename:
+          type: string
+        content_type:
+          type: string
+        file_size:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+    Data:
+      type: object
+      properties:
+        attributes: {}
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/Links'
+        meta: {}
+        relationships:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Relationship'
+        type:
+          $ref: '#/components/schemas/ResourceType'
+    ResourceType:
+      type: string
+      enum:
+      - asset_list
+      - assets_counts
+      - asset_details
+      - asset_whois
+      - asset_ports
+      - asset_providers
+      - asset_seed_groups
+      - health_check
+      - org_asset_ports
+      - org_asset_suspected_vulns
+      - org_asset_vulns
+      - org_asset_listings_tests_latest
+      - top_vulnerable_ports
+      - top_unique_ports
+      - most_recently_added_assets
+      - top_cisa_cves
+      - top_vulnerable_ips
+      - asset_gateways
+      - tags
+      - last_tested_counts
+      - last_assets_scan
+    Document:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Data'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        included:
+          type: array
+          items: {}
+        links:
+          $ref: '#/components/schemas/Links'
+        meta: {}
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+        id:
+          type: string
+        source:
+          type: string
+        status:
+          type: integer
+        title:
+          type: string
+    Relationship:
+      type: object
+      properties:
+        data: {}
+        links:
+          $ref: '#/components/schemas/Links'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

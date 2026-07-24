@@ -1,0 +1,402 @@
+openapi: 3.1.0
+info:
+  title: Assessment Service Assessment Groups asset-relationships API
+  version: 1.0.0
+  description: 'APIs for managing Assessment and related operations on the Synack.
+
+    '
+  contact:
+    name: Synack Engineering
+    email: engineering@synack.com
+servers:
+- url: https://client.synack.com/api/assessment
+  description: Commercial
+- url: https://client.synack.us/api/assessment
+  description: FedRAMP (Medium)
+security:
+- bearerAuth: []
+tags:
+- name: asset-relationships
+  description: Relationships between assets.
+paths:
+  /v2/asset-relationships:
+    post:
+      x-excluded: true
+      operationId: postAssetRelationship
+      tags:
+      - asset-relationships
+      description: 'Creates a relationship between two assets.
+
+        '
+      requestBody:
+        description: Assets to create.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SingleAssetRelationship'
+      responses:
+        '201':
+          $ref: '#/components/responses/SingleAssetRelationshipResponse'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '409':
+          $ref: '#/components/responses/409Conflict'
+        '422':
+          $ref: '#/components/responses/422EntityNotProcessable'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gw
+        - asset_client_ow
+        - asset_boss_ow
+        - asset_client_lw
+        - asset_boss_lw
+  /v2/asset-relationships/{assetRelationshipUid}:
+    patch:
+      x-excluded: true
+      operationId: patchAssetRelationship
+      tags:
+      - asset-relationships
+      parameters:
+      - $ref: '#/components/parameters/AssetRelationshipUIDPath'
+      - $ref: '#/components/parameters/IfMatch'
+      requestBody:
+        description: Asset relationship properties to update.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetRelationshipUpdate'
+      description: 'Updates a relationship between a two assets.
+
+        '
+      responses:
+        '200':
+          $ref: '#/components/responses/SingleAssetRelationshipResponse'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '409':
+          $ref: '#/components/responses/409Conflict'
+        '422':
+          $ref: '#/components/responses/422EntityNotProcessable'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gw
+        - asset_client_ow
+        - asset_boss_ow
+        - asset_client_lw
+        - asset_boss_lw
+    delete:
+      x-excluded: true
+      operationId: deleteAssetRelationship
+      tags:
+      - asset-relationships
+      parameters:
+      - $ref: '#/components/parameters/AssetRelationshipUIDPath'
+      description: 'Deletes a relationship between a two assets.
+
+        '
+      responses:
+        '204':
+          $ref: '#/components/responses/204NoContent'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gw
+        - asset_client_ow
+        - asset_boss_ow
+        - asset_client_lw
+        - asset_boss_lw
+components:
+  parameters:
+    AssetRelationshipUIDPath:
+      name: assetRelationshipUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/UID'
+      required: true
+      description: Unique identifier for a relationship between assets.
+    IfMatch:
+      name: If-Match
+      in: header
+      required: true
+      description: 'Used to prevent the lost-update problem. The operation will only
+
+        continue if the ETag of the resource matches the supplied value;
+
+        other was a 412 status will be returned. Provide a returned
+
+        ETag value or * to force the operation.
+
+        '
+      schema:
+        type: string
+        pattern: ^(?:\".*\"|\*)$
+  schemas:
+    FailedValidation:
+      type: object
+      required:
+      - message
+      properties:
+        property:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+        message:
+          type: string
+          readOnly: true
+    SingleAssetRelationship:
+      oneOf:
+      - $ref: '#/components/schemas/DiscoveredByRelationship'
+      discriminator:
+        propertyName: relationshipType
+        mapping:
+          discoveredBy: '#/components/schemas/DiscoveredByRelationship'
+    OperationUserUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      readOnly: true
+      description: Automatically set by the server to the requesting user whenever the resource is updated. May be a user account or a service account if the action is performed by an automated.
+    Creatable:
+      type: object
+      required:
+      - createdAt
+      - createdBy
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Automatically set by the server to the time the request was processed whenever the resource was created.
+        createdBy:
+          $ref: '#/components/schemas/OperationUserUID'
+    AssetRelationship:
+      description: A relationship between two assets. Generally the relationship may be read as _source_-asset _relationship_-type _target_-asset. There cannot be multiple relationships between a pair of assets with the same relationship-type. Relationships have a starts-at date-time and an optional ends-at date-time; a relationship is considered _active_ at a point-in-time if the starts-at date is prior-to/equal-to the time-point, and the ends-at date-time is unset or is after/equal-to the time-point. Furthermore, for any given relationship-type linking a pair of assets, there can only be one active relationship at any give time point. A new relationship cannot be created with a start-at date-time after an existing relationship's starts-at when that relationship has an unset ends-at date-time, or the relationship has an ends-at after/equal-to the starts-at of the new relationship (such that these relationships active ranges would overlap).
+      allOf:
+      - type: object
+        required:
+        - sourceAssetUid
+        - targetAssetUid
+        - startsAt
+        - relationshipType
+        properties:
+          uid:
+            $ref: '#/components/schemas/AssetRelationshipUID'
+          sourceAssetUid:
+            $ref: '#/components/schemas/AssetUID'
+          targetAssetUid:
+            $ref: '#/components/schemas/AssetUID'
+          startsAt:
+            type: string
+            format: date-time
+            description: The date-time at which the relationship between the source and target asset is observed to first begin.
+          endsAt:
+            type: string
+            format: date-time
+            description: The date-time at which the relationship between the source and target asset was observed to end.
+          relationshipType:
+            description: Type or relationship between assets.
+            type: string
+            enum:
+            - discoveredBy
+      - $ref: '#/components/schemas/Updatable'
+    UID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      readOnly: true
+      description: Unique Identifier.
+    ProblemDetails:
+      type: object
+      description: 'See [RFC 7807: Problem Details for HTTP APIs](https://tools.ietf.org/html/rfc7807)'
+      properties:
+        type:
+          type: string
+          readOnly: true
+        title:
+          type: string
+          readOnly: true
+        status:
+          type: integer
+          format: int32
+          minimum: 100
+          maximum: 511
+          description: HTTP Status code.
+          readOnly: true
+        detail:
+          type: string
+          description: Message detailing the problem.
+          readOnly: true
+        instance:
+          type: string
+          description: generated problem instance number to correlate with logs
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
+        failedValidations:
+          type: array
+          description: Array of indexed failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/IndexedFailedValidations'
+        maxBatchSize:
+          type: integer
+          description: Maximum processable batch size.
+          readOnly: true
+        batchSize:
+          type: integer
+          description: Batch size sent when batch is too large.
+          readOnly: true
+    IndexedFailedValidations:
+      type: object
+      properties:
+        index:
+          type: integer
+          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
+    AssetUID:
+      type: string
+      pattern: ^[0-9a-f]{24}
+      description: Unique identifier for an asset.
+    Updatable:
+      allOf:
+      - $ref: '#/components/schemas/Creatable'
+      - type: object
+        properties:
+          updatedAt:
+            type: string
+            format: date-time
+            readOnly: true
+            description: Automatically set by the server to the time the request was processed whenever the resource is updated.
+          updatedBy:
+            $ref: '#/components/schemas/OperationUserUID'
+    AssetRelationshipUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      description: Unique identifier for a scan.
+    DiscoveredByRelationship:
+      description: Relationship indicating the source asset was discovered by scanning the target asset. Discovered-by relationships extend the uniqueness constraint to allow multiple pairs of this relationship-type between a pair of assets however each such relationship must have a unique asset-scanner property.
+      allOf:
+      - $ref: '#/components/schemas/AssetRelationship'
+      - type: object
+        required:
+        - assetScanner
+        properties:
+          assetScanner:
+            description: The asset-scanner that discovered the relationship.
+            type: string
+            enum:
+            - burp
+            - cloudEnumeration
+            - masscan
+            - nessus
+            - openVAS
+            - tarantulaBurpV2
+            - cidrExpansion
+            - amass
+            - fingerprinter
+            - easm
+    AssetRelationshipUpdate:
+      type: object
+      description: Updatable properties for all types of asset relationship.
+      properties:
+        startsAt:
+          type: string
+          format: date-time
+          description: The date-time at which the relationship between the source and target asset is observed to first begin.
+        endsAt:
+          type: string
+          format: date-time
+          description: The date-time at which the relationship between the source and target asset was last observed.
+          nullable: true
+  responses:
+    409Conflict:
+      description: Conflict.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    503ServiceUnavailable:
+      description: Service Unavailable.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    403Forbidden:
+      description: Forbidden
+    500InternalServerError:
+      description: Internal Server Error.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    404NotFound:
+      description: Not found.
+    SingleAssetRelationshipResponse:
+      description: A relationship between two assets.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SingleAssetRelationship'
+    204NoContent:
+      description: No content.
+    400BadRequest:
+      description: Bad Request
+    422EntityNotProcessable:
+      description: Entity Not Processable
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    401Unauthorized:
+      description: Unauthorized.
+  headers:
+    ETag:
+      description: An identifier for a specific version of a resource
+      schema:
+        type: string
+        pattern: ^(?:W\/)?\".*\"$
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

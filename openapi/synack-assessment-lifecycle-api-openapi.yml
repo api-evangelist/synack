@@ -1,0 +1,155 @@
+openapi: 3.1.0
+info:
+  title: Assessment Service Assessment Groups Assessment Lifecycle API
+  version: 1.0.0
+  description: 'APIs for managing Assessment and related operations on the Synack.
+
+    '
+  contact:
+    name: Synack Engineering
+    email: engineering@synack.com
+servers:
+- url: https://client.synack.com/api/assessment
+  description: Commercial
+- url: https://client.synack.us/api/assessment
+  description: FedRAMP (Medium)
+security:
+- bearerAuth: []
+tags:
+- name: Assessment Lifecycle
+  description: Lifecycle state transitions for an individual assessment.
+paths:
+  /v1/organizations/{organizationUid}/assessments/{assessmentUid}/pause:
+    post:
+      summary: Pause an assessment
+      description: 'Pauses testing on an assessment.
+
+        The assessment must be in an active state to be paused.
+
+        Returns 409 if the assessment is not in a pausable state.
+
+        '
+      operationId: pauseAssessment
+      tags:
+      - Assessment Lifecycle
+      parameters:
+      - $ref: '#/components/parameters/OrganizationUid'
+      - $ref: '#/components/parameters/AssessmentUid'
+      responses:
+        '204':
+          description: Assessment paused successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /v1/organizations/{organizationUid}/assessments/{assessmentUid}/resume:
+    post:
+      summary: Resume an assessment
+      description: 'Resumes testing on a paused assessment.
+
+        The assessment must be in a paused state to be resumed.
+
+        Returns 409 if the assessment is not currently paused.
+
+        '
+      operationId: resumeAssessment
+      tags:
+      - Assessment Lifecycle
+      parameters:
+      - $ref: '#/components/parameters/OrganizationUid'
+      - $ref: '#/components/parameters/AssessmentUid'
+      responses:
+        '204':
+          description: Assessment resumed successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  responses:
+    Forbidden:
+      description: Authenticated but lacks permission for this resource.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    Unauthorized:
+      description: Missing or invalid authentication credentials.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    NotFound:
+      description: Resource not found in the acting organization.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    InternalServerError:
+      description: Server error.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    Conflict:
+      description: The resource is not in a state that permits the requested action.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+  parameters:
+    AssessmentUid:
+      name: assessmentUid
+      in: path
+      required: true
+      description: The unique identifier of the assessment.
+      schema:
+        type: string
+    OrganizationUid:
+      name: organizationUid
+      in: path
+      required: true
+      description: The unique identifier of the organization.
+      schema:
+        type: string
+  schemas:
+    Problem:
+      type: object
+      description: RFC 7807 Problem Details.
+      required:
+      - status
+      - title
+      properties:
+        type:
+          type: string
+          format: uri
+          example: https://errors.synack.com/assessment/group-not-found
+        status:
+          type: integer
+        title:
+          type: string
+        detail:
+          type: string
+        instance:
+          type: string
+          format: uri
+        logId:
+          type: string
+          description: Unique log message identifier for support.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

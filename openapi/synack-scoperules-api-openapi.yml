@@ -1,0 +1,503 @@
+openapi: 3.1.0
+info:
+  title: Assessment Service Assessment Groups scoperules API
+  version: 1.0.0
+  description: 'APIs for managing Assessment and related operations on the Synack.
+
+    '
+  contact:
+    name: Synack Engineering
+    email: engineering@synack.com
+servers:
+- url: https://client.synack.com/api/assessment
+  description: Commercial
+- url: https://client.synack.us/api/assessment
+  description: FedRAMP (Medium)
+security:
+- bearerAuth: []
+tags:
+- name: scoperules
+  description: Scope-rules provide fine grained control for what is in and out of scope for an asset.
+paths:
+  /v2/assets/{assetUid}/scope-rules:
+    parameters:
+    - $ref: '#/components/parameters/AssetUIDPath'
+    get:
+      x-excluded: true
+      operationId: getScopeRules
+      tags:
+      - scoperules
+      description: Gets a list of all scope rules for a host or web application asset.
+      parameters:
+      - $ref: '#/components/parameters/PerPageQuery'
+      - $ref: '#/components/parameters/PageQuery'
+      - in: query
+        name: sort
+        schema:
+          type: string
+          enum:
+          - rule
+          - appliesTo
+          - createdAt
+          - updatedAt
+        description: Optional property to sort results by.
+        required: false
+      - $ref: '#/components/parameters/SortDirQuery'
+      responses:
+        '200':
+          $ref: '#/components/responses/PaginatedArrayOfScopeRules'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '409':
+          $ref: '#/components/responses/409Conflict'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gr
+        - asset_or
+        - asset_srt_lr
+    post:
+      x-excluded: true
+      operationId: postScopeRule
+      tags:
+      - scoperules
+      description: Adds a scope rule to a web application or host asset. Returns a 409 status code if the asset is not one of these expected types.
+      requestBody:
+        description: Host or web application scope rule to create.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScopeRule'
+      responses:
+        '201':
+          $ref: '#/components/responses/SingleScopeRuleResponse'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '409':
+          $ref: '#/components/responses/409Conflict'
+        '422':
+          $ref: '#/components/responses/422EntityNotProcessable'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gw
+        - asset_client_ow
+        - asset_boss_ow
+        - asset_client_lw
+        - asset_boss_lw
+  /v2/scope-rules/{scopeRuleUid}:
+    parameters:
+    - $ref: '#/components/parameters/ScopeRuleUIDPath'
+    get:
+      x-excluded: true
+      operationId: getScopeRule
+      tags:
+      - scoperules
+      description: Retrieve a scope rule.
+      responses:
+        '200':
+          $ref: '#/components/responses/SingleScopeRuleResponse'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gr
+        - asset_or
+        - asset_lr
+    patch:
+      x-excluded: true
+      operationId: patchScopeRule
+      tags:
+      - scoperules
+      description: Patch properties of a scope rule for a host asset with CIDRs or web application asset. Will return a 409 status code if the type is not one of these expected types.
+      requestBody:
+        description: Scope rule to patch.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScopeRuleUpdate'
+      responses:
+        '200':
+          $ref: '#/components/responses/SingleScopeRuleResponse'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '409':
+          $ref: '#/components/responses/409Conflict'
+        '422':
+          $ref: '#/components/responses/422EntityNotProcessable'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gw
+        - asset_client_ow
+        - asset_boss_ow
+        - asset_client_lw
+        - asset_boss_lw
+    delete:
+      x-excluded: true
+      operationId: deleteScopeRule
+      tags:
+      - scoperules
+      description: Delete a scope rule from a host or web application asset. Will return a 409 status code if the type is not one of these expected types.
+      responses:
+        '204':
+          $ref: '#/components/responses/204NoContent'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gw
+        - asset_client_ow
+        - asset_boss_ow
+        - asset_client_lw
+        - asset_boss_lw
+components:
+  headers:
+    PaginationCurrentPage:
+      description: Current page in a paginated response.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    PaginationTotalPages:
+      description: Total number of pages in a paginated response.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    PaginationLimit:
+      description: Maximum number of items returned in a paginated response.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    PaginationTotalCount:
+      description: Total number of items in all pages of a paginated response.
+      schema:
+        format: int32
+        minimum: 1
+    ETag:
+      description: An identifier for a specific version of a resource
+      schema:
+        type: string
+        pattern: ^(?:W\/)?\".*\"$
+    Link:
+      description: Standard link header.
+      schema:
+        type: string
+  parameters:
+    PerPageQuery:
+      name: perPage
+      in: query
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 5000
+      required: false
+      description: 'Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.
+
+        '
+    ScopeRuleUIDPath:
+      name: scopeRuleUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/UID'
+      required: true
+      description: Unique identifier for a scope rule.
+    SortDirQuery:
+      name: sortDir
+      in: query
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        default: asc
+      required: false
+      description: Direction of sort-order for items in the response.
+    AssetUIDPath:
+      name: assetUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/AssetUID'
+      required: true
+      description: Unique identifier for an asset.
+    PageQuery:
+      name: page
+      in: query
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      required: false
+      description: 'Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.
+
+        '
+  schemas:
+    FailedValidation:
+      type: object
+      required:
+      - message
+      properties:
+        property:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+        message:
+          type: string
+          readOnly: true
+    OperationUserUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      readOnly: true
+      description: Automatically set by the server to the requesting user whenever the resource is updated. May be a user account or a service account if the action is performed by an automated.
+    Creatable:
+      type: object
+      required:
+      - createdAt
+      - createdBy
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Automatically set by the server to the time the request was processed whenever the resource was created.
+        createdBy:
+          $ref: '#/components/schemas/OperationUserUID'
+    UID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      readOnly: true
+      description: Unique Identifier.
+    ScopeRuleInclusion:
+      type: string
+      enum:
+      - in
+      - out
+    WebRULE:
+      type: string
+      pattern: ^(/([a-zA-Z0-9_-~!$&'()+,;=:@.]|%[0-9a-fA-F]{2})+/)*(/?((([A-z]|[0-9]|[-_~])|%[0-9a-fA-F]{2}|[!$&'()*+,;=]|[:@])|[/?])*){0,1}//(#((([A-z]|[0-9]|[-_~.])|%[0-9a-fA-F]{2}|[!$&'()*+,;=]|[:@])|[/?])*){0,1}/?$
+      description: Rule for web asset validation
+    ProblemDetails:
+      type: object
+      description: 'See [RFC 7807: Problem Details for HTTP APIs](https://tools.ietf.org/html/rfc7807)'
+      properties:
+        type:
+          type: string
+          readOnly: true
+        title:
+          type: string
+          readOnly: true
+        status:
+          type: integer
+          format: int32
+          minimum: 100
+          maximum: 511
+          description: HTTP Status code.
+          readOnly: true
+        detail:
+          type: string
+          description: Message detailing the problem.
+          readOnly: true
+        instance:
+          type: string
+          description: generated problem instance number to correlate with logs
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
+        failedValidations:
+          type: array
+          description: Array of indexed failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/IndexedFailedValidations'
+        maxBatchSize:
+          type: integer
+          description: Maximum processable batch size.
+          readOnly: true
+        batchSize:
+          type: integer
+          description: Batch size sent when batch is too large.
+          readOnly: true
+    IndexedFailedValidations:
+      type: object
+      properties:
+        index:
+          type: integer
+          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
+    ArrayOfScopeRules:
+      type: array
+      items:
+        $ref: '#/components/schemas/ScopeRule'
+    ScopeRuleUpdate:
+      type: object
+      description: Updatable properties of a Scope Rule.
+      properties:
+        rule:
+          type: string
+          description: A textual definition of the scope rule. Format will vary by assetType.
+        scope:
+          $ref: '#/components/schemas/ScopeRuleInclusion'
+        appliesTo:
+          $ref: '#/components/schemas/ScopeRuleApplicability'
+    AssetUID:
+      type: string
+      pattern: ^[0-9a-f]{24}
+      description: Unique identifier for an asset.
+    Updatable:
+      allOf:
+      - $ref: '#/components/schemas/Creatable'
+      - type: object
+        properties:
+          updatedAt:
+            type: string
+            format: date-time
+            readOnly: true
+            description: Automatically set by the server to the time the request was processed whenever the resource is updated.
+          updatedBy:
+            $ref: '#/components/schemas/OperationUserUID'
+    ScopeRuleApplicability:
+      type: string
+      enum:
+      - scanners
+      - srt
+      - both
+    ScopeRuleSummary:
+      type: object
+      description: Part of the scope of an asset that is included/excluded from a specific activity.
+      required:
+      - uid
+      - rule
+      - scope
+      - appliesTo
+      properties:
+        uid:
+          $ref: '#/components/schemas/UID'
+        rule:
+          $ref: '#/components/schemas/WebRULE'
+          description: A textual definition of the scope rule. Format will vary by assetType.
+        scope:
+          $ref: '#/components/schemas/ScopeRuleInclusion'
+        appliesTo:
+          $ref: '#/components/schemas/ScopeRuleApplicability'
+    ScopeRule:
+      allOf:
+      - $ref: '#/components/schemas/ScopeRuleSummary'
+      - $ref: '#/components/schemas/Updatable'
+  responses:
+    409Conflict:
+      description: Conflict.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    503ServiceUnavailable:
+      description: Service Unavailable.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    403Forbidden:
+      description: Forbidden
+    500InternalServerError:
+      description: Internal Server Error.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    404NotFound:
+      description: Not found.
+    204NoContent:
+      description: No content.
+    SingleScopeRuleResponse:
+      description: The current state of a scope rule.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ScopeRule'
+    PaginatedArrayOfScopeRules:
+      description: Paginated scope rules of a host with CIDRs or web application asset.
+      headers:
+        Pagination-Limit:
+          $ref: '#/components/headers/PaginationLimit'
+        Pagination-Current-Page:
+          $ref: '#/components/headers/PaginationCurrentPage'
+        Pagination-Total-Pages:
+          $ref: '#/components/headers/PaginationTotalPages'
+        Pagination-Total-Count:
+          $ref: '#/components/headers/PaginationTotalCount'
+        Link:
+          $ref: '#/components/headers/Link'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ArrayOfScopeRules'
+    422EntityNotProcessable:
+      description: Entity Not Processable
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    401Unauthorized:
+      description: Unauthorized.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

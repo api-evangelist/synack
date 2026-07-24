@@ -1,0 +1,361 @@
+openapi: 3.1.0
+info:
+  title: Assessment Service Assessment Groups external-relationships API
+  version: 1.0.0
+  description: 'APIs for managing Assessment and related operations on the Synack.
+
+    '
+  contact:
+    name: Synack Engineering
+    email: engineering@synack.com
+servers:
+- url: https://client.synack.com/api/assessment
+  description: Commercial
+- url: https://client.synack.us/api/assessment
+  description: FedRAMP (Medium)
+security:
+- bearerAuth: []
+tags:
+- name: external-relationships
+paths:
+  /v2/external-relationships:
+    post:
+      x-excluded: true
+      operationId: postExternalRelationship
+      tags:
+      - external-relationships
+      description: Creates a relationship between asset in AssetService and an external service.
+      requestBody:
+        description: External relationship to create.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExternalRelationship'
+      responses:
+        '201':
+          $ref: '#/components/responses/ExternalRelationshipResponse'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '409':
+          $ref: '#/components/responses/409Conflict'
+        '422':
+          $ref: '#/components/responses/422EntityNotProcessable'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gw
+        - asset_client_ow
+        - asset_boss_ow
+        - asset_client_lw
+        - asset_boss_lw
+  /v2/external-relationships/{assetRelationshipUid}:
+    patch:
+      x-excluded: true
+      operationId: patchExternalRelationship
+      tags:
+      - external-relationships
+      parameters:
+      - $ref: '#/components/parameters/AssetRelationshipUIDPath'
+      requestBody:
+        description: External relationship properties to update.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetRelationshipUpdate'
+      description: Updates a relationship between a two assets.
+      responses:
+        '200':
+          $ref: '#/components/responses/ExternalRelationshipResponse'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gw
+        - asset_client_ow
+        - asset_boss_ow
+        - asset_client_lw
+        - asset_boss_lw
+    delete:
+      x-excluded: true
+      operationId: deleteExternalRelationship
+      tags:
+      - external-relationships
+      parameters:
+      - $ref: '#/components/parameters/AssetRelationshipUIDPath'
+      description: Deletes a relationship between a two assets.
+      responses:
+        '204':
+          $ref: '#/components/responses/204NoContent'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+      - OAuth2:
+        - asset_gw
+        - asset_client_ow
+        - asset_boss_ow
+        - asset_client_lw
+        - asset_boss_lw
+components:
+  parameters:
+    AssetRelationshipUIDPath:
+      name: assetRelationshipUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/UID'
+      required: true
+      description: Unique identifier for a relationship between assets.
+  schemas:
+    FailedValidation:
+      type: object
+      required:
+      - message
+      properties:
+        property:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+        message:
+          type: string
+          readOnly: true
+    OperationUserUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      readOnly: true
+      description: Automatically set by the server to the requesting user whenever the resource is updated. May be a user account or a service account if the action is performed by an automated.
+    Creatable:
+      type: object
+      required:
+      - createdAt
+      - createdBy
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Automatically set by the server to the time the request was processed whenever the resource was created.
+        createdBy:
+          $ref: '#/components/schemas/OperationUserUID'
+    UID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      readOnly: true
+      description: Unique Identifier.
+    ExternalRelationship:
+      description: 'A relationship between two assets. Source asset points to an asset in AssetService `assets` table while Target asset points to some external asset stored outside of AssetService. The target is fully identified by two fields: `targetUid` and `targetService`. Generally the relationship may be read as `source`-asset `type` `target`-asset. There cannot be multiple relationships between a pair of assets with the same `type`. Relationships have a `startsAt` date-time and an optional `endsAt` time; a relationship is considered `active` at a point-in-time if the `startsAt` date is prior-to/equal-to the time point, and the `endsAt` time is unset or is after/equal-to the time point. Furthermore, for any given `type` linking a pair of assets, there can only be one active relationship at any given time point. A new relationship cannot be created with a `startsAt` time after an existing relationship''s `startsAt` when that relationship has an unset `endsAt` date-time, or the relationship has an `endsAt` after/equal-to the `startsAt` of the new relationship (such that these relationships active ranges would overlap).
+
+        '
+      allOf:
+      - type: object
+        required:
+        - type
+        - sourceAssetUid
+        - targetUid
+        - targetService
+        - startsAt
+        properties:
+          uid:
+            $ref: '#/components/schemas/AssetRelationshipUID'
+          type:
+            description: Type of relationship between assets. The direction of reading is `sourceAsset` -- `type` -- `targetAsset`.
+            type: string
+            enum:
+            - discoveredBy
+          sourceAssetUid:
+            $ref: '#/components/schemas/AssetUID'
+          targetUid:
+            $ref: '#/components/schemas/ExternalUID'
+          targetService:
+            description: The type of the external service, holding the "target" entity.
+            type: string
+            enum:
+            - assetDiscovery
+            - fractalScan
+            - xpanse
+          startsAt:
+            type: string
+            format: date-time
+            description: The date-time at which the relationship between the source and target assets was observed to begin.
+          endsAt:
+            type: string
+            format: date-time
+            description: The date-time at which the relationship between the source and target assets was observed to end.
+      - $ref: '#/components/schemas/Updatable'
+    ProblemDetails:
+      type: object
+      description: 'See [RFC 7807: Problem Details for HTTP APIs](https://tools.ietf.org/html/rfc7807)'
+      properties:
+        type:
+          type: string
+          readOnly: true
+        title:
+          type: string
+          readOnly: true
+        status:
+          type: integer
+          format: int32
+          minimum: 100
+          maximum: 511
+          description: HTTP Status code.
+          readOnly: true
+        detail:
+          type: string
+          description: Message detailing the problem.
+          readOnly: true
+        instance:
+          type: string
+          description: generated problem instance number to correlate with logs
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
+        failedValidations:
+          type: array
+          description: Array of indexed failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/IndexedFailedValidations'
+        maxBatchSize:
+          type: integer
+          description: Maximum processable batch size.
+          readOnly: true
+        batchSize:
+          type: integer
+          description: Batch size sent when batch is too large.
+          readOnly: true
+    IndexedFailedValidations:
+      type: object
+      properties:
+        index:
+          type: integer
+          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
+    AssetUID:
+      type: string
+      pattern: ^[0-9a-f]{24}
+      description: Unique identifier for an asset.
+    Updatable:
+      allOf:
+      - $ref: '#/components/schemas/Creatable'
+      - type: object
+        properties:
+          updatedAt:
+            type: string
+            format: date-time
+            readOnly: true
+            description: Automatically set by the server to the time the request was processed whenever the resource is updated.
+          updatedBy:
+            $ref: '#/components/schemas/OperationUserUID'
+    AssetRelationshipUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      description: Unique identifier for a scan.
+    AssetRelationshipUpdate:
+      type: object
+      description: Updatable properties for all types of asset relationship.
+      properties:
+        startsAt:
+          type: string
+          format: date-time
+          description: The date-time at which the relationship between the source and target asset is observed to first begin.
+        endsAt:
+          type: string
+          format: date-time
+          description: The date-time at which the relationship between the source and target asset was last observed.
+          nullable: true
+    ExternalUID:
+      type: string
+      pattern: ^[0-9a-zA-Z-_]{1,}$
+      description: Unique identifier for an external entity. It has much more loose requirements than AssetUID since in general we don't control these external services.
+  responses:
+    409Conflict:
+      description: Conflict.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    503ServiceUnavailable:
+      description: Service Unavailable.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    403Forbidden:
+      description: Forbidden
+    500InternalServerError:
+      description: Internal Server Error.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    404NotFound:
+      description: Not found.
+    204NoContent:
+      description: No content.
+    400BadRequest:
+      description: Bad Request
+    422EntityNotProcessable:
+      description: Entity Not Processable
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    ExternalRelationshipResponse:
+      description: A relationship between asset in AssetService and asset in an external service.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ExternalRelationship'
+    401Unauthorized:
+      description: Unauthorized.
+  headers:
+    ETag:
+      description: An identifier for a specific version of a resource
+      schema:
+        type: string
+        pattern: ^(?:W\/)?\".*\"$
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
