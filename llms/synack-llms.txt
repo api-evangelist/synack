@@ -1,0 +1,109 @@
+# Synack Enterprise API
+
+## Docs
+
+- [Add users to an Assessment Group](https://docs.synack.com/api-reference/assessment-groups/add-users-to-an-assessment-group.md): Adds one or more users to an Assessment Group with a specified role.
+- [Get a specific assessment group](https://docs.synack.com/api-reference/assessment-groups/get-a-specific-assessment-group.md): Retrieve details of a specific assessment group
+- [Get assessment groups](https://docs.synack.com/api-reference/assessment-groups/get-assessment-groups.md): Retrieve a list of assessment groups
+- [List members of an Assessment Group](https://docs.synack.com/api-reference/assessment-groups/list-members-of-an-assessment-group.md): Returns the users currently assigned to the Assessment Group, with their roles and membership timestamps. Supports pagination, sorting, and an optional role filter.
+- [Remove users from an Assessment Group](https://docs.synack.com/api-reference/assessment-groups/remove-users-from-an-assessment-group.md): Removes one or more users from an Assessment Group.
+- [Pause an assessment](https://docs.synack.com/api-reference/assessment-lifecycle/pause-an-assessment.md): Pauses testing on an assessment. The assessment must be in an active state to be paused. Returns 409 if the assessment is not in a pausable state.
+- [Resume an assessment](https://docs.synack.com/api-reference/assessment-lifecycle/resume-an-assessment.md): Resumes testing on a paused assessment. The assessment must be in a paused state to be resumed. Returns 409 if the assessment is not currently paused.
+- [Create Update for Assessment](https://docs.synack.com/api-reference/assessments/create-new-assessment-update-that-is-visible-to-researchers.md): Post a new update for the assessment
+- [Remove Asset from Assessment](https://docs.synack.com/api-reference/assessments/delete-v2listings-assets.md): Delete the assignment of an asset to a listing.
+- [Remove All Assets from Assessment](https://docs.synack.com/api-reference/assessments/delete-v2listings-assets-1.md): Delete all the association of assets from a listing.
+- [Get a specific assessment (V1)](https://docs.synack.com/api-reference/assessments/get-a-specific-assessment-v1.md): Retrieve details of a specific assessment
+- [Get assessments (V1)](https://docs.synack.com/api-reference/assessments/get-assessments-v1.md): Retrieve a list of assessments for the current user's organization
+- [Get testing hours for an assessment](https://docs.synack.com/api-reference/assessments/get-testing-hours-for-an-assessment.md): Retrieve testing hours statistics for a specific assessment
+- [Add or Remove Multiple Assets to/from Asessment](https://docs.synack.com/api-reference/assessments/patch-v2listings-assets.md): Associate or disassociate zero or more assets from a listing. Allows the caller to provide lists of assets to add to and/or remove from being associated with a listing. Unknown assets are ignored.
+- [Add Asset to Assessment](https://docs.synack.com/api-reference/assessments/put-v2listings-assets.md): Upsert assignment of an asset to a listing.
+- [Get Asset Stats](https://docs.synack.com/api-reference/assets/get-v2asset-stats.md): Returns active assets under test (in scope for a listing) and total active assets for the supplied organization and listings.
+- [Get Assets](https://docs.synack.com/api-reference/assets/get-v2assets.md): Retrieve the list of assets for one or more organizations, considering filtering and pagination query parameters. When an organization-level OAuth2 scope is provided, the results will be restricted to those organizations the user is authorized for. Similarly, if a listing- level OAuth2 scope is prov…
+- [Get Asset](https://docs.synack.com/api-reference/assets/get-v2assets-1.md): Retrieves a single asset. If the user is a researcher, only the credentials they are authorized to access will be returned. If the asset is of cloud account type, only a user with asset_scan_gr scope can access its credential data.
+- [Get Port for Host Asset](https://docs.synack.com/api-reference/assets/get-v2assets-ports-.md): Retrieve a port for a host asset.
+- [Get Related Assets](https://docs.synack.com/api-reference/assets/get-v2assets-related-assets.md): Returns all assets that share a relationship with the matched Asset UID.
+- [Get WHOIS for Asset](https://docs.synack.com/api-reference/assets/get-v2assets-whois.md): Retrieves the WHOIS data for a single asset.
+- [Get Discovered Assets](https://docs.synack.com/api-reference/assets/get-v2organizations-discovered-assets.md): Retrieve the list summarized properties for discovered assets belonging to  an organization, considering filtering and pagination query parameters. Additional query parameters generally restrict the resulting set of assets according to AND semantics.
+- [Patch Asset](https://docs.synack.com/api-reference/assets/patch-v2assets.md): Patches the properties of a single asset.
+- [Create Asset](https://docs.synack.com/api-reference/assets/post-v2assets.md): Creates an asset in my Synack org. In the Body, choose the Object pull down that corresponds to the asset type you want to add; Object 1 for Cloud, Object 2 for Host, Object 3 for Mobile, Object 4 for Network, Object 5 for Web
+- [Bulk Create Assets](https://docs.synack.com/api-reference/assets/post-v2bulkassets.md): Creates Assets in my Synack org. Note: In the Body, choose the Object pull down that corresponds to the asset type you want to add; Object 1 for Cloud, Object 2 for Hosts, Object 3 for Mobile, Object 4 for Networks, Object 5 for Web. For example; to add more than 1 Host IP address, choose Option 2,…
+- [Bulk Update Asset Criticality](https://docs.synack.com/api-reference/assets/post-v2bulkassetscriticality:update.md): Bulk update the criticality of multiple assets.
+- [Bulk Update Asset Lifecycle State](https://docs.synack.com/api-reference/assets/post-v2bulkassetslifecycle-state:update.md): Bulk updates the asset life cycle property. Checks the validity of assets and returns 409 Conflict if rules are violated.
+- [Get WHOIS for a Host Asset](https://docs.synack.com/api-reference/assets/returns-`whois`-data-for-a-given-asset-uid.md): Get `whois` data by asset UID
+- [Get Asset Details](https://docs.synack.com/api-reference/assets/returns-assets-details-for-a-given-organization-and-assets-uid.md): Get Asset Details by Organization UID and Asset UID
+- [Get Count by Asset Type](https://docs.synack.com/api-reference/assets/returns-count-of-assets-by-type.md): Get Assets Count by Organization
+- [Get Most Vulnerable IP Addresses](https://docs.synack.com/api-reference/assets/returns-ip-address-sorted-by-most-vulnerable.md): Get Top vulnerable IPs by Organization
+- [Get Last Fingerprint Date for Assets](https://docs.synack.com/api-reference/assets/returns-last-fingerprint-scan-date-for-assets.md): Get Returns last fingerprint scan date for assets matching the parameters provided
+- [Get All Ports for an Organization](https://docs.synack.com/api-reference/assets/returns-list-of-asset-ports.md): Get Asset Ports by Organization
+- [Get Asset List](https://docs.synack.com/api-reference/assets/returns-list-of-assets-with-aggregated-data.md): Get Assets List by Organization
+- [Get Ports for a Host Asset](https://docs.synack.com/api-reference/assets/returns-list-of-ports-per-organization-and-asset.md): Get Open Ports by Organization UID and Asset UID
+- [Get 5 Most Recently Created Assets](https://docs.synack.com/api-reference/assets/returns-the-5-most-recently-created-assets.md): returns the 5 most recently created assets ordered by descending creation date
+- [Get Last Tested Date for Assets](https://docs.synack.com/api-reference/assets/returns-the-count-of-last-tested-assets-by-asset-criticality.md): Get the count of last tested assets by asset criticality
+- [Get 5 Least Common Ports](https://docs.synack.com/api-reference/assets/returns-top-5-most-unique-least-common-ports.md): The least frequently found open ports in the organization
+- [Get 5 Most Vulnerable Ports](https://docs.synack.com/api-reference/assets/returns-top-5-most-vulnerable-ports.md): Get top-5 most vulnerable ports ordered by average CVSS
+- [Create a vulnerability comment](https://docs.synack.com/api-reference/comments/create-a-vulnerability-comment.md): Create a new comment for a specific vulnerability
+- [Get vulnerability comments](https://docs.synack.com/api-reference/comments/get-vulnerability-comments.md): Retrieve comments for a specific vulnerability
+- [Get Group of Missions stats](https://docs.synack.com/api-reference/missions/get-group-of-missions-stats-by-status.md): Allows searching for Group of Missions (campaigns) stats by status if available to the current authenticated user.
+- [Get Group of Missions](https://docs.synack.com/api-reference/missions/search-for-group-of-missions.md): Allows searching for Group of Missions (campaigns) available to the current authenticated user. Group of Missions are filtered based on what current listings and organizations the current user has access to.
+- [Get a specific Group of Missions](https://docs.synack.com/api-reference/missions/search-for-group-of-missions-by-id.md): Allows searching for Group of Missions (campaign) by ID if available to the current authenticated user.
+- [Get missions](https://docs.synack.com/api-reference/missions/search-for-missions.md): Allows searching for missions (tasks) available to the current authenticated user. Missions are filtered based on what current listings and organizations the current user has access to.
+- [Create a vulnerability patch verification](https://docs.synack.com/api-reference/patch-verifications/create-a-vulnerability-patch-verification.md): Create a new patch verification request for a specific vulnerability
+- [Get vulnerability patch verifications](https://docs.synack.com/api-reference/patch-verifications/get-vulnerability-patch-verifications.md): Retrieve patch verification requests for a specific vulnerability
+- [Delete Seed Group](https://docs.synack.com/api-reference/seeds/delete-v1organizations-seed-groups.md): Deletes a seed group. All seeds in the seed group will be deleted, and any assets discovered from those seeds will be removed from the listing associated with the seed group that owns the deleted seed.
+- [Delete Seed](https://docs.synack.com/api-reference/seeds/delete-v1organizations-seed-groups-seeds.md): Delete seeds. Any assets discovered from those seeds will be removed from the listing associated with the seed group that owns the deleted seed.
+- [Get Seed Groups](https://docs.synack.com/api-reference/seeds/get-v1organizations-seed-groups.md): Retrieve and filter seed groups.
+- [Get Seed Group](https://docs.synack.com/api-reference/seeds/get-v1organizations-seed-groups-1.md): Retrieves a single seed group.
+- [Get Seeds in a Seed Group](https://docs.synack.com/api-reference/seeds/get-v1organizations-seed-groups-seeds.md): Retrieve and filter seeds for a seed group.
+- [Get Seed](https://docs.synack.com/api-reference/seeds/get-v1organizations-seed-groups-seeds-1.md): Retrieves a single seed.
+- [Update Seed Group](https://docs.synack.com/api-reference/seeds/patch-v1organizations-seed-groups.md): Updates a seed group.
+- [Create Seed Group](https://docs.synack.com/api-reference/seeds/post-v1organizations-seed-groups.md): Creates a new seed group and seeds if valid.
+- [Create Seed](https://docs.synack.com/api-reference/seeds/post-v1organizations-seed-groups-seeds.md): Creates a new seed if valid.
+- [Update Seed Group Tags](https://docs.synack.com/api-reference/seeds/post-v1organizations-seed-groups-tagsbatchupdate.md): Updates a seed groups tags.
+- [Add suspected vulnerabilities for an organization](https://docs.synack.com/api-reference/suspected-vulnerabilities/add-suspected-vulnerabilities-for-an-organization.md): Add suspected vulnerabilities for an organization, creating corresponding assets if needed. On success returns list of numeric IDs of the newly created suspected vulnerabilities
+- [Retrieve a specific suspected vulnerability](https://docs.synack.com/api-reference/suspected-vulnerabilities/retrieve-a-specific-suspected-vulnerability.md): Fetches detailed information for a single suspected vulnerability by its unique identifier. Returns comprehensive vulnerability data including metadata, triage information, and related assets.
+- [Retrieve suspected vulnerabilities for an organization](https://docs.synack.com/api-reference/suspected-vulnerabilities/retrieve-suspected-vulnerabilities-for-an-organization.md): Fetches a paginated list of suspected vulnerabilities associated with a specific organization. Supports comprehensive filtering by status, source, listings, categories, and search queries.
+- [Get Suspected Vulnerabilities for an Asset](https://docs.synack.com/api-reference/suspected-vulnerabilities/returns-list-of-suspected-vulnerabilities-on-a-given-organization-and-asset-uid.md): Get asset suspected vulnerabilities by organization and assets uid
+- [Update a suspected vulnerability](https://docs.synack.com/api-reference/suspected-vulnerabilities/update-a-suspected-vulnerability.md): Update a specific suspected vulnerability's status
+- [Create a new assessment tag](https://docs.synack.com/api-reference/tags/create-a-new-assessment-tag.md): Create a new tag and associate it with an assessment. Only organization admins are able to create new tags.
+- [Create a vulnerability tag](https://docs.synack.com/api-reference/tags/create-a-vulnerability-tag.md): Create a new vulnerability tag
+- [Delete a vulnerability tag](https://docs.synack.com/api-reference/tags/delete-a-vulnerability-tag.md): Delete a vulnerability tag
+- [Delete Asset Tags](https://docs.synack.com/api-reference/tags/delete-v10organizations-tags.md): Deletes tags.
+- [Get vulnerability tags](https://docs.synack.com/api-reference/tags/get-vulnerability-tags.md): Retrieve a list of vulnerability tags
+- [Attach/Detach Tags to Assets.](https://docs.synack.com/api-reference/tags/patch-v10organizations-tags.md): Attach/detach entities to/from org uids and/or tag uids.
+- [Create Asset Tags](https://docs.synack.com/api-reference/tags/post-v10organizations-tags.md): Create new tags.  409 Conflict is logged as warn if the name matches the name of a tag that already exists in a given org uid.
+- [Update Tag Name](https://docs.synack.com/api-reference/tags/put-v10organizations-tags.md): Updates tag name by tag uid.
+- [Remove an assessment tag record](https://docs.synack.com/api-reference/tags/remove-an-assessment-tag-record.md): Remove a tag. Only organization admins are able to delete tags.
+- [Retrieve a list of assessments tags](https://docs.synack.com/api-reference/tags/retrieve-a-list-of-assessments-tags.md): Retrieve all assessments tags defined by your organization including the number of assessments they are associated with.
+- [Get Tags for an Organization](https://docs.synack.com/api-reference/tags/returns-list-of-tags-per-org.md): Get Tags by Organization
+- [Update a vulnerability tag](https://docs.synack.com/api-reference/tags/update-a-vulnerability-tag.md): Update an existing vulnerability tag
+- [Update the name of an assessment tag record](https://docs.synack.com/api-reference/tags/update-the-name-of-an-assessment-tag-record.md): Update the name of a tag. Only organization admins are able to update tags.
+- [Approve a test (as a super admin)](https://docs.synack.com/api-reference/tests/approve-a-test-as-a-super-admin.md): Approve a test as a super admin, transitioning it from Admin Review to Synack Review status. The test must be in Admin Review status.
+- [Reject a test (as a super admin)](https://docs.synack.com/api-reference/tests/reject-a-test-as-a-super-admin.md): Reject a test as a super admin, returning it to draft status. The test must be in Admin Review status.
+- [Retrieve all tests on an assessment](https://docs.synack.com/api-reference/tests/retrieve-all-tests-on-an-assessment.md): Retrieve tests associated with a specific assessment
+- [Get Tests for an Asset](https://docs.synack.com/api-reference/tests/returns-list-of-latest-tests-details-and-statuses-per-organization-and-asset.md): Get latest tests details and statuses by organization UID and asset UID
+- [Ban/delete user](https://docs.synack.com/api-reference/users/bandelete-user.md): Ban/delete a user account. Requires admin privileges.
+- [Create a new member/admin](https://docs.synack.com/api-reference/users/create-a-new-memberadmin.md): Create a new member/admin and grant it access to assessments (if any). Requires admin privileges.
+- [Fetch user account](https://docs.synack.com/api-reference/users/fetch-user-account.md): Fetch information about a user account. Requires admin privileges.
+- [Fetch users](https://docs.synack.com/api-reference/users/fetch-users.md): Fetch all organization users (members & admins). Banned users will not be included. Requires admin privileges.
+- [Get current user information](https://docs.synack.com/api-reference/users/get-current-user-information.md): Retrieve information about the currently authenticated user
+- [Update user account status](https://docs.synack.com/api-reference/users/update-user-account-status.md): Update existing user (reactivate and/or grant admin privileges). The user is automatically notified by e-mail upon account reactivation. Requires admin privileges.
+- [Get a specific vulnerability](https://docs.synack.com/api-reference/vulnerabilities/get-a-specific-vulnerability.md): Retrieve details of a specific vulnerability
+- [Get vulnerabilities](https://docs.synack.com/api-reference/vulnerabilities/get-vulnerabilities.md): Retrieve a paginated list of vulnerabilities with filtering options
+- [Get Vulnerabilities for an Asset](https://docs.synack.com/api-reference/vulnerabilities/returns-list-of-exploitable-vulnerabilities-on-a-given-organization-and-asset-uid.md): Get exploitable vulnerabilities by organization and assets uid
+- [Get Top 5 CISA Known Exploitable Vulnerabilities](https://docs.synack.com/api-reference/vulnerabilities/returns-top-5-cisa-known-exploitable-vulnerabilities.md): Get top-5 CISA known-exploitable vulnerabilities.
+- [Update a vulnerability](https://docs.synack.com/api-reference/vulnerabilities/update-a-vulnerability.md): Update a specific vulnerability's status or tags
+- [Get vulnerability statuses](https://docs.synack.com/api-reference/vulnerability-statuses/get-vulnerability-statuses.md): Retrieve a list of available vulnerability statuses
+- [Introduction](https://docs.synack.com/index.md): Welcome to the Synack Enterprise API
+
+## OpenAPI Specs
+
+- [asset-discovery-openapi](https://docs.synack.com/asset-discovery-openapi.yaml)
+- [streaming-openapi](https://docs.synack.com/streaming-openapi.yaml)
+- [assessment-v1-openapi](https://docs.synack.com/assessment-v1-openapi.yaml)
+- [asset-v2-openapi](https://docs.synack.com/asset-v2-openapi.yaml)
+- [monolith-v1-openapi](https://docs.synack.com/monolith-v1-openapi.yaml)
+- [mission-v2-openapi](https://docs.synack.com/mission-v2-openapi.yaml)
+- [vulns-openapi](https://docs.synack.com/vulns-openapi.yaml)
+- [tagging-openapi](https://docs.synack.com/tagging-openapi.yaml)
+- [monolith-v2-openapi](https://docs.synack.com/monolith-v2-openapi.yaml)
+- [openapi](https://docs.synack.com/api-reference/openapi.json)

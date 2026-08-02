@@ -1,8 +1,27 @@
 aid: synack
 name: Synack
-description: 'Synack is a company surfaced as a portfolio company of ggv-capital, gv, techstars and added
-  to the API Evangelist network as a stub for enrichment. Sector: security. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: >-
+  Synack is a crowdsourced security testing platform that pairs the Synack Red
+  Team — a global community of vetted security researchers — with AI-enabled
+  attack-surface discovery to deliver continuous penetration testing,
+  vulnerability management, and compliance-grade assessments. The Synack
+  Enterprise API exposes assessments, assets, asset discovery (seed groups and
+  seeds), vulnerabilities and suspected vulnerabilities, missions and campaigns,
+  tagging, tests, users, and streaming analytics across nine REST services,
+  secured with OAuth2 scopes and JWT bearer tokens.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.synack.com/wp-content/uploads/2024/08/synack-meta-card-home-page-PTaaS-1.jpg
 url: https://raw.githubusercontent.com/api-evangelist/synack/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,20 +29,369 @@ x-backed-by:
 - ggv-capital
 - gv
 - techstars
-x-tier: stub
+x-tier: enriched
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Security
-apis: []
+- Penetration Testing
+- Vulnerability Management
+- Attack Surface Management
+- Crowdsourced Security
+- Compliance
+- API
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: synack:synack-assessment-groups-api
+  name: Synack Assessment Groups API
+  description: Users assigned to an Assessment Group, with their roles.
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - Assessment Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-assessment-groups-api-openapi.yml
+- aid: synack:synack-assessment-lifecycle-api
+  name: Synack Assessment Lifecycle API
+  description: Lifecycle state transitions for an individual assessment.
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - Assessment Lifecycle
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-assessment-lifecycle-api-openapi.yml
+- aid: synack:synack-assessments-api
+  name: Synack Assessments API
+  description: Assets are associated with listings.
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - Assessments
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-assessments-api-openapi.yml
+- aid: synack:synack-asset-relationships-api
+  name: Synack asset-relationships API
+  description: Relationships between assets.
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - asset-relationships
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-asset-relationships-api-openapi.yml
+- aid: synack:synack-assetproviders-api
+  name: Synack assetproviders API
+  description: The assetproviders API from Synack — 1 operation(s) for assetproviders.
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - assetproviders
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-assetproviders-api-openapi.yml
+- aid: synack:synack-assets-api
+  name: Synack Assets API
+  description: Assets managed by Synack.
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - Assets
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-assets-api-openapi.yml
+- aid: synack:synack-cloudaccounts-api
+  name: Synack cloudaccounts API
+  description: Cloud account assets.
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - cloudaccounts
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-cloudaccounts-api-openapi.yml
+- aid: synack:synack-comments-api
+  name: Synack Comments API
+  description: Operations related to comments
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - Comments
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-comments-api-openapi.yml
+- aid: synack:synack-credentials-api
+  name: Synack credentials API
+  description: Credentials are restricted to authorized users.
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - credentials
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-credentials-api-openapi.yml
+- aid: synack:synack-external-relationships-api
+  name: Synack external-relationships API
+  description: The external-relationships API from Synack — 2 operation(s) for external-relationships.
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - external-relationships
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-external-relationships-api-openapi.yml
+- aid: synack:synack-health-api
+  name: Synack health API
+  description: The health API from Synack — 1 operation(s) for health.
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - health
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-health-api-openapi.yml
+- aid: synack:synack-hosts-api
+  name: Synack Hosts API
+  description: Host assets.
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - Hosts
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-hosts-api-openapi.yml
+- aid: synack:synack-missions-api
+  name: Synack Missions API
+  description: Access mission information.
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - Missions
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-missions-api-openapi.yml
+- aid: synack:synack-mobileapps-api
+  name: Synack mobileapps API
+  description: Mobile application assets.
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - mobileapps
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-mobileapps-api-openapi.yml
+- aid: synack:synack-networks-api
+  name: Synack networks API
+  description: Network assets.
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - networks
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-networks-api-openapi.yml
+- aid: synack:synack-patch-verifications-api
+  name: Synack Patch Verifications API
+  description: Operations related to patch verifications
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - Patch Verifications
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-patch-verifications-api-openapi.yml
+- aid: synack:synack-ports-api
+  name: Synack ports API
+  description: Ports for single host assets.
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - ports
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-ports-api-openapi.yml
+- aid: synack:synack-scoperules-api
+  name: Synack scoperules API
+  description: Scope-rules provide fine grained control for what is in and out of scope for an asset.
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - scoperules
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-scoperules-api-openapi.yml
+- aid: synack:synack-scripts-api
+  name: Synack scripts API
+  description: Scripts for mobile and web applications.
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - scripts
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-scripts-api-openapi.yml
+- aid: synack:synack-seeds-api
+  name: Synack Seeds API
+  description: Collections of seeds associated with a listing.
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - Seeds
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-seeds-api-openapi.yml
+- aid: synack:synack-suspected-vulnerabilities-api
+  name: Synack Suspected Vulnerabilities API
+  description: Operations related to suspected vulnerabilities
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - Suspected Vulnerabilities
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-suspected-vulnerabilities-api-openapi.yml
+- aid: synack:synack-tags-api
+  name: Synack Tags API
+  description: Tags applied to seeds and seed groups.
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-tags-api-openapi.yml
+- aid: synack:synack-tests-api
+  name: Synack Tests API
+  description: Operations related to security tests
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - Tests
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-tests-api-openapi.yml
+- aid: synack:synack-userroles-api
+  name: Synack userroles API
+  description: Defines persona-specific user roles for asset credential management.
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - userroles
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-userroles-api-openapi.yml
+- aid: synack:synack-users-api
+  name: Synack users API
+  description: Users of credentials.
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - users
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-users-api-openapi.yml
+- aid: synack:synack-vulnerabilities-api
+  name: Synack Vulnerabilities API
+  description: Operations related to security vulnerabilities
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - Vulnerabilities
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-vulnerabilities-api-openapi.yml
+- aid: synack:synack-vulnerability-statuses-api
+  name: Synack Vulnerability Statuses API
+  description: Operations related to vulnerability statuses
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - Vulnerability Statuses
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-vulnerability-statuses-api-openapi.yml
+- aid: synack:synack-webapps-api
+  name: Synack webapps API
+  description: Web application assets.
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - webapps
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-webapps-api-openapi.yml
 common:
+- type: DeveloperPortal
+  url: https://docs.synack.com/
+- type: Documentation
+  url: https://docs.synack.com/
+- type: APIReference
+  url: https://docs.synack.com/api-reference/introduction
+- type: GettingStarted
+  url: https://docs.synack.com/
+- type: Authentication
+  url: authentication/synack-authentication.yml
+- type: OAuthScopes
+  url: scopes/synack-scopes.yml
+- type: ErrorCatalog
+  url: errors/synack-problem-types.yml
+- type: Conventions
+  url: conventions/synack-conventions.yml
+- type: DataModel
+  url: data-model/synack-data-model.yml
+- type: Lifecycle
+  url: lifecycle/synack-lifecycle.yml
+- type: Conformance
+  url: conformance/synack-conformance.yml
+- type: Compliance
+  url: https://trustcenter.synack.com/
+- type: TrustCenter
+  url: security/synack-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/synack-vulnerability-disclosure.yml
+- type: Security
+  url: https://www.synack.com/vdp/synack/
+- type: DomainSecurity
+  url: security/synack-domain-security.yml
+- type: MCPServer
+  url: mcp/synack-mcp.yml
+- type: AgenticAccess
+  url: agentic-access/synack-agentic-access.yml
+- type: LLMsTxt
+  url: llms/synack-llms.txt
+- type: Packages
+  url: packages/synack-packages.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: GitHubOrganization
+  url: https://github.com/synack
+- type: Blog
+  url: https://www.synack.com/blog/
+- type: Pricing
+  url: https://www.synack.com/pricing/
+- type: SignUp
+  url: https://login.synack.com/
+- type: Login
+  url: https://login.synack.com/
+- type: Support
+  url: https://www.synack.com/contact/
+- type: TermsOfService
+  url: https://www.synack.com/terms/
+- type: PrivacyPolicy
+  url: https://www.synack.com/privacy-policy/
 - type: Website
   url: https://www.synack.com/
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 37
+  pass: local-v1

@@ -1,0 +1,29 @@
+generated: '2026-07-21'
+method: probed
+note: >-
+  No genuine /.well-known documents are published. api.synack.com requires
+  auth (401) on every probed path; www.synack.com returns 404; client.synack.com
+  returns HTTP 200 for every path but the body is the same 3.2 KB single-page-app
+  HTML shell (a catch-all route), not a real security.txt / OIDC / catalog
+  document. No WellKnown or SecurityTxt pointer is wired. (Synack's real
+  vulnerability disclosure lives at synack.com/vdp/synack — see
+  security/synack-vulnerability-disclosure.yml.)
+hosts:
+- host: https://api.synack.com
+  documents:
+  - {path: /.well-known/security.txt, status: 401}
+  - {path: /.well-known/openid-configuration, status: 401}
+  - {path: /.well-known/oauth-authorization-server, status: 401}
+  - {path: /.well-known/api-catalog, status: 401}
+  - {path: /.well-known/ai-plugin.json, status: 401}
+- host: https://client.synack.com
+  documents:
+  - {path: /.well-known/security.txt, status: 200, note: spa-shell-html-not-a-real-document}
+  - {path: /.well-known/openid-configuration, status: 200, note: spa-shell-html-not-a-real-document}
+  - {path: /.well-known/oauth-authorization-server, status: 200, note: spa-shell-html-not-a-real-document}
+  - {path: /.well-known/api-catalog, status: 200, note: spa-shell-html-not-a-real-document}
+  - {path: /.well-known/ai-plugin.json, status: 200, note: spa-shell-html-not-a-real-document}
+- host: https://www.synack.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}

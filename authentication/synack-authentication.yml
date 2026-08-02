@@ -1,0 +1,50 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/synack-assessment-v1-openapi.yaml, openapi/synack-asset-discovery-openapi.yaml,
+  openapi/synack-asset-v2-openapi.yaml, openapi/synack-mission-v2-openapi.yaml, openapi/synack-monolith-v1-openapi.yaml,
+  openapi/synack-monolith-v2-openapi.yaml, openapi/synack-streaming-openapi.yaml, openapi/synack-tagging-openapi.yaml,
+  openapi/synack-vulns-openapi.yaml
+summary:
+  types:
+  - apiKey
+  - http
+  - oauth2
+  api_key_in:
+  - header
+  oauth2_flows:
+  - implicit
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  sources:
+  - openapi/synack-assessment-v1-openapi.yaml
+  - openapi/synack-mission-v2-openapi.yaml
+  - openapi/synack-monolith-v1-openapi.yaml
+  - openapi/synack-monolith-v2-openapi.yaml
+  - openapi/synack-streaming-openapi.yaml
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: implicit
+    authorizationUrl: login.synack.com
+    scopes: 5
+  sources:
+  - openapi/synack-asset-discovery-openapi.yaml
+  - openapi/synack-asset-v2-openapi.yaml
+  - openapi/synack-tagging-openapi.yaml
+  - openapi/synack-vulns-openapi.yaml
+- name: BasicAuth
+  type: http
+  scheme: basic
+  sources:
+  - openapi/synack-monolith-v1-openapi.yaml
+  - openapi/synack-monolith-v2-openapi.yaml
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: X-Auth
+  sources:
+  - openapi/synack-monolith-v1-openapi.yaml
+  - openapi/synack-monolith-v2-openapi.yaml

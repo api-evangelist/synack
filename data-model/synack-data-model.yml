@@ -1,0 +1,63 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/*.yaml (path hierarchy + $ref/id-reference fields across 9 specs)
+note: >-
+  Entity-relationship graph derived from the Synack Enterprise API path
+  hierarchy and schema references. Organization is the root tenant; assets,
+  seeds, vulnerabilities, tags, missions and tests all hang off it, most also
+  scoped to a listing (assessment).
+entities:
+- name: Organization
+  id: organizationUid
+  root: true
+- name: Assessment
+  id: assessmentUid
+  aka: listing
+  note: A listing / engagement; assets are assigned to assessments.
+- name: AssessmentGroup
+  id: assessmentGroupId
+- name: Asset
+  id: assetUid
+  types: [cloud, host, mobile, network, web]
+- name: SeedGroup
+  id: seedGroupUid
+- name: Seed
+  id: seedUid
+- name: Vulnerability
+  id: vulnerabilityId
+- name: SuspectedVulnerability
+  id: id
+- name: Mission
+  id: taskId
+  aka: task
+- name: Campaign
+  id: campaignID
+  aka: group-of-missions
+- name: Tag
+  id: tagUid
+- name: Test
+  id: testId
+- name: Port
+  id: port
+- name: User
+  id: userId
+  aka: member
+relationships:
+- {from: Assessment, to: Organization, kind: belongs_to, via: organizationUid}
+- {from: AssessmentGroup, to: Assessment, kind: has_many, via: assessmentGroupId}
+- {from: User, to: AssessmentGroup, kind: has_many, via: members}
+- {from: Asset, to: Organization, kind: belongs_to, via: organizationUid}
+- {from: Asset, to: Assessment, kind: belongs_to, via: listingUid}
+- {from: Asset, to: Port, kind: has_many, via: assetUid}
+- {from: Asset, to: Vulnerability, kind: has_many, via: assetUid}
+- {from: Asset, to: SuspectedVulnerability, kind: has_many, via: assetUid}
+- {from: SeedGroup, to: Organization, kind: belongs_to, via: organizationUid}
+- {from: Seed, to: SeedGroup, kind: belongs_to, via: seedGroupUid}
+- {from: Asset, to: Seed, kind: belongs_to, via: seed, note: assets are discovered from seeds}
+- {from: Vulnerability, to: Assessment, kind: belongs_to, via: assessmentUid}
+- {from: SuspectedVulnerability, to: Organization, kind: belongs_to, via: organizationUid}
+- {from: Mission, to: Campaign, kind: belongs_to, via: campaignID}
+- {from: Campaign, to: Assessment, kind: belongs_to, via: listingUid}
+- {from: Test, to: Assessment, kind: belongs_to, via: assessmentUid}
+- {from: Tag, to: Organization, kind: belongs_to, via: orgUid}
+- {from: Tag, to: Asset, kind: has_many, via: tagUid}

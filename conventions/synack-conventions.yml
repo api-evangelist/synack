@@ -1,0 +1,46 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/*.yaml + https://docs.synack.com/
+note: >-
+  Cross-cutting request/response semantics for the Synack Enterprise API.
+  Derived from the nine OpenAPI specs and the docs introduction. No
+  idempotency contract is documented, so no Idempotency pointer is wired.
+authentication:
+  styles:
+  - {type: http-bearer, format: JWT, services: [monolith, assessment, mission, streaming]}
+  - {type: oauth2-implicit, authorizationUrl: login.synack.com, services: [asset, asset-discovery, tagging, vulnerability]}
+  - {type: apiKey, in: header, name: X-Auth, services: [monolith]}
+  - {type: http-basic, services: [monolith]}
+  token_source: Synack Client portal — Settings -> API -> Tokens
+  token_options: [optional expiry, IP allowlist (IPv4 or '*')]
+  see: authentication/synack-authentication.yml
+pagination:
+  style: page-number
+  convention: json-api-bracket
+  params:
+  - 'page[number]'
+  - 'page[size]'
+  defaults:
+    'page[number]': 1
+    'page[size]': 50
+    max_page_size: 50
+  response_fields:
+  - Pagination
+  - CollectionMetadata
+versioning:
+  style: uri-path
+  see: lifecycle/synack-lifecycle.yml
+error_envelope:
+  format: rfc9457
+  media_type: application/problem+json
+  legacy_media_type: application/json
+  see: errors/synack-problem-types.yml
+idempotency:
+  supported: false
+  note: No Idempotency-Key header or documented idempotent-retry behavior.
+rate_limiting:
+  documented: false
+  note: No rate-limit headers or quotas documented in specs or docs.
+request_tracing:
+  request_id_header: null
+  documented: false

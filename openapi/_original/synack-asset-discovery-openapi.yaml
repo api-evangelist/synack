@@ -1,0 +1,970 @@
+openapi: 3.0.3
+info:
+  title: Asset Discovery
+  description: RESTful API for managing seeds, seed groups used in the asset discovery process.
+  version: "1.0"
+  contact:
+    name: Synack Engineering
+    email: engineering@synack.com
+tags:
+  - name: Seeds
+    description: Collections of seeds associated with a listing.
+  - name: Tags
+    description: Tags applied to seeds and seed groups.
+servers:
+  - url: https://client.synack.com/api/asset-discovery
+    description: Commercial
+  - url: https://client.synack.us/api/asset-discovery
+    description: FedRAMP (Medium)
+paths:
+  /v1/organizations/{organizationUid}/seed-groups:
+    parameters:
+      - $ref: '#/components/parameters/OrganizationUIDPath'
+    get:
+      operationId: getSeedGroups
+      tags:
+        - Seeds
+      description: >
+        Retrieve and filter seed groups.
+      x-mint:
+        metadata:
+          title: Get Seed Groups
+      parameters:
+        - $ref: '#/components/parameters/PerPageQuery'
+        - $ref: '#/components/parameters/PageQuery'
+        - in: query
+          name: sort
+          schema:
+            type: string
+            enum:
+              - name
+              - totalSeeds
+              - createdAt
+              - updatedAt
+              - createdBy
+              - scanStatus
+              - lastScanAt
+            default: name
+          description: Optional property to sort results by.
+        - $ref: '#/components/parameters/SortDirQuery'
+        - in: query
+          name: search
+          schema:
+            type: string
+          required: false
+          description: >
+            Optional query parameter for a search string that will be used
+            to match within seed group name.
+        - in: query
+          name: tag
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: >
+            Optional query parameter for a tag that will be used to filter
+            seed groups.
+      responses:
+        "200":
+          $ref: '#/components/responses/PaginatedSeedGroupsResponse'
+        "401":
+          $ref: '#/components/responses/401Unauthorized'
+        "403":
+          $ref: '#/components/responses/403Forbidden'
+        "409":
+          $ref: '#/components/responses/409Conflict'
+        "422":
+          $ref: '#/components/responses/422EntityNotProcessable'
+        "500":
+          $ref: '#/components/responses/500InternalServerError'
+        "503":
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+        - OAuth2:
+            - assetdiscovery_or
+            - assetdiscovery_gr
+            - assetdiscovery_lr
+    post:
+      operationId: postSeedGroup
+      tags:
+        - Seeds
+      description: >
+        Creates a new seed group and seeds if valid.
+      x-mint:
+        metadata:
+          title: Create Seed Group
+      requestBody:
+        description: Supply Asset UID for the asset to upsert
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewSeedGroup'
+      responses:
+        "201":
+          $ref: '#/components/responses/SingleSeedGroupWithSeedsResponse'
+        "401":
+          $ref: '#/components/responses/401Unauthorized'
+        "403":
+          $ref: '#/components/responses/403Forbidden'
+        "409":
+          $ref: '#/components/responses/409Conflict'
+        "422":
+          $ref: '#/components/responses/422EntityNotProcessable'
+        "500":
+          $ref: '#/components/responses/500InternalServerError'
+        "503":
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+        - OAuth2:
+            - assetdiscovery_ow
+            - asset_client_lw
+
+  /v1/organizations/{organizationUid}/seed-groups/{seedGroupUid}:
+    parameters:
+      - $ref: '#/components/parameters/OrganizationUIDPath'
+      - $ref: '#/components/parameters/SeedGroupUIDPath'
+    get:
+      operationId: getSeedGroup
+      tags:
+        - Seeds
+      description: >
+        Retrieves a single seed group.
+      x-mint:
+        metadata:
+          title: Get Seed Group
+      responses:
+        "200":
+          $ref: '#/components/responses/SingleSeedGroupResponse'
+        "401":
+          $ref: '#/components/responses/401Unauthorized'
+        "403":
+          $ref: '#/components/responses/403Forbidden'
+        "404":
+          $ref: '#/components/responses/404NotFound'
+        "500":
+          $ref: '#/components/responses/500InternalServerError'
+        "503":
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+        - OAuth2:
+            - assetdiscovery_or
+    patch:
+      operationId: patchSeedGroup
+      tags:
+        - Seeds
+      description: >
+        Updates a seed group.
+      x-mint:
+        metadata:
+          title: Update Seed Group
+      requestBody:
+        description: >
+          Changed properties for a single seed group.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SeedGroupUpdate'
+      responses:
+        "200":
+          $ref: '#/components/responses/SingleSeedGroupResponse'
+        "400":
+          $ref: '#/components/responses/400BadRequest'
+        "401":
+          $ref: '#/components/responses/401Unauthorized'
+        "403":
+          $ref: '#/components/responses/403Forbidden'
+        "404":
+          $ref: '#/components/responses/404NotFound'
+        "409":
+          $ref: '#/components/responses/409Conflict'
+        "422":
+          $ref: '#/components/responses/422EntityNotProcessable'
+        "500":
+          $ref: '#/components/responses/500InternalServerError'
+        "503":
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+        - OAuth2:
+            - assetdiscovery_ow
+    delete:
+      operationId: deleteSeedGroup
+      tags:
+        - Seeds
+      description: >
+        Deletes a seed group. All seeds in the seed group will be deleted, and
+        any assets discovered from those seeds will be removed from the
+        listing associated with the seed group that owns the deleted seed.
+      x-mint:
+        metadata:
+          title: Delete Seed Group
+      responses:
+        "204":
+          $ref: '#/components/responses/204NoContent'
+        "401":
+          $ref: '#/components/responses/401Unauthorized'
+        "403":
+          $ref: '#/components/responses/403Forbidden'
+        "404":
+          $ref: '#/components/responses/404NotFound'
+        "500":
+          $ref: '#/components/responses/500InternalServerError'
+        "503":
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+        - OAuth2:
+            - assetdiscovery_ow
+
+  /v1/organizations/{organizationUid}/seed-groups/{seedGroupUid}/seeds:
+    parameters:
+      - $ref: '#/components/parameters/OrganizationUIDPath'
+      - $ref: '#/components/parameters/SeedGroupUIDPath'
+    get:
+      operationId: getSeeds
+      tags:
+        - Seeds
+      description: >
+        Retrieve and filter seeds for a seed group.
+      x-mint:
+        metadata:
+          title: Get Seeds in a Seed Group
+      parameters:
+        - $ref: '#/components/parameters/PerPageQuery'
+        - $ref: '#/components/parameters/PageQuery'
+        - in: query
+          name: sort
+          schema:
+            type: string
+            enum:
+              - name
+              - seedType
+              - createdAt
+              - updatedAt
+              - createdBy
+            default: name
+          description: Optional property to sort results by.
+        - $ref: '#/components/parameters/SortDirQuery'
+        - in: query
+          name: search
+          schema:
+            type: string
+          required: false
+          description: >
+            Optional query parameter for a search string that will be used
+            to match within seed name.
+        - in: query
+          name: seedType
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/SeedType'
+          required: false
+          description: >
+            Filter the response to include only seeds with a seed type.
+        - in: query
+          name: tag
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: >
+            Optional query parameter for a tag that will be used to filter seeds.
+      responses:
+        "200":
+          $ref: '#/components/responses/PaginatedSeedsResponse'
+        "401":
+          $ref: '#/components/responses/401Unauthorized'
+        "403":
+          $ref: '#/components/responses/403Forbidden'
+        "409":
+          $ref: '#/components/responses/409Conflict'
+        "422":
+          $ref: '#/components/responses/422EntityNotProcessable'
+        "500":
+          $ref: '#/components/responses/500InternalServerError'
+        "503":
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+        - OAuth2:
+            - assetdiscovery_or
+            - assetdiscovery_gr
+            - assetdiscovery_lr
+    post:
+      operationId: postSeed
+      tags:
+        - Seeds
+      description: >
+        Creates a new seed if valid.
+      x-mint:
+        metadata:
+          title: Create Seed
+      requestBody:
+        description: >
+          Properties of new seed.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewSeed'
+      responses:
+        "201":
+          $ref: '#/components/responses/SingleSeedResponse'
+        "401":
+          $ref: '#/components/responses/401Unauthorized'
+        "403":
+          $ref: '#/components/responses/403Forbidden'
+        "409":
+          $ref: '#/components/responses/409Conflict'
+        "422":
+          $ref: '#/components/responses/422EntityNotProcessable'
+        "500":
+          $ref: '#/components/responses/500InternalServerError'
+        "503":
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+        - OAuth2:
+            - assetdiscovery_ow
+            - asset_client_lw
+
+  /v1/organizations/{organizationUid}/seed-groups/{seedGroupUid}/seeds/{seedUid}:
+    parameters:
+      - $ref: '#/components/parameters/OrganizationUIDPath'
+      - $ref: '#/components/parameters/SeedGroupUIDPath'
+      - $ref: '#/components/parameters/SeedUIDPath'
+    get:
+      operationId: getSeed
+      tags:
+        - Seeds
+      description: >
+        Retrieves a single seed.
+      x-mint:
+        metadata:
+          title: Get Seed
+      responses:
+        "200":
+          $ref: '#/components/responses/SingleSeedResponse'
+        "401":
+          $ref: '#/components/responses/401Unauthorized'
+        "403":
+          $ref: '#/components/responses/403Forbidden'
+        "404":
+          $ref: '#/components/responses/404NotFound'
+        "500":
+          $ref: '#/components/responses/500InternalServerError'
+        "503":
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+        - OAuth2:
+            - assetdiscovery_or
+            - assetdiscovery_gr
+            - assetdiscovery_lr
+    delete:
+      operationId: deleteSeed
+      tags:
+        - Seeds
+      description: >
+        Delete seeds. Any assets discovered from those seeds will be removed
+        from the listing associated with the seed group that owns the deleted
+        seed.
+      x-mint:
+        metadata:
+          title: Delete Seed
+      responses:
+        "204":
+          $ref: '#/components/responses/204NoContent'
+        "401":
+          $ref: '#/components/responses/401Unauthorized'
+        "403":
+          $ref: '#/components/responses/403Forbidden'
+        "404":
+          $ref: '#/components/responses/404NotFound'
+        "500":
+          $ref: '#/components/responses/500InternalServerError'
+        "503":
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+        - OAuth2:
+            - assetdiscovery_ow
+
+  /v1/organizations/{organizationUid}/seed-groups/{seedGroupUid}/tags/batchUpdate:
+    parameters:
+      - $ref: '#/components/parameters/OrganizationUIDPath'
+      - $ref: '#/components/parameters/SeedGroupUIDPath'
+    post:
+      operationId: updateSeedGroupTags
+      tags:
+        - Seeds
+        - Tags
+      description: >
+        Updates a seed groups tags.
+      x-mint:
+        metadata:
+          title: Update Seed Group Tags
+      requestBody:
+        description: >
+          Tags update.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchTagsUpdate'
+      responses:
+        "204":
+          $ref: '#/components/responses/204NoContent'
+        "400":
+          $ref: '#/components/responses/400BadRequest'
+        "401":
+          $ref: '#/components/responses/401Unauthorized'
+        "403":
+          $ref: '#/components/responses/403Forbidden'
+        "409":
+          $ref: '#/components/responses/409Conflict'
+        "413":
+          $ref: '#/components/responses/413RequestEntityTooLarge'
+        "422":
+          $ref: '#/components/responses/422EntityNotProcessable'
+        "500":
+          $ref: '#/components/responses/500InternalServerError'
+        "503":
+          $ref: '#/components/responses/503ServiceUnavailable'
+      security:
+        - OAuth2:
+            - assetdiscovery_ow
+
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: "login.synack.com"
+          scopes:
+            assetdiscovery_gr: Grants global-level to read seed groups and seeds.
+            assetdiscovery_or: Grants organization-level to read seed groups and seeds.
+            assetdiscovery_ow: Grants organization-level to create or modify seed groups and seeds.
+            assetdiscovery_lr: Grants listing-level to read seed groups and seeds.
+            asset_client_lw: Grants listing-level to write seed groups and seeds.
+
+  parameters:
+    OrganizationUIDPath:
+      name: organizationUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/OrganizationUID'
+      required: true
+      description: Unique identifier for an organization group.
+    PerPageQuery:
+      name: perPage
+      in: query
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 5000
+      required: false
+      description: >
+        Requested page size for pagination. A server-selected default of 100 will
+        be used when no perPage is requested via query parameter.
+    PageQuery:
+      name: page
+      in: query
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      required: false
+      description: >
+        Page to retrieve in paginated response. A server-selected default of 1 will
+        be used when no page is requested via query parameter.
+    SortDirQuery:
+      name: sortDir
+      in: query
+      schema:
+        type: string
+        enum:
+          - asc
+          - desc
+        default: asc
+      required: false
+      description: Direction of sort-order for items in the response.
+    SeedGroupUIDPath:
+      name: seedGroupUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/SeedGroupUID'
+      required: true
+      description: Unique identifier for a seed group.
+    SeedUIDPath:
+      name: seedUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/UID'
+      required: true
+      description: Unique identifier for a seed.
+
+  headers:
+    ETag:
+      description: An identifier for a specific version of a resource
+      schema:
+        type: string
+        pattern: '^(?:W\/)?\".*\"$'
+    PaginationLimit:
+      description: Maximum number of items returned in a paginated response.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    PaginationCurrentPage:
+      description: Current page in a paginated response.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    PaginationTotalPages:
+      description: Total number of pages in a paginated response.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    PaginationTotalCount:
+      description: Total number of items in all pages of a paginated response.
+      schema:
+        format: int32
+        minimum: 1
+    Link:
+      description: Standard link header.
+      schema:
+        type: string
+
+  responses:
+    SingleSeedGroupWithSeedsResponse:
+      description: The current state of the requested asset.
+      headers:
+        "ETag":
+          $ref: '#/components/headers/ETag'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              seedGroup:
+                description: The created seed group
+                $ref: '#/components/schemas/SeedGroup'
+              failedSeedValidations:
+                type: array
+                description: Array of failed validation rules for the seeds.
+                readOnly: true
+                items:
+                  $ref: '#/components/schemas/FailedValidation'
+    SingleSeedGroupResponse:
+      description: The current state of the requested asset.
+      headers:
+        "ETag":
+          $ref: '#/components/headers/ETag'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SeedGroup'
+    SingleSeedResponse:
+      description: The current state of a scope rule.
+      headers:
+        "ETag":
+          $ref: '#/components/headers/ETag'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Seed'
+    PaginatedSeedGroupsResponse:
+      description: Paginated seed groups.
+      headers:
+        "Pagination-Limit":
+          $ref: '#/components/headers/PaginationLimit'
+        "Pagination-Current-Page":
+          $ref: '#/components/headers/PaginationCurrentPage'
+        "Pagination-Total-Pages":
+          $ref: '#/components/headers/PaginationTotalPages'
+        "Pagination-Total-Count":
+          $ref: '#/components/headers/PaginationTotalCount'
+        "Link":
+          $ref: '#/components/headers/Link'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              seedGroups:
+                $ref: '#/components/schemas/ArrayOfSeedGroups'
+    PaginatedSeedsResponse:
+      description: Paginated seeds.
+      headers:
+        "Pagination-Limit":
+          $ref: '#/components/headers/PaginationLimit'
+        "Pagination-Current-Page":
+          $ref: '#/components/headers/PaginationCurrentPage'
+        "Pagination-Total-Pages":
+          $ref: '#/components/headers/PaginationTotalPages'
+        "Pagination-Total-Count":
+          $ref: '#/components/headers/PaginationTotalCount'
+        "Link":
+          $ref: '#/components/headers/Link'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              seeds:
+                $ref: '#/components/schemas/ArrayOfSeeds'
+    204NoContent:
+      description: No content.
+    400BadRequest:
+      description: Bad Request
+    401Unauthorized:
+      description: Unauthorized.
+    403Forbidden:
+      description: Forbidden
+    404NotFound:
+      description: Not found.
+    409Conflict:
+      description: Conflict.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    413RequestEntityTooLarge:
+      description: >
+        Returned generally when the size of the request body is too large to process, or specifically when the request
+        contains too many items, typically in a bulk API operation.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    422EntityNotProcessable:
+      description: Entity Not Processable
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    500InternalServerError:
+      description: Internal Server Error.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    503ServiceUnavailable:
+      description: Service Unavailable.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+
+  schemas:
+    UID:
+      type: string
+      pattern: "^[0-9a-f]{12}"
+      readOnly: true
+      description: Unique Identifier.
+
+    OrganizationUID:
+      type: string
+      pattern: "^[-_0-9a-z]{1,50}"
+      description: Unique identifier for an organization.
+
+    ListingUID:
+      type: string
+      pattern: "^[-_0-9a-z]{1,50}"
+      description: Unique identifier for an listing.
+
+    Tag:
+      type: string
+      pattern: "^[-_0-9a-zA-Z]{1,16}"
+
+    SeedUID:
+      type: string
+      pattern: "^[0-9a-f]{24}"
+      description: Unique identifier for a seed.
+
+    OperationUserUID:
+      type: string
+      pattern: "^[0-9a-f]{12}"
+      readOnly: true
+      description:
+        Automatically set by the server to the requesting user whenever the
+        resource is updated. May be a user account or a service account if
+        the action is performed by an automated.
+
+    Creatable:
+      type: object
+      required:
+        - createdAt
+        - createdBy
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Automatically set by the server to the time the request was processed whenever the resource was created.
+        createdBy:
+          $ref: '#/components/schemas/OperationUserUID'
+
+    Updatable:
+      allOf:
+        - type: object
+          properties:
+            updatedAt:
+              type: string
+              format: date-time
+              readOnly: true
+              description: Automatically set by the server to the time the request was processed whenever the resource is updated.
+            updatedBy:
+              $ref: '#/components/schemas/OperationUserUID'
+        - $ref: '#/components/schemas/Creatable'
+
+    NewSeedGroup:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        autoConfirmationEnabled:
+          type: boolean
+        seeds:
+          type: array
+          items:
+            $ref: '#/components/schemas/NewSeed'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+
+    SeedGroupUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        asmEnabled:
+          type: boolean
+        autoConfirmationEnabled:
+          type: boolean
+          description: Indicates whether discovered assets from this seed group will be created as unconfirmed or confirmed.
+
+    ArrayOfSeedGroups:
+      type: array
+      items:
+        $ref: '#/components/schemas/SeedGroup'
+
+    SeedGroup:
+      allOf:
+        - type: object
+          required:
+            - autoConfirmationEnabled
+            - limitReached
+          properties:
+            uid:
+              $ref: '#/components/schemas/UID'
+            organizationUid:
+              $ref: '#/components/schemas/OrganizationUID'
+            name:
+              type: string
+              readOnly: true
+              description: User-supplied name for this seed group.
+            listingUid:
+              $ref: '#/components/schemas/ListingUID'
+            scanStatus:
+              type: string
+              readOnly: true
+              enum:
+                - created
+                - in_progress
+                - completed
+                - failed
+            lastScanAt:
+              type: string
+              format: date-time
+              readOnly: true
+            asmEnabled:
+              type: boolean
+              readOnly: true
+              description: Indicates whether ASM is enabled for this seed group.
+            autoConfirmationEnabled:
+              type: boolean
+              description: Indicates whether discovered assets from this seed group will be created as unconfirmed or confirmed.
+            totalSeeds:
+              type: integer
+              readOnly: true
+              description: Derived count of seeds in this seed group.
+            limitReached:
+              type: boolean
+              description: Indicates that the seed group scan has reached a limit on the number of assets that can be discovered from it.
+            tags:
+              type: array
+              items:
+                $ref: '#/components/schemas/Tag'
+        - $ref: '#/components/schemas/Updatable'
+
+    SeedGroupUID:
+      type: string
+      pattern: "^[0-9a-f]{12}"
+      description: Unique identifier for a seed group.
+
+    SeedType:
+      type: string
+      enum:
+        - ip
+        - domain
+        - cidr
+        - ip_range
+
+    NewSeed:
+      type: object
+      required:
+        - name
+        - seedType
+      properties:
+        name:
+          type: string
+        seedType:
+          $ref: '#/components/schemas/SeedType'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+
+    ArrayOfSeeds:
+      type: array
+      items:
+        $ref: '#/components/schemas/Seed'
+
+    Seed:
+      allOf:
+        - type: object
+          required:
+            - seedType
+            - name
+          properties:
+            uid:
+              $ref: '#/components/schemas/UID'
+            seedGroupUid:
+              $ref: '#/components/schemas/SeedGroupUID'
+            organizationUid:
+              $ref: '#/components/schemas/OrganizationUID'
+            name:
+              type: string
+              readOnly: true
+              description: User-supplied name for this seed.
+            seedType:
+              $ref: '#/components/schemas/SeedType'
+            tags:
+              type: array
+              items:
+                $ref: '#/components/schemas/Tag'
+        - $ref: '#/components/schemas/Updatable'
+
+    BatchTagsUpdate:
+      type: object
+      description: Tags to remove and add to seeds and seed group
+      properties:
+        seedGroupTagsToDelete:
+          type: array
+          description: Array of tags to delete from the seed group.
+          items:
+            $ref: '#/components/schemas/Tag'
+        seedGroupTagsToAdd:
+          type: array
+          description: Array of tags to add to the seed group.
+          items:
+            $ref: '#/components/schemas/Tag'
+        seedUids:
+          type: array
+          description: Array of seed uids to apply tag update to.
+          items:
+            $ref: '#/components/schemas/SeedUID'
+        seedTagsToDelete:
+          type: array
+          description: Array of tags to delete from the supplied seeds.
+          items:
+            $ref: '#/components/schemas/Tag'
+        seedTagsToAdd:
+          type: array
+          description: Array of tags to add to the supplied seeds.
+          items:
+            $ref: '#/components/schemas/Tag'
+
+    ProblemDetails:
+      type: object
+      description: "See [RFC 7807: Problem Details for HTTP APIs](https://tools.ietf.org/html/rfc7807)"
+      properties:
+        type:
+          type: string
+          readOnly: true
+        title:
+          type: string
+          readOnly: true
+        status:
+          type: integer
+          format: int32
+          minimum: 100
+          maximum: 511
+          description: HTTP Status code.
+          readOnly: true
+        detail:
+          type: string
+          description: Message detailing the problem.
+          readOnly: true
+        instance:
+          type: string
+          description: generated problem instance number to correlate with logs
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
+        failedValidations:
+          type: array
+          description: Array of indexed failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/IndexedFailedValidations'
+        maxBatchSize:
+          type: integer
+          description: Maximum processable batch size.
+          readOnly: true
+        batchSize:
+          type: integer
+          description: Batch size sent when batch is too large.
+          readOnly: true
+
+    FailedValidation:
+      type: object
+      required:
+        - message
+      properties:
+        property:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+        message:
+          type: string
+          readOnly: true
+
+    IndexedFailedValidations:
+      type: object
+      properties:
+        index:
+          type: integer
+          description:
+            Zero-based index indicating the which item in request containing an array of items has failed validation.
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'

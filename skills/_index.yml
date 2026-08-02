@@ -1,0 +1,16 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/*.yaml
+skills:
+- file: synack-triage-vulnerabilities.md
+  name: Triage Synack vulnerabilities
+  api: openapi/synack-monolith-v1-openapi.yaml
+  operations: [getVulnerabilities, getVulnerability, getVulnerabilityStatuses, updateVulnerability, createVulnerabilityComment, createVulnerabilityPatchVerification]
+- file: synack-manage-assessment-lifecycle.md
+  name: Manage Synack assessment lifecycle
+  api: openapi/synack-assessment-v1-openapi.yaml
+  operations: [getAssessments, getAssessment, getAssessmentTestingHours, pauseAssessment, resumeAssessment]
+- file: synack-discover-and-inventory-assets.md
+  name: Discover and inventory Synack assets
+  api: openapi/synack-asset-discovery-openapi.yaml
+  operations: [getSeedGroups, postSeedGroup, getSeeds, postSeed, getAssets, postAsset, getSuspectedVulnerabilities]

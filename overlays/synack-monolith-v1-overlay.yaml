@@ -1,0 +1,22 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Synack Synack API
+  version: 1.0.0
+extends: openapi/synack-monolith-v1-openapi.yaml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-21'
+    x-apievangelist-provider: synack
+    x-apievangelist-artifacts:
+    - authentication/synack-authentication.yml
+    - scopes/synack-scopes.yml
+    - errors/synack-problem-types.yml
+    - conventions/synack-conventions.yml
+    - data-model/synack-data-model.yml
+- target: $.info
+  update:
+    x-apievangelist-conventions:
+      pagination: page[number]/page[size] (JSON:API bracket style, max 50)
+      errors: RFC 9457 application/problem+json
+      idempotency: not supported

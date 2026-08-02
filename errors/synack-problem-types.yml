@@ -1,0 +1,60 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/*.yaml (aggregated 4xx/5xx responses across 9 specs)
+format: rfc9457
+note: >-
+  Derived from the response objects across all nine Synack OpenAPI specs.
+  Six services return application/problem+json (RFC 9457) with a Problem /
+  ProblemDetails schema; the older monolith and asset services return
+  application/json. Status descriptions are taken verbatim from the specs.
+error_envelope:
+  rfc9457_media_type: application/problem+json
+  schemas: [Problem, ProblemDetails, FailedValidation, IndexedFailedValidations]
+  legacy_media_type: application/json
+problems:
+- status: 400
+  title: Bad request
+  detail: Invalid query parameters or malformed request body (e.g. tag name missing or already exists).
+  media_types: [application/problem+json, application/json]
+  occurrences: 59
+- status: 401
+  title: Unauthorized
+  detail: Bearer token is missing or invalid.
+  media_types: [application/json]
+  occurrences: 103
+- status: 403
+  title: Forbidden
+  detail: User lacks required features/roles, or requested orgs/listings they are not authorized for.
+  media_types: [application/problem+json, application/json]
+  occurrences: 92
+- status: 404
+  title: Not found
+  detail: Organization, assessment, or asset not found (or requester missing admin privileges).
+  media_types: [application/json]
+  occurrences: 86
+- status: 409
+  title: Conflict
+  detail: Resource not in a valid state for the operation (e.g. assessment not pausable, test not in Admin Review).
+  media_types: [application/json]
+  occurrences: 34
+- status: 412
+  title: Precondition failed
+  media_types: [application/json]
+  occurrences: 5
+- status: 413
+  title: Payload too large
+  media_types: [application/json]
+  occurrences: 13
+- status: 422
+  title: Unprocessable entity
+  detail: Validation failed or the operation is invalid (e.g. tag deletion failed unexpectedly).
+  media_types: [application/problem+json, application/json]
+  occurrences: 37
+- status: 500
+  title: Internal server error
+  media_types: [application/problem+json, application/json, text/plain]
+  occurrences: 102
+- status: 503
+  title: Service unavailable
+  media_types: [application/json]
+  occurrences: 72

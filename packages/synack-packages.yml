@@ -1,0 +1,24 @@
+generated: '2026-07-21'
+method: searched
+source: https://pypi.org/project/SynackAPI/
+note: >-
+  Synack publishes no first-party client SDKs. Token-authenticated REST access
+  is documented directly (curl / Bearer token). The packages below are
+  community-maintained wrappers around Synack's (largely researcher-facing)
+  API and are NOT official — no SDKs pointer is wired for the scored
+  sdk_count check.
+packages:
+- language: python
+  registry: pypi
+  name: SynackAPI
+  url: https://pypi.org/project/SynackAPI/
+  install: pip install SynackAPI
+  official: false
+  note: Community library (github.com/bamhm182/SynackAPI) for the Synack Red Team API.
+- language: python
+  registry: github
+  name: luillyfe/synack-api
+  url: https://github.com/luillyfe/synack-api
+  install: git clone https://github.com/luillyfe/synack-api
+  official: false
+  note: Community project.

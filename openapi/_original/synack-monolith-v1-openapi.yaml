@@ -1,0 +1,1652 @@
+openapi: 3.0.3
+info:
+  title: Synack API
+  version: 2.0.0
+  description: >
+    Comprehensive API for Synack's security testing platform, providing
+    endpoints for managing assessments, vulnerabilities, users, and security
+    testing operations.
+  contact:
+    name: Synack Engineering
+    email: engineering@synack.com
+  license:
+    name: Proprietary
+servers:
+  - url: https://api.synack.com
+    description: Commercial - V1 API
+  - url: https://api.synack.us
+    description: FedRAMP (Medium) - V1 API
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    BasicAuth:
+      type: http
+      scheme: basic
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Auth
+  schemas:
+    ProblemDetails:
+      type: object
+      required:
+        - type
+        - title
+        - organization
+      properties:
+        type:
+          type: string
+          description: A URI reference that identifies the problem type
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type
+        detail:
+          type: string
+          description: >-
+            A human-readable explanation specific to this occurrence of the
+            problem
+        organization:
+          type: string
+          description: The organization UID associated with the problem
+    ValidationProblemDetails:
+      allOf:
+        - $ref: '#/components/schemas/ProblemDetails'
+        - type: object
+          required:
+            - invalidParams
+          properties:
+            invalidParams:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProblemDetailsSubProblem'
+    ProblemDetailsSubProblem:
+      type: object
+      required:
+        - name
+        - reason
+      properties:
+        name:
+          type: string
+          description: The parameter name that caused the validation error
+        reason:
+          type: string
+          description: The reason why the parameter is invalid
+    Assessment:
+      type: object
+      required:
+        - uid
+        - name
+        - createdAt
+        - type
+        - testCounts
+        - vulnerabilityCount
+      properties:
+        uid:
+          type: string
+          example: assessmentuid921
+        name:
+          type: string
+          example: My Security Assessment
+        description:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        type:
+          type: string
+          enum:
+            - web
+            - host
+            - api
+            - mobile
+          example: Web
+        testCounts:
+          $ref: '#/components/schemas/TestCounts'
+        vulnerabilityCount:
+          type: integer
+          minimum: 0
+          example: 13
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+        ownerContacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/OwnerContact'
+    TestCounts:
+      type: object
+      required:
+        - pending
+        - scheduled
+        - active
+        - paused
+        - completed
+      properties:
+        pending:
+          type: integer
+          minimum: 0
+        scheduled:
+          type: integer
+          minimum: 0
+        active:
+          type: integer
+          minimum: 0
+        paused:
+          type: integer
+          minimum: 0
+        completed:
+          type: integer
+          minimum: 0
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        editable:
+          type: boolean
+        organization_profile_id:
+          type: integer
+    OwnerContact:
+      type: object
+      required:
+        - id
+        - name
+        - email
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+    Vulnerability:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        severity:
+          type: string
+          enum:
+            - Critical
+            - High
+            - Medium
+            - Low
+            - Informational
+        status:
+          type: string
+        cvss_score:
+          type: number
+          format: float
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+    SuspectedVulnerability:
+      type: object
+      properties:
+        id:
+          type: integer
+        asset_uid:
+          type: string
+        category_in_scope:
+          type: boolean
+        confidence:
+          type: number
+          format: float
+        cvss_base:
+          type: number
+          format: float
+        exploitable_locations:
+          type: array
+          items:
+            type: string
+        false_positive:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+        last_detected_at:
+          type: string
+          format: date-time
+        payload:
+          type: object
+        reference_urls:
+          type: array
+          items:
+            type: string
+        severity:
+          type: string
+        source:
+          type: string
+        status:
+          type: string
+        vulnerability_status_id:
+          type: integer
+        reason_title:
+          type: string
+        reason_description:
+          type: string
+        organization_profile_id:
+          type: integer
+        automated_triage_status:
+          type: string
+        automated_triage_status_updated_at:
+          type: string
+          format: date-time
+    CommentUser:
+      required:
+        - email
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          description: name of the user
+        email:
+          type: string
+          description: e-mail address of the user
+    User:
+      required:
+        - assessment_ids
+        - banned
+        - email
+        - id
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        email:
+          type: string
+          description: e-mail address of the user
+        assessment_ids:
+          type: array
+          description: IDs of assessments the user has access to
+          items:
+            type: string
+        admin:
+          type: boolean
+          description: >-
+            boolean flag to indicate whether the user has admin privileges (only
+            visible to admin
+        invite_url:
+          type: string
+          description: invitation URL (only visible to admins)
+        banned:
+          type: boolean
+          description: boolean flag to indicate whether the user has been banned
+    Attachment:
+      type: object
+      properties:
+        id:
+          type: integer
+        filename:
+          type: string
+        content_type:
+          type: string
+        file_size:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+    PaginationMetadata:
+      type: object
+      required:
+        - total
+        - page
+        - perPage
+        - totalPages
+        - first
+        - last
+        - self
+      properties:
+        total:
+          type: integer
+          minimum: 0
+        page:
+          type: integer
+          minimum: 1
+        perPage:
+          type: integer
+          minimum: 1
+        totalPages:
+          type: integer
+          minimum: 0
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        self:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+    AssessmentStats:
+      type: object
+      properties:
+        tests:
+          type: integer
+        averageRemediationDays:
+          type: integer
+        vulnerabilities:
+          $ref: '#/components/schemas/VulnerabilityCounts'
+        missions:
+          $ref: '#/components/schemas/MissionCounts'
+        coverage:
+          $ref: '#/components/schemas/CoverageData'
+    VulnerabilityCounts:
+      type: object
+      properties:
+        inReview:
+          type: integer
+        accepted:
+          type: integer
+        acceptedOpen:
+          type: integer
+    MissionCounts:
+      type: object
+      properties:
+        active:
+          type: integer
+        completed:
+          type: integer
+    CoverageData:
+      type: object
+      properties:
+        pageHits:
+          type: integer
+        classifiedTraffic:
+          type: integer
+    Test:
+      type: object
+      properties:
+        name:
+          type: string
+        testPlan:
+          type: string
+          enum:
+            - Synack365
+            - Synack90
+            - Synack14
+        testObjective:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    Comment:
+      type: object
+      properties:
+        id:
+          type: integer
+        text:
+          type: string
+        type:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        user:
+          $ref: '#/components/schemas/CommentUser'
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+    PatchVerification:
+      type: object
+      properties:
+        id:
+          type: integer
+        message:
+          type: string
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        user:
+          $ref: '#/components/schemas/User'
+    OrganizationProfile:
+      type: object
+      properties:
+        id:
+          type: integer
+        slug:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        active:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+    AssessmentGroup:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+paths:
+  /v1/assessments:
+    get:
+      operationId: getAssessments
+      summary: Get assessments (V1)
+      description: Retrieve a list of assessments for the current user's organization
+      tags:
+        - Assessments
+      parameters:
+        - name: assessment_group_id
+          in: query
+          schema:
+            type: integer
+          description: Filter by assessment group ID
+      responses:
+        '200':
+          description: Assessments retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Assessment'
+        '400':
+          description: Bad request
+  /v1/assessments/{id}:
+    get:
+      operationId: getAssessment
+      summary: Get a specific assessment (V1)
+      description: Retrieve details of a specific assessment
+      tags:
+        - Assessments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Assessment ID
+      responses:
+        '200':
+          description: Assessment retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assessment'
+        '404':
+          description: Assessment not found
+  /v1/assessments/{id}/testing_hours:
+    get:
+      operationId: getAssessmentTestingHours
+      summary: Get testing hours for an assessment
+      description: Retrieve testing hours statistics for a specific assessment
+      tags:
+        - Assessments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Assessment ID
+      responses:
+        '200':
+          description: Testing hours retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  stats_total:
+                    type: integer
+                  from:
+                    type: string
+                    format: date-time
+                  to:
+                    type: string
+                    format: date-time
+  /v1/assessments/{id}/updates:
+    post:
+      summary: Create new assessment update that is visible to researchers
+      description: Post a new update for the assessment
+      x-mint:
+        metadata:
+          title: Create Update for Assessment
+      tags:
+        - Assessments
+      parameters:
+        - name: id
+          in: path
+          description: UID of the assessment
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: Message you want to pass to the researchers
+                  minLength: 10
+              required:
+                - message
+      responses:
+        '201':
+          description: Assessment update created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Message of the created update
+                  assessment_id:
+                    type: string
+                    description: ID of the listing the update was created for
+                required:
+                  - message
+                  - assessment_id
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '403':
+          description: Forbidden - user does not have permission to update this assessment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '404':
+          description: Assessment not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+  /v1/assessments/{assessment_id}/tests:
+    get:
+      operationId: getAssessmentTests
+      summary: Retrieve all tests on an assessment
+      description: Retrieve tests associated with a specific assessment
+      tags:
+        - Tests
+      parameters:
+        - name: assessment_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID of the assessment
+      responses:
+        '200':
+          description: A list of tests on the assessment
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Test'
+        '403':
+          description: The user is missing sufficient privileges
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '404':
+          description: No assessment matched the given ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+  /v1/assessments/{assessment_id}/tests/{id}/approve:
+    post:
+      operationId: approveTest
+      summary: Approve a test (as a super admin)
+      description: >
+        Approve a test as a super admin, transitioning it from Admin Review to
+        Synack Review status.
+
+        The test must be in Admin Review status.
+      tags:
+        - Tests
+      parameters:
+        - name: assessment_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID of the assessment
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID of the test
+      responses:
+        '200':
+          description: The approved test
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Test'
+        '403':
+          description: >-
+            The user is missing sufficient privileges or the feature is not
+            enabled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '404':
+          description: No assessment or test matched the given ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '409':
+          description: Test is not in Admin Review status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '422':
+          description: Failed to approve the test
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+  /v1/assessments/{assessment_id}/tests/{id}/reject:
+    post:
+      operationId: rejectTest
+      summary: Reject a test (as a super admin)
+      description: |
+        Reject a test as a super admin, returning it to draft status.
+        The test must be in Admin Review status.
+      tags:
+        - Tests
+      parameters:
+        - name: assessment_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID of the assessment
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID of the test
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                super_admin_reject_reason:
+                  type: string
+                  description: >-
+                    Reason for rejection (optional, sent back to the test
+                    submitter)
+      responses:
+        '200':
+          description: The rejected test (returned to draft status)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Test'
+        '403':
+          description: >-
+            The user is missing sufficient privileges or the feature is not
+            enabled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '404':
+          description: No assessment or test matched the given ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '409':
+          description: Test is not in Admin Review status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '422':
+          description: Failed to reject the test
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+  /v1/vulnerabilities:
+    get:
+      operationId: getVulnerabilities
+      summary: Get vulnerabilities
+      description: Retrieve a paginated list of vulnerabilities with filtering options
+      tags:
+        - Vulnerabilities
+      parameters:
+        - name: filter[search]
+          in: query
+          schema:
+            type: string
+          description: Search term for vulnerabilities
+        - name: filter[status_id]
+          in: query
+          schema:
+            type: integer
+          description: Filter by vulnerability status ID
+        - name: filter[updated_within]
+          in: query
+          schema:
+            type: integer
+          description: Filter by vulnerabilities updated within specified seconds
+        - name: filter[updated_since]
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: Filter by vulnerabilities updated since specified date
+        - name: filter[include_attachments]
+          in: query
+          schema:
+            type: boolean
+          description: Include vulnerability attachments
+        - name: page[number]
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+          description: Page number
+        - name: page[size]
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 50
+          description: Page size
+      responses:
+        '200':
+          description: Vulnerabilities retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vulnerability'
+        '400':
+          description: Bad request
+  /v1/vulnerabilities/{id}:
+    get:
+      operationId: getVulnerability
+      summary: Get a specific vulnerability
+      description: Retrieve details of a specific vulnerability
+      tags:
+        - Vulnerabilities
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Vulnerability ID
+      responses:
+        '200':
+          description: Vulnerability retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vulnerability'
+        '404':
+          description: Vulnerability not found
+    patch:
+      operationId: updateVulnerability
+      summary: Update a vulnerability
+      description: Update a specific vulnerability's status or tags
+      tags:
+        - Vulnerabilities
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Vulnerability ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status_id:
+                  type: integer
+                  description: New vulnerability status ID
+                tags:
+                  type: array
+                  items:
+                    type: integer
+                  description: Array of tag IDs
+                tag_list:
+                  type: array
+                  items:
+                    type: string
+                  description: Array of tag names
+      responses:
+        '200':
+          description: Vulnerability updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vulnerability'
+        '400':
+          description: Bad request
+        '404':
+          description: Vulnerability not found
+        '422':
+          description: Unprocessable entity
+  /v1/suspected_vulnerabilities/{id}:
+    patch:
+      operationId: updateSuspectedVulnerability
+      summary: Update a suspected vulnerability
+      description: Update a specific suspected vulnerability's status
+      tags:
+        - Suspected Vulnerabilities
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Suspected vulnerability ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - vulnerability_status_id
+              properties:
+                vulnerability_status_id:
+                  type: integer
+                  description: New vulnerability status ID
+      responses:
+        '200':
+          description: Suspected vulnerability updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuspectedVulnerability'
+        '400':
+          description: Bad request
+        '404':
+          description: Suspected vulnerability not found
+  /v1/vulnerabilities/{vulnerability_id}/comments:
+    get:
+      operationId: getVulnerabilityComments
+      summary: Get vulnerability comments
+      description: Retrieve comments for a specific vulnerability
+      tags:
+        - Comments
+      parameters:
+        - name: vulnerability_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Vulnerability ID
+      responses:
+        '200':
+          description: Comments retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comment'
+        '404':
+          description: Vulnerability not found
+    post:
+      operationId: createVulnerabilityComment
+      summary: Create a vulnerability comment
+      description: Create a new comment for a specific vulnerability
+      tags:
+        - Comments
+      parameters:
+        - name: vulnerability_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Vulnerability ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - text
+              properties:
+                text:
+                  type: string
+                  description: Comment text
+                type:
+                  type: string
+                  description: Comment type
+      responses:
+        '201':
+          description: Comment created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+        '400':
+          description: Bad request
+        '404':
+          description: Vulnerability not found
+  /v1/vulnerabilities/{vulnerability_id}/patch_verifications:
+    get:
+      operationId: getVulnerabilityPatchVerifications
+      summary: Get vulnerability patch verifications
+      description: Retrieve patch verification requests for a specific vulnerability
+      tags:
+        - Patch Verifications
+      parameters:
+        - name: vulnerability_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Vulnerability ID
+      responses:
+        '200':
+          description: Patch verifications retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PatchVerification'
+        '404':
+          description: Vulnerability not found
+    post:
+      operationId: createVulnerabilityPatchVerification
+      summary: Create a vulnerability patch verification
+      description: Create a new patch verification request for a specific vulnerability
+      tags:
+        - Patch Verifications
+      parameters:
+        - name: vulnerability_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Vulnerability ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - message
+              properties:
+                message:
+                  type: string
+                  description: Patch verification message
+      responses:
+        '201':
+          description: Patch verification created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatchVerification'
+        '400':
+          description: Bad request
+        '404':
+          description: Vulnerability not found
+  /v1/users/whoami:
+    get:
+      operationId: getCurrentUser
+      summary: Get current user information
+      description: Retrieve information about the currently authenticated user
+      tags:
+        - Users
+      responses:
+        '200':
+          description: User information retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+  /v1/assessment_groups:
+    get:
+      operationId: getAssessmentGroups
+      summary: Get assessment groups
+      description: Retrieve a list of assessment groups
+      tags:
+        - Assessment Groups
+      responses:
+        '200':
+          description: Assessment groups retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AssessmentGroup'
+        '401':
+          description: Unauthorized
+  /v1/assessment_groups/{id}:
+    get:
+      operationId: getAssessmentGroup
+      summary: Get a specific assessment group
+      description: Retrieve details of a specific assessment group
+      tags:
+        - Assessment Groups
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Assessment group ID
+      responses:
+        '200':
+          description: Assessment group retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssessmentGroup'
+        '404':
+          description: Assessment group not found
+  /v1/vulnerability_tags:
+    get:
+      operationId: getVulnerabilityTags
+      summary: Get vulnerability tags
+      description: Retrieve a list of vulnerability tags
+      tags:
+        - Tags
+      responses:
+        '200':
+          description: Vulnerability tags retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createVulnerabilityTag
+      summary: Create a vulnerability tag
+      description: Create a new vulnerability tag
+      tags:
+        - Tags
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+                  description: Name of the tag
+      responses:
+        '201':
+          description: Tag created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+        '400':
+          description: Bad request
+  /v1/vulnerability_tags/{id}:
+    put:
+      operationId: updateVulnerabilityTag
+      summary: Update a vulnerability tag
+      description: Update an existing vulnerability tag
+      tags:
+        - Tags
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Tag ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: New name for the tag
+      responses:
+        '200':
+          description: Tag updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+        '400':
+          description: Bad request
+        '404':
+          description: Tag not found
+    delete:
+      operationId: deleteVulnerabilityTag
+      summary: Delete a vulnerability tag
+      description: Delete a vulnerability tag
+      tags:
+        - Tags
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Tag ID
+      responses:
+        '204':
+          description: Tag deleted successfully
+        '404':
+          description: Tag not found
+  /v1/vulnerability_statuses:
+    get:
+      operationId: getVulnerabilityStatuses
+      summary: Get vulnerability statuses
+      description: Retrieve a list of available vulnerability statuses
+      tags:
+        - Vulnerability Statuses
+      responses:
+        '200':
+          description: Vulnerability statuses retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    description:
+                      type: string
+        '401':
+          description: Unauthorized
+  /v1/assessment_tags:
+    get:
+      summary: Retrieve a list of assessments tags
+      description: >-
+        Retrieve all assessments tags defined by your organization including the
+        number of assessments they are associated with.
+      tags:
+        - Tags
+      responses:
+        '200':
+          description: A list of organization's assessments tags
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                    name:
+                      type: string
+                      description: custom assessment tag
+                    count:
+                      type: integer
+                      format: int64
+                      description: number of assessments the tag is associated with
+                  required:
+                    - id
+                    - name
+                    - count
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+    post:
+      summary: Create a new assessment tag
+      description: >-
+        Create a new tag and associate it with an assessment. Only organization
+        admins are able to create new tags.
+      tags:
+        - Tags
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the tag
+                assessment_id:
+                  type: string
+                  description: ID of the assessment to tag
+              required:
+                - name
+                - assessment_id
+      responses:
+        '201':
+          description: The newly created tag
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                  name:
+                    type: string
+                    description: custom assessment tag
+                required:
+                  - id
+                  - name
+        '400':
+          description: Tag name is missing or is invalid (e.g. exists already)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '404':
+          description: Requesting party is missing admin privileges or assessment not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '422':
+          description: Tag creation failed unexpectedly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+  /v1/assessment_tags/{id}:
+    put:
+      summary: Update the name of an assessment tag record
+      description: >-
+        Update the name of a tag. Only organization admins are able to update
+        tags.
+      tags:
+        - Tags
+      parameters:
+        - name: id
+          in: path
+          description: ID of the assessment tag
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The new name of the tag
+              required:
+                - name
+      responses:
+        '200':
+          description: The updated assessment tag record
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                  name:
+                    type: string
+                    description: custom assessment tag
+                required:
+                  - id
+                  - name
+        '400':
+          description: Missing required request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '404':
+          description: >-
+            Requesting party is missing admin privileges or no tag corresponding
+            to the given ID was found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '422':
+          description: >-
+            Tag update failed unexpectedly (an array of error messages is
+            returned in the response)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+    delete:
+      summary: Remove an assessment tag record
+      description: Remove a tag. Only organization admins are able to delete tags.
+      tags:
+        - Tags
+      parameters:
+        - name: id
+          in: path
+          description: ID of the assessment tag
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Tag was successfully removed
+        '404':
+          description: >-
+            Requesting party is missing admin privileges or no tag corresponding
+            to the given ID was found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '422':
+          description: Tag deletion failed unexpectedly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+  /v1/users:
+    get:
+      tags:
+        - Users
+      summary: Fetch users
+      description: >-
+        Fetch all organization users (members & admins). Banned users will not
+        be included. Requires admin privileges.
+      responses:
+        '200':
+          description: Successfully fetched users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      tags:
+        - Users
+      summary: Create a new member/admin
+      description: >-
+        Create a new member/admin and grant it access to assessments (if any).
+        Requires admin privileges.
+      requestBody:
+        description: Request body.
+        content:
+          application/json:
+            schema:
+              required:
+                - email
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: E-mail address for the user
+                first_name:
+                  type: string
+                  description: First name of the user
+                last_name:
+                  type: string
+                  description: Last name of the user
+                admin:
+                  type: boolean
+                  description: Flag to indicate whether to grant admin privileges
+                  default: false
+                assessments:
+                  type: array
+                  description: IDs of assessments to grant user access to
+                  items:
+                    type: string
+                send_invite:
+                  type: boolean
+                  description: >-
+                    Flag to indicate whether to send the user the invitation URL
+                    by e-mail
+                  default: true
+        required: true
+      responses:
+        '201':
+          description: The newly created user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: >-
+            Payload includes unpermitted parameters, given assessment IDs are
+            invalid or user creation failed (e.g. e-mail already exists)
+          content: {}
+        '403':
+          description: The requesting party does not have admin privileges
+          content: {}
+  /v1/users/{id}:
+    get:
+      tags:
+        - Users
+      summary: Fetch user account
+      description: Fetch information about a user account. Requires admin privileges.
+      parameters:
+        - name: id
+          in: path
+          description: ID of the user
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully got users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: No such user
+          content: {}
+    put:
+      tags:
+        - Users
+      summary: Update user account status
+      description: >-
+        Update existing user (reactivate and/or grant admin privileges). The
+        user is automatically notified by e-mail upon account reactivation.
+        Requires admin privileges.
+      parameters:
+        - name: id
+          in: path
+          description: ID of the user
+          required: true
+          schema:
+            type: string
+        - name: admin
+          in: query
+          description: Flag to indicate whether to grant/remove admin privileges
+          schema:
+            type: boolean
+        - name: reactivate
+          in: query
+          description: Flag to indicate whether to reactivate (unban) the user
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: The updated created user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Payload includes unpermitted parameters
+          content: {}
+        '403':
+          description: The requesting party does not have admin privileges
+          content: {}
+        '404':
+          description: No such user
+          content: {}
+    delete:
+      tags:
+        - Users
+      summary: Ban/delete user
+      description: Ban/delete a user account. Requires admin privileges.
+      parameters:
+        - name: id
+          in: path
+          description: ID of the user
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully banned user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+        '403':
+          description: The requesting party does not have admin privileges
+          content: {}
+        '404':
+          description: No such user
+          content: {}
+security:
+  - BearerAuth: []
+  - BasicAuth: []
+  - ApiKeyAuth: []
+tags:
+  - name: Assessments
+    description: Operations related to security assessments
+  - name: Tests
+    description: Operations related to security tests
+  - name: Vulnerabilities
+    description: Operations related to security vulnerabilities
+  - name: Suspected Vulnerabilities
+    description: Operations related to suspected vulnerabilities
+  - name: Comments
+    description: Operations related to comments
+  - name: Patch Verifications
+    description: Operations related to patch verifications
+  - name: Users
+    description: Operations related to users
+  - name: Assessment Groups
+    description: Operations related to assessment groups
+  - name: Tags
+    description: Operations related to tags
+  - name: Vulnerability Statuses
+    description: Operations related to vulnerability statuses
+  - name: Listings
+    description: Operations related to listings

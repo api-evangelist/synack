@@ -1,0 +1,59 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/*.yaml
+note: >-
+  No official hosted/remote MCP server is published by Synack. This is a
+  candidate tool surface derived from the Enterprise API operations — a
+  starting point for a Synack MCP server, not a live endpoint. Tools map
+  one-to-one to real operationIds verified against the specs.
+server:
+  name: synack
+  transport: http
+  url: null
+tools:
+- name: list_vulnerabilities
+  description: Retrieve a paginated list of vulnerabilities with filtering.
+  source_operation: openapi/synack-monolith-v1-openapi.yaml#getVulnerabilities
+- name: get_vulnerability
+  description: Retrieve details of a specific vulnerability.
+  source_operation: openapi/synack-monolith-v1-openapi.yaml#getVulnerability
+- name: update_vulnerability
+  description: Update a vulnerability's status or tags.
+  source_operation: openapi/synack-monolith-v1-openapi.yaml#updateVulnerability
+- name: list_assessments
+  description: Retrieve assessments for the current organization.
+  source_operation: openapi/synack-monolith-v1-openapi.yaml#getAssessments
+- name: pause_assessment
+  description: Pause testing on an active assessment.
+  source_operation: openapi/synack-assessment-v1-openapi.yaml#pauseAssessment
+- name: resume_assessment
+  description: Resume testing on a paused assessment.
+  source_operation: openapi/synack-assessment-v1-openapi.yaml#resumeAssessment
+- name: list_assets
+  description: Retrieve the list of assets for one or more organizations.
+  source_operation: openapi/synack-asset-v2-openapi.yaml#getAssets
+- name: create_asset
+  description: Create an asset (cloud, host, mobile, network, or web) in the org.
+  source_operation: openapi/synack-asset-v2-openapi.yaml#postAsset
+- name: bulk_create_assets
+  description: Bulk-create assets in the organization.
+  source_operation: openapi/synack-asset-v2-openapi.yaml#postAssetBulk
+- name: list_seed_groups
+  description: Retrieve and filter seed groups for asset discovery.
+  source_operation: openapi/synack-asset-discovery-openapi.yaml#getSeedGroups
+- name: create_seed_group
+  description: Create a new seed group and seeds.
+  source_operation: openapi/synack-asset-discovery-openapi.yaml#postSeedGroup
+- name: list_suspected_vulnerabilities
+  description: Retrieve suspected vulnerabilities for an organization.
+  source_operation: openapi/synack-vulns-openapi.yaml#getSuspectedVulnerabilities
+- name: list_missions
+  description: Search for missions (tasks) available to the user.
+  source_operation: openapi/synack-mission-v2-openapi.yaml#GetTasks
+- name: list_campaigns
+  description: Search for groups of missions (campaigns).
+  source_operation: openapi/synack-mission-v2-openapi.yaml#GetCampaigns
+- name: create_tag
+  description: Create new asset/org tags.
+  source_operation: openapi/synack-tagging-openapi.yaml#postTags

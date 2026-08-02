@@ -1,0 +1,27 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/*.yaml + https://docs.synack.com/
+note: >-
+  Versioning is URI-path based and differs per service. No public status page
+  (status.synack.com does not resolve) and no published deprecation/sunset
+  policy were found, so no StatusPage or Deprecation pointer is wired. No
+  operations are marked deprecated in any spec.
+versioning:
+  scheme: uri-path
+  per_service:
+  - {service: monolith, base: https://api.synack.com, version: v1}
+  - {service: assessment, base: https://client.synack.com/api/assessment, version: v1}
+  - {service: asset, base: https://client.synack.com/api/asset, version: v2}
+  - {service: asset-discovery, base: https://client.synack.com/api/asset-discovery, version: v1}
+  - {service: mission, base: https://client.synack.com/api/tasks, version: v2}
+  - {service: tagging, base: https://client.synack.com/api/tagging, version: v1.0}
+  - {service: vulnerability, base: https://client.synack.com/api/vulnerability, version: v1}
+  - {service: streaming, base: https://client.synack.com/api/streaming, version: v1}
+  docs: https://docs.synack.com/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecated_operations: []
+status_page: null
+sla:
+  url: null

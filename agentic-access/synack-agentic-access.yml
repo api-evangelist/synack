@@ -1,0 +1,2322 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/synack-assessment-v1-openapi.yaml, openapi/synack-asset-discovery-openapi.yaml,
+  openapi/synack-asset-v2-openapi.yaml, openapi/synack-mission-v2-openapi.yaml, openapi/synack-monolith-v1-openapi.yaml,
+  openapi/synack-monolith-v2-openapi.yaml, openapi/synack-streaming-openapi.yaml, openapi/synack-tagging-openapi.yaml,
+  openapi/synack-vulns-openapi.yaml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 143
+  by_action_class:
+    acting: 75
+    connected: 68
+  by_consequence:
+    write: 68
+    read: 68
+    safety-critical: 1
+    physical: 6
+  human_in_the_loop_required: 1
+operations:
+- path: /v1/organizations/{organizationUid}/assessments/{assessmentUid}/pause
+  method: post
+  operationId: pauseAssessment
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/organizations/{organizationUid}/assessments/{assessmentUid}/resume
+  method: post
+  operationId: resumeAssessment
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/assessment-groups/{assessmentGroupId}/members
+  method: get
+  operationId: listAssessmentGroupMembers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/assessment-groups/{assessmentGroupId}/members/batchAdd
+  method: post
+  operationId: batchAddAssessmentGroupMembers
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/assessment-groups/{assessmentGroupId}/members/batchRemove
+  method: post
+  operationId: batchRemoveAssessmentGroupMembers
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/organizations/{organizationUid}/seed-groups
+  method: get
+  operationId: getSeedGroups
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - assetdiscovery_gr
+    - assetdiscovery_lr
+    - assetdiscovery_or
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/organizations/{organizationUid}/seed-groups
+  method: post
+  operationId: postSeedGroup
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_client_lw
+    - assetdiscovery_ow
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/organizations/{organizationUid}/seed-groups/{seedGroupUid}
+  method: get
+  operationId: getSeedGroup
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - assetdiscovery_or
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/organizations/{organizationUid}/seed-groups/{seedGroupUid}
+  method: patch
+  operationId: patchSeedGroup
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - assetdiscovery_ow
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/organizations/{organizationUid}/seed-groups/{seedGroupUid}
+  method: delete
+  operationId: deleteSeedGroup
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - assetdiscovery_ow
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/organizations/{organizationUid}/seed-groups/{seedGroupUid}/seeds
+  method: get
+  operationId: getSeeds
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - assetdiscovery_gr
+    - assetdiscovery_lr
+    - assetdiscovery_or
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/organizations/{organizationUid}/seed-groups/{seedGroupUid}/seeds
+  method: post
+  operationId: postSeed
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_client_lw
+    - assetdiscovery_ow
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/organizations/{organizationUid}/seed-groups/{seedGroupUid}/seeds/{seedUid}
+  method: get
+  operationId: getSeed
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - assetdiscovery_gr
+    - assetdiscovery_lr
+    - assetdiscovery_or
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/organizations/{organizationUid}/seed-groups/{seedGroupUid}/seeds/{seedUid}
+  method: delete
+  operationId: deleteSeed
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - assetdiscovery_ow
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/organizations/{organizationUid}/seed-groups/{seedGroupUid}/tags/batchUpdate
+  method: post
+  operationId: updateSeedGroupTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - assetdiscovery_ow
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/bulk/assets
+  method: post
+  operationId: postAssetBulk
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/bulk/assets/lifecycle-state:update
+  method: post
+  operationId: bulkUpdateAssetLifecycleState
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/bulk/assets/criticality:update
+  method: post
+  operationId: bulkUpdateAssetCriticality
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/listings/{listingUid}/assets/{assetUid}
+  method: put
+  operationId: putListingAsset
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/listings/{listingUid}/assets/{assetUid}
+  method: delete
+  operationId: deleteListingAsset
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/listings/{listingUid}/assets
+  method: patch
+  operationId: patchListingAssets
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/listings/{listingUid}/assets
+  method: delete
+  operationId: deleteListingAssets
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/organizations/{organizationUid}/listings/{listingUid}/gateways
+  method: patch
+  operationId: patchListingGateways
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/listings/{listingUid}/reset-scope-rules
+  method: put
+  operationId: putListingAssetsResetScopeRules
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v2/assets
+  method: get
+  operationId: getAssets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - asset_gr
+    - asset_lr
+    - asset_or
+    - asset_scan_gr
+    - asset_srt_lr
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/assets
+  method: post
+  operationId: postAsset
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/assets/{assetUid}/whois
+  method: get
+  operationId: getWHOIS
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - asset_gr
+    - asset_lr
+    - asset_or
+    - asset_scan_gr
+    - asset_srt_lr
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/assets/{assetUid}/whois
+  method: put
+  operationId: putWHOIS
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/assets/{assetUid}
+  method: get
+  operationId: getAsset
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - asset_gr
+    - asset_lr
+    - asset_or
+    - asset_scan_gr
+    - asset_srt_lr
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/assets/{assetUid}
+  method: patch
+  operationId: patchAsset
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/assets/{assetUid}
+  method: delete
+  operationId: deleteAsset
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/assets/{assetUid}/related-assets
+  method: get
+  operationId: getRelatedAssets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - asset_gr
+    - asset_lr
+    - asset_or
+    - asset_scan_gr
+    - asset_srt_lr
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/assets/{assetUid}/tools/burp/target-scope.json
+  method: get
+  operationId: getBurpTargetScopeForAsset
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - asset_gr
+    - asset_lr
+    - asset_or
+    - asset_srt_lr
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/assets/{assetUid}/scripts
+  method: get
+  operationId: getAssetScripts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - asset_gr
+    - asset_or
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/assets/{assetUid}/scripts
+  method: post
+  operationId: postAssetScript
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/assets/{assetUid}/credentials
+  method: get
+  operationId: getAssetCredentials
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - asset_gr
+    - asset_or
+    - asset_scan_gr
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/scripts/{scriptUid}
+  method: get
+  operationId: getAssetScript
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - asset_gr
+    - asset_lr
+    - asset_or
+    - asset_scan_gr
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/scripts/{scriptUid}
+  method: delete
+  operationId: deleteAssetScript
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/scripts/{scriptUid}
+  method: patch
+  operationId: patchAssetScript
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/scripts/{scriptUid}/script-data
+  method: get
+  operationId: getAssetScriptData
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - asset_gr
+    - asset_lr
+    - asset_or
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/assets/{assetUid}/ports/{portNumber}/{portProtocol}
+  method: get
+  operationId: getHostPort
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - asset_gr
+    - asset_lr
+    - asset_or
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/assets/{assetUid}/ports/{portNumber}/{portProtocol}
+  method: put
+  operationId: putHostPort
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/assets/{assetUid}/ports/{portNumber}/{portProtocol}
+  method: patch
+  operationId: patchHostPort
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/assets/{assetUid}/ports/{portNumber}/{portProtocol}
+  method: delete
+  operationId: deleteHostPort
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/assets/{assetUid}/binaries/{version}
+  method: put
+  operationId: putApplicationBinary
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/assets/{assetUid}/binaries/{version}
+  method: delete
+  operationId: deleteApplicationBinary
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/assets/{assetUid}/user-roles
+  method: get
+  operationId: getUserRoles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - asset_gr
+    - asset_lr
+    - asset_or
+    - asset_srt_lr
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/assets/{assetUid}/user-roles
+  method: post
+  operationId: postUserRole
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/user-roles/{userRoleUid}
+  method: get
+  operationId: getUserRole
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - asset_gr
+    - asset_lr
+    - asset_or
+    - asset_srt_lr
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/user-roles/{userRoleUid}
+  method: patch
+  operationId: patchUserRole
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/user-roles/{userRoleUid}
+  method: delete
+  operationId: deleteUserRole
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/user-roles/{userRoleUid}/scripts/{scriptUid}
+  method: patch
+  operationId: patchUserRoleScript
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/assets/{assetUid}/scope-rules
+  method: get
+  operationId: getScopeRules
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - asset_gr
+    - asset_or
+    - asset_srt_lr
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/assets/{assetUid}/scope-rules
+  method: post
+  operationId: postScopeRule
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/scope-rules/{scopeRuleUid}
+  method: get
+  operationId: getScopeRule
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - asset_gr
+    - asset_lr
+    - asset_or
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/scope-rules/{scopeRuleUid}
+  method: patch
+  operationId: patchScopeRule
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/scope-rules/{scopeRuleUid}
+  method: delete
+  operationId: deleteScopeRule
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/user-roles/{userRoleUid}/user-role-credentials
+  method: get
+  operationId: getUserRoleCredentials
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - asset_gr
+    - asset_lr
+    - asset_or
+    - asset_srt_lr
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/user-roles/{userRoleUid}/user-role-credentials
+  method: post
+  operationId: postUserRoleCredential
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/user-roles/{userRoleUid}/user-role-credentials
+  method: patch
+  operationId: patchUserRoleCredentials
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/user-roles/{userRoleUid}/user-role-credentials
+  method: delete
+  operationId: deleteUserRoleCredentials
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/user-role-credentials/{credentialUid}
+  method: delete
+  operationId: deleteUserRoleCredential
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/user-role-credentials/{credentialUid}
+  method: patch
+  operationId: patchUserRoleCredential
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/user-role-credentials/{credentialUid}/assigned-users/{userUid}
+  method: put
+  operationId: putUserRoleCredentialUser
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/user-role-credentials/{credentialUid}/assigned-users/{userUid}
+  method: delete
+  operationId: deleteUserRoleCredentialUser
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/user-role-credentials
+  method: post
+  operationId: assignUserRoleCredentialsToUser
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_gr
+    - asset_lr
+    - asset_or
+    - asset_srt_lr
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/asset-relationships
+  method: post
+  operationId: postAssetRelationship
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/asset-relationships/{assetRelationshipUid}
+  method: patch
+  operationId: patchAssetRelationship
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/asset-relationships/{assetRelationshipUid}
+  method: delete
+  operationId: deleteAssetRelationship
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/external-relationships
+  method: post
+  operationId: postExternalRelationship
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/external-relationships/{assetRelationshipUid}
+  method: patch
+  operationId: patchExternalRelationship
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/external-relationships/{assetRelationshipUid}
+  method: delete
+  operationId: deleteExternalRelationship
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/asset-stats
+  method: get
+  operationId: getAssetStats
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - asset_gr
+    - asset_lr
+    - asset_or
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/organizations/{organizationUid}/discovered-assets
+  method: get
+  operationId: getDiscoveredAssetSummaries
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - asset_gr
+    - asset_lr
+    - asset_or
+    - asset_scan_gr
+    - asset_srt_lr
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/listing-webapps/{listingUid}
+  method: get
+  operationId: getWebApps
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - asset_gr
+    - asset_lr
+    - asset_scan_gr
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/webapps/{assetUid}
+  method: get
+  operationId: getWebApp
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - asset_gr
+    - asset_scan_gr
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/campaigns/
+  method: get
+  operationId: GetCampaigns
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/campaigns/{campaignID}
+  method: get
+  operationId: GetCampaignByID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/campaigns/stats
+  method: get
+  operationId: GetCampaignsStats
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/tasks
+  method: get
+  operationId: GetTasks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/assessments
+  method: get
+  operationId: getAssessments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/assessments/{id}
+  method: get
+  operationId: getAssessment
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/assessments/{id}/testing_hours
+  method: get
+  operationId: getAssessmentTestingHours
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/assessments/{id}/updates
+  method: post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/assessments/{assessment_id}/tests
+  method: get
+  operationId: getAssessmentTests
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/assessments/{assessment_id}/tests/{id}/approve
+  method: post
+  operationId: approveTest
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/assessments/{assessment_id}/tests/{id}/reject
+  method: post
+  operationId: rejectTest
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/vulnerabilities
+  method: get
+  operationId: getVulnerabilities
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/vulnerabilities/{id}
+  method: get
+  operationId: getVulnerability
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/vulnerabilities/{id}
+  method: patch
+  operationId: updateVulnerability
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/suspected_vulnerabilities/{id}
+  method: patch
+  operationId: updateSuspectedVulnerability
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/vulnerabilities/{vulnerability_id}/comments
+  method: get
+  operationId: getVulnerabilityComments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/vulnerabilities/{vulnerability_id}/comments
+  method: post
+  operationId: createVulnerabilityComment
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/vulnerabilities/{vulnerability_id}/patch_verifications
+  method: get
+  operationId: getVulnerabilityPatchVerifications
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/vulnerabilities/{vulnerability_id}/patch_verifications
+  method: post
+  operationId: createVulnerabilityPatchVerification
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/users/whoami
+  method: get
+  operationId: getCurrentUser
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/assessment_groups
+  method: get
+  operationId: getAssessmentGroups
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/assessment_groups/{id}
+  method: get
+  operationId: getAssessmentGroup
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/vulnerability_tags
+  method: get
+  operationId: getVulnerabilityTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/vulnerability_tags
+  method: post
+  operationId: createVulnerabilityTag
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/vulnerability_tags/{id}
+  method: put
+  operationId: updateVulnerabilityTag
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/vulnerability_tags/{id}
+  method: delete
+  operationId: deleteVulnerabilityTag
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/vulnerability_statuses
+  method: get
+  operationId: getVulnerabilityStatuses
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/assessment_tags
+  method: get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/assessment_tags
+  method: post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/assessment_tags/{id}
+  method: put
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/assessment_tags/{id}
+  method: delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/users
+  method: get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/users
+  method: post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/users/{id}
+  method: get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/users/{id}
+  method: put
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/users/{id}
+  method: delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/organizations/{organizationUid}/assessments
+  method: get
+  operationId: getOrganizationAssessments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/organizations/{organizationUid}/assessments
+  method: post
+  operationId: createOrganizationAssessment
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/organizations/{organizationUid}/assessments/{assessmentUid}/tests
+  method: post
+  operationId: createAssessmentTest
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/organizations/{organizationUid}/assessments/{assessmentUid}/stats
+  method: get
+  operationId: getAssessmentStats
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{org_uid}/assets/providers
+  method: get
+  operationId: getAssetProviders
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{org_uid}/assets/{asset_uid}/listings/tests/latest
+  method: get
+  operationId: getAssetListingsTestsLatest
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{org_uid}/assets/{asset_uid}/ports
+  method: get
+  operationId: getAssetPorts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{org_uid}/assets/{asset_uid}/suspected_vulns
+  method: get
+  operationId: getAssetSuspectedVulnerabilities
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{org_uid}/assets/{asset_uid}/vulns
+  method: get
+  operationId: getAssetVulnerabilities
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{org_uid}/assets/{asset_uid}/whois
+  method: get
+  operationId: getAssetWhois
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{org_uid}/assets/detail/{asset_uid}
+  method: get
+  operationId: getAssetDetails
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{org_uid}/assets/list
+  method: get
+  operationId: getAssetList
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{org_uid}/assets/ports
+  method: get
+  operationId: getAssetPortsByOrg
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{org_uid}/metrics/assets/count
+  method: get
+  operationId: getAssetsCount
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{org_uid}/metrics/assets/any_scan
+  method: get
+  operationId: getLastAssetsScan
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{org_uid}/metrics/assets/last_tested
+  method: get
+  operationId: getLastTestedCounts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{org_uid}/metrics/assets/latest
+  method: get
+  operationId: getMostRecentlyAddedAssets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{org_uid}/metrics/ips/vulnerable
+  method: get
+  operationId: getTopVulnerableIPs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{org_uid}/metrics/ports/unique
+  method: get
+  operationId: getTopUniquePorts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{org_uid}/metrics/ports/vulnerable
+  method: get
+  operationId: getTopVulnerablePorts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{org_uid}/metrics/vulnerabilities/exploitable
+  method: get
+  operationId: getTopCISACVEs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{org_uid}/tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{org_uid}/assets/gateways
+  method: get
+  operationId: getAssetGateways
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/health
+  method: get
+  operationId: healthCheck
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1.0/organizations/{orgUid}/tags
+  method: post
+  operationId: postTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gr
+    - asset_gw
+    - asset_lr
+    - asset_or
+    - tag_gr
+    - tag_gw
+    - tag_lr
+    - tag_lw
+    - tag_or
+    - tag_ow
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1.0/organizations/{orgUid}/tags
+  method: delete
+  operationId: deleteTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_ow
+    - asset_client_ow
+    - asset_gw
+    - tag_gw
+    - tag_ow
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1.0/organizations/{orgUid}/tags
+  method: patch
+  operationId: patchTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_lw
+    - asset_boss_ow
+    - asset_client_lw
+    - asset_client_ow
+    - asset_gr
+    - asset_gw
+    - asset_lr
+    - asset_or
+    - tag_gr
+    - tag_gw
+    - tag_lr
+    - tag_lw
+    - tag_or
+    - tag_ow
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1.0/organizations/{orgUid}/tags/{tagUid}
+  method: put
+  operationId: putTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_boss_ow
+    - asset_client_ow
+    - asset_gw
+    - tag_gw
+    - tag_ow
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/organizations/{organizationUid}/suspected-vulnerabilities
+  method: get
+  operationId: getSuspectedVulnerabilities
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - asset_gr
+    - asset_lr
+    - asset_or
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/organizations/{organizationUid}/suspected-vulnerabilities
+  method: post
+  operationId: postSuspectedVulnerabilities
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - asset_gr
+    - asset_gw
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/organizations/{organizationUid}/suspected-vulnerabilities/{id}
+  method: get
+  operationId: getSuspectedVulnerability
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - asset_gr
+    - asset_lr
+    - asset_or
+    token:
+      max-ttl: 3600
+    audit: none

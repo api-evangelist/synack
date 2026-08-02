@@ -1,0 +1,42 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/*.yaml + https://www.synack.com/security/
+note: >-
+  Cross-cutting standards conformance derived from the OpenAPI specs and the
+  provider's published compliance posture. Compliance certifications
+  (ISO 27001, FedRAMP Moderate, etc.) are captured in
+  security/synack-trust-center.yml and drive the Compliance pointer.
+standards:
+- id: oauth2
+  conforms: true
+  evidence: >-
+    asset-discovery, asset-v2, tagging and vulns specs declare an OAuth2
+    securityScheme (implicit flow, authorizationUrl login.synack.com) with 21 scopes.
+- id: oidc
+  conforms: false
+  evidence: No openIdConnect scheme; no published /.well-known/openid-configuration.
+- id: jwt-bearer
+  conforms: true
+  evidence: assessment, mission, monolith and streaming specs use http bearer with bearerFormat JWT.
+- id: rfc9457-problem-details
+  conforms: true
+  evidence: Six services return application/problem+json with Problem/ProblemDetails schemas.
+- id: pagination
+  conforms: true
+  evidence: JSON:API-style page[number]/page[size] query params with Pagination/CollectionMetadata schemas.
+- id: json-api
+  conforms: partial
+  evidence: page[number]/page[size] bracket pagination and collection metadata resemble JSON:API, but responses are not full media-type application/vnd.api+json.
+- id: idempotency
+  conforms: false
+  evidence: No Idempotency-Key header or idempotent-retry contract documented.
+- id: fapi
+  conforms: false
+- id: scim
+  conforms: false
+compliance_programs:
+- ISO 27001:2022
+- FedRAMP Moderate
+- TX-RAMP Level 2
+- CREST
+- IASME Cyber Essentials

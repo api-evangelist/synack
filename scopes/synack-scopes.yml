@@ -1,0 +1,171 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/synack-asset-discovery-openapi.yaml, openapi/synack-asset-v2-openapi.yaml, openapi/synack-tagging-openapi.yaml,
+  openapi/synack-vulns-openapi.yaml
+schemes:
+- name: OAuth2
+  source: openapi/synack-asset-discovery-openapi.yaml
+  flows:
+  - flow: implicit
+    authorizationUrl: login.synack.com
+- name: OAuth2
+  source: openapi/synack-asset-v2-openapi.yaml
+  flows:
+  - flow: implicit
+    authorizationUrl: login.synack.com
+- name: OAuth2
+  source: openapi/synack-tagging-openapi.yaml
+  flows:
+  - flow: implicit
+    authorizationUrl: login.synack.com
+- name: OAuth2
+  source: openapi/synack-vulns-openapi.yaml
+  flows:
+  - flow: implicit
+    authorizationUrl: login.synack.com
+scopes:
+- scope: asset_boss_lw
+  description: Grants per-listing write access to assets that may be modified by BOSS users.
+  flows:
+  - implicit
+  sources:
+  - openapi/synack-asset-v2-openapi.yaml
+  - openapi/synack-tagging-openapi.yaml
+  - openapi/synack-vulns-openapi.yaml
+- scope: asset_boss_ow
+  description: Grants organization-level access to assets owned by a particular organization
+    that may be modified by BOSS users.
+  flows:
+  - implicit
+  sources:
+  - openapi/synack-asset-v2-openapi.yaml
+  - openapi/synack-tagging-openapi.yaml
+  - openapi/synack-vulns-openapi.yaml
+- scope: asset_client_lw
+  description: Grants listing-level to write seed groups and seeds.
+  flows:
+  - implicit
+  sources:
+  - openapi/synack-asset-discovery-openapi.yaml
+  - openapi/synack-asset-v2-openapi.yaml
+  - openapi/synack-tagging-openapi.yaml
+  - openapi/synack-vulns-openapi.yaml
+- scope: asset_client_ow
+  description: Grants organization-level access to assets owned by a particular organization
+    that may be modified by Client users.
+  flows:
+  - implicit
+  sources:
+  - openapi/synack-asset-v2-openapi.yaml
+  - openapi/synack-tagging-openapi.yaml
+  - openapi/synack-vulns-openapi.yaml
+- scope: asset_gr
+  description: Grants unrestricted read access to all assets. Except for credential data of
+    cloud accout assets.
+  flows:
+  - implicit
+  sources:
+  - openapi/synack-asset-v2-openapi.yaml
+  - openapi/synack-tagging-openapi.yaml
+  - openapi/synack-vulns-openapi.yaml
+- scope: asset_gw
+  description: Grants unrestricted write access to all assets.
+  flows:
+  - implicit
+  sources:
+  - openapi/synack-asset-v2-openapi.yaml
+  - openapi/synack-tagging-openapi.yaml
+  - openapi/synack-vulns-openapi.yaml
+- scope: asset_lr
+  description: Grants per-listing read access for all types of assets.
+  flows:
+  - implicit
+  sources:
+  - openapi/synack-asset-v2-openapi.yaml
+  - openapi/synack-tagging-openapi.yaml
+  - openapi/synack-vulns-openapi.yaml
+- scope: asset_or
+  description: Grants organization-level read access for all types of assets owned by a particular
+    organization.
+  flows:
+  - implicit
+  sources:
+  - openapi/synack-asset-v2-openapi.yaml
+  - openapi/synack-tagging-openapi.yaml
+  - openapi/synack-vulns-openapi.yaml
+- scope: asset_scan_gr
+  description: Grants unrestricted read access to all assets. Including credential data of cloud
+    account assets.
+  flows:
+  - implicit
+  sources:
+  - openapi/synack-asset-v2-openapi.yaml
+  - openapi/synack-vulns-openapi.yaml
+- scope: asset_srt_lr
+  description: Grants per-listing read access to assets that may be read by SRTs.
+  flows:
+  - implicit
+  sources:
+  - openapi/synack-asset-v2-openapi.yaml
+  - openapi/synack-vulns-openapi.yaml
+- scope: asset_user_or
+  description: Grants user-level read access to asset stats that owned by a particular organization.
+  flows:
+  - implicit
+  sources:
+  - openapi/synack-asset-v2-openapi.yaml
+  - openapi/synack-vulns-openapi.yaml
+- scope: assetdiscovery_gr
+  description: Grants global-level to read seed groups and seeds.
+  flows:
+  - implicit
+  sources:
+  - openapi/synack-asset-discovery-openapi.yaml
+- scope: assetdiscovery_lr
+  description: Grants listing-level to read seed groups and seeds.
+  flows:
+  - implicit
+  sources:
+  - openapi/synack-asset-discovery-openapi.yaml
+- scope: assetdiscovery_or
+  description: Grants organization-level to read seed groups and seeds.
+  flows:
+  - implicit
+  sources:
+  - openapi/synack-asset-discovery-openapi.yaml
+- scope: assetdiscovery_ow
+  description: Grants organization-level to create or modify seed groups and seeds.
+  flows:
+  - implicit
+  sources:
+  - openapi/synack-asset-discovery-openapi.yaml
+- scope: tag_gr
+  description: Grants global-level to read tags.
+  flows:
+  - implicit
+  sources:
+  - openapi/synack-tagging-openapi.yaml
+- scope: tag_gw
+  description: Grants global-level to create or modify tags.
+  flows:
+  - implicit
+  sources:
+  - openapi/synack-tagging-openapi.yaml
+- scope: tag_lr
+  sources:
+  - openapi/synack-tagging-openapi.yaml
+- scope: tag_lw
+  sources:
+  - openapi/synack-tagging-openapi.yaml
+- scope: tag_or
+  description: Grants organization-level to read tags.
+  flows:
+  - implicit
+  sources:
+  - openapi/synack-tagging-openapi.yaml
+- scope: tag_ow
+  description: Grants organization-level to create or modify tags.
+  flows:
+  - implicit
+  sources:
+  - openapi/synack-tagging-openapi.yaml
