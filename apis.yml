@@ -330,6 +330,8 @@ apis:
   - type: OpenAPI
     url: openapi/synack-webapps-api-openapi.yml
 common:
+- type: Overlay
+  url: overlays/synack-assessment-v1-overlay.yaml
 - type: DeveloperPortal
   url: https://docs.synack.com/
 - type: Documentation
