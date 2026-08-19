@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Assessment Service Assessment Groups Patch Verifications API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Patch Verifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get vulnerability patch verifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/vulnerabilities/:vulnerability_id/patch_verifications",
+            "params": [
+              {
+                "name": "vulnerability_id",
+                "value": "",
+                "type": "path",
+                "description": "Vulnerability ID"
+              }
+            ]
+          },
+          "docs": "Retrieve patch verification requests for a specific vulnerability"
+        },
+        {
+          "info": {
+            "name": "Create a vulnerability patch verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v1/vulnerabilities/:vulnerability_id/patch_verifications",
+            "params": [
+              {
+                "name": "vulnerability_id",
+                "value": "",
+                "type": "path",
+                "description": "Vulnerability ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new patch verification request for a specific vulnerability"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

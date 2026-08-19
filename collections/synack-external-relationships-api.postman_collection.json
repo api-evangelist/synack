@@ -1,0 +1,1310 @@
+{
+  "item": [
+    {
+      "id": "568b4d5f-4b95-42ce-aa36-9f3f6938e54f",
+      "name": "external-relationships",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "228ceade-d859-4e2b-a8d2-575964403443",
+          "name": "post External Relationship",
+          "request": {
+            "name": "post External Relationship",
+            "description": {
+              "content": "Creates a relationship between asset in AssetService and an external service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "external-relationships"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"createdBy\": \"<string>\",\n  \"sourceAssetUid\": \"<string>\",\n  \"startsAt\": \"<dateTime>\",\n  \"targetService\": \"<string>\",\n  \"targetUid\": \"<string>\",\n  \"type\": \"<string>\",\n  \"uid\": \"<string>\",\n  \"endsAt\": \"<dateTime>\",\n  \"updatedBy\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cc672bf1-5125-4d17-a40c-a00f1de8afd5",
+              "name": "A relationship between asset in AssetService and asset in an external service.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "external-relationships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdBy\": \"4ca5e1292b56\",\n  \"sourceAssetUid\": \"d2c32bb0a7b2e3d7fbcda4fc\",\n  \"startsAt\": \"<dateTime>\",\n  \"targetService\": \"<string>\",\n  \"targetUid\": \"K9cthL3\",\n  \"type\": \"<string>\",\n  \"uid\": \"7132f92f3e38\",\n  \"endsAt\": \"<dateTime>\",\n  \"updatedBy\": \"d747c52eadd1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "An identifier for a specific version of a resource",
+                  "key": "ETag",
+                  "value": "W/\"\""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"createdAt\": \"1975-08-19T08:55:42.759Z\",\n  \"createdBy\": \"d8f35c3abde4\",\n  \"sourceAssetUid\": \"96af7c1a3a4874e5611f9042\",\n  \"startsAt\": \"2018-08-01T21:48:55.245Z\",\n  \"targetService\": \"assetDiscovery\",\n  \"targetUid\": \"JVQW\",\n  \"type\": \"discoveredBy\",\n  \"uid\": \"0c8a0b655741\",\n  \"endsAt\": \"1981-11-22T23:00:27.592Z\",\n  \"updatedAt\": \"1994-02-13T19:30:25.753Z\",\n  \"updatedBy\": \"e37258bdb924\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9315389-d767-4bed-a012-23261e69572f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "external-relationships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdBy\": \"4ca5e1292b56\",\n  \"sourceAssetUid\": \"d2c32bb0a7b2e3d7fbcda4fc\",\n  \"startsAt\": \"<dateTime>\",\n  \"targetService\": \"<string>\",\n  \"targetUid\": \"K9cthL3\",\n  \"type\": \"<string>\",\n  \"uid\": \"7132f92f3e38\",\n  \"endsAt\": \"<dateTime>\",\n  \"updatedBy\": \"d747c52eadd1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "018af0ab-0704-4eff-8f99-06b07ad5ca15",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "external-relationships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdBy\": \"4ca5e1292b56\",\n  \"sourceAssetUid\": \"d2c32bb0a7b2e3d7fbcda4fc\",\n  \"startsAt\": \"<dateTime>\",\n  \"targetService\": \"<string>\",\n  \"targetUid\": \"K9cthL3\",\n  \"type\": \"<string>\",\n  \"uid\": \"7132f92f3e38\",\n  \"endsAt\": \"<dateTime>\",\n  \"updatedBy\": \"d747c52eadd1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7f74b8ec-aaac-488b-8c26-00679db0de05",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "external-relationships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdBy\": \"4ca5e1292b56\",\n  \"sourceAssetUid\": \"d2c32bb0a7b2e3d7fbcda4fc\",\n  \"startsAt\": \"<dateTime>\",\n  \"targetService\": \"<string>\",\n  \"targetUid\": \"K9cthL3\",\n  \"type\": \"<string>\",\n  \"uid\": \"7132f92f3e38\",\n  \"endsAt\": \"<dateTime>\",\n  \"updatedBy\": \"d747c52eadd1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "523ce109-d9d9-445e-abab-9288c6018b83",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "external-relationships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdBy\": \"4ca5e1292b56\",\n  \"sourceAssetUid\": \"d2c32bb0a7b2e3d7fbcda4fc\",\n  \"startsAt\": \"<dateTime>\",\n  \"targetService\": \"<string>\",\n  \"targetUid\": \"K9cthL3\",\n  \"type\": \"<string>\",\n  \"uid\": \"7132f92f3e38\",\n  \"endsAt\": \"<dateTime>\",\n  \"updatedBy\": \"d747c52eadd1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b30c1b1e-4978-40da-831e-a8d647c53407",
+              "name": "Conflict.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "external-relationships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdBy\": \"4ca5e1292b56\",\n  \"sourceAssetUid\": \"d2c32bb0a7b2e3d7fbcda4fc\",\n  \"startsAt\": \"<dateTime>\",\n  \"targetService\": \"<string>\",\n  \"targetUid\": \"K9cthL3\",\n  \"type\": \"<string>\",\n  \"uid\": \"7132f92f3e38\",\n  \"endsAt\": \"<dateTime>\",\n  \"updatedBy\": \"d747c52eadd1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 390,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 4453,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 7469,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 1555,\n  \"batchSize\": 1420\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "769870c6-9518-4d35-a492-a61161af9c7a",
+              "name": "Entity Not Processable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "external-relationships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdBy\": \"4ca5e1292b56\",\n  \"sourceAssetUid\": \"d2c32bb0a7b2e3d7fbcda4fc\",\n  \"startsAt\": \"<dateTime>\",\n  \"targetService\": \"<string>\",\n  \"targetUid\": \"K9cthL3\",\n  \"type\": \"<string>\",\n  \"uid\": \"7132f92f3e38\",\n  \"endsAt\": \"<dateTime>\",\n  \"updatedBy\": \"d747c52eadd1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 390,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 4453,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 7469,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 1555,\n  \"batchSize\": 1420\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59315411-6408-4018-8c4e-cef11dc8e288",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "external-relationships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdBy\": \"4ca5e1292b56\",\n  \"sourceAssetUid\": \"d2c32bb0a7b2e3d7fbcda4fc\",\n  \"startsAt\": \"<dateTime>\",\n  \"targetService\": \"<string>\",\n  \"targetUid\": \"K9cthL3\",\n  \"type\": \"<string>\",\n  \"uid\": \"7132f92f3e38\",\n  \"endsAt\": \"<dateTime>\",\n  \"updatedBy\": \"d747c52eadd1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 390,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 4453,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 7469,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 1555,\n  \"batchSize\": 1420\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6a4e4fe-30ec-4026-8c7f-99c854c0d341",
+              "name": "Service Unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "external-relationships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdBy\": \"4ca5e1292b56\",\n  \"sourceAssetUid\": \"d2c32bb0a7b2e3d7fbcda4fc\",\n  \"startsAt\": \"<dateTime>\",\n  \"targetService\": \"<string>\",\n  \"targetUid\": \"K9cthL3\",\n  \"type\": \"<string>\",\n  \"uid\": \"7132f92f3e38\",\n  \"endsAt\": \"<dateTime>\",\n  \"updatedBy\": \"d747c52eadd1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 390,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 4453,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 7469,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 1555,\n  \"batchSize\": 1420\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "700a6a64-211a-4be0-a043-80aa4334936c",
+          "name": "patch External Relationship",
+          "request": {
+            "name": "patch External Relationship",
+            "description": {
+              "content": "Updates a relationship between a two assets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "external-relationships",
+                ":assetRelationshipUid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetRelationshipUid",
+                  "description": "(Required) Unique identifier for a relationship between assets."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startsAt\": \"<dateTime>\",\n  \"endsAt\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9d766411-176f-4d02-8524-14ec8243aa03",
+              "name": "A relationship between asset in AssetService and asset in an external service.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "external-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startsAt\": \"<dateTime>\",\n  \"endsAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "An identifier for a specific version of a resource",
+                  "key": "ETag",
+                  "value": "W/\"\""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"createdAt\": \"1975-08-19T08:55:42.759Z\",\n  \"createdBy\": \"d8f35c3abde4\",\n  \"sourceAssetUid\": \"96af7c1a3a4874e5611f9042\",\n  \"startsAt\": \"2018-08-01T21:48:55.245Z\",\n  \"targetService\": \"assetDiscovery\",\n  \"targetUid\": \"JVQW\",\n  \"type\": \"discoveredBy\",\n  \"uid\": \"0c8a0b655741\",\n  \"endsAt\": \"1981-11-22T23:00:27.592Z\",\n  \"updatedAt\": \"1994-02-13T19:30:25.753Z\",\n  \"updatedBy\": \"e37258bdb924\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "679ee168-c619-4e84-83d8-a4302b68e111",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "external-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startsAt\": \"<dateTime>\",\n  \"endsAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "97821bf4-e801-48d0-b12b-d79d09bfae2c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "external-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startsAt\": \"<dateTime>\",\n  \"endsAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4278f0c1-d6b4-45e1-b19e-da662e933ce1",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "external-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startsAt\": \"<dateTime>\",\n  \"endsAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9cd09af1-b177-46b2-9fb8-e91a15c9398d",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "external-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startsAt\": \"<dateTime>\",\n  \"endsAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 232,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 1229,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 8637,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 9841,\n  \"batchSize\": 2808\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27bc9561-c6a9-4956-b194-38c6ee4917ee",
+              "name": "Service Unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "external-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startsAt\": \"<dateTime>\",\n  \"endsAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 232,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 1229,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 8637,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 9841,\n  \"batchSize\": 2808\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "01e4c66b-64c8-479c-86c4-f5320b0de6b0",
+          "name": "delete External Relationship",
+          "request": {
+            "name": "delete External Relationship",
+            "description": {
+              "content": "Deletes a relationship between a two assets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "external-relationships",
+                ":assetRelationshipUid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetRelationshipUid",
+                  "description": "(Required) Unique identifier for a relationship between assets."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "930a3079-cd6f-4226-a012-816e7bced041",
+              "name": "No content.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "external-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6763a1ba-c045-444b-9562-5ed322663f19",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "external-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9d90858f-40df-4255-a7e5-49cafcc156ba",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "external-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3b75a05d-89f3-4c02-bd74-2373b9e86f25",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "external-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d59351b9-a3d3-4bee-9c1c-18c991ff8d5b",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "external-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 232,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 1229,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 8637,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 9841,\n  \"batchSize\": 2808\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "296b38c3-2166-4679-8ec8-3a92211b95f0",
+              "name": "Service Unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "external-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 232,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 1229,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 8637,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 9841,\n  \"batchSize\": 2808\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://client.synack.com/api/assessment",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d3085d23-a5c1-4963-96e9-bb03373c0483",
+    "name": "Assessment Service Assessment Groups external-relationships API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for managing Assessment and related operations on the Synack.\n\n\nContact Support:\n Name: Synack Engineering\n Email: engineering@synack.com",
+      "type": "text/plain"
+    }
+  }
+}

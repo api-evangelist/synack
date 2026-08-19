@@ -1,0 +1,2719 @@
+{
+  "item": [
+    {
+      "id": "581097a3-0d3f-4731-9c65-fd5b89d36713",
+      "name": "ports",
+      "description": {
+        "content": "Ports for single host assets.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4cfd6764-6624-469d-bc52-eb1fa2ccb4d1",
+          "name": "get Host Port",
+          "request": {
+            "name": "get Host Port",
+            "description": {
+              "content": "Retrieve a port for a host asset.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "assets",
+                ":assetUid",
+                "ports",
+                ":portNumber",
+                ":portProtocol"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetUid",
+                  "description": "(Required) Unique identifier for an asset."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "portNumber",
+                  "description": "(Required) Port number."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "portProtocol",
+                  "description": "(Required) Port protocol."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "f062cd4b-7bc5-4a9f-985f-1ad294739d76",
+              "name": "The current state of a host port.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "An identifier for a specific version of a resource",
+                  "key": "ETag",
+                  "value": "W/\"7Dz#VMuj{;\""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"createdAt\": \"1970-05-10T07:01:07.333Z\",\n  \"createdBy\": \"8ac76fda0baf\",\n  \"observedState\": \"closed\",\n  \"scope\": \"in\",\n  \"number\": 44816,\n  \"protocol\": \"tcp\",\n  \"service\": \"string\",\n  \"detectedService\": \"string\",\n  \"detectedProductName\": \"string\",\n  \"detectedProductVersion\": \"string\",\n  \"detectedProductConfidenceLevel\": 7,\n  \"detectedProductCPE\": \"string\",\n  \"serviceBanner\": \"string\",\n  \"updatedAt\": \"1986-11-08T20:18:43.863Z\",\n  \"updatedBy\": \"8391a063b1c9\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5dce9b06-1d62-4baa-b316-411c2fec73fe",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "537cef85-3bcb-4d08-b172-90232f8cadcf",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ddec95bf-79a0-4e41-871b-c0e857d8efd7",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b4ea01c5-e1b2-4d68-a011-750016bfa61c",
+              "name": "Service Unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 349,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 2856,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 8556,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 2239,\n  \"batchSize\": 9044\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ea7520a-6eb1-4987-bfc7-74650abcf285",
+          "name": "put Host Port",
+          "request": {
+            "name": "put Host Port",
+            "description": {
+              "content": "Upsert a port to a host asset. Will return 409 status if the asset is not a single host (i.e. a CIDR).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "assets",
+                ":assetUid",
+                "ports",
+                ":portNumber",
+                ":portProtocol"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetUid",
+                  "description": "(Required) Unique identifier for an asset."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "portNumber",
+                  "description": "(Required) Port number."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "portProtocol",
+                  "description": "(Required) Port protocol."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                "key": "If-Match",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"createdBy\": \"<string>\",\n  \"observedState\": \"<string>\",\n  \"scope\": \"<string>\",\n  \"number\": \"<integer>\",\n  \"protocol\": \"<string>\",\n  \"service\": \"<string>\",\n  \"updatedBy\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b7c83c60-8f28-48e1-a898-cd5b150c2fb4",
+              "name": "The current state of a host port.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdBy\": \"056f3a019d56\",\n  \"observedState\": \"closed\",\n  \"scope\": \"discovered\",\n  \"number\": 20180,\n  \"protocol\": \"tcp\",\n  \"service\": \"<string>\",\n  \"updatedBy\": \"6b5517fbe060\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "An identifier for a specific version of a resource",
+                  "key": "ETag",
+                  "value": "W/\"7Dz#VMuj{;\""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"createdAt\": \"1970-05-10T07:01:07.333Z\",\n  \"createdBy\": \"8ac76fda0baf\",\n  \"observedState\": \"closed\",\n  \"scope\": \"in\",\n  \"number\": 44816,\n  \"protocol\": \"tcp\",\n  \"service\": \"string\",\n  \"detectedService\": \"string\",\n  \"detectedProductName\": \"string\",\n  \"detectedProductVersion\": \"string\",\n  \"detectedProductConfidenceLevel\": 7,\n  \"detectedProductCPE\": \"string\",\n  \"serviceBanner\": \"string\",\n  \"updatedAt\": \"1986-11-08T20:18:43.863Z\",\n  \"updatedBy\": \"8391a063b1c9\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b93d2f5-9615-4f58-85db-1e2d7227c004",
+              "name": "The current state of a host port.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdBy\": \"056f3a019d56\",\n  \"observedState\": \"closed\",\n  \"scope\": \"discovered\",\n  \"number\": 20180,\n  \"protocol\": \"tcp\",\n  \"service\": \"<string>\",\n  \"updatedBy\": \"6b5517fbe060\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "An identifier for a specific version of a resource",
+                  "key": "ETag",
+                  "value": "W/\"7Dz#VMuj{;\""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"createdAt\": \"1970-05-10T07:01:07.333Z\",\n  \"createdBy\": \"8ac76fda0baf\",\n  \"observedState\": \"closed\",\n  \"scope\": \"in\",\n  \"number\": 44816,\n  \"protocol\": \"tcp\",\n  \"service\": \"string\",\n  \"detectedService\": \"string\",\n  \"detectedProductName\": \"string\",\n  \"detectedProductVersion\": \"string\",\n  \"detectedProductConfidenceLevel\": 7,\n  \"detectedProductCPE\": \"string\",\n  \"serviceBanner\": \"string\",\n  \"updatedAt\": \"1986-11-08T20:18:43.863Z\",\n  \"updatedBy\": \"8391a063b1c9\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb02047c-a6e8-4286-bc30-efb710006d74",
+              "name": "No content.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdBy\": \"056f3a019d56\",\n  \"observedState\": \"closed\",\n  \"scope\": \"discovered\",\n  \"number\": 20180,\n  \"protocol\": \"tcp\",\n  \"service\": \"<string>\",\n  \"updatedBy\": \"6b5517fbe060\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a9625176-8fa3-4c6b-8d62-e57275677ffc",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdBy\": \"056f3a019d56\",\n  \"observedState\": \"closed\",\n  \"scope\": \"discovered\",\n  \"number\": 20180,\n  \"protocol\": \"tcp\",\n  \"service\": \"<string>\",\n  \"updatedBy\": \"6b5517fbe060\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c13b4bc5-73be-46ea-bf85-f3191418a03e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdBy\": \"056f3a019d56\",\n  \"observedState\": \"closed\",\n  \"scope\": \"discovered\",\n  \"number\": 20180,\n  \"protocol\": \"tcp\",\n  \"service\": \"<string>\",\n  \"updatedBy\": \"6b5517fbe060\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ffbcce98-b16f-4ef1-8ded-2cc47e52a51a",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdBy\": \"056f3a019d56\",\n  \"observedState\": \"closed\",\n  \"scope\": \"discovered\",\n  \"number\": 20180,\n  \"protocol\": \"tcp\",\n  \"service\": \"<string>\",\n  \"updatedBy\": \"6b5517fbe060\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "54ea9783-9273-4a18-b422-86d3b50b9108",
+              "name": "Conflict.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdBy\": \"056f3a019d56\",\n  \"observedState\": \"closed\",\n  \"scope\": \"discovered\",\n  \"number\": 20180,\n  \"protocol\": \"tcp\",\n  \"service\": \"<string>\",\n  \"updatedBy\": \"6b5517fbe060\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 349,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 2856,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 8556,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 2239,\n  \"batchSize\": 9044\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0168c44-da1f-43ed-9862-93ee6baa561a",
+              "name": "Precondition Failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdBy\": \"056f3a019d56\",\n  \"observedState\": \"closed\",\n  \"scope\": \"discovered\",\n  \"number\": 20180,\n  \"protocol\": \"tcp\",\n  \"service\": \"<string>\",\n  \"updatedBy\": \"6b5517fbe060\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Precondition Failed",
+              "code": 412,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0bcb5f40-1ce8-4fe3-96f0-4f543a1c15ee",
+              "name": "Entity Not Processable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdBy\": \"056f3a019d56\",\n  \"observedState\": \"closed\",\n  \"scope\": \"discovered\",\n  \"number\": 20180,\n  \"protocol\": \"tcp\",\n  \"service\": \"<string>\",\n  \"updatedBy\": \"6b5517fbe060\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 349,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 2856,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 8556,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 2239,\n  \"batchSize\": 9044\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c2303c4-13e9-467d-b356-c02a9ec96e59",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdBy\": \"056f3a019d56\",\n  \"observedState\": \"closed\",\n  \"scope\": \"discovered\",\n  \"number\": 20180,\n  \"protocol\": \"tcp\",\n  \"service\": \"<string>\",\n  \"updatedBy\": \"6b5517fbe060\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 349,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 2856,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 8556,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 2239,\n  \"batchSize\": 9044\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a59e8a2e-9930-48b4-aee9-70b2c83d42d7",
+              "name": "Service Unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdBy\": \"056f3a019d56\",\n  \"observedState\": \"closed\",\n  \"scope\": \"discovered\",\n  \"number\": 20180,\n  \"protocol\": \"tcp\",\n  \"service\": \"<string>\",\n  \"updatedBy\": \"6b5517fbe060\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 408,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 9889,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 3815,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 8977,\n  \"batchSize\": 6781\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ef0f1d2-cf7c-401b-a3fc-cfba00d980d9",
+          "name": "patch Host Port",
+          "request": {
+            "name": "patch Host Port",
+            "description": {
+              "content": "Update properties of a port belonging a single-IP host asset.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "assets",
+                ":assetUid",
+                "ports",
+                ":portNumber",
+                ":portProtocol"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetUid",
+                  "description": "(Required) Unique identifier for an asset."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "portNumber",
+                  "description": "(Required) Port number."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "portProtocol",
+                  "description": "(Required) Port protocol."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                "key": "If-Match",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"scope\": \"<string>\",\n  \"service\": \"<string>\",\n  \"observedState\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d1789e3a-7cb5-4e81-b800-56faa03238e8",
+              "name": "The current state of a host port.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"scope\": \"discovered\",\n  \"service\": \"<string>\",\n  \"observedState\": \"closed\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "An identifier for a specific version of a resource",
+                  "key": "ETag",
+                  "value": "W/\"7Dz#VMuj{;\""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"createdAt\": \"1970-05-10T07:01:07.333Z\",\n  \"createdBy\": \"8ac76fda0baf\",\n  \"observedState\": \"closed\",\n  \"scope\": \"in\",\n  \"number\": 44816,\n  \"protocol\": \"tcp\",\n  \"service\": \"string\",\n  \"detectedService\": \"string\",\n  \"detectedProductName\": \"string\",\n  \"detectedProductVersion\": \"string\",\n  \"detectedProductConfidenceLevel\": 7,\n  \"detectedProductCPE\": \"string\",\n  \"serviceBanner\": \"string\",\n  \"updatedAt\": \"1986-11-08T20:18:43.863Z\",\n  \"updatedBy\": \"8391a063b1c9\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d45d53c-e94f-4721-a709-e091c5b8c731",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"scope\": \"discovered\",\n  \"service\": \"<string>\",\n  \"observedState\": \"closed\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2eecb982-42ba-4a95-8f6a-de84fa0b74f9",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"scope\": \"discovered\",\n  \"service\": \"<string>\",\n  \"observedState\": \"closed\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d8c32d18-46ae-4a89-b483-9737100f46f4",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"scope\": \"discovered\",\n  \"service\": \"<string>\",\n  \"observedState\": \"closed\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4267b73b-a785-4647-8428-eea2fd4c13f5",
+              "name": "Precondition Failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"scope\": \"discovered\",\n  \"service\": \"<string>\",\n  \"observedState\": \"closed\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Precondition Failed",
+              "code": 412,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "28f9b79f-8147-4042-9ca9-c962fe8d9191",
+              "name": "Entity Not Processable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"scope\": \"discovered\",\n  \"service\": \"<string>\",\n  \"observedState\": \"closed\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 408,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 9889,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 3815,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 8977,\n  \"batchSize\": 6781\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "654c1f88-ee21-42d1-ae8e-2528cf60e4e7",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"scope\": \"discovered\",\n  \"service\": \"<string>\",\n  \"observedState\": \"closed\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 408,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 9889,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 3815,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 8977,\n  \"batchSize\": 6781\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c081d73-0a01-4bbc-a337-1829f8da1689",
+              "name": "Service Unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"scope\": \"discovered\",\n  \"service\": \"<string>\",\n  \"observedState\": \"closed\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 408,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 9889,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 3815,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 8977,\n  \"batchSize\": 6781\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ab18895-3133-4a8a-93b3-f723b8244b23",
+          "name": "delete Host Port",
+          "request": {
+            "name": "delete Host Port",
+            "description": {
+              "content": "Delete a port from a host asset. Will return 409 status if the asset is not a single host (i.e. a CIDR).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "assets",
+                ":assetUid",
+                "ports",
+                ":portNumber",
+                ":portProtocol"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetUid",
+                  "description": "(Required) Unique identifier for an asset."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "portNumber",
+                  "description": "(Required) Port number."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "portProtocol",
+                  "description": "(Required) Port protocol."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "6832fb16-9cc7-489c-b806-24a2e85bf2bb",
+              "name": "No content.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4a6b2335-1a2e-427e-9eb7-88f2ac67a63d",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4c6f636a-943d-4224-ba8e-13a316276ee9",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a241aa39-b26a-4e40-80b9-1fdbef075625",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4445fc4d-7ed5-46e9-9669-a74b5f6f12a4",
+              "name": "Conflict.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 408,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 9889,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 3815,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 8977,\n  \"batchSize\": 6781\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e7341410-f5c9-4f20-8ef7-a4f2c886aa43",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 408,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 9889,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 3815,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 8977,\n  \"batchSize\": 6781\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d209826f-70e3-42aa-93c9-f47813229fd3",
+              "name": "Service Unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "ports",
+                    ":portNumber",
+                    ":portProtocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "portNumber",
+                      "description": "(Required) Port number."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portProtocol",
+                      "description": "(Required) Port protocol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 408,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 9889,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 3815,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 8977,\n  \"batchSize\": 6781\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://client.synack.com/api/assessment",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5cad86a7-62cc-4393-ba18-820f8ab82aee",
+    "name": "Assessment Service Assessment Groups ports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for managing Assessment and related operations on the Synack.\n\n\nContact Support:\n Name: Synack Engineering\n Email: engineering@synack.com",
+      "type": "text/plain"
+    }
+  }
+}

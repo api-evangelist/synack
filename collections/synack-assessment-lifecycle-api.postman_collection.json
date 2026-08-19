@@ -1,0 +1,899 @@
+{
+  "item": [
+    {
+      "id": "68c21664-26a1-4a2c-8ff6-0fc6c786336b",
+      "name": "Assessment Lifecycle",
+      "description": {
+        "content": "Lifecycle state transitions for an individual assessment.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "65492e14-1c2d-4b5f-b9d5-c22f463883de",
+          "name": "Pause an assessment",
+          "request": {
+            "name": "Pause an assessment",
+            "description": {
+              "content": "Pauses testing on an assessment.\nThe assessment must be in an active state to be paused.\nReturns 409 if the assessment is not in a pausable state.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "organizations",
+                ":organizationUid",
+                "assessments",
+                ":assessmentUid",
+                "pause"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationUid",
+                  "description": "(Required) The unique identifier of the organization."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assessmentUid",
+                  "description": "(Required) The unique identifier of the assessment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "524c8247-abd4-4409-9156-5bbf293908b9",
+              "name": "Assessment paused successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "assessments",
+                    ":assessmentUid",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) The unique identifier of the organization."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessmentUid",
+                      "description": "(Required) The unique identifier of the assessment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0f28ef23-508f-4e4d-ae98-6116bb4c35c7",
+              "name": "Missing or invalid authentication credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "assessments",
+                    ":assessmentUid",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) The unique identifier of the organization."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessmentUid",
+                      "description": "(Required) The unique identifier of the assessment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 7261,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://erf.iaqSHPIV0mPkmqPi0KvMKfkDBOZViR4HhRBCJNTWx-F5RT4\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "baeb75dd-4c2b-4699-8ccb-8c079c816339",
+              "name": "Authenticated but lacks permission for this resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "assessments",
+                    ":assessmentUid",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) The unique identifier of the organization."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessmentUid",
+                      "description": "(Required) The unique identifier of the assessment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 7261,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://erf.iaqSHPIV0mPkmqPi0KvMKfkDBOZViR4HhRBCJNTWx-F5RT4\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d37e187a-2d39-4ed7-a498-67b590b3e08a",
+              "name": "Resource not found in the acting organization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "assessments",
+                    ":assessmentUid",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) The unique identifier of the organization."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessmentUid",
+                      "description": "(Required) The unique identifier of the assessment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 7261,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://erf.iaqSHPIV0mPkmqPi0KvMKfkDBOZViR4HhRBCJNTWx-F5RT4\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60a2ff3d-cad9-4a07-bf11-15d2c82124ed",
+              "name": "The resource is not in a state that permits the requested action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "assessments",
+                    ":assessmentUid",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) The unique identifier of the organization."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessmentUid",
+                      "description": "(Required) The unique identifier of the assessment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 7261,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://erf.iaqSHPIV0mPkmqPi0KvMKfkDBOZViR4HhRBCJNTWx-F5RT4\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a09bec37-1fbe-4620-88a3-7d7018c28521",
+              "name": "Server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "assessments",
+                    ":assessmentUid",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) The unique identifier of the organization."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessmentUid",
+                      "description": "(Required) The unique identifier of the assessment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 7261,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://erf.iaqSHPIV0mPkmqPi0KvMKfkDBOZViR4HhRBCJNTWx-F5RT4\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1462d79f-200a-4401-90e6-8bc21410328d",
+          "name": "Resume an assessment",
+          "request": {
+            "name": "Resume an assessment",
+            "description": {
+              "content": "Resumes testing on a paused assessment.\nThe assessment must be in a paused state to be resumed.\nReturns 409 if the assessment is not currently paused.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "organizations",
+                ":organizationUid",
+                "assessments",
+                ":assessmentUid",
+                "resume"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationUid",
+                  "description": "(Required) The unique identifier of the organization."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assessmentUid",
+                  "description": "(Required) The unique identifier of the assessment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "63f28db1-3f04-420e-a456-f3a0113495ff",
+              "name": "Assessment resumed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "assessments",
+                    ":assessmentUid",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) The unique identifier of the organization."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessmentUid",
+                      "description": "(Required) The unique identifier of the assessment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "46e060ca-b11a-41d4-a4e8-5ba260f6f1ad",
+              "name": "Missing or invalid authentication credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "assessments",
+                    ":assessmentUid",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) The unique identifier of the organization."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessmentUid",
+                      "description": "(Required) The unique identifier of the assessment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 7261,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://erf.iaqSHPIV0mPkmqPi0KvMKfkDBOZViR4HhRBCJNTWx-F5RT4\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5da9a1d7-fb70-4cce-bd2b-034192eab588",
+              "name": "Authenticated but lacks permission for this resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "assessments",
+                    ":assessmentUid",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) The unique identifier of the organization."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessmentUid",
+                      "description": "(Required) The unique identifier of the assessment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 7261,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://erf.iaqSHPIV0mPkmqPi0KvMKfkDBOZViR4HhRBCJNTWx-F5RT4\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cdcc058a-b13b-4a00-b6ee-4b429d55c5c6",
+              "name": "Resource not found in the acting organization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "assessments",
+                    ":assessmentUid",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) The unique identifier of the organization."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessmentUid",
+                      "description": "(Required) The unique identifier of the assessment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 7261,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://erf.iaqSHPIV0mPkmqPi0KvMKfkDBOZViR4HhRBCJNTWx-F5RT4\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ff02bf9-6e74-4d56-b3ac-1d17d22694e6",
+              "name": "The resource is not in a state that permits the requested action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "assessments",
+                    ":assessmentUid",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) The unique identifier of the organization."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessmentUid",
+                      "description": "(Required) The unique identifier of the assessment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 7261,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://erf.iaqSHPIV0mPkmqPi0KvMKfkDBOZViR4HhRBCJNTWx-F5RT4\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47904a55-46e2-45c7-b74c-092e0d0c11d7",
+              "name": "Server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "assessments",
+                    ":assessmentUid",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) The unique identifier of the organization."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessmentUid",
+                      "description": "(Required) The unique identifier of the assessment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 7261,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://erf.iaqSHPIV0mPkmqPi0KvMKfkDBOZViR4HhRBCJNTWx-F5RT4\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://client.synack.com/api/assessment",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b22a24d6-cc2d-453d-b71c-5e5a2f636b7c",
+    "name": "Assessment Service Assessment Groups Assessment Lifecycle API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for managing Assessment and related operations on the Synack.\n\n\nContact Support:\n Name: Synack Engineering\n Email: engineering@synack.com",
+      "type": "text/plain"
+    }
+  }
+}

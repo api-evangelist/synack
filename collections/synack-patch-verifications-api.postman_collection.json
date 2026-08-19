@@ -1,0 +1,428 @@
+{
+  "item": [
+    {
+      "id": "88992cbc-b668-4c44-86bb-b756d59101fa",
+      "name": "Patch Verifications",
+      "description": {
+        "content": "Operations related to patch verifications",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8aaf3226-3fb3-4a84-8eba-9eae95fa7ea5",
+          "name": "Get vulnerability patch verifications",
+          "request": {
+            "name": "Get vulnerability patch verifications",
+            "description": {
+              "content": "Retrieve patch verification requests for a specific vulnerability",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "vulnerabilities",
+                ":vulnerability_id",
+                "patch_verifications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vulnerability_id",
+                  "description": "(Required) Vulnerability ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "81af8b79-33d7-46b4-84c8-174e38ccbaa9",
+              "name": "Patch verifications retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vulnerabilities",
+                    ":vulnerability_id",
+                    "patch_verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vulnerability_id",
+                      "description": "(Required) Vulnerability ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 7756,\n    \"message\": \"string\",\n    \"status\": \"string\",\n    \"created_at\": \"2021-03-09T04:11:23.387Z\",\n    \"user\": {\n      \"assessment_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"banned\": true,\n      \"email\": \"string\",\n      \"id\": 2738,\n      \"admin\": true,\n      \"invite_url\": \"string\"\n    }\n  },\n  {\n    \"id\": 3851,\n    \"message\": \"string\",\n    \"status\": \"string\",\n    \"created_at\": \"1948-06-15T15:08:31.003Z\",\n    \"user\": {\n      \"assessment_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"banned\": true,\n      \"email\": \"string\",\n      \"id\": 1761,\n      \"admin\": false,\n      \"invite_url\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8e5d6a9-7e45-4e54-a5b3-e549d9e63dc1",
+              "name": "Vulnerability not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vulnerabilities",
+                    ":vulnerability_id",
+                    "patch_verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vulnerability_id",
+                      "description": "(Required) Vulnerability ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ddffcdb8-5325-49c7-8fbf-47a507324ba8",
+          "name": "Create a vulnerability patch verification",
+          "request": {
+            "name": "Create a vulnerability patch verification",
+            "description": {
+              "content": "Create a new patch verification request for a specific vulnerability",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "vulnerabilities",
+                ":vulnerability_id",
+                "patch_verifications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vulnerability_id",
+                  "description": "(Required) Vulnerability ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a3542c6c-eb9e-4d1e-a791-db9c04315f4d",
+              "name": "Patch verification created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vulnerabilities",
+                    ":vulnerability_id",
+                    "patch_verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vulnerability_id",
+                      "description": "(Required) Vulnerability ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4325,\n  \"message\": \"string\",\n  \"status\": \"string\",\n  \"created_at\": \"2002-01-18T16:47:13.187Z\",\n  \"user\": {\n    \"assessment_ids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"banned\": false,\n    \"email\": \"string\",\n    \"id\": 7023,\n    \"admin\": false,\n    \"invite_url\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30427043-3f85-4e35-8686-ae2a2d5373bc",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vulnerabilities",
+                    ":vulnerability_id",
+                    "patch_verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vulnerability_id",
+                      "description": "(Required) Vulnerability ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d8ff5e22-0db9-4f50-b2a2-d78dcef448bb",
+              "name": "Vulnerability not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vulnerabilities",
+                    ":vulnerability_id",
+                    "patch_verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vulnerability_id",
+                      "description": "(Required) Vulnerability ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://client.synack.com/api/assessment",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "17cdb38c-1583-44f6-8fce-c3137e070fab",
+    "name": "Assessment Service Assessment Groups Patch Verifications API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for managing Assessment and related operations on the Synack.\n\n\nContact Support:\n Name: Synack Engineering\n Email: engineering@synack.com",
+      "type": "text/plain"
+    }
+  }
+}

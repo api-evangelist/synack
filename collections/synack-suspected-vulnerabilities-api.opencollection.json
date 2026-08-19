@@ -1,0 +1,283 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Assessment Service Assessment Groups Suspected Vulnerabilities API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Suspected Vulnerabilities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update a suspected vulnerability",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client.synack.com/api/assessment/v1/suspected_vulnerabilities/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Suspected vulnerability ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a specific suspected vulnerability's status"
+        },
+        {
+          "info": {
+            "name": "Returns list of suspected vulnerabilities on a given organization and asset uid",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/:org_uid/assets/:asset_uid/suspected_vulns",
+            "params": [
+              {
+                "name": "org_uid",
+                "value": "",
+                "type": "path",
+                "description": "Organization UID"
+              },
+              {
+                "name": "asset_uid",
+                "value": "",
+                "type": "path",
+                "description": "Asset UID"
+              },
+              {
+                "name": "statuses[]",
+                "value": "",
+                "type": "query",
+                "description": "Suspected vulnerability status"
+              },
+              {
+                "name": "vuln_cvss[]",
+                "value": "",
+                "type": "query",
+                "description": "Suspected vulnerability CVSS range [0.0-0.0, 0.1-3.9, 4.0-6.9, 7.0-8.9, 9.0-10.0]"
+              },
+              {
+                "name": "include_expired",
+                "value": "",
+                "type": "query",
+                "description": "Include expired suspected vulnerabilities"
+              },
+              {
+                "name": "listing_uids[]",
+                "value": "",
+                "type": "query",
+                "description": "Listing uids"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Order by [title, severity, location, created_at, status, listing_codename]"
+              },
+              {
+                "name": "order_direction",
+                "value": "",
+                "type": "query",
+                "description": "Order direction [asc desc]"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to be returned"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "If provided, show the provided page"
+              }
+            ]
+          },
+          "docs": "Get asset suspected vulnerabilities by organization and assets uid"
+        },
+        {
+          "info": {
+            "name": "Retrieve suspected vulnerabilities for an organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/organizations/:organizationUid/suspected-vulnerabilities",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the organization whose vulnerabilities are being retrieved"
+              },
+              {
+                "name": "status[]",
+                "value": "",
+                "type": "query",
+                "description": "Filter vulnerabilities by their current status (e.g, qualified, in_triage, vulnerable, not_vulnerable, qualified)\n"
+              },
+              {
+                "name": "automatedTriageStatus[]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by automated triage status. Indicates whether the vulnerability has been processed\nthrough automated triage workflows and its current automated assessment state. (e.g., eligible, ineligible, agent_review, ops_review, vulnerable, not_vulnerable, target_unreachable, out_of_scope, not_applicable)\n"
+              },
+              {
+                "name": "source[]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by vulnerability detection source (e.g., 'synack', 'tenable', 'qualys', 'tenablewas').\nIdentifies the tool or method that originally discovered the vulnerability.\n"
+              },
+              {
+                "name": "sourceId[]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by vulnerability detection source ID/job ID. This represents the specific\nbatch or job identifier from external scanning tools that discovered the vulnerability.\n"
+              },
+              {
+                "name": "listingUid[]",
+                "value": "",
+                "type": "query",
+                "description": "Filter vulnerabilities by specific listing UIDs. Listings represent individual penetration\ntesting engagements.\n"
+              },
+              {
+                "name": "categoryId[]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by vulnerability category ID. Categories classify vulnerabilities by type\n(e.g., authorization_permissions/cross_origin_resource_sharing_cors, cross_site_scripting_xss/) to organize findings.\n"
+              },
+              {
+                "name": "listingCategoryId[]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the specific category of listings (penetration testing scopes).\nHelps narrow results to particular types of security assessments. (e.g., web application, mobile)\n"
+              },
+              {
+                "name": "severity[]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the specific severity of vulnerabilities.\nHelps narrow results to particular types of security. (e.g., low, medium, high, critical, none)\n"
+              },
+              {
+                "name": "exportFormat",
+                "value": "",
+                "type": "query",
+                "description": "Specify the format for data export: 'csv' for spreadsheet analysis. When provided, returns downloadable file instead of JSON.\n"
+              },
+              {
+                "name": "exportData[]",
+                "value": "",
+                "type": "query",
+                "description": "Specify which fields to include in exported files. Allows customization of export\ncontent to include only relevant fields for specific reporting or analysis needs.\nWill return all fields by default.\n"
+              },
+              {
+                "name": "exportColumnNames[]",
+                "value": "",
+                "type": "query",
+                "description": "Specify the column headers for the exported file. Returns all custom names for headers in the file, it will be the same as SuspectedVulnerabilityResponse by default.\n"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search query to filter vulnerabilities. Searches across vulnerability titles,\ndescriptions, asset information, and other relevant text fields for matching content.\n"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of vulnerability records to return per page. Controls pagination size\nfor better performance and manageable result sets. Typical values range from 10-100.\n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results. Used in conjunction with perPage to navigate\nthrough large result sets. Page numbering starts from 1.\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort results by: 'createdAt' for chronological discovery, 'lastDetectedAt'\nfor most recent activity, or 'cvssBase' for severity-based ordering.\n"
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction: 'asc' for ascending or 'desc' for descending order.\n"
+              }
+            ]
+          },
+          "docs": "Fetches a paginated list of suspected vulnerabilities associated with a specific organization.\nSupports comprehensive filtering by status, source, listings, categories, and search queries.\n"
+        },
+        {
+          "info": {
+            "name": "Add suspected vulnerabilities for an organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v1/organizations/:organizationUid/suspected-vulnerabilities",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the organization"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add suspected vulnerabilities for an organization, creating corresponding assets if needed. On success returns list of numeric IDs of the newly created suspected vulnerabilities"
+        },
+        {
+          "info": {
+            "name": "Retrieve a specific suspected vulnerability",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/organizations/:organizationUid/suspected-vulnerabilities/:id",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the organization that owns the vulnerability being retrieved\n"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific suspected vulnerability to retrieve\n"
+              }
+            ]
+          },
+          "docs": "Fetches detailed information for a single suspected vulnerability by its unique identifier.\nReturns comprehensive vulnerability data including metadata, triage information, and related assets.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Assessment Service Assessment Groups asset-relationships API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "asset-relationships",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "postAssetRelationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v2/asset-relationships",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a relationship between two assets.\n"
+        },
+        {
+          "info": {
+            "name": "patchAssetRelationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client.synack.com/api/assessment/v2/asset-relationships/:assetRelationshipUid",
+            "headers": [
+              {
+                "name": "If-Match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "assetRelationshipUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for a relationship between assets."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a relationship between a two assets.\n"
+        },
+        {
+          "info": {
+            "name": "deleteAssetRelationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client.synack.com/api/assessment/v2/asset-relationships/:assetRelationshipUid",
+            "params": [
+              {
+                "name": "assetRelationshipUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for a relationship between assets."
+              }
+            ]
+          },
+          "docs": "Deletes a relationship between a two assets.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

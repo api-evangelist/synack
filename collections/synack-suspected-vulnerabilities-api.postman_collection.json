@@ -1,0 +1,2958 @@
+{
+  "item": [
+    {
+      "id": "b6baa852-16fc-42d0-84e1-6b41e222df54",
+      "name": "Suspected Vulnerabilities",
+      "description": {
+        "content": "Operations related to suspected vulnerabilities",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7008d98c-7792-4abc-9c2b-4b4c5ea78b3b",
+          "name": "Update a suspected vulnerability",
+          "request": {
+            "name": "Update a suspected vulnerability",
+            "description": {
+              "content": "Update a specific suspected vulnerability's status",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "suspected_vulnerabilities",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Suspected vulnerability ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vulnerability_status_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c048ce2d-0cdc-48db-a2f6-600d38e78772",
+              "name": "Suspected vulnerability updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "suspected_vulnerabilities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Suspected vulnerability ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vulnerability_status_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 143,\n  \"asset_uid\": \"string\",\n  \"category_in_scope\": true,\n  \"confidence\": 8925.269236466314,\n  \"cvss_base\": 6997.761883421449,\n  \"exploitable_locations\": [\n    \"string\",\n    \"string\"\n  ],\n  \"false_positive\": true,\n  \"created_at\": \"1964-08-20T14:29:33.244Z\",\n  \"last_detected_at\": \"1960-12-17T23:47:29.064Z\",\n  \"payload\": {},\n  \"reference_urls\": [\n    \"string\",\n    \"string\"\n  ],\n  \"severity\": \"string\",\n  \"source\": \"string\",\n  \"status\": \"string\",\n  \"vulnerability_status_id\": 5746,\n  \"reason_title\": \"string\",\n  \"reason_description\": \"string\",\n  \"organization_profile_id\": 6311,\n  \"automated_triage_status\": \"string\",\n  \"automated_triage_status_updated_at\": \"1960-09-15T14:22:01.459Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f621bf98-fb03-482c-8bd7-951b88784837",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "suspected_vulnerabilities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Suspected vulnerability ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vulnerability_status_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "920825e8-d605-4906-bcf9-95372a3423a3",
+              "name": "Suspected vulnerability not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "suspected_vulnerabilities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Suspected vulnerability ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vulnerability_status_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "324dab3b-e830-4733-b53d-45c851b5710e",
+          "name": "Returns list of suspected vulnerabilities on a given organization and asset uid",
+          "request": {
+            "name": "Returns list of suspected vulnerabilities on a given organization and asset uid",
+            "description": {
+              "content": "Get asset suspected vulnerabilities by organization and assets uid",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                ":org_uid",
+                "assets",
+                ":asset_uid",
+                "suspected_vulns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "statuses[]",
+                  "value": "<string>",
+                  "description": "Suspected vulnerability status"
+                },
+                {
+                  "disabled": false,
+                  "key": "statuses[]",
+                  "value": "<string>",
+                  "description": "Suspected vulnerability status"
+                },
+                {
+                  "disabled": false,
+                  "key": "vuln_cvss[]",
+                  "value": "<string>",
+                  "description": "Suspected vulnerability CVSS range [0.0-0.0, 0.1-3.9, 4.0-6.9, 7.0-8.9, 9.0-10.0]"
+                },
+                {
+                  "disabled": false,
+                  "key": "vuln_cvss[]",
+                  "value": "<string>",
+                  "description": "Suspected vulnerability CVSS range [0.0-0.0, 0.1-3.9, 4.0-6.9, 7.0-8.9, 9.0-10.0]"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_expired",
+                  "value": "<boolean>",
+                  "description": "Include expired suspected vulnerabilities"
+                },
+                {
+                  "disabled": false,
+                  "key": "listing_uids[]",
+                  "value": "<string>",
+                  "description": "Listing uids"
+                },
+                {
+                  "disabled": false,
+                  "key": "listing_uids[]",
+                  "value": "<string>",
+                  "description": "Listing uids"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "severity",
+                  "description": "Order by [title, severity, location, created_at, status, listing_codename]"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_direction",
+                  "value": "asc",
+                  "description": "Order direction [asc desc]"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to be returned"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "If provided, show the provided page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org_uid",
+                  "description": "(Required) Organization UID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "asset_uid",
+                  "description": "(Required) Asset UID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "17d3f84a-c236-47a7-9cc2-25a4f7966915",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":org_uid",
+                    "assets",
+                    ":asset_uid",
+                    "suspected_vulns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statuses[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vuln_cvss[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vuln_cvss[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_expired",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "listing_uids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listing_uids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "severity"
+                    },
+                    {
+                      "key": "order_direction",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_uid",
+                      "description": "(Required) Organization UID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "asset_uid",
+                      "description": "(Required) Asset UID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"attributes\": \"\",\n    \"id\": \"string\",\n    \"links\": {\n      \"next\": \"string\",\n      \"prev\": \"string\"\n    },\n    \"meta\": \"\",\n    \"relationships\": {\n      \"key_0\": {\n        \"data\": \"\",\n        \"links\": {\n          \"next\": \"string\",\n          \"prev\": \"string\"\n        }\n      },\n      \"key_1\": {\n        \"data\": \"\",\n        \"links\": {\n          \"next\": \"string\",\n          \"prev\": \"string\"\n        }\n      }\n    },\n    \"type\": \"top_vulnerable_ips\"\n  },\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"id\": \"string\",\n      \"source\": \"string\",\n      \"status\": 284,\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"id\": \"string\",\n      \"source\": \"string\",\n      \"status\": 7150,\n      \"title\": \"string\"\n    }\n  ],\n  \"links\": {\n    \"next\": \"string\",\n    \"prev\": \"string\"\n  },\n  \"meta\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dac2f168-c459-47de-b07b-6959aa39ddd6",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":org_uid",
+                    "assets",
+                    ":asset_uid",
+                    "suspected_vulns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statuses[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vuln_cvss[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vuln_cvss[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_expired",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "listing_uids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listing_uids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "severity"
+                    },
+                    {
+                      "key": "order_direction",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_uid",
+                      "description": "(Required) Organization UID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "asset_uid",
+                      "description": "(Required) Asset UID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"id\": \"string\",\n  \"source\": \"string\",\n  \"status\": 2828,\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e4db1ac-22a3-4f65-8853-99f3f1f5f483",
+              "name": "Bearer token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":org_uid",
+                    "assets",
+                    ":asset_uid",
+                    "suspected_vulns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statuses[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vuln_cvss[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vuln_cvss[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_expired",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "listing_uids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listing_uids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "severity"
+                    },
+                    {
+                      "key": "order_direction",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_uid",
+                      "description": "(Required) Organization UID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "asset_uid",
+                      "description": "(Required) Asset UID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"id\": \"string\",\n  \"source\": \"string\",\n  \"status\": 2828,\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69fbdbe5-255e-4a95-9ce8-78becb89ec5f",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":org_uid",
+                    "assets",
+                    ":asset_uid",
+                    "suspected_vulns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statuses[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vuln_cvss[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vuln_cvss[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_expired",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "listing_uids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listing_uids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "severity"
+                    },
+                    {
+                      "key": "order_direction",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_uid",
+                      "description": "(Required) Organization UID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "asset_uid",
+                      "description": "(Required) Asset UID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"id\": \"string\",\n  \"source\": \"string\",\n  \"status\": 2828,\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6de23a5b-7163-4973-ada1-33ac8ad7e620",
+          "name": "Retrieve suspected vulnerabilities for an organization",
+          "request": {
+            "name": "Retrieve suspected vulnerabilities for an organization",
+            "description": {
+              "content": "Fetches a paginated list of suspected vulnerabilities associated with a specific organization.\nSupports comprehensive filtering by status, source, listings, categories, and search queries.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "organizations",
+                ":organizationUid",
+                "suspected-vulnerabilities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status[]",
+                  "value": "<string>",
+                  "description": "Filter vulnerabilities by their current status (e.g, qualified, in_triage, vulnerable, not_vulnerable, qualified)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "status[]",
+                  "value": "<string>",
+                  "description": "Filter vulnerabilities by their current status (e.g, qualified, in_triage, vulnerable, not_vulnerable, qualified)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "automatedTriageStatus[]",
+                  "value": "<string>",
+                  "description": "Filter by automated triage status. Indicates whether the vulnerability has been processed\nthrough automated triage workflows and its current automated assessment state. (e.g., eligible, ineligible, agent_review, ops_review, vulnerable, not_vulnerable, target_unreachable, out_of_scope, not_applicable)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "automatedTriageStatus[]",
+                  "value": "<string>",
+                  "description": "Filter by automated triage status. Indicates whether the vulnerability has been processed\nthrough automated triage workflows and its current automated assessment state. (e.g., eligible, ineligible, agent_review, ops_review, vulnerable, not_vulnerable, target_unreachable, out_of_scope, not_applicable)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "source[]",
+                  "value": "<string>",
+                  "description": "Filter by vulnerability detection source (e.g., 'synack', 'tenable', 'qualys', 'tenablewas').\nIdentifies the tool or method that originally discovered the vulnerability.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "source[]",
+                  "value": "<string>",
+                  "description": "Filter by vulnerability detection source (e.g., 'synack', 'tenable', 'qualys', 'tenablewas').\nIdentifies the tool or method that originally discovered the vulnerability.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "sourceId[]",
+                  "value": "<string>",
+                  "description": "Filter by vulnerability detection source ID/job ID. This represents the specific\nbatch or job identifier from external scanning tools that discovered the vulnerability.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "sourceId[]",
+                  "value": "<string>",
+                  "description": "Filter by vulnerability detection source ID/job ID. This represents the specific\nbatch or job identifier from external scanning tools that discovered the vulnerability.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "listingUid[]",
+                  "value": "<string>",
+                  "description": "Filter vulnerabilities by specific listing UIDs. Listings represent individual penetration\ntesting engagements.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "listingUid[]",
+                  "value": "<string>",
+                  "description": "Filter vulnerabilities by specific listing UIDs. Listings represent individual penetration\ntesting engagements.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "categoryId[]",
+                  "value": "<string>",
+                  "description": "Filter by vulnerability category ID. Categories classify vulnerabilities by type\n(e.g., authorization_permissions/cross_origin_resource_sharing_cors, cross_site_scripting_xss/) to organize findings.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "categoryId[]",
+                  "value": "<string>",
+                  "description": "Filter by vulnerability category ID. Categories classify vulnerabilities by type\n(e.g., authorization_permissions/cross_origin_resource_sharing_cors, cross_site_scripting_xss/) to organize findings.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "listingCategoryId[]",
+                  "value": "<integer>",
+                  "description": "Filter by the specific category of listings (penetration testing scopes).\nHelps narrow results to particular types of security assessments. (e.g., web application, mobile)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "listingCategoryId[]",
+                  "value": "<integer>",
+                  "description": "Filter by the specific category of listings (penetration testing scopes).\nHelps narrow results to particular types of security assessments. (e.g., web application, mobile)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "severity[]",
+                  "value": "<string>",
+                  "description": "Filter by the specific severity of vulnerabilities.\nHelps narrow results to particular types of security. (e.g., low, medium, high, critical, none)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "severity[]",
+                  "value": "<string>",
+                  "description": "Filter by the specific severity of vulnerabilities.\nHelps narrow results to particular types of security. (e.g., low, medium, high, critical, none)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "exportFormat",
+                  "value": "<string>",
+                  "description": "Specify the format for data export: 'csv' for spreadsheet analysis. When provided, returns downloadable file instead of JSON.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "exportData[]",
+                  "value": "<string>",
+                  "description": "Specify which fields to include in exported files. Allows customization of export\ncontent to include only relevant fields for specific reporting or analysis needs.\nWill return all fields by default.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "exportData[]",
+                  "value": "<string>",
+                  "description": "Specify which fields to include in exported files. Allows customization of export\ncontent to include only relevant fields for specific reporting or analysis needs.\nWill return all fields by default.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "exportColumnNames[]",
+                  "value": "<string>",
+                  "description": "Specify the column headers for the exported file. Returns all custom names for headers in the file, it will be the same as SuspectedVulnerabilityResponse by default.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "exportColumnNames[]",
+                  "value": "<string>",
+                  "description": "Specify the column headers for the exported file. Returns all custom names for headers in the file, it will be the same as SuspectedVulnerabilityResponse by default.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "Free-text search query to filter vulnerabilities. Searches across vulnerability titles,\ndescriptions, asset information, and other relevant text fields for matching content.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "<integer>",
+                  "description": "Maximum number of vulnerability records to return per page. Controls pagination size\nfor better performance and manageable result sets. Typical values range from 10-100.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number for paginated results. Used in conjunction with perPage to navigate\nthrough large result sets. Page numbering starts from 1.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "lastDetectedAt",
+                  "description": "Field to sort results by: 'createdAt' for chronological discovery, 'lastDetectedAt'\nfor most recent activity, or 'cvssBase' for severity-based ordering.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDir",
+                  "value": "asc",
+                  "description": "Sort direction: 'asc' for ascending or 'desc' for descending order.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationUid",
+                  "description": "(Required) Unique identifier for the organization whose vulnerabilities are being retrieved"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "214be645-e30d-444a-94a7-99b696b92138",
+              "name": "Successfully retrieved a paginated list of suspected vulnerabilities matching the\nspecified filter criteria, including metadata for pagination and summary statistics.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "suspected-vulnerabilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "automatedTriageStatus[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "automatedTriageStatus[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sourceId[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sourceId[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listingUid[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listingUid[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categoryId[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categoryId[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listingCategoryId[]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "listingCategoryId[]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "severity[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "severity[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportFormat",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportData[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportData[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportColumnNames[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportColumnNames[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "lastDetectedAt"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for the organization whose vulnerabilities are being retrieved"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"suspectedVulnerabilities\": [\n    {\n      \"id\": 2000,\n      \"assetUid\": \"ah28034gsjdf98eqwgbjufj\",\n      \"listingUid\": \"ah28034gsjdf\",\n      \"listingCodename\": \"ACME-H001\",\n      \"organizationUid\": \"ah28034gsjdf\",\n      \"categoryInScope\": false,\n      \"confidence\": \"firm\",\n      \"cvssBase\": 5.4,\n      \"exploitableLocations\": [\n        {\n          \"key_0\": \"string\"\n        },\n        {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        }\n      ],\n      \"falsePositive\": true,\n      \"payload\": {\n        \"key_0\": \"string\"\n      },\n      \"referenceUrls\": [\n        \"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring_ec2.html\",\n        \"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html\"\n      ],\n      \"severity\": \"low\",\n      \"source\": \"synack\",\n      \"sourceId\": \"job-abc-123\",\n      \"vulnerabilityStatusId\": 5598,\n      \"reasonTitle\": \"string\",\n      \"reasonDescription\": \"string\",\n      \"automatedTriageStatus\": \"string\",\n      \"automatedTriageStatusUpdatedAt\": \"2023-12-25T15:45:30.123Z\",\n      \"cves\": [\n        \"CVE-2025-1238923\",\n        \"CVE-2025-1238923\"\n      ],\n      \"cwes\": [\n        \"CWE-1238923\",\n        \"CWE-1238923\"\n      ],\n      \"status\": \"string\",\n      \"typeId\": \"Type-69d55e\",\n      \"typeTitle\": \"SQL Injection\",\n      \"typeCategoryId\": \"string\",\n      \"typeCategoryParentName\": \"string\",\n      \"typeCategoryChildName\": \"string\",\n      \"typeDescription\": \"string\",\n      \"exploitableVulnerabilityId\": \"test_e859b6a8371c-m001-4\",\n      \"createdAt\": \"2023-12-25T15:45:30.123Z\",\n      \"lastDetectedAt\": \"2023-12-25T15:45:30.123Z\",\n      \"triageIneligibleReason\": \"Triage already started or performed.\",\n      \"solution\": \"Microsoft has released security update KB5002113 to address this issue.\",\n      \"vendorRiskScore\": 1.3\n    },\n    {\n      \"id\": 2000,\n      \"assetUid\": \"ah28034gsjdf98eqwgbjufj\",\n      \"listingUid\": \"ah28034gsjdf\",\n      \"listingCodename\": \"ACME-H001\",\n      \"organizationUid\": \"ah28034gsjdf\",\n      \"categoryInScope\": true,\n      \"confidence\": \"firm\",\n      \"cvssBase\": 5.4,\n      \"exploitableLocations\": [\n        {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      ],\n      \"falsePositive\": true,\n      \"payload\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"referenceUrls\": [\n        \"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring_ec2.html\",\n        \"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html\"\n      ],\n      \"severity\": \"low\",\n      \"source\": \"synack\",\n      \"sourceId\": \"job-abc-123\",\n      \"vulnerabilityStatusId\": 5820,\n      \"reasonTitle\": \"string\",\n      \"reasonDescription\": \"string\",\n      \"automatedTriageStatus\": \"string\",\n      \"automatedTriageStatusUpdatedAt\": \"2023-12-25T15:45:30.123Z\",\n      \"cves\": [\n        \"CVE-2025-1238923\",\n        \"CVE-2025-1238923\"\n      ],\n      \"cwes\": [\n        \"CWE-1238923\",\n        \"CWE-1238923\"\n      ],\n      \"status\": \"string\",\n      \"typeId\": \"Type-69d55e\",\n      \"typeTitle\": \"SQL Injection\",\n      \"typeCategoryId\": \"string\",\n      \"typeCategoryParentName\": \"string\",\n      \"typeCategoryChildName\": \"string\",\n      \"typeDescription\": \"string\",\n      \"exploitableVulnerabilityId\": \"test_e859b6a8371c-m001-4\",\n      \"createdAt\": \"2023-12-25T15:45:30.123Z\",\n      \"lastDetectedAt\": \"2023-12-25T15:45:30.123Z\",\n      \"triageIneligibleReason\": \"Triage already started or performed.\",\n      \"solution\": \"Microsoft has released security update KB5002113 to address this issue.\",\n      \"vendorRiskScore\": 1.3\n    }\n  ],\n  \"metadata\": {\n    \"pagination\": {\n      \"total\": 7073,\n      \"page\": 7333,\n      \"perPage\": 3865,\n      \"totalPages\": 916,\n      \"prev\": \"string\",\n      \"next\": \"string\",\n      \"first\": \"string\",\n      \"last\": \"string\",\n      \"self\": \"string\"\n    },\n    \"summaries\": {\n      \"counts\": {\n        \"severity\": {\n          \"critical\": 927,\n          \"high\": 7853,\n          \"medium\": 634,\n          \"low\": 9387,\n          \"none\": 0,\n          \"total\": 100\n        },\n        \"status\": {\n          \"eligible\": 10,\n          \"ineligible\": 10,\n          \"agent_review\": 10,\n          \"ops_review\": 10,\n          \"srt_review\": 10,\n          \"vulnerable\": 10,\n          \"not_vulnerable\": 10,\n          \"out_of_scope\": 10,\n          \"target_unreachable\": 10,\n          \"not_applicable\": 10,\n          \"total\": 100\n        }\n      }\n    },\n    \"actions\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "adf19473-1aef-4b32-88c0-380ec7d8f76d",
+              "name": "Bad Request - The request is malformed, contains invalid parameters, or missing\nrequired fields. Check request syntax and parameter values.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "suspected-vulnerabilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "automatedTriageStatus[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "automatedTriageStatus[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sourceId[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sourceId[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listingUid[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listingUid[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categoryId[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categoryId[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listingCategoryId[]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "listingCategoryId[]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "severity[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "severity[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportFormat",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportData[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportData[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportColumnNames[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportColumnNames[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "lastDetectedAt"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for the organization whose vulnerabilities are being retrieved"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 5239,\n  \"title\": \"string\",\n  \"type\": \"string\",\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a54fc3f6-c739-41e9-ae28-5a85b85effec",
+              "name": "Unauthorized - Authentication failed. The bearer token is missing, expired,\ninvalid, or lacks sufficient permissions to access this resource.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "suspected-vulnerabilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "automatedTriageStatus[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "automatedTriageStatus[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sourceId[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sourceId[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listingUid[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listingUid[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categoryId[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categoryId[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listingCategoryId[]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "listingCategoryId[]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "severity[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "severity[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportFormat",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportData[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportData[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportColumnNames[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportColumnNames[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "lastDetectedAt"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for the organization whose vulnerabilities are being retrieved"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 5239,\n  \"title\": \"string\",\n  \"type\": \"string\",\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d3c8903-6218-4484-ab5d-8fad8ee8306c",
+              "name": "Forbidden - Access denied. The authenticated user lacks permission to access\nthe requested resource or perform the specified operation.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "suspected-vulnerabilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "automatedTriageStatus[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "automatedTriageStatus[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sourceId[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sourceId[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listingUid[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listingUid[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categoryId[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categoryId[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listingCategoryId[]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "listingCategoryId[]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "severity[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "severity[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportFormat",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportData[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportData[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportColumnNames[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportColumnNames[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "lastDetectedAt"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for the organization whose vulnerabilities are being retrieved"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 5239,\n  \"title\": \"string\",\n  \"type\": \"string\",\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "126cf9b5-7306-44a9-9b1d-e4a9ee918e0e",
+              "name": "Unprocessable Entity - The request is well-formed but contains semantic errors\nor business logic violations that prevent processing (e.g., invalid status transitions).\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "suspected-vulnerabilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "automatedTriageStatus[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "automatedTriageStatus[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sourceId[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sourceId[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listingUid[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listingUid[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categoryId[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categoryId[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listingCategoryId[]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "listingCategoryId[]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "severity[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "severity[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportFormat",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportData[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportData[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportColumnNames[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportColumnNames[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "lastDetectedAt"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for the organization whose vulnerabilities are being retrieved"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 5239,\n  \"title\": \"string\",\n  \"type\": \"string\",\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5bc3247d-b8f3-406d-8313-93b4264b3a73",
+              "name": "Internal Server Error - An unexpected server-side error occurred. This indicates\na system issue that should be reported to the engineering team for investigation.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "suspected-vulnerabilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "automatedTriageStatus[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "automatedTriageStatus[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sourceId[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sourceId[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listingUid[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listingUid[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categoryId[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categoryId[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listingCategoryId[]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "listingCategoryId[]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "severity[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "severity[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportFormat",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportData[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportData[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportColumnNames[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportColumnNames[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "lastDetectedAt"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for the organization whose vulnerabilities are being retrieved"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 5239,\n  \"title\": \"string\",\n  \"type\": \"string\",\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff1da818-5814-47d2-984c-ffcb0efe4e6e",
+          "name": "Add suspected vulnerabilities for an organization",
+          "request": {
+            "name": "Add suspected vulnerabilities for an organization",
+            "description": {
+              "content": "Add suspected vulnerabilities for an organization, creating corresponding assets if needed. On success returns list of numeric IDs of the newly created suspected vulnerabilities",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "organizations",
+                ":organizationUid",
+                "suspected-vulnerabilities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationUid",
+                  "description": "(Required) Unique identifier for the organization"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"location\": \"<string>\",\n    \"cvssScore\": \"<float>\",\n    \"cvssVersion\": \"<float>\",\n    \"lastFoundAt\": \"<dateTime>\",\n    \"source\": \"<string>\",\n    \"description\": \"<string>\",\n    \"cves\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"cwes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"category\": \"<string>\",\n    \"firstFoundAt\": \"<dateTime>\",\n    \"solution\": \"<string>\",\n    \"confidence\": \"<string>\",\n    \"severity\": \"<string>\",\n    \"assetUid\": \"<string>\",\n    \"listingUid\": \"<string>\",\n    \"owaspIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"vendorRiskScore\": \"<number>\",\n    \"httpRequest\": \"<byte>\",\n    \"httpResponse\": \"<byte>\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"location\": \"<string>\",\n    \"cvssScore\": \"<float>\",\n    \"cvssVersion\": \"<float>\",\n    \"lastFoundAt\": \"<dateTime>\",\n    \"source\": \"<string>\",\n    \"description\": \"<string>\",\n    \"cves\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"cwes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"category\": \"<string>\",\n    \"firstFoundAt\": \"<dateTime>\",\n    \"solution\": \"<string>\",\n    \"confidence\": \"<string>\",\n    \"severity\": \"<string>\",\n    \"assetUid\": \"<string>\",\n    \"listingUid\": \"<string>\",\n    \"owaspIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"vendorRiskScore\": \"<number>\",\n    \"httpRequest\": \"<byte>\",\n    \"httpResponse\": \"<byte>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "26f260be-6016-418b-a70d-13d98291503c",
+              "name": "Response to a POST request, inserting new suspected vulnerabilities for the organization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "suspected-vulnerabilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"string\",\n    \"cvssScore\": 6566.472151513616,\n    \"lastFoundAt\": \"1953-03-27T08:16:20.732Z\",\n    \"description\": \"string\",\n    \"category\": \"string\",\n    \"firstFoundAt\": \"1980-02-05T03:54:13.754Z\",\n    \"solution\": \"string\",\n    \"confidence\": \"certain\",\n    \"severity\": \"critical\",\n    \"assetUid\": \"string\",\n    \"listingUid\": \"string\",\n    \"vendorRiskScore\": 9157.835850799727,\n    \"httpRequest\": \"string\",\n    \"httpResponse\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"cvssScore\": 3279.980674938724,\n    \"lastFoundAt\": \"2010-04-07T19:58:46.300Z\",\n    \"description\": \"string\",\n    \"category\": \"string\",\n    \"firstFoundAt\": \"1990-07-31T14:34:40.603Z\",\n    \"solution\": \"string\",\n    \"confidence\": \"firm\",\n    \"severity\": \"high\",\n    \"assetUid\": \"string\",\n    \"listingUid\": \"string\",\n    \"vendorRiskScore\": 6817.295930082884,\n    \"httpRequest\": \"string\",\n    \"httpResponse\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  2431,\n  1582\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9e32c53-b42e-45d5-bf5a-98c40f66ea93",
+              "name": "Bad Request - The request is malformed, contains invalid parameters, or missing\nrequired fields. Check request syntax and parameter values.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "suspected-vulnerabilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"string\",\n    \"cvssScore\": 6566.472151513616,\n    \"lastFoundAt\": \"1953-03-27T08:16:20.732Z\",\n    \"description\": \"string\",\n    \"category\": \"string\",\n    \"firstFoundAt\": \"1980-02-05T03:54:13.754Z\",\n    \"solution\": \"string\",\n    \"confidence\": \"certain\",\n    \"severity\": \"critical\",\n    \"assetUid\": \"string\",\n    \"listingUid\": \"string\",\n    \"vendorRiskScore\": 9157.835850799727,\n    \"httpRequest\": \"string\",\n    \"httpResponse\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"cvssScore\": 3279.980674938724,\n    \"lastFoundAt\": \"2010-04-07T19:58:46.300Z\",\n    \"description\": \"string\",\n    \"category\": \"string\",\n    \"firstFoundAt\": \"1990-07-31T14:34:40.603Z\",\n    \"solution\": \"string\",\n    \"confidence\": \"firm\",\n    \"severity\": \"high\",\n    \"assetUid\": \"string\",\n    \"listingUid\": \"string\",\n    \"vendorRiskScore\": 6817.295930082884,\n    \"httpRequest\": \"string\",\n    \"httpResponse\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 5239,\n  \"title\": \"string\",\n  \"type\": \"string\",\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f02356cb-5917-4f25-a7ec-a9048157d7aa",
+              "name": "Unauthorized - Authentication failed. The bearer token is missing, expired,\ninvalid, or lacks sufficient permissions to access this resource.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "suspected-vulnerabilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"string\",\n    \"cvssScore\": 6566.472151513616,\n    \"lastFoundAt\": \"1953-03-27T08:16:20.732Z\",\n    \"description\": \"string\",\n    \"category\": \"string\",\n    \"firstFoundAt\": \"1980-02-05T03:54:13.754Z\",\n    \"solution\": \"string\",\n    \"confidence\": \"certain\",\n    \"severity\": \"critical\",\n    \"assetUid\": \"string\",\n    \"listingUid\": \"string\",\n    \"vendorRiskScore\": 9157.835850799727,\n    \"httpRequest\": \"string\",\n    \"httpResponse\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"cvssScore\": 3279.980674938724,\n    \"lastFoundAt\": \"2010-04-07T19:58:46.300Z\",\n    \"description\": \"string\",\n    \"category\": \"string\",\n    \"firstFoundAt\": \"1990-07-31T14:34:40.603Z\",\n    \"solution\": \"string\",\n    \"confidence\": \"firm\",\n    \"severity\": \"high\",\n    \"assetUid\": \"string\",\n    \"listingUid\": \"string\",\n    \"vendorRiskScore\": 6817.295930082884,\n    \"httpRequest\": \"string\",\n    \"httpResponse\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 5239,\n  \"title\": \"string\",\n  \"type\": \"string\",\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2264210f-4dc7-467b-9eca-57d7abd03c5d",
+              "name": "Forbidden - Access denied. The authenticated user lacks permission to access\nthe requested resource or perform the specified operation.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "suspected-vulnerabilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"string\",\n    \"cvssScore\": 6566.472151513616,\n    \"lastFoundAt\": \"1953-03-27T08:16:20.732Z\",\n    \"description\": \"string\",\n    \"category\": \"string\",\n    \"firstFoundAt\": \"1980-02-05T03:54:13.754Z\",\n    \"solution\": \"string\",\n    \"confidence\": \"certain\",\n    \"severity\": \"critical\",\n    \"assetUid\": \"string\",\n    \"listingUid\": \"string\",\n    \"vendorRiskScore\": 9157.835850799727,\n    \"httpRequest\": \"string\",\n    \"httpResponse\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"cvssScore\": 3279.980674938724,\n    \"lastFoundAt\": \"2010-04-07T19:58:46.300Z\",\n    \"description\": \"string\",\n    \"category\": \"string\",\n    \"firstFoundAt\": \"1990-07-31T14:34:40.603Z\",\n    \"solution\": \"string\",\n    \"confidence\": \"firm\",\n    \"severity\": \"high\",\n    \"assetUid\": \"string\",\n    \"listingUid\": \"string\",\n    \"vendorRiskScore\": 6817.295930082884,\n    \"httpRequest\": \"string\",\n    \"httpResponse\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 5239,\n  \"title\": \"string\",\n  \"type\": \"string\",\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a9f0efb-4937-41d7-bb0a-18aac67d3840",
+              "name": "Unprocessable Entity - The request is well-formed but contains semantic errors\nor business logic violations that prevent processing (e.g., invalid status transitions).\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "suspected-vulnerabilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"string\",\n    \"cvssScore\": 6566.472151513616,\n    \"lastFoundAt\": \"1953-03-27T08:16:20.732Z\",\n    \"description\": \"string\",\n    \"category\": \"string\",\n    \"firstFoundAt\": \"1980-02-05T03:54:13.754Z\",\n    \"solution\": \"string\",\n    \"confidence\": \"certain\",\n    \"severity\": \"critical\",\n    \"assetUid\": \"string\",\n    \"listingUid\": \"string\",\n    \"vendorRiskScore\": 9157.835850799727,\n    \"httpRequest\": \"string\",\n    \"httpResponse\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"cvssScore\": 3279.980674938724,\n    \"lastFoundAt\": \"2010-04-07T19:58:46.300Z\",\n    \"description\": \"string\",\n    \"category\": \"string\",\n    \"firstFoundAt\": \"1990-07-31T14:34:40.603Z\",\n    \"solution\": \"string\",\n    \"confidence\": \"firm\",\n    \"severity\": \"high\",\n    \"assetUid\": \"string\",\n    \"listingUid\": \"string\",\n    \"vendorRiskScore\": 6817.295930082884,\n    \"httpRequest\": \"string\",\n    \"httpResponse\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 5239,\n  \"title\": \"string\",\n  \"type\": \"string\",\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d8a5180-9345-4901-8204-dc455a141339",
+              "name": "Internal Server Error - An unexpected server-side error occurred. This indicates\na system issue that should be reported to the engineering team for investigation.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "suspected-vulnerabilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"string\",\n    \"cvssScore\": 6566.472151513616,\n    \"lastFoundAt\": \"1953-03-27T08:16:20.732Z\",\n    \"description\": \"string\",\n    \"category\": \"string\",\n    \"firstFoundAt\": \"1980-02-05T03:54:13.754Z\",\n    \"solution\": \"string\",\n    \"confidence\": \"certain\",\n    \"severity\": \"critical\",\n    \"assetUid\": \"string\",\n    \"listingUid\": \"string\",\n    \"vendorRiskScore\": 9157.835850799727,\n    \"httpRequest\": \"string\",\n    \"httpResponse\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"cvssScore\": 3279.980674938724,\n    \"lastFoundAt\": \"2010-04-07T19:58:46.300Z\",\n    \"description\": \"string\",\n    \"category\": \"string\",\n    \"firstFoundAt\": \"1990-07-31T14:34:40.603Z\",\n    \"solution\": \"string\",\n    \"confidence\": \"firm\",\n    \"severity\": \"high\",\n    \"assetUid\": \"string\",\n    \"listingUid\": \"string\",\n    \"vendorRiskScore\": 6817.295930082884,\n    \"httpRequest\": \"string\",\n    \"httpResponse\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 5239,\n  \"title\": \"string\",\n  \"type\": \"string\",\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cdf1483d-9484-4b61-b277-2697bad83f47",
+          "name": "Retrieve a specific suspected vulnerability",
+          "request": {
+            "name": "Retrieve a specific suspected vulnerability",
+            "description": {
+              "content": "Fetches detailed information for a single suspected vulnerability by its unique identifier.\nReturns comprehensive vulnerability data including metadata, triage information, and related assets.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "organizations",
+                ":organizationUid",
+                "suspected-vulnerabilities",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationUid",
+                  "description": "(Required) Unique identifier for the organization that owns the vulnerability being retrieved\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier for the specific suspected vulnerability to retrieve\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "8dbc71b3-b66c-49da-a939-2f8107111586",
+              "name": "Successfully retrieved detailed information for a single suspected vulnerability,\nincluding associated triage data and related metadata.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "suspected-vulnerabilities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for the organization that owns the vulnerability being retrieved\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the specific suspected vulnerability to retrieve\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"suspectedVulnerability\": {\n    \"id\": 2000,\n    \"assetUid\": \"ah28034gsjdf98eqwgbjufj\",\n    \"listingUid\": \"ah28034gsjdf\",\n    \"listingCodename\": \"ACME-H001\",\n    \"organizationUid\": \"ah28034gsjdf\",\n    \"categoryInScope\": true,\n    \"confidence\": \"firm\",\n    \"cvssBase\": 5.4,\n    \"exploitableLocations\": [\n      {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      {\n        \"key_0\": \"string\"\n      }\n    ],\n    \"falsePositive\": false,\n    \"payload\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\",\n      \"key_3\": \"string\",\n      \"key_4\": \"string\"\n    },\n    \"referenceUrls\": [\n      \"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring_ec2.html\",\n      \"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html\"\n    ],\n    \"severity\": \"low\",\n    \"source\": \"synack\",\n    \"sourceId\": \"job-abc-123\",\n    \"vulnerabilityStatusId\": 6110,\n    \"reasonTitle\": \"string\",\n    \"reasonDescription\": \"string\",\n    \"automatedTriageStatus\": \"string\",\n    \"automatedTriageStatusUpdatedAt\": \"2023-12-25T15:45:30.123Z\",\n    \"cves\": [\n      \"CVE-2025-1238923\",\n      \"CVE-2025-1238923\"\n    ],\n    \"cwes\": [\n      \"CWE-1238923\",\n      \"CWE-1238923\"\n    ],\n    \"status\": \"string\",\n    \"typeId\": \"Type-69d55e\",\n    \"typeTitle\": \"SQL Injection\",\n    \"typeCategoryId\": \"string\",\n    \"typeCategoryParentName\": \"string\",\n    \"typeCategoryChildName\": \"string\",\n    \"typeDescription\": \"string\",\n    \"exploitableVulnerabilityId\": \"test_e859b6a8371c-m001-4\",\n    \"createdAt\": \"2023-12-25T15:45:30.123Z\",\n    \"lastDetectedAt\": \"2023-12-25T15:45:30.123Z\",\n    \"triageIneligibleReason\": \"Triage already started or performed.\",\n    \"solution\": \"Microsoft has released security update KB5002113 to address this issue.\",\n    \"vendorRiskScore\": 1.3,\n    \"triages\": [\n      {\n        \"id\": \"string\",\n        \"content\": {\n          \"thoughts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"report\": \"string\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"content\": {\n          \"thoughts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"report\": \"string\"\n        }\n      }\n    ]\n  },\n  \"metadata\": {\n    \"pagination\": {\n      \"total\": 4654,\n      \"page\": 4757,\n      \"perPage\": 2351,\n      \"totalPages\": 4127,\n      \"prev\": \"string\",\n      \"next\": \"string\",\n      \"first\": \"string\",\n      \"last\": \"string\",\n      \"self\": \"string\"\n    },\n    \"actions\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e95dd700-c70c-4599-ae8b-a0bb0fa7def4",
+              "name": "Bad Request - The request is malformed, contains invalid parameters, or missing\nrequired fields. Check request syntax and parameter values.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "suspected-vulnerabilities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for the organization that owns the vulnerability being retrieved\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the specific suspected vulnerability to retrieve\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 5239,\n  \"title\": \"string\",\n  \"type\": \"string\",\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd9e73b5-6120-4544-9e1a-817092c87fda",
+              "name": "Unauthorized - Authentication failed. The bearer token is missing, expired,\ninvalid, or lacks sufficient permissions to access this resource.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "suspected-vulnerabilities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for the organization that owns the vulnerability being retrieved\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the specific suspected vulnerability to retrieve\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 5239,\n  \"title\": \"string\",\n  \"type\": \"string\",\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dabbdb62-09dc-4679-93fa-1d117483bc73",
+              "name": "Forbidden - Access denied. The authenticated user lacks permission to access\nthe requested resource or perform the specified operation.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "suspected-vulnerabilities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for the organization that owns the vulnerability being retrieved\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the specific suspected vulnerability to retrieve\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 5239,\n  \"title\": \"string\",\n  \"type\": \"string\",\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb619e55-f511-421b-a602-ea3f2f7e385a",
+              "name": "Not Found - The requested resource does not exist. This may occur when\nreferencing invalid organization UIDs or non-existent vulnerability IDs.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "suspected-vulnerabilities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for the organization that owns the vulnerability being retrieved\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the specific suspected vulnerability to retrieve\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 5239,\n  \"title\": \"string\",\n  \"type\": \"string\",\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2f3f769-7f37-4a5c-817d-71960b0ade28",
+              "name": "Unprocessable Entity - The request is well-formed but contains semantic errors\nor business logic violations that prevent processing (e.g., invalid status transitions).\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "suspected-vulnerabilities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for the organization that owns the vulnerability being retrieved\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the specific suspected vulnerability to retrieve\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 5239,\n  \"title\": \"string\",\n  \"type\": \"string\",\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0843a3b8-68dd-4fe4-9b28-08307d353def",
+              "name": "Internal Server Error - An unexpected server-side error occurred. This indicates\na system issue that should be reported to the engineering team for investigation.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "suspected-vulnerabilities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for the organization that owns the vulnerability being retrieved\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the specific suspected vulnerability to retrieve\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 5239,\n  \"title\": \"string\",\n  \"type\": \"string\",\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce1e520d-aeb6-4622-bf6c-9dae60b59dca",
+              "name": "Unexpected Error - An unhandled error condition occurred. This represents\nan edge case scenario that requires technical support intervention.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "organizations",
+                    ":organizationUid",
+                    "suspected-vulnerabilities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for the organization that owns the vulnerability being retrieved\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the specific suspected vulnerability to retrieve\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 5239,\n  \"title\": \"string\",\n  \"type\": \"string\",\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://client.synack.com/api/assessment",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f4ed17db-5458-4a61-8fe6-b92375a1c0fd",
+    "name": "Assessment Service Assessment Groups Suspected Vulnerabilities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for managing Assessment and related operations on the Synack.\n\n\nContact Support:\n Name: Synack Engineering\n Email: engineering@synack.com",
+      "type": "text/plain"
+    }
+  }
+}

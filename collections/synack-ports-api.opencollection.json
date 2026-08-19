@@ -1,0 +1,168 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Assessment Service Assessment Groups ports API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getHostPort",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/assets/:assetUid/ports/:portNumber/:portProtocol",
+            "params": [
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              },
+              {
+                "name": "portNumber",
+                "value": "",
+                "type": "path",
+                "description": "Port number."
+              },
+              {
+                "name": "portProtocol",
+                "value": "",
+                "type": "path",
+                "description": "Port protocol."
+              }
+            ]
+          },
+          "docs": "Retrieve a port for a host asset.\n"
+        },
+        {
+          "info": {
+            "name": "putHostPort",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://client.synack.com/api/assessment/v2/assets/:assetUid/ports/:portNumber/:portProtocol",
+            "headers": [
+              {
+                "name": "If-Match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              },
+              {
+                "name": "portNumber",
+                "value": "",
+                "type": "path",
+                "description": "Port number."
+              },
+              {
+                "name": "portProtocol",
+                "value": "",
+                "type": "path",
+                "description": "Port protocol."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert a port to a host asset. Will return 409 status if the asset is not a single host (i.e. a CIDR).\n"
+        },
+        {
+          "info": {
+            "name": "patchHostPort",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client.synack.com/api/assessment/v2/assets/:assetUid/ports/:portNumber/:portProtocol",
+            "headers": [
+              {
+                "name": "If-Match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              },
+              {
+                "name": "portNumber",
+                "value": "",
+                "type": "path",
+                "description": "Port number."
+              },
+              {
+                "name": "portProtocol",
+                "value": "",
+                "type": "path",
+                "description": "Port protocol."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update properties of a port belonging a single-IP host asset.\n"
+        },
+        {
+          "info": {
+            "name": "deleteHostPort",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client.synack.com/api/assessment/v2/assets/:assetUid/ports/:portNumber/:portProtocol",
+            "params": [
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              },
+              {
+                "name": "portNumber",
+                "value": "",
+                "type": "path",
+                "description": "Port number."
+              },
+              {
+                "name": "portProtocol",
+                "value": "",
+                "type": "path",
+                "description": "Port protocol."
+              }
+            ]
+          },
+          "docs": "Delete a port from a host asset. Will return 409 status if the asset is not a single host (i.e. a CIDR).\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

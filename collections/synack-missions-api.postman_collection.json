@@ -1,0 +1,2091 @@
+{
+  "item": [
+    {
+      "id": "ca2ac47d-0a5e-4872-a12d-0bc988411573",
+      "name": "Missions",
+      "description": {
+        "content": "Access mission information.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7d4ebb43-f674-48cd-88e1-0c994fe0fdcd",
+          "name": "Search for Group of Missions.",
+          "request": {
+            "name": "Search for Group of Missions.",
+            "description": {
+              "content": "Allows searching for Group of Missions (campaigns) available to the current authenticated user. Group of Missions are filtered based on what current listings and organizations the current user has access to.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "campaigns",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "PUBLISHED",
+                  "description": "Sorts by field names."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "PUBLISHED",
+                  "description": "Sorts by field names."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDir",
+                  "value": "desc"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDir",
+                  "value": "desc"
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Search by campaign's title, description or scope"
+                },
+                {
+                  "disabled": false,
+                  "key": "createdByRole",
+                  "value": "<string>",
+                  "description": "Filter campaigns by created_role"
+                },
+                {
+                  "disabled": false,
+                  "key": "orgUids",
+                  "value": "<uuid>",
+                  "description": "Filter by organization UIDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "orgUids",
+                  "value": "<uuid>",
+                  "description": "Filter by organization UIDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "listingUids",
+                  "value": "<uuid>",
+                  "description": "Filter by listing UIDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "listingUids",
+                  "value": "<uuid>",
+                  "description": "Filter by listing UIDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by Campaign Status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by Campaign Status."
+                },
+                {
+                  "disabled": false,
+                  "key": "listingType",
+                  "value": "<string>",
+                  "description": "Filter by listing types. Search is performed on the campaign's tags."
+                },
+                {
+                  "disabled": false,
+                  "key": "listingType",
+                  "value": "<string>",
+                  "description": "Filter by listing types. Search is performed on the campaign's tags."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeTaskStats",
+                  "value": "false",
+                  "description": "If this set to true, then additional tasks stats fields will be set for each campaign in the response which include:\n  * tasksTotal\n  * tasksCompleted\n  * tasksPassed\n  * tasksFailed\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeCatalogCategory",
+                  "value": "false",
+                  "description": "If set to true, then the CampaignCatalog that each Campaign belongs to will be included in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "includePublishedWaiting",
+                  "value": "false",
+                  "description": "If this is set to true, then additional tasksPublishedWaiting field will be set for each campaign in the response, which contains the count of missions that have been in PUBLISHED state for more than 30 minutes.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "publishedStartDate",
+                  "value": "<date>",
+                  "description": "It is possible this value alone to the query. If both published start and end date are provided, it is required for startDate < endDate."
+                },
+                {
+                  "disabled": false,
+                  "key": "publishedEndDate",
+                  "value": "<date>",
+                  "description": "It is possible this value alone to the query. If both published start and end date are provided, it is required for startDate < endDate."
+                },
+                {
+                  "disabled": false,
+                  "key": "deactivated",
+                  "value": "<boolean>",
+                  "description": "Filter by activated/deactivated campaigns."
+                },
+                {
+                  "disabled": false,
+                  "key": "creditsDeducted",
+                  "value": "false",
+                  "description": "Whether to return deducted credits."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a17a84aa-4247-40b3-8694-c1e95674360b",
+              "name": "Successful operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "campaigns",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "PUBLISHED"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "PUBLISHED"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "createdByRole",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orgUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "orgUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "listingUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "listingUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "CREATED"
+                    },
+                    {
+                      "key": "status",
+                      "value": "PUBLISHED"
+                    },
+                    {
+                      "key": "listingType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listingType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeTaskStats",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includeCatalogCategory",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includePublishedWaiting",
+                      "value": "false"
+                    },
+                    {
+                      "key": "publishedStartDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "publishedEndDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "deactivated",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "creditsDeducted",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "A unique UUID generated for every request. In the case of an error, this error should be included in the error report by the user so that we can easily filter the logs and find the error quicker.",
+                  "key": "X-Request-ID",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of per page entries.",
+                  "key": "Pagination-Limit",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": "The current page requested on the query params.",
+                  "key": "Pagination-Current-Page",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": "The total number of pages available for the specified query.",
+                  "key": "Pagination-Total-Pages",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": "The total number of entries available for the specified query.",
+                  "key": "Pagination-Total-Count",
+                  "value": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"83f9993c-ff4a-2658-2f34-db90d1b0a3a2\",\n    \"title\": \"string\",\n    \"listingUid\": \"7d76ddf8-a812-d05f-ba44-9f93ee7dc19d\",\n    \"listingCodename\": \"string\",\n    \"listingName\": \"string\",\n    \"organizationUid\": \"4f43adab-c656-39a6-b98f-4791540b823e\",\n    \"organizationName\": \"string\",\n    \"organizationCodename\": \"string\",\n    \"status\": \"PUBLISHED\",\n    \"published\": \"1959-07-24\",\n    \"completed\": \"1953-05-02\",\n    \"tasksCompleted\": 6908,\n    \"tasksTotal\": 8872,\n    \"tasksPassed\": 1778,\n    \"tasksFailed\": 6615,\n    \"tasksPublishedWaiting\": 8604,\n    \"isRetestable\": true,\n    \"parentUid\": \"efd194ed-4397-0014-f126-ec76d7b73291\",\n    \"deactivated\": \"1993-10-17\",\n    \"createdOn\": \"1979-06-04\",\n    \"createdByRole\": \"string\",\n    \"creditsDeducted\": 706,\n    \"catalogCategory\": {\n      \"id\": \"458282a8-f108-b232-9223-d6ecb9e3cb1e\",\n      \"name\": \"string\"\n    }\n  },\n  {\n    \"id\": \"952030f1-a96c-c582-128b-69fca007f471\",\n    \"title\": \"string\",\n    \"listingUid\": \"e0f703b8-bfd1-2ea6-da29-877832f44242\",\n    \"listingCodename\": \"string\",\n    \"listingName\": \"string\",\n    \"organizationUid\": \"760fd182-c89d-fba6-feb9-f1ab459aff5d\",\n    \"organizationName\": \"string\",\n    \"organizationCodename\": \"string\",\n    \"status\": \"CREATED\",\n    \"published\": \"1951-08-24\",\n    \"completed\": \"2019-06-24\",\n    \"tasksCompleted\": 22,\n    \"tasksTotal\": 4078,\n    \"tasksPassed\": 4758,\n    \"tasksFailed\": 1396,\n    \"tasksPublishedWaiting\": 9812,\n    \"isRetestable\": false,\n    \"parentUid\": \"e886843b-a782-1319-ba92-e2d8a5a1562e\",\n    \"deactivated\": \"2016-06-04\",\n    \"createdOn\": \"1996-06-07\",\n    \"createdByRole\": \"string\",\n    \"creditsDeducted\": 5352,\n    \"catalogCategory\": {\n      \"id\": \"d24fbb9b-a7b3-9b76-e0b5-d89f79837c2f\",\n      \"name\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4ef33d4-3b7e-4c55-a26f-8b54da0479ee",
+              "name": "Returned when query params are in bad format or when some of the Tasks requested for retesting were not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "campaigns",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "PUBLISHED"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "PUBLISHED"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "createdByRole",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orgUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "orgUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "listingUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "listingUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "CREATED"
+                    },
+                    {
+                      "key": "status",
+                      "value": "PUBLISHED"
+                    },
+                    {
+                      "key": "listingType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listingType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeTaskStats",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includeCatalogCategory",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includePublishedWaiting",
+                      "value": "false"
+                    },
+                    {
+                      "key": "publishedStartDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "publishedEndDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "deactivated",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "creditsDeducted",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "A unique UUID generated for every request. In the case of an error, this error should be included in the error report by the user so that we can easily filter the logs and find the error quicker.",
+                  "key": "X-Request-ID",
+                  "value": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 9,\n  \"errorMsg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ab65b3f-b1e9-4f59-a711-98396e5d4bd8",
+              "name": "Returned whenever a user does not have the required features enabled, has no orgs/listings assigned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "campaigns",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "PUBLISHED"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "PUBLISHED"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "createdByRole",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orgUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "orgUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "listingUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "listingUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "CREATED"
+                    },
+                    {
+                      "key": "status",
+                      "value": "PUBLISHED"
+                    },
+                    {
+                      "key": "listingType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listingType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeTaskStats",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includeCatalogCategory",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includePublishedWaiting",
+                      "value": "false"
+                    },
+                    {
+                      "key": "publishedStartDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "publishedEndDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "deactivated",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "creditsDeducted",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "A unique UUID generated for every request. In the case of an error, this error should be included in the error report by the user so that we can easily filter the logs and find the error quicker.",
+                  "key": "X-Request-ID",
+                  "value": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2c8cc6a-abbb-41b5-8d58-5d6cd7a0a8b4",
+          "name": "Search for Group of Missions by ID.",
+          "request": {
+            "name": "Search for Group of Missions by ID.",
+            "description": {
+              "content": "Allows searching for Group of Missions (campaign) by ID if available to the current authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "campaigns",
+                ":campaignID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeTaskStats",
+                  "value": "false",
+                  "description": "If this set to true, then additional tasks stats fields will be set for the campaign in the response which include:\n  * tasksTotal\n  * tasksCompleted\n  * tasksPassed\n  * tasksFailed\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeCatalogCategory",
+                  "value": "false",
+                  "description": "If set to true, then the CampaignCatalog that this Campaign belongs to will be included in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "creditsDeducted",
+                  "value": "false",
+                  "description": "Whether to return deducted credits."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "campaignID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9fd30e7c-2deb-4bc5-a362-1db52ef22453",
+              "name": "Successful operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "campaigns",
+                    ":campaignID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeTaskStats",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includeCatalogCategory",
+                      "value": "false"
+                    },
+                    {
+                      "key": "creditsDeducted",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "campaignID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "A unique UUID generated for every request. In the case of an error, this error should be included in the error report by the user so that we can easily filter the logs and find the error quicker.",
+                  "key": "X-Request-ID",
+                  "value": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"d4bb9387-4490-625a-7f71-402156ca8c39\",\n  \"title\": \"string\",\n  \"description\": \"string\",\n  \"assetType\": [\n    \"string\",\n    \"string\"\n  ],\n  \"isRetestable\": false,\n  \"parentUid\": \"2d65fbbb-acc3-6cbf-a24e-b0eb9cae10a6\",\n  \"status\": \"COMPLETED\",\n  \"createdOn\": \"2026-03-24\",\n  \"modifiedOn\": \"2022-04-02\",\n  \"publishedOn\": \"2011-08-17\",\n  \"completedOn\": \"2015-07-26\",\n  \"scheduledOn\": \"1987-07-01\",\n  \"listing\": {},\n  \"scope\": \"string\",\n  \"tasksCompleted\": 7775,\n  \"tasksTotal\": 2507,\n  \"tasksPassed\": 9833,\n  \"tasksFailed\": 3092,\n  \"campaignTemplateUid\": \"57b785c5-b2fc-cc3a-6d45-c6d76de1c61f\",\n  \"campaignTemplateVersion\": 58,\n  \"deactivated\": \"1971-09-25\",\n  \"organizationUid\": \"367db121-39d9-cea3-a9f7-fd62ad1f163c\",\n  \"creditsDeducted\": 9542,\n  \"catalogCategory\": {\n    \"id\": \"b874cb63-39c3-5f47-ed4b-325e97866501\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73aaa6b3-a025-475d-9141-ee0aaa3ff51f",
+              "name": "Returned whenever a user does not have the required features enabled, has no orgs/listings assigned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "campaigns",
+                    ":campaignID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeTaskStats",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includeCatalogCategory",
+                      "value": "false"
+                    },
+                    {
+                      "key": "creditsDeducted",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "campaignID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "A unique UUID generated for every request. In the case of an error, this error should be included in the error report by the user so that we can easily filter the logs and find the error quicker.",
+                  "key": "X-Request-ID",
+                  "value": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "838f4705-9f50-4ea6-ad13-ce876e5c7687",
+              "name": "Campaign not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "campaigns",
+                    ":campaignID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeTaskStats",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includeCatalogCategory",
+                      "value": "false"
+                    },
+                    {
+                      "key": "creditsDeducted",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "campaignID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "A unique UUID generated for every request. In the case of an error, this error should be included in the error report by the user so that we can easily filter the logs and find the error quicker.",
+                  "key": "X-Request-ID",
+                  "value": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b7a328a3-7847-4689-b9b8-b0bd3b52d5f9",
+          "name": "Get Group of Missions stats by status.",
+          "request": {
+            "name": "Get Group of Missions stats by status.",
+            "description": {
+              "content": "Allows searching for Group of Missions (campaigns) stats by status if available to the current authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "campaigns",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "orgUids",
+                  "value": "<uuid>",
+                  "description": "(Required) Filter by organization UIDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "orgUids",
+                  "value": "<uuid>",
+                  "description": "(Required) Filter by organization UIDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "listingUids",
+                  "value": "<uuid>",
+                  "description": "Filter by listing UIDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "listingUids",
+                  "value": "<uuid>",
+                  "description": "Filter by listing UIDs."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d119a21f-114a-4e9c-a197-e5b5163dd550",
+              "name": "Successful operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "campaigns",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orgUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "orgUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "listingUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "listingUids",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "A unique UUID generated for every request. In the case of an error, this error should be included in the error report by the user so that we can easily filter the logs and find the error quicker.",
+                  "key": "X-Request-ID",
+                  "value": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"all\": 361,\n  \"active\": 4745,\n  \"inReview\": 6500,\n  \"completed\": 7218\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c7dd536-f422-43ae-a98e-e6686d0fe519",
+              "name": "Returned whenever a user does not have an authorized client role.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "campaigns",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orgUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "orgUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "listingUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "listingUids",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "A unique UUID generated for every request. In the case of an error, this error should be included in the error report by the user so that we can easily filter the logs and find the error quicker.",
+                  "key": "X-Request-ID",
+                  "value": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e39496be-e5c9-46cf-b6c7-c0cc3c56caab",
+          "name": "Search for missions.",
+          "request": {
+            "name": "Search for missions.",
+            "description": {
+              "content": "Allows searching for missions (tasks) available to the current authenticated user. Missions are filtered based on what current listings and organizations the current user has access to.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "tasks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "PUBLISHED",
+                  "description": "Sorts by field names.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "PUBLISHED",
+                  "description": "Sorts by field names.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDir",
+                  "value": "desc"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDir",
+                  "value": "desc"
+                },
+                {
+                  "disabled": false,
+                  "key": "approvedStartDate",
+                  "value": "<date>",
+                  "description": "Filter by approved date (this value can be sent alone to the query). If both approved start and end date are provided, it is required for startDate < endDate."
+                },
+                {
+                  "disabled": false,
+                  "key": "approvedEndDate",
+                  "value": "<date>",
+                  "description": "Filter by approved date (this value can be sent alone to the query). If both approved start and end date are provided, it is required for startDate < endDate."
+                },
+                {
+                  "disabled": false,
+                  "key": "assetTypes",
+                  "value": "<string>",
+                  "description": "Filter by asset types."
+                },
+                {
+                  "disabled": false,
+                  "key": "assetTypes",
+                  "value": "<string>",
+                  "description": "Filter by asset types."
+                },
+                {
+                  "disabled": false,
+                  "key": "attackTypes",
+                  "value": "<string>",
+                  "description": "Filter by attack types."
+                },
+                {
+                  "disabled": false,
+                  "key": "attackTypes",
+                  "value": "<string>",
+                  "description": "Filter by attack types."
+                },
+                {
+                  "disabled": false,
+                  "key": "categories",
+                  "value": "<string>",
+                  "description": "Filter by categories."
+                },
+                {
+                  "disabled": false,
+                  "key": "categories",
+                  "value": "<string>",
+                  "description": "Filter by categories."
+                },
+                {
+                  "disabled": false,
+                  "key": "cwe",
+                  "value": "<string>",
+                  "description": "Filter by CWEs."
+                },
+                {
+                  "disabled": false,
+                  "key": "cwe",
+                  "value": "<string>",
+                  "description": "Filter by CWEs."
+                },
+                {
+                  "disabled": false,
+                  "key": "Uids",
+                  "value": "<string>",
+                  "description": "Filter by tasks UIDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "Uids",
+                  "value": "<string>",
+                  "description": "Filter by tasks UIDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "orgUids",
+                  "value": "<uuid>",
+                  "description": "Filter by organization UIDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "orgUids",
+                  "value": "<uuid>",
+                  "description": "Filter by organization UIDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "listingUids",
+                  "value": "<uuid>",
+                  "description": "Filter by listing UIDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "listingUids",
+                  "value": "<uuid>",
+                  "description": "Filter by listing UIDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by task status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by task status."
+                },
+                {
+                  "disabled": false,
+                  "key": "sv",
+                  "value": "<string>",
+                  "description": "Filter by tasks SV."
+                },
+                {
+                  "disabled": false,
+                  "key": "assignee",
+                  "value": "<string>",
+                  "description": "Filter by user assignee to the tasks."
+                },
+                {
+                  "disabled": false,
+                  "key": "campaignUid",
+                  "value": "<string>",
+                  "description": "Filter by campaign UID."
+                },
+                {
+                  "disabled": false,
+                  "key": "deactivated",
+                  "value": "<boolean>",
+                  "description": "Filter by activated/deactivated tasks and campaigns."
+                },
+                {
+                  "disabled": false,
+                  "key": "deactivatedTasks",
+                  "value": "<boolean>",
+                  "description": "Filter by activated/deactivated tasks only - no impact from campaigns."
+                },
+                {
+                  "disabled": false,
+                  "key": "attachments",
+                  "value": "<boolean>",
+                  "description": "Include attachments for the tasks in the response. By default is false."
+                },
+                {
+                  "disabled": false,
+                  "key": "viewed",
+                  "value": "<boolean>",
+                  "description": "Include the viewed field in the response. By default is false."
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Query used to perform a full text search on task's title, description or scope."
+                },
+                {
+                  "disabled": false,
+                  "key": "taskTemplateUid",
+                  "value": "<string>",
+                  "description": "Filter by task template UID."
+                },
+                {
+                  "disabled": false,
+                  "key": "definitionId",
+                  "value": "<string>",
+                  "description": "Filter by definition ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "batchId",
+                  "value": "<string>",
+                  "description": "Filter by batch ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "taskGroup",
+                  "value": "<string>",
+                  "description": "Filter by task group."
+                },
+                {
+                  "disabled": false,
+                  "key": "structuredResponse",
+                  "value": "<string>",
+                  "description": "Filter by task structured response."
+                },
+                {
+                  "disabled": false,
+                  "key": "taskTypes",
+                  "value": "<string>",
+                  "description": "Filter task types, case insensitively. Currently accepted values are: \"MISSION\", \"SV2M\" and \"TAAS\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "taskTypes",
+                  "value": "<string>",
+                  "description": "Filter task types, case insensitively. Currently accepted values are: \"MISSION\", \"SV2M\" and \"TAAS\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeAssignedBySynackUser",
+                  "value": "<boolean>",
+                  "description": "Return whether the task was assigned to the researcher by a boss user."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeTaskTemplateCredits",
+                  "value": "<boolean>",
+                  "description": "Return the task template credits for the task."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5220182f-b16a-4170-be89-36c08b1d521b",
+              "name": "Successful operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "PUBLISHED"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "PUBLISHED"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "approvedStartDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "approvedEndDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "assetTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "attackTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "attackTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cwe",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cwe",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Uids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Uids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orgUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "orgUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "listingUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "listingUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "PUBLISHED"
+                    },
+                    {
+                      "key": "status",
+                      "value": "APPROVED"
+                    },
+                    {
+                      "key": "sv",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assignee",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "campaignUid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deactivated",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "deactivatedTasks",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "attachments",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "viewed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "taskTemplateUid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "definitionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batchId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "taskGroup",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "structuredResponse",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "taskTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "taskTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeAssignedBySynackUser",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "includeTaskTemplateCredits",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "A unique UUID generated for every request. In the case of an error, this error should be included in the error report by the user so that we can easily filter the logs and find the error quicker.",
+                  "key": "X-Request-ID",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of per page entries.",
+                  "key": "Pagination-Limit",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": "The current page requested on the query params.",
+                  "key": "Pagination-Current-Page",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": "The total number of pages available for the specified query.",
+                  "key": "Pagination-Total-Pages",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": "The total number of entries available for the specified query.",
+                  "key": "Pagination-Total-Count",
+                  "value": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"f67472e1-1199-95ba-8c20-24b82526ef05\",\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"taskTemplateUid\": \"857641c8-2b0d-cfc4-d32a-30c2af012696\",\n    \"taskTemplateCredits\": 9132,\n    \"campaignUid\": \"d4150fd6-0507-aa2a-a3e1-f82f150a14c9\",\n    \"campaignName\": \"string\",\n    \"listingUid\": \"e2f3f023-a6fc-749c-aedf-8138db82105c\",\n    \"listingCodename\": \"string\",\n    \"organizationUid\": \"2a7dd84c-d856-da59-371c-34b758448c5a\",\n    \"organizationCodename\": \"string\",\n    \"status\": \"APPROVED\",\n    \"attachments\": [\n      {\n        \"id\": \"bd4feee2-6a1c-44e9-7b32-750747db471f\",\n        \"title\": \"string\",\n        \"description\": \"string\",\n        \"originalFilename\": \"string\",\n        \"data\": \"string\",\n        \"thumbnailData\": \"string\",\n        \"sizeInBytes\": 7482,\n        \"groupId\": \"string\",\n        \"position\": 8331,\n        \"createdOn\": \"1946-12-09\",\n        \"createdBy\": \"string\",\n        \"modifiedOn\": \"1960-10-09\",\n        \"modifiedBy\": \"string\",\n        \"deletedOn\": \"1966-03-09\",\n        \"version\": 6102,\n        \"mimeType\": \"string\",\n        \"tasks\": [\n          {\n            \"id\": \"string\",\n            \"title\": \"string\",\n            \"description\": \"string\",\n            \"definitionUID\": \"string\",\n            \"definitionName\": \"string\",\n            \"structuredResponse\": \"string\",\n            \"assetTypes\": [\n              \"string\",\n              \"string\"\n            ],\n            \"attackTypes\": [\n              \"string\",\n              \"string\"\n            ],\n            \"attachments\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"completedOn\": \"1986-02-19T02:35:20.689Z\",\n            \"scope\": \"string\",\n            \"status\": \"string\",\n            \"type\": \"string\",\n            \"categories\": [\n              \"string\",\n              \"string\"\n            ],\n            \"response\": \"string\",\n            \"controlFamily\": \"string\",\n            \"fismaLow\": \"string\",\n            \"fismaModerate\": \"string\",\n            \"fismaHigh\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"title\": \"string\",\n            \"description\": \"string\",\n            \"definitionUID\": \"string\",\n            \"definitionName\": \"string\",\n            \"structuredResponse\": \"string\",\n            \"assetTypes\": [\n              \"string\",\n              \"string\"\n            ],\n            \"attackTypes\": [\n              \"string\",\n              \"string\"\n            ],\n            \"attachments\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"completedOn\": \"1979-11-06T18:53:08.040Z\",\n            \"scope\": \"string\",\n            \"status\": \"string\",\n            \"type\": \"string\",\n            \"categories\": [\n              \"string\",\n              \"string\"\n            ],\n            \"response\": \"string\",\n            \"controlFamily\": \"string\",\n            \"fismaLow\": \"string\",\n            \"fismaModerate\": \"string\",\n            \"fismaHigh\": \"string\"\n          }\n        ]\n      },\n      {\n        \"id\": \"2f6491ff-077e-b018-7065-7ff6ce08d0e1\",\n        \"title\": \"string\",\n        \"description\": \"string\",\n        \"originalFilename\": \"string\",\n        \"data\": \"string\",\n        \"thumbnailData\": \"string\",\n        \"sizeInBytes\": 324,\n        \"groupId\": \"string\",\n        \"position\": 1996,\n        \"createdOn\": \"1983-10-30\",\n        \"createdBy\": \"string\",\n        \"modifiedOn\": \"1967-12-10\",\n        \"modifiedBy\": \"string\",\n        \"deletedOn\": \"1983-04-20\",\n        \"version\": 993,\n        \"mimeType\": \"string\",\n        \"tasks\": [\n          {\n            \"id\": \"string\",\n            \"title\": \"string\",\n            \"description\": \"string\",\n            \"definitionUID\": \"string\",\n            \"definitionName\": \"string\",\n            \"structuredResponse\": \"string\",\n            \"assetTypes\": [\n              \"string\",\n              \"string\"\n            ],\n            \"attackTypes\": [\n              \"string\",\n              \"string\"\n            ],\n            \"attachments\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"completedOn\": \"1998-05-28T18:32:52.555Z\",\n            \"scope\": \"string\",\n            \"status\": \"string\",\n            \"type\": \"string\",\n            \"categories\": [\n              \"string\",\n              \"string\"\n            ],\n            \"response\": \"string\",\n            \"controlFamily\": \"string\",\n            \"fismaLow\": \"string\",\n            \"fismaModerate\": \"string\",\n            \"fismaHigh\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"title\": \"string\",\n            \"description\": \"string\",\n            \"definitionUID\": \"string\",\n            \"definitionName\": \"string\",\n            \"structuredResponse\": \"string\",\n            \"assetTypes\": [\n              \"string\",\n              \"string\"\n            ],\n            \"attackTypes\": [\n              \"string\",\n              \"string\"\n            ],\n            \"attachments\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"completedOn\": \"2020-10-16T06:31:02.316Z\",\n            \"scope\": \"string\",\n            \"status\": \"string\",\n            \"type\": \"string\",\n            \"categories\": [\n              \"string\",\n              \"string\"\n            ],\n            \"response\": \"string\",\n            \"controlFamily\": \"string\",\n            \"fismaLow\": \"string\",\n            \"fismaModerate\": \"string\",\n            \"fismaHigh\": \"string\"\n          }\n        ]\n      }\n    ],\n    \"hasBeenViewed\": false,\n    \"payout\": {\n      \"value\": \"reference #/components/schemas/PayoutResult not found in the OpenAPI spec\"\n    },\n    \"credits\": 7260,\n    \"assetTypes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"attackTypes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"sv\": [\n      \"string\",\n      \"string\"\n    ],\n    \"cwe\": [\n      \"string\",\n      \"string\"\n    ],\n    \"categories\": [\n      \"string\",\n      \"string\"\n    ],\n    \"taskType\": \"string\",\n    \"attempts\": 2996,\n    \"batchId\": \"string\",\n    \"controlFamily\": \"string\",\n    \"definitionId\": \"string\",\n    \"definitionName\": \"string\",\n    \"fismaLow\": \"string\",\n    \"fismaModerate\": \"string\",\n    \"fismaHigh\": \"string\",\n    \"taskGroup\": \"string\",\n    \"response\": \"string\",\n    \"structuredResponse\": \"string\",\n    \"position\": 7597,\n    \"createdOn\": \"2010-11-03\",\n    \"modifiedOn\": \"1987-02-02\",\n    \"maxCompletionTimeInSecs\": 1981,\n    \"pausedDurationInSecs\": 7060,\n    \"version\": 6878,\n    \"validResponses\": [\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"publishedOn\": \"1971-05-29\",\n    \"claimedOn\": \"1950-02-10\",\n    \"completedOn\": \"2007-10-22\",\n    \"validatedOn\": \"1963-04-01\",\n    \"reviewedOn\": \"1994-02-28\",\n    \"pausedOn\": \"1956-12-11\",\n    \"deactivatedOn\": \"1994-09-24\",\n    \"invalidatedOn\": \"1986-03-05\",\n    \"returnedForEditOn\": \"1963-07-21\",\n    \"canEditResponse\": true,\n    \"isAssigneeCurrentUser\": true,\n    \"assignedBySynackUser\": false\n  },\n  {\n    \"id\": \"3191f345-8d01-cebd-b76f-c8bfab478965\",\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"taskTemplateUid\": \"3c2d740a-c001-7dc3-f015-e53a58c48ba3\",\n    \"taskTemplateCredits\": 3786,\n    \"campaignUid\": \"31f9b2fd-1d04-1ba7-0c6f-bc15c4e225ee\",\n    \"campaignName\": \"string\",\n    \"listingUid\": \"30995a69-efcf-27ce-2d45-ab89caf396d5\",\n    \"listingCodename\": \"string\",\n    \"organizationUid\": \"5f6d4626-1191-997e-fe08-ba2337a2769e\",\n    \"organizationCodename\": \"string\",\n    \"status\": \"PUBLISHED\",\n    \"attachments\": [\n      {\n        \"id\": \"18e19af9-deaf-a3d3-b457-731306b247d9\",\n        \"title\": \"string\",\n        \"description\": \"string\",\n        \"originalFilename\": \"string\",\n        \"data\": \"string\",\n        \"thumbnailData\": \"string\",\n        \"sizeInBytes\": 3379,\n        \"groupId\": \"string\",\n        \"position\": 3482,\n        \"createdOn\": \"1972-01-21\",\n        \"createdBy\": \"string\",\n        \"modifiedOn\": \"2005-05-12\",\n        \"modifiedBy\": \"string\",\n        \"deletedOn\": \"1975-09-06\",\n        \"version\": 7254,\n        \"mimeType\": \"string\",\n        \"tasks\": [\n          {\n            \"id\": \"string\",\n            \"title\": \"string\",\n            \"description\": \"string\",\n            \"definitionUID\": \"string\",\n            \"definitionName\": \"string\",\n            \"structuredResponse\": \"string\",\n            \"assetTypes\": [\n              \"string\",\n              \"string\"\n            ],\n            \"attackTypes\": [\n              \"string\",\n              \"string\"\n            ],\n            \"attachments\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"completedOn\": \"2003-11-12T06:49:18.551Z\",\n            \"scope\": \"string\",\n            \"status\": \"string\",\n            \"type\": \"string\",\n            \"categories\": [\n              \"string\",\n              \"string\"\n            ],\n            \"response\": \"string\",\n            \"controlFamily\": \"string\",\n            \"fismaLow\": \"string\",\n            \"fismaModerate\": \"string\",\n            \"fismaHigh\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"title\": \"string\",\n            \"description\": \"string\",\n            \"definitionUID\": \"string\",\n            \"definitionName\": \"string\",\n            \"structuredResponse\": \"string\",\n            \"assetTypes\": [\n              \"string\",\n              \"string\"\n            ],\n            \"attackTypes\": [\n              \"string\",\n              \"string\"\n            ],\n            \"attachments\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"completedOn\": \"1979-08-25T02:38:11.079Z\",\n            \"scope\": \"string\",\n            \"status\": \"string\",\n            \"type\": \"string\",\n            \"categories\": [\n              \"string\",\n              \"string\"\n            ],\n            \"response\": \"string\",\n            \"controlFamily\": \"string\",\n            \"fismaLow\": \"string\",\n            \"fismaModerate\": \"string\",\n            \"fismaHigh\": \"string\"\n          }\n        ]\n      },\n      {\n        \"id\": \"51f4bf29-5b59-f46d-bd8b-e0b024a958d5\",\n        \"title\": \"string\",\n        \"description\": \"string\",\n        \"originalFilename\": \"string\",\n        \"data\": \"string\",\n        \"thumbnailData\": \"string\",\n        \"sizeInBytes\": 3872,\n        \"groupId\": \"string\",\n        \"position\": 4905,\n        \"createdOn\": \"1957-06-15\",\n        \"createdBy\": \"string\",\n        \"modifiedOn\": \"1997-03-14\",\n        \"modifiedBy\": \"string\",\n        \"deletedOn\": \"2017-07-11\",\n        \"version\": 5365,\n        \"mimeType\": \"string\",\n        \"tasks\": [\n          {\n            \"id\": \"string\",\n            \"title\": \"string\",\n            \"description\": \"string\",\n            \"definitionUID\": \"string\",\n            \"definitionName\": \"string\",\n            \"structuredResponse\": \"string\",\n            \"assetTypes\": [\n              \"string\",\n              \"string\"\n            ],\n            \"attackTypes\": [\n              \"string\",\n              \"string\"\n            ],\n            \"attachments\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"completedOn\": \"1989-10-03T14:22:23.353Z\",\n            \"scope\": \"string\",\n            \"status\": \"string\",\n            \"type\": \"string\",\n            \"categories\": [\n              \"string\",\n              \"string\"\n            ],\n            \"response\": \"string\",\n            \"controlFamily\": \"string\",\n            \"fismaLow\": \"string\",\n            \"fismaModerate\": \"string\",\n            \"fismaHigh\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"title\": \"string\",\n            \"description\": \"string\",\n            \"definitionUID\": \"string\",\n            \"definitionName\": \"string\",\n            \"structuredResponse\": \"string\",\n            \"assetTypes\": [\n              \"string\",\n              \"string\"\n            ],\n            \"attackTypes\": [\n              \"string\",\n              \"string\"\n            ],\n            \"attachments\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"completedOn\": \"1955-05-20T22:28:44.871Z\",\n            \"scope\": \"string\",\n            \"status\": \"string\",\n            \"type\": \"string\",\n            \"categories\": [\n              \"string\",\n              \"string\"\n            ],\n            \"response\": \"string\",\n            \"controlFamily\": \"string\",\n            \"fismaLow\": \"string\",\n            \"fismaModerate\": \"string\",\n            \"fismaHigh\": \"string\"\n          }\n        ]\n      }\n    ],\n    \"hasBeenViewed\": true,\n    \"payout\": {\n      \"value\": \"reference #/components/schemas/PayoutResult not found in the OpenAPI spec\"\n    },\n    \"credits\": 3871,\n    \"assetTypes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"attackTypes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"sv\": [\n      \"string\",\n      \"string\"\n    ],\n    \"cwe\": [\n      \"string\",\n      \"string\"\n    ],\n    \"categories\": [\n      \"string\",\n      \"string\"\n    ],\n    \"taskType\": \"string\",\n    \"attempts\": 3969,\n    \"batchId\": \"string\",\n    \"controlFamily\": \"string\",\n    \"definitionId\": \"string\",\n    \"definitionName\": \"string\",\n    \"fismaLow\": \"string\",\n    \"fismaModerate\": \"string\",\n    \"fismaHigh\": \"string\",\n    \"taskGroup\": \"string\",\n    \"response\": \"string\",\n    \"structuredResponse\": \"string\",\n    \"position\": 4455,\n    \"createdOn\": \"1992-04-14\",\n    \"modifiedOn\": \"1986-06-20\",\n    \"maxCompletionTimeInSecs\": 7018,\n    \"pausedDurationInSecs\": 5121,\n    \"version\": 1648,\n    \"validResponses\": [\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"publishedOn\": \"1949-03-19\",\n    \"claimedOn\": \"2009-02-27\",\n    \"completedOn\": \"1956-04-23\",\n    \"validatedOn\": \"1948-03-25\",\n    \"reviewedOn\": \"2014-10-20\",\n    \"pausedOn\": \"2025-06-08\",\n    \"deactivatedOn\": \"1990-06-21\",\n    \"invalidatedOn\": \"1970-01-19\",\n    \"returnedForEditOn\": \"1988-12-02\",\n    \"canEditResponse\": true,\n    \"isAssigneeCurrentUser\": true,\n    \"assignedBySynackUser\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a8475f8-5851-4ba2-b743-b0a0cf602adb",
+              "name": "Returned when query params are in bad format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "PUBLISHED"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "PUBLISHED"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "approvedStartDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "approvedEndDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "assetTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "attackTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "attackTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cwe",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cwe",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Uids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Uids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orgUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "orgUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "listingUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "listingUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "PUBLISHED"
+                    },
+                    {
+                      "key": "status",
+                      "value": "APPROVED"
+                    },
+                    {
+                      "key": "sv",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assignee",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "campaignUid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deactivated",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "deactivatedTasks",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "attachments",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "viewed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "taskTemplateUid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "definitionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batchId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "taskGroup",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "structuredResponse",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "taskTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "taskTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeAssignedBySynackUser",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "includeTaskTemplateCredits",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "A unique UUID generated for every request. In the case of an error, this error should be included in the error report by the user so that we can easily filter the logs and find the error quicker.",
+                  "key": "X-Request-ID",
+                  "value": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 9,\n  \"errorMsg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63c4453f-f1e4-468c-a5a3-4964609fa068",
+              "name": "Returned whenever a user does not have the required features enabled, or has requested for orgs/listings that he doesn't have access to.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "PUBLISHED"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "PUBLISHED"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "approvedStartDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "approvedEndDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "assetTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "attackTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "attackTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cwe",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cwe",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Uids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Uids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orgUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "orgUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "listingUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "listingUids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "PUBLISHED"
+                    },
+                    {
+                      "key": "status",
+                      "value": "APPROVED"
+                    },
+                    {
+                      "key": "sv",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assignee",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "campaignUid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deactivated",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "deactivatedTasks",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "attachments",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "viewed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "taskTemplateUid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "definitionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batchId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "taskGroup",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "structuredResponse",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "taskTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "taskTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeAssignedBySynackUser",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "includeTaskTemplateCredits",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "A unique UUID generated for every request. In the case of an error, this error should be included in the error report by the user so that we can easily filter the logs and find the error quicker.",
+                  "key": "X-Request-ID",
+                  "value": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://client.synack.com/api/assessment",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e13e8b56-4c15-4d21-9f7f-6b7930beee9c",
+    "name": "Assessment Service Assessment Groups Missions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for managing Assessment and related operations on the Synack.\n\n\nContact Support:\n Name: Synack Engineering\n Email: engineering@synack.com",
+      "type": "text/plain"
+    }
+  }
+}

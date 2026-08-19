@@ -1,0 +1,225 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Assessment Service Assessment Groups Vulnerabilities API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Vulnerabilities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get vulnerabilities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/vulnerabilities",
+            "params": [
+              {
+                "name": "filter[search]",
+                "value": "",
+                "type": "query",
+                "description": "Search term for vulnerabilities"
+              },
+              {
+                "name": "filter[status_id]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by vulnerability status ID"
+              },
+              {
+                "name": "filter[updated_within]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by vulnerabilities updated within specified seconds"
+              },
+              {
+                "name": "filter[updated_since]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by vulnerabilities updated since specified date"
+              },
+              {
+                "name": "filter[include_attachments]",
+                "value": "",
+                "type": "query",
+                "description": "Include vulnerability attachments"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of vulnerabilities with filtering options"
+        },
+        {
+          "info": {
+            "name": "Get a specific vulnerability",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/vulnerabilities/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Vulnerability ID"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific vulnerability"
+        },
+        {
+          "info": {
+            "name": "Update a vulnerability",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client.synack.com/api/assessment/v1/vulnerabilities/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Vulnerability ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a specific vulnerability's status or tags"
+        },
+        {
+          "info": {
+            "name": "Returns list of exploitable vulnerabilities on a given organization and asset uid",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/:org_uid/assets/:asset_uid/vulns",
+            "params": [
+              {
+                "name": "org_uid",
+                "value": "",
+                "type": "path",
+                "description": "Organization UID"
+              },
+              {
+                "name": "asset_uid",
+                "value": "",
+                "type": "path",
+                "description": "Asset UID"
+              },
+              {
+                "name": "statuses[]",
+                "value": "",
+                "type": "query",
+                "description": "Vulnerability status"
+              },
+              {
+                "name": "vuln_cvss[]",
+                "value": "",
+                "type": "query",
+                "description": "Vulnerability CVSS range [0.0-0.0, 0.1-3.9, 4.0-6.9, 7.0-8.9, 9.0-10.0]"
+              },
+              {
+                "name": "patch_verification[]",
+                "value": "",
+                "type": "query",
+                "description": "Patch verification status [requested failed cancelled verified blocked]"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Order by [title, severity, created_at, status]"
+              },
+              {
+                "name": "order_direction",
+                "value": "",
+                "type": "query",
+                "description": "Order direction [asc desc]"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to be returned"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "If provided, show the provided page"
+              }
+            ]
+          },
+          "docs": "Get exploitable vulnerabilities by organization and assets uid"
+        },
+        {
+          "info": {
+            "name": "Returns top-5 CISA known-exploitable vulnerabilities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/:org_uid/metrics/vulnerabilities/exploitable",
+            "params": [
+              {
+                "name": "org_uid",
+                "value": "",
+                "type": "path",
+                "description": "Organization UID"
+              },
+              {
+                "name": "listing_uid",
+                "value": "",
+                "type": "query",
+                "description": "Listing UID. If `false` is provided, it will return count of assets that does not belong to any listing nor seed group"
+              },
+              {
+                "name": "seed_group_uid",
+                "value": "",
+                "type": "query",
+                "description": "Seed group UID."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of CISA CVEs results to be returned"
+              }
+            ]
+          },
+          "docs": "Get top-5 CISA known-exploitable vulnerabilities."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,318 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Assessment Service Assessment Groups Tags API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "updateSeedGroupTags",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v1/organizations/:organizationUid/seed-groups/:seedGroupUid/tags/batchUpdate",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an organization group."
+              },
+              {
+                "name": "seedGroupUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for a seed group."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a seed groups tags.\n"
+        },
+        {
+          "info": {
+            "name": "Get vulnerability tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/vulnerability_tags"
+          },
+          "docs": "Retrieve a list of vulnerability tags"
+        },
+        {
+          "info": {
+            "name": "Create a vulnerability tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v1/vulnerability_tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new vulnerability tag"
+        },
+        {
+          "info": {
+            "name": "Update a vulnerability tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://client.synack.com/api/assessment/v1/vulnerability_tags/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Tag ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing vulnerability tag"
+        },
+        {
+          "info": {
+            "name": "Delete a vulnerability tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client.synack.com/api/assessment/v1/vulnerability_tags/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Tag ID"
+              }
+            ]
+          },
+          "docs": "Delete a vulnerability tag"
+        },
+        {
+          "info": {
+            "name": "Retrieve a list of assessments tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/assessment_tags"
+          },
+          "docs": "Retrieve all assessments tags defined by your organization including the number of assessments they are associated with."
+        },
+        {
+          "info": {
+            "name": "Create a new assessment tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v1/assessment_tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new tag and associate it with an assessment. Only organization admins are able to create new tags."
+        },
+        {
+          "info": {
+            "name": "Update the name of an assessment tag record",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://client.synack.com/api/assessment/v1/assessment_tags/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the assessment tag"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the name of a tag. Only organization admins are able to update tags."
+        },
+        {
+          "info": {
+            "name": "Remove an assessment tag record",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client.synack.com/api/assessment/v1/assessment_tags/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the assessment tag"
+              }
+            ]
+          },
+          "docs": "Remove a tag. Only organization admins are able to delete tags."
+        },
+        {
+          "info": {
+            "name": "Returns list of tags per org",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/:org_uid/tags",
+            "params": [
+              {
+                "name": "org_uid",
+                "value": "",
+                "type": "path",
+                "description": "Organization UID"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search for tags"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of tags results to be returned"
+              }
+            ]
+          },
+          "docs": "Get Tags by Organization"
+        },
+        {
+          "info": {
+            "name": "postTags",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v1.0/organizations/:orgUid/tags",
+            "params": [
+              {
+                "name": "orgUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an organization group."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new tags. \n409 Conflict is logged as warn if the name matches the name of a tag that already exists in a given org uid.\n"
+        },
+        {
+          "info": {
+            "name": "patchTags",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client.synack.com/api/assessment/v1.0/organizations/:orgUid/tags",
+            "params": [
+              {
+                "name": "orgUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an organization group."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Attach/detach entities to/from org uids and/or tag uids.\n"
+        },
+        {
+          "info": {
+            "name": "deleteTags",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client.synack.com/api/assessment/v1.0/organizations/:orgUid/tags",
+            "params": [
+              {
+                "name": "orgUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an organization group."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deletes tags.\n"
+        },
+        {
+          "info": {
+            "name": "putTags",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://client.synack.com/api/assessment/v1.0/organizations/:orgUid/tags/:tagUid",
+            "params": [
+              {
+                "name": "orgUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an organization group."
+              },
+              {
+                "name": "tagUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for a tag."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates tag name by tag uid.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,368 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Assessment Service Assessment Groups Seeds API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Seeds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getSeedGroups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/organizations/:organizationUid/seed-groups",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an organization group."
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.\n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Optional property to sort results by."
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query",
+                "description": "Direction of sort-order for items in the response."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Optional query parameter for a search string that will be used to match within seed group name.\n"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "Optional query parameter for a tag that will be used to filter seed groups.\n"
+              }
+            ]
+          },
+          "docs": "Retrieve and filter seed groups.\n"
+        },
+        {
+          "info": {
+            "name": "postSeedGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v1/organizations/:organizationUid/seed-groups",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an organization group."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new seed group and seeds if valid.\n"
+        },
+        {
+          "info": {
+            "name": "getSeedGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/organizations/:organizationUid/seed-groups/:seedGroupUid",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an organization group."
+              },
+              {
+                "name": "seedGroupUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for a seed group."
+              }
+            ]
+          },
+          "docs": "Retrieves a single seed group.\n"
+        },
+        {
+          "info": {
+            "name": "patchSeedGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client.synack.com/api/assessment/v1/organizations/:organizationUid/seed-groups/:seedGroupUid",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an organization group."
+              },
+              {
+                "name": "seedGroupUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for a seed group."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a seed group.\n"
+        },
+        {
+          "info": {
+            "name": "deleteSeedGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client.synack.com/api/assessment/v1/organizations/:organizationUid/seed-groups/:seedGroupUid",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an organization group."
+              },
+              {
+                "name": "seedGroupUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for a seed group."
+              }
+            ]
+          },
+          "docs": "Deletes a seed group. All seeds in the seed group will be deleted, and any assets discovered from those seeds will be removed from the listing associated with the seed group that owns the deleted seed.\n"
+        },
+        {
+          "info": {
+            "name": "getSeeds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/organizations/:organizationUid/seed-groups/:seedGroupUid/seeds",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an organization group."
+              },
+              {
+                "name": "seedGroupUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for a seed group."
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.\n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Optional property to sort results by."
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query",
+                "description": "Direction of sort-order for items in the response."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Optional query parameter for a search string that will be used to match within seed name.\n"
+              },
+              {
+                "name": "seedType",
+                "value": "",
+                "type": "query",
+                "description": "Filter the response to include only seeds with a seed type.\n"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "Optional query parameter for a tag that will be used to filter seeds.\n"
+              }
+            ]
+          },
+          "docs": "Retrieve and filter seeds for a seed group.\n"
+        },
+        {
+          "info": {
+            "name": "postSeed",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v1/organizations/:organizationUid/seed-groups/:seedGroupUid/seeds",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an organization group."
+              },
+              {
+                "name": "seedGroupUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for a seed group."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new seed if valid.\n"
+        },
+        {
+          "info": {
+            "name": "getSeed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/organizations/:organizationUid/seed-groups/:seedGroupUid/seeds/:seedUid",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an organization group."
+              },
+              {
+                "name": "seedGroupUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for a seed group."
+              },
+              {
+                "name": "seedUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for a seed."
+              }
+            ]
+          },
+          "docs": "Retrieves a single seed.\n"
+        },
+        {
+          "info": {
+            "name": "deleteSeed",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client.synack.com/api/assessment/v1/organizations/:organizationUid/seed-groups/:seedGroupUid/seeds/:seedUid",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an organization group."
+              },
+              {
+                "name": "seedGroupUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for a seed group."
+              },
+              {
+                "name": "seedUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for a seed."
+              }
+            ]
+          },
+          "docs": "Delete seeds. Any assets discovered from those seeds will be removed from the listing associated with the seed group that owns the deleted seed.\n"
+        },
+        {
+          "info": {
+            "name": "updateSeedGroupTags",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v1/organizations/:organizationUid/seed-groups/:seedGroupUid/tags/batchUpdate",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an organization group."
+              },
+              {
+                "name": "seedGroupUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for a seed group."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a seed groups tags.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

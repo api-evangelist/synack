@@ -1,0 +1,2415 @@
+{
+  "item": [
+    {
+      "id": "891807c2-c927-4b2d-9f6d-4b35dce46076",
+      "name": "scoperules",
+      "description": {
+        "content": "Scope-rules provide fine grained control for what is in and out of scope for an asset.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "84f7eeb3-00e3-4a5e-8cdc-91416259e13f",
+          "name": "get Scope Rules",
+          "request": {
+            "name": "get Scope Rules",
+            "description": {
+              "content": "Gets a list of all scope rules for a host or web application asset.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "assets",
+                ":assetUid",
+                "scope-rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "<integer>",
+                  "description": "Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Optional property to sort results by."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDir",
+                  "value": "asc",
+                  "description": "Direction of sort-order for items in the response."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetUid",
+                  "description": "(Required) Unique identifier for an asset."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "533256c6-eed7-4528-ba3c-46e259a276a1",
+              "name": "Paginated scope rules of a host with CIDRs or web application asset.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "scope-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "perPage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Maximum number of items returned in a paginated response.",
+                  "key": "Pagination-Limit",
+                  "value": "3291"
+                },
+                {
+                  "disabled": false,
+                  "description": "Current page in a paginated response.",
+                  "key": "Pagination-Current-Page",
+                  "value": "3291"
+                },
+                {
+                  "disabled": false,
+                  "description": "Total number of pages in a paginated response.",
+                  "key": "Pagination-Total-Pages",
+                  "value": "3291"
+                },
+                {
+                  "disabled": false,
+                  "description": "Total number of items in all pages of a paginated response.",
+                  "key": "Pagination-Total-Count",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": "Standard link header.",
+                  "key": "Link",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"appliesTo\": \"srt\",\n    \"createdAt\": \"2013-12-20T00:58:39.045Z\",\n    \"createdBy\": \"3df7a21450cf\",\n    \"rule\": \"/;%10xJ%fa%9f4///\",\n    \"scope\": \"in\",\n    \"uid\": \"5a67aad25de7\",\n    \"updatedAt\": \"1999-07-06T03:00:44.384Z\",\n    \"updatedBy\": \"b10d769a5965\"\n  },\n  {\n    \"appliesTo\": \"scanners\",\n    \"createdAt\": \"1995-04-13T21:09:49.101Z\",\n    \"createdBy\": \"7adaf5b967b2\",\n    \"rule\": \"/%8aqY%0e%6byB//$%D2%abv6D%fFh%5EU%Af//%D2%2D%95j+;)%70%DB///#%5E%6d?///\",\n    \"scope\": \"in\",\n    \"uid\": \"ac53d41abe9d\",\n    \"updatedAt\": \"1978-02-21T02:34:01.244Z\",\n    \"updatedBy\": \"bacdcea64f0c\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1cb4c0c6-d231-4a6b-be39-bdb7af3f23fe",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "scope-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "perPage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "20af95de-2456-44a7-baa2-862b851cb89f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "scope-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "perPage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3660b88f-bfa5-46c5-997b-8307275f55e0",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "scope-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "perPage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "98a31b15-9c69-4dea-9ad0-12f8394522d7",
+              "name": "Conflict.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "scope-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "perPage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 171,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 4998,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 1229,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 2422,\n  \"batchSize\": 966\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee7c55dc-55e7-42e2-a1dd-35ab066b4203",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "scope-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "perPage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 171,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 4998,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 1229,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 2422,\n  \"batchSize\": 966\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1813816e-a5a5-45ba-bf1d-7a8f51167e0b",
+              "name": "Service Unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "scope-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "perPage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 171,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 4998,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 1229,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 2422,\n  \"batchSize\": 966\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7441bb9f-02d8-4244-b287-2e3f05b20f9a",
+          "name": "post Scope Rule",
+          "request": {
+            "name": "post Scope Rule",
+            "description": {
+              "content": "Adds a scope rule to a web application or host asset. Returns a 409 status code if the asset is not one of these expected types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "assets",
+                ":assetUid",
+                "scope-rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetUid",
+                  "description": "(Required) Unique identifier for an asset."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appliesTo\": \"<string>\",\n  \"createdBy\": \"<string>\",\n  \"rule\": \"<string>\",\n  \"scope\": \"<string>\",\n  \"uid\": \"<string>\",\n  \"updatedBy\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d3dab358-82e6-418a-84ff-88a1f3b7f464",
+              "name": "The current state of a scope rule.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "scope-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appliesTo\": \"scanners\",\n  \"createdBy\": \"d359e86509f8\",\n  \"rule\": \"/%8e%cd:{i%75r%C5//i//@/?w/%bE/?//#?/\",\n  \"scope\": \"out\",\n  \"uid\": \"d98641a0ae20\",\n  \"updatedBy\": \"b15b219fd37c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "An identifier for a specific version of a resource",
+                  "key": "ETag",
+                  "value": "W/\"DeTBI@f]\""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"appliesTo\": \"srt\",\n  \"createdAt\": \"2011-07-06T19:18:32.206Z\",\n  \"createdBy\": \"73f53a548dbd\",\n  \"rule\": \"/np%58R)%C1//%f79B%AB~b%5f//%3DrQ%F3%1bf%8E%d5.o//)%a2%2A%b5%6b%C2//%2DS%fB)%1cZ5%8aS//U%1AA%a3%9b//'//=%5Fj%38%39//bbB%1E%fFY%1Fh//%72%27///#@?%55$?/?\",\n  \"scope\": \"in\",\n  \"uid\": \"658ed8d52561\",\n  \"updatedAt\": \"2021-03-19T05:20:19.304Z\",\n  \"updatedBy\": \"0407fcf4d53f\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "679572be-d20d-4893-b507-e40be4314c76",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "scope-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appliesTo\": \"scanners\",\n  \"createdBy\": \"d359e86509f8\",\n  \"rule\": \"/%8e%cd:{i%75r%C5//i//@/?w/%bE/?//#?/\",\n  \"scope\": \"out\",\n  \"uid\": \"d98641a0ae20\",\n  \"updatedBy\": \"b15b219fd37c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "af55f752-2c28-4fa1-9776-b84e74212be2",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "scope-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appliesTo\": \"scanners\",\n  \"createdBy\": \"d359e86509f8\",\n  \"rule\": \"/%8e%cd:{i%75r%C5//i//@/?w/%bE/?//#?/\",\n  \"scope\": \"out\",\n  \"uid\": \"d98641a0ae20\",\n  \"updatedBy\": \"b15b219fd37c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a88fbb78-0745-4ef5-b523-8dcb61db9b7e",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "scope-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appliesTo\": \"scanners\",\n  \"createdBy\": \"d359e86509f8\",\n  \"rule\": \"/%8e%cd:{i%75r%C5//i//@/?w/%bE/?//#?/\",\n  \"scope\": \"out\",\n  \"uid\": \"d98641a0ae20\",\n  \"updatedBy\": \"b15b219fd37c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d01e1602-4b5a-4551-a0be-983d5fb64fc9",
+              "name": "Conflict.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "scope-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appliesTo\": \"scanners\",\n  \"createdBy\": \"d359e86509f8\",\n  \"rule\": \"/%8e%cd:{i%75r%C5//i//@/?w/%bE/?//#?/\",\n  \"scope\": \"out\",\n  \"uid\": \"d98641a0ae20\",\n  \"updatedBy\": \"b15b219fd37c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 469,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 9883,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 4119,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 5310,\n  \"batchSize\": 4665\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f635bef7-1541-4fac-80ff-402521f52346",
+              "name": "Entity Not Processable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "scope-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appliesTo\": \"scanners\",\n  \"createdBy\": \"d359e86509f8\",\n  \"rule\": \"/%8e%cd:{i%75r%C5//i//@/?w/%bE/?//#?/\",\n  \"scope\": \"out\",\n  \"uid\": \"d98641a0ae20\",\n  \"updatedBy\": \"b15b219fd37c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 171,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 4998,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 1229,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 2422,\n  \"batchSize\": 966\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4771c84-f702-4724-8d81-412c85504c7b",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "scope-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appliesTo\": \"scanners\",\n  \"createdBy\": \"d359e86509f8\",\n  \"rule\": \"/%8e%cd:{i%75r%C5//i//@/?w/%bE/?//#?/\",\n  \"scope\": \"out\",\n  \"uid\": \"d98641a0ae20\",\n  \"updatedBy\": \"b15b219fd37c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 469,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 9883,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 4119,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 5310,\n  \"batchSize\": 4665\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "258e655d-9e26-4275-b947-a91701399b02",
+              "name": "Service Unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets",
+                    ":assetUid",
+                    "scope-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appliesTo\": \"scanners\",\n  \"createdBy\": \"d359e86509f8\",\n  \"rule\": \"/%8e%cd:{i%75r%C5//i//@/?w/%bE/?//#?/\",\n  \"scope\": \"out\",\n  \"uid\": \"d98641a0ae20\",\n  \"updatedBy\": \"b15b219fd37c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 469,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 9883,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 4119,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 5310,\n  \"batchSize\": 4665\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "28e052fc-c9b5-4d94-9a2f-b3f2702570a1",
+          "name": "get Scope Rule",
+          "request": {
+            "name": "get Scope Rule",
+            "description": {
+              "content": "Retrieve a scope rule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "scope-rules",
+                ":scopeRuleUid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "scopeRuleUid",
+                  "description": "(Required) Unique identifier for a scope rule."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "651d19a4-f5e0-4d0e-ae7a-cc79beb780db",
+              "name": "The current state of a scope rule.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "scope-rules",
+                    ":scopeRuleUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scopeRuleUid",
+                      "description": "(Required) Unique identifier for a scope rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "An identifier for a specific version of a resource",
+                  "key": "ETag",
+                  "value": "W/\"DeTBI@f]\""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"appliesTo\": \"srt\",\n  \"createdAt\": \"2011-07-06T19:18:32.206Z\",\n  \"createdBy\": \"73f53a548dbd\",\n  \"rule\": \"/np%58R)%C1//%f79B%AB~b%5f//%3DrQ%F3%1bf%8E%d5.o//)%a2%2A%b5%6b%C2//%2DS%fB)%1cZ5%8aS//U%1AA%a3%9b//'//=%5Fj%38%39//bbB%1E%fFY%1Fh//%72%27///#@?%55$?/?\",\n  \"scope\": \"in\",\n  \"uid\": \"658ed8d52561\",\n  \"updatedAt\": \"2021-03-19T05:20:19.304Z\",\n  \"updatedBy\": \"0407fcf4d53f\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5efdf971-7198-49ae-b5c2-62141d3abc54",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "scope-rules",
+                    ":scopeRuleUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scopeRuleUid",
+                      "description": "(Required) Unique identifier for a scope rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a240ffb9-da05-4007-9c4e-4ca4a4025b1b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "scope-rules",
+                    ":scopeRuleUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scopeRuleUid",
+                      "description": "(Required) Unique identifier for a scope rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5a2503d8-80f3-4375-9929-8e76b9220872",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "scope-rules",
+                    ":scopeRuleUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scopeRuleUid",
+                      "description": "(Required) Unique identifier for a scope rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "09e09366-61e7-4b50-8c94-485c26a82432",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "scope-rules",
+                    ":scopeRuleUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scopeRuleUid",
+                      "description": "(Required) Unique identifier for a scope rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 469,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 9883,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 4119,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 5310,\n  \"batchSize\": 4665\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef50c461-b42d-4f4e-a2ec-872048421e0b",
+              "name": "Service Unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "scope-rules",
+                    ":scopeRuleUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scopeRuleUid",
+                      "description": "(Required) Unique identifier for a scope rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 469,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 9883,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 4119,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 5310,\n  \"batchSize\": 4665\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ebd45cba-b061-40e7-85ef-5eb0745ad3a7",
+          "name": "patch Scope Rule",
+          "request": {
+            "name": "patch Scope Rule",
+            "description": {
+              "content": "Patch properties of a scope rule for a host asset with CIDRs or web application asset. Will return a 409 status code if the type is not one of these expected types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "scope-rules",
+                ":scopeRuleUid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "scopeRuleUid",
+                  "description": "(Required) Unique identifier for a scope rule."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rule\": \"<string>\",\n  \"scope\": \"<string>\",\n  \"appliesTo\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "598103b3-bffd-40e4-b49f-0f4e82dc511e",
+              "name": "The current state of a scope rule.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "scope-rules",
+                    ":scopeRuleUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scopeRuleUid",
+                      "description": "(Required) Unique identifier for a scope rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rule\": \"<string>\",\n  \"scope\": \"out\",\n  \"appliesTo\": \"scanners\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "An identifier for a specific version of a resource",
+                  "key": "ETag",
+                  "value": "W/\"DeTBI@f]\""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"appliesTo\": \"srt\",\n  \"createdAt\": \"2011-07-06T19:18:32.206Z\",\n  \"createdBy\": \"73f53a548dbd\",\n  \"rule\": \"/np%58R)%C1//%f79B%AB~b%5f//%3DrQ%F3%1bf%8E%d5.o//)%a2%2A%b5%6b%C2//%2DS%fB)%1cZ5%8aS//U%1AA%a3%9b//'//=%5Fj%38%39//bbB%1E%fFY%1Fh//%72%27///#@?%55$?/?\",\n  \"scope\": \"in\",\n  \"uid\": \"658ed8d52561\",\n  \"updatedAt\": \"2021-03-19T05:20:19.304Z\",\n  \"updatedBy\": \"0407fcf4d53f\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94cb9b4a-fd6d-43f4-8220-006963652220",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "scope-rules",
+                    ":scopeRuleUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scopeRuleUid",
+                      "description": "(Required) Unique identifier for a scope rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rule\": \"<string>\",\n  \"scope\": \"out\",\n  \"appliesTo\": \"scanners\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a8f10819-a826-4f50-876a-2a302aebb76b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "scope-rules",
+                    ":scopeRuleUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scopeRuleUid",
+                      "description": "(Required) Unique identifier for a scope rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rule\": \"<string>\",\n  \"scope\": \"out\",\n  \"appliesTo\": \"scanners\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "832fc677-fe89-4fc5-9843-713dfe6b13d5",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "scope-rules",
+                    ":scopeRuleUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scopeRuleUid",
+                      "description": "(Required) Unique identifier for a scope rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rule\": \"<string>\",\n  \"scope\": \"out\",\n  \"appliesTo\": \"scanners\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "39d9350d-c3a4-498b-b2bb-e9e43c58c9e5",
+              "name": "Conflict.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "scope-rules",
+                    ":scopeRuleUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scopeRuleUid",
+                      "description": "(Required) Unique identifier for a scope rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rule\": \"<string>\",\n  \"scope\": \"out\",\n  \"appliesTo\": \"scanners\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 469,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 9883,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 4119,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 5310,\n  \"batchSize\": 4665\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b4ec14c-9f02-44e0-a8f0-f0c2cf5aeb86",
+              "name": "Entity Not Processable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "scope-rules",
+                    ":scopeRuleUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scopeRuleUid",
+                      "description": "(Required) Unique identifier for a scope rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rule\": \"<string>\",\n  \"scope\": \"out\",\n  \"appliesTo\": \"scanners\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 469,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 9883,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 4119,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 5310,\n  \"batchSize\": 4665\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dee6579c-9444-483a-a7d9-d1d6c4cdaff1",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "scope-rules",
+                    ":scopeRuleUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scopeRuleUid",
+                      "description": "(Required) Unique identifier for a scope rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rule\": \"<string>\",\n  \"scope\": \"out\",\n  \"appliesTo\": \"scanners\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 469,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 9883,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 4119,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 5310,\n  \"batchSize\": 4665\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "753ef3d5-d5ff-4909-b320-f49b39a6005d",
+              "name": "Service Unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "scope-rules",
+                    ":scopeRuleUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scopeRuleUid",
+                      "description": "(Required) Unique identifier for a scope rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rule\": \"<string>\",\n  \"scope\": \"out\",\n  \"appliesTo\": \"scanners\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 469,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 9883,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 4119,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 5310,\n  \"batchSize\": 4665\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94bd1ef6-4596-4dcb-9c9a-3555ba622085",
+          "name": "delete Scope Rule",
+          "request": {
+            "name": "delete Scope Rule",
+            "description": {
+              "content": "Delete a scope rule from a host or web application asset. Will return a 409 status code if the type is not one of these expected types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "scope-rules",
+                ":scopeRuleUid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "scopeRuleUid",
+                  "description": "(Required) Unique identifier for a scope rule."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "e4229d49-8957-405b-91b5-e75d2a7f9ba0",
+              "name": "No content.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "scope-rules",
+                    ":scopeRuleUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scopeRuleUid",
+                      "description": "(Required) Unique identifier for a scope rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4fe33d81-fe83-47ad-a4e9-7daa22c304e4",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "scope-rules",
+                    ":scopeRuleUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scopeRuleUid",
+                      "description": "(Required) Unique identifier for a scope rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "715e1ea2-f499-48b0-a834-9c5b283b2d0b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "scope-rules",
+                    ":scopeRuleUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scopeRuleUid",
+                      "description": "(Required) Unique identifier for a scope rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2a5c98f1-d471-4375-a399-4956a46c9991",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "scope-rules",
+                    ":scopeRuleUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scopeRuleUid",
+                      "description": "(Required) Unique identifier for a scope rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "69e3210e-c916-4176-91d9-67368ab87e7e",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "scope-rules",
+                    ":scopeRuleUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scopeRuleUid",
+                      "description": "(Required) Unique identifier for a scope rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 469,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 9883,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 4119,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 5310,\n  \"batchSize\": 4665\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3598a429-8caa-43ba-9f4e-29dfcaac0141",
+              "name": "Service Unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "scope-rules",
+                    ":scopeRuleUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scopeRuleUid",
+                      "description": "(Required) Unique identifier for a scope rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 469,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 9883,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 4119,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 5310,\n  \"batchSize\": 4665\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://client.synack.com/api/assessment",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fb9e21e5-b805-4e4f-a556-54da0775c2a4",
+    "name": "Assessment Service Assessment Groups scoperules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for managing Assessment and related operations on the Synack.\n\n\nContact Support:\n Name: Synack Engineering\n Email: engineering@synack.com",
+      "type": "text/plain"
+    }
+  }
+}

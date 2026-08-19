@@ -1,0 +1,1096 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Assessment Service Assessment Groups mobileapps API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "mobileapps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "postAssetBulk",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v2/bulk/assets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates Assets in my Synack org. Note: In the Body, choose the Object pull down that corresponds to the asset type you want to add; Object 1 for Cloud, Object 2 for Hosts, Object 3 for Mobile, Object 4 for Networks, Object 5 for Web. For example; to add more than 1 Host IP address, choose Option 2, then specify multiple IP ranges with /32 CIDRs (adding a new Item for each).\n"
+        },
+        {
+          "info": {
+            "name": "bulkUpdateAssetLifecycleState",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v2/bulk/assets/lifecycle-state:update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk updates the asset life cycle property. Checks the validity of assets and returns 409 Conflict if rules are violated.\n"
+        },
+        {
+          "info": {
+            "name": "bulkUpdateAssetCriticality",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v2/bulk/assets/criticality:update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk update the criticality of multiple assets.\n"
+        },
+        {
+          "info": {
+            "name": "getAssets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/assets",
+            "params": [
+              {
+                "name": "organizationUid[]",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for an organization. If not supplied the request will apply to all organizations the user is authorized to access."
+              },
+              {
+                "name": "listingUid[]",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for an listing. If not supplied the request will apply to all listings the user is authorized to access."
+              },
+              {
+                "name": "assetType[]",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the returned asset summaries to only assets of the specified type."
+              },
+              {
+                "name": "hostType[]",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the returned asset summaries to only the types of host assets requested when assetType also includes host.\n"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Optional query parameter for a search string that will be used to match within the label or location properties of assets. If this query parameter is provided, any location query parameter will be ignored.\n"
+              },
+              {
+                "name": "active",
+                "value": "",
+                "type": "query",
+                "description": "Optional parameter that determines whether the response includes assets regardless of active state (the default, if this query parameter is not provided); active assets only if true; or inactive assets only if false.\n"
+              },
+              {
+                "name": "inProduction",
+                "value": "",
+                "type": "query",
+                "description": "Optional query parameter that determines whether production or non-production assets will be included in the response.\n"
+              },
+              {
+                "name": "maxHostDiscoveryAgeMins",
+                "value": "",
+                "type": "query",
+                "description": "Optional query parameter to get host assets which are discovered by cloudEnumeration scanner shifted by maxHostDiscoveryAgeMins. Assets which are added via boss or discovered by other type of scanners will be included in response. E.g. CloudEnumeration hosts are valid for 1 hour from each time they are discovered, maxHostDiscoveryAgeMins=0 means that if the end time of the relationship has passed, the asset will not be returned - maxHostDiscoveryAgeMins=60 however, would return assets that were still valid 60 minutes ago\n"
+              },
+              {
+                "name": "scope[]",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the returned assets to only assets associated to listings by the specified scopes."
+              },
+              {
+                "name": "cloudPlatform[]",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the returned assets to only assets enumerated from a particular cloud platform."
+              },
+              {
+                "name": "location",
+                "value": "",
+                "type": "query",
+                "description": "Prefix search of the derived location property.\n"
+              },
+              {
+                "name": "errorCode[]",
+                "value": "",
+                "type": "query",
+                "description": "Filter assets to only include assets with matching error codes."
+              },
+              {
+                "name": "portNumber[]",
+                "value": "",
+                "type": "query",
+                "description": "Filter assets to only include hosts with open ports matching the port number."
+              },
+              {
+                "name": "maxOpenPorts",
+                "value": "",
+                "type": "query",
+                "description": "Max open ports from a single IP address."
+              },
+              {
+                "name": "hasNetwork",
+                "value": "",
+                "type": "query",
+                "description": "Filter assets to include/exclude those with networks.\nDeprecating.\n"
+              },
+              {
+                "name": "networkUid[]",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for a network.\nIf not supplied the request will apply to all networks the user is authorized to access.\nDeprecating.\n"
+              },
+              {
+                "name": "gatewayId[]",
+                "value": "",
+                "type": "query",
+                "description": "Unique gateway id.\nIf not supplied the request will apply to all gateways.\n"
+              },
+              {
+                "name": "earliestCreatedAt",
+                "value": "",
+                "type": "query",
+                "description": "Filter assets with a createdAt date greater or equal to this value"
+              },
+              {
+                "name": "latestCreatedAt",
+                "value": "",
+                "type": "query",
+                "description": "Filter assets with a createdAt date less than or equal to this value"
+              },
+              {
+                "name": "userUid",
+                "value": "",
+                "type": "query",
+                "description": "Restricts the credentials to only those available to the user. This query parameter is ignored if the user is a researcher."
+              },
+              {
+                "name": "relationshipTargetAssetUid",
+                "value": "",
+                "type": "query",
+                "description": "Filter assets which have a relationship with targetAssetUid equal to this value.\n"
+              },
+              {
+                "name": "relationshipType",
+                "value": "",
+                "type": "query",
+                "description": "Filter assets which have a relationship of this type.\n"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.\n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Optional property to sort results by."
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query",
+                "description": "Direction of sort-order for items in the response."
+              },
+              {
+                "name": "origin",
+                "value": "",
+                "type": "query",
+                "description": "Optional property to filter results by human created or system discovered assets."
+              },
+              {
+                "name": "lifecycleState[]",
+                "value": "",
+                "type": "query",
+                "description": "Optional property to filter results by asset lifecycle state. When not supplied, all assets except `archived` will be returned."
+              },
+              {
+                "name": "omitFields",
+                "value": "",
+                "type": "query",
+                "description": "Fields to omit from response."
+              },
+              {
+                "name": "ipRanges[]",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the returned asset summaries to only assets of the specified ip ranges."
+              }
+            ]
+          },
+          "docs": "Retrieve the list of assets for one or more organizations, considering filtering and pagination query parameters. When an organization-level OAuth2 scope is provided, the results will be restricted to those organizations the user is authorized for. Similarly, if a listing- level OAuth2 scope is provided, the results will be restricted to those listings the user is authorized for.\nAdditional query parameters generally restrict the resulting set of assets according to AND semantics.\nUse of organiz"
+        },
+        {
+          "info": {
+            "name": "postAsset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v2/assets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an asset in my Synack org. In the Body, choose the Object pull down that corresponds to the asset type you want to add; Object 1 for Cloud, Object 2 for Host, Object 3 for Mobile, Object 4 for Network, Object 5 for Web\n"
+        },
+        {
+          "info": {
+            "name": "getAsset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/assets/:assetUid",
+            "params": [
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              },
+              {
+                "name": "userUid",
+                "value": "",
+                "type": "query",
+                "description": "Restricts the credentials to only those available to the user. This query parameter is ignored if the user is a researcher."
+              }
+            ]
+          },
+          "docs": "Retrieves a single asset. If the user is a researcher, only the credentials they are authorized to access will be returned. If the asset is of cloud account type, only a user with asset_scan_gr scope can access its credential data.\n"
+        },
+        {
+          "info": {
+            "name": "patchAsset",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client.synack.com/api/assessment/v2/assets/:assetUid",
+            "params": [
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patches the properties of a single asset.\n"
+        },
+        {
+          "info": {
+            "name": "deleteAsset",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client.synack.com/api/assessment/v2/assets/:assetUid",
+            "params": [
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              }
+            ]
+          },
+          "docs": "Deletes an asset. This is intended to be a privileged operation. Regular use should be to mark the asset as inactive. Any relationships that involve the deleted asset will be also be deleted, as will any association to listings.\n"
+        },
+        {
+          "info": {
+            "name": "getAssetScripts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/assets/:assetUid/scripts",
+            "params": [
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.\n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Optional property to sort results by."
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query",
+                "description": "Direction of sort-order for items in the response."
+              }
+            ]
+          },
+          "docs": "Gets all scripts owned by the mobile or web application asset. Returns 409 status if the asset is not of one of these types."
+        },
+        {
+          "info": {
+            "name": "postAssetScript",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v2/assets/:assetUid/scripts",
+            "params": [
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a script to a mobile or web application asset. Returns 409 status if the asset is of any other type..\n"
+        },
+        {
+          "info": {
+            "name": "getAssetCredentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/assets/:assetUid/credentials",
+            "params": [
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.\n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Optional property to sort results by."
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query",
+                "description": "Direction of sort-order for items in the response."
+              }
+            ]
+          },
+          "docs": "Gets all credentials owned by web application asset. Returns 409 status if the asset is not of this type."
+        },
+        {
+          "info": {
+            "name": "getAssetScript",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/scripts/:scriptUid",
+            "params": [
+              {
+                "name": "scriptUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset script."
+              }
+            ]
+          },
+          "docs": "Gets an asset script."
+        },
+        {
+          "info": {
+            "name": "patchAssetScript",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client.synack.com/api/assessment/v2/scripts/:scriptUid",
+            "params": [
+              {
+                "name": "scriptUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset script."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch the properties of an asset script.\n"
+        },
+        {
+          "info": {
+            "name": "deleteAssetScript",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client.synack.com/api/assessment/v2/scripts/:scriptUid",
+            "params": [
+              {
+                "name": "scriptUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset script."
+              }
+            ]
+          },
+          "docs": "Delete a script from a asset.\n"
+        },
+        {
+          "info": {
+            "name": "getAssetScriptData",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/scripts/:scriptUid/script-data",
+            "params": [
+              {
+                "name": "scriptUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset script."
+              }
+            ]
+          },
+          "docs": "Gets the script data for an asset script."
+        },
+        {
+          "info": {
+            "name": "putApplicationBinary",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://client.synack.com/api/assessment/v2/assets/:assetUid/binaries/:version",
+            "headers": [
+              {
+                "name": "If-Match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The version of an application."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert an application binary file or the Url to the binary in the app store.\n"
+        },
+        {
+          "info": {
+            "name": "deleteApplicationBinary",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client.synack.com/api/assessment/v2/assets/:assetUid/binaries/:version",
+            "params": [
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The version of an application."
+              }
+            ]
+          },
+          "docs": "Delete an application binary.\n"
+        },
+        {
+          "info": {
+            "name": "getUserRoles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/assets/:assetUid/user-roles",
+            "params": [
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.\n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Optional property to sort results by."
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query",
+                "description": "Direction of sort-order for items in the response."
+              },
+              {
+                "name": "scannable",
+                "value": "",
+                "type": "query",
+                "description": "Constrains the response to include users roles with a matching value for the scannable property."
+              }
+            ]
+          },
+          "docs": "Gets a paginated list of all user roles for a mobile or web application. Returns a 409 status code if the asset is not one of these expected types."
+        },
+        {
+          "info": {
+            "name": "postUserRole",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v2/assets/:assetUid/user-roles",
+            "params": [
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a user role to a mobile or web application asset. Returns a 409 status code if the asset is not one of these expected types."
+        },
+        {
+          "info": {
+            "name": "getUserRole",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/user-roles/:userRoleUid",
+            "params": [
+              {
+                "name": "userRoleUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset user role."
+              }
+            ]
+          },
+          "docs": "Retrieves the properties of the supplied user role."
+        },
+        {
+          "info": {
+            "name": "patchUserRole",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client.synack.com/api/assessment/v2/user-roles/:userRoleUid",
+            "params": [
+              {
+                "name": "userRoleUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset user role."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch properties of a user role for a mobile or web application asset. Will return a 409 status code if the type is not one of these expected types."
+        },
+        {
+          "info": {
+            "name": "deleteUserRole",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client.synack.com/api/assessment/v2/user-roles/:userRoleUid",
+            "params": [
+              {
+                "name": "userRoleUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset user role."
+              }
+            ]
+          },
+          "docs": "Delete a user role from a mobile or web application asset. Will return a 409 status code if the type is not one of these expected types."
+        },
+        {
+          "info": {
+            "name": "patchUserRoleScript",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client.synack.com/api/assessment/v2/user-roles/:userRoleUid/scripts/:scriptUid",
+            "params": [
+              {
+                "name": "userRoleUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset user role."
+              },
+              {
+                "name": "scriptUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset script."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch properties of a script that's been assigned to user role for a mobile or web application asset."
+        },
+        {
+          "info": {
+            "name": "getUserRoleCredentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/user-roles/:userRoleUid/user-role-credentials",
+            "params": [
+              {
+                "name": "userRoleUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset user role."
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.\n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Optional property to sort results by."
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query",
+                "description": "Direction of sort-order for items in the response."
+              },
+              {
+                "name": "userUid",
+                "value": "",
+                "type": "query",
+                "description": "Restricts the credentials to only those available to the user. This query parameter is ignored if the user is a researcher."
+              }
+            ]
+          },
+          "docs": "Gets the paginated credentials owned by the user role."
+        },
+        {
+          "info": {
+            "name": "postUserRoleCredential",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v2/user-roles/:userRoleUid/user-role-credentials",
+            "params": [
+              {
+                "name": "userRoleUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset user role."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a credential to a user role. Returns 409 Conflict if the credentials do not match the structure of previously created credentials."
+        },
+        {
+          "info": {
+            "name": "patchUserRoleCredentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client.synack.com/api/assessment/v2/user-roles/:userRoleUid/user-role-credentials",
+            "params": [
+              {
+                "name": "userRoleUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset user role."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the properties of multlipe user role credentials. Returns 409 Conflict when the credential format does not match existing credentials."
+        },
+        {
+          "info": {
+            "name": "deleteUserRoleCredentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client.synack.com/api/assessment/v2/user-roles/:userRoleUid/user-role-credentials",
+            "params": [
+              {
+                "name": "userRoleUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset user role."
+              },
+              {
+                "name": "credentialUid[]",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for a credential. If not supplied the request will apply to all credentials the user is authorized to access."
+              }
+            ]
+          },
+          "docs": "Delete every credential belonging to the user role."
+        },
+        {
+          "info": {
+            "name": "patchUserRoleCredential",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client.synack.com/api/assessment/v2/user-role-credentials/:credentialUid",
+            "params": [
+              {
+                "name": "credentialUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset credential."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch the properties of a user-role credential. Returns 409 Conflict if the credentials do not match the structure of previously created credentials."
+        },
+        {
+          "info": {
+            "name": "deleteUserRoleCredential",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client.synack.com/api/assessment/v2/user-role-credentials/:credentialUid",
+            "params": [
+              {
+                "name": "credentialUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset credential."
+              }
+            ]
+          },
+          "docs": "Delete a user role credentialt."
+        },
+        {
+          "info": {
+            "name": "putUserRoleCredentialUser",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://client.synack.com/api/assessment/v2/user-role-credentials/:credentialUid/assigned-users/:userUid",
+            "params": [
+              {
+                "name": "credentialUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset credential."
+              },
+              {
+                "name": "userUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for a user."
+              }
+            ]
+          },
+          "docs": "Assign a user to a user-role credential. Credentials with sharing of \"one\" will return a 409 status code when a request is received to add further users. Credentials with sharing of \"all\" will return a 409 status code on any request to add users. There is not limit to the number of users that may be added for sharing of \"many\"."
+        },
+        {
+          "info": {
+            "name": "deleteUserRoleCredentialUser",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client.synack.com/api/assessment/v2/user-role-credentials/:credentialUid/assigned-users/:userUid",
+            "params": [
+              {
+                "name": "credentialUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset credential."
+              },
+              {
+                "name": "userUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for a user."
+              }
+            ]
+          },
+          "docs": "Remove a user from a user-role credential."
+        },
+        {
+          "info": {
+            "name": "assignUserRoleCredentialsToUser",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v2/user-role-credentials",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for an organization."
+              },
+              {
+                "name": "listingUid",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for a listing."
+              },
+              {
+                "name": "userUid",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for a user."
+              }
+            ]
+          },
+          "docs": "Assign user role credentials to a user for mobile application or web application assets in a listing."
+        },
+        {
+          "info": {
+            "name": "getAssetStats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/asset-stats",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for an organization. If not supplied the request will apply to all organizations the user is authorized to access."
+              },
+              {
+                "name": "listingUid[]",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for an listing. If not supplied the request will apply to all listings the user is authorized to access."
+              }
+            ]
+          },
+          "docs": "Returns active assets under test (in scope for a listing) and total active assets for the supplied organization and listings.\n"
+        },
+        {
+          "info": {
+            "name": "getDiscoveredAssetSummaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/organizations/:organizationUid/discovered-assets",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an organization."
+              },
+              {
+                "name": "listingUid[]",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for an listing. If not supplied the request will apply to all listings the user is authorized to access."
+              },
+              {
+                "name": "assetType[]",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the returned asset summaries to only assets of the specified type."
+              },
+              {
+                "name": "hostType[]",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the returned asset summaries to only the types of host assets requested when assetType also includes host.\n"
+              },
+              {
+                "name": "seedUid[]",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the returned asset summaries to only those discovered from provided seed identifier."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Optional query parameter for a search string that will be used to match within the label or location properties of assets. If this query parameter is provided, any location query parameter will be ignored.\n"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.\n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Optional property to sort results by."
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query",
+                "description": "Direction of sort-order for items in the response."
+              }
+            ]
+          },
+          "docs": "Retrieve the list summarized properties for discovered assets belonging to  an organization, considering filtering and pagination query parameters.\nAdditional query parameters generally restrict the resulting set of assets according to AND semantics.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

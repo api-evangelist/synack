@@ -1,0 +1,2395 @@
+{
+  "item": [
+    {
+      "id": "2af889fc-cb0e-455a-9ea6-a45be45a57bb",
+      "name": "users",
+      "description": {
+        "content": "Users of credentials.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1868c775-84a6-4acc-8f26-571ec8e26678",
+          "name": "put User Role Credential User",
+          "request": {
+            "name": "put User Role Credential User",
+            "description": {
+              "content": "Assign a user to a user-role credential. Credentials with sharing of \"one\" will return a 409 status code when a request is received to add further users. Credentials with sharing of \"all\" will return a 409 status code on any request to add users. There is not limit to the number of users that may be added for sharing of \"many\".",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "user-role-credentials",
+                ":credentialUid",
+                "assigned-users",
+                ":userUid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "credentialUid",
+                  "description": "(Required) Unique identifier for an asset credential."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userUid",
+                  "description": "(Required) Unique identifier for a user."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "PUT"
+          },
+          "response": [
+            {
+              "id": "086f9545-3a38-41aa-b68f-38939a14784c",
+              "name": "No content.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "user-role-credentials",
+                    ":credentialUid",
+                    "assigned-users",
+                    ":userUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "credentialUid",
+                      "description": "(Required) Unique identifier for an asset credential."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userUid",
+                      "description": "(Required) Unique identifier for a user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1ff060f4-a167-4f12-8b36-6d9029c12855",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "user-role-credentials",
+                    ":credentialUid",
+                    "assigned-users",
+                    ":userUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "credentialUid",
+                      "description": "(Required) Unique identifier for an asset credential."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userUid",
+                      "description": "(Required) Unique identifier for a user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d56d1fad-d32a-4366-9577-9bdd5b77e604",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "user-role-credentials",
+                    ":credentialUid",
+                    "assigned-users",
+                    ":userUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "credentialUid",
+                      "description": "(Required) Unique identifier for an asset credential."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userUid",
+                      "description": "(Required) Unique identifier for a user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4a5fc58f-d603-4a00-8fd4-abec069cf1c4",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "user-role-credentials",
+                    ":credentialUid",
+                    "assigned-users",
+                    ":userUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "credentialUid",
+                      "description": "(Required) Unique identifier for an asset credential."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userUid",
+                      "description": "(Required) Unique identifier for a user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f32272aa-8776-48f2-94d1-05cf3f3f8930",
+              "name": "Conflict.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "user-role-credentials",
+                    ":credentialUid",
+                    "assigned-users",
+                    ":userUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "credentialUid",
+                      "description": "(Required) Unique identifier for an asset credential."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userUid",
+                      "description": "(Required) Unique identifier for a user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 363,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 1980,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 4884,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 583,\n  \"batchSize\": 5302\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5da6f35-e674-48f2-82a6-d5319d880ff3",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "user-role-credentials",
+                    ":credentialUid",
+                    "assigned-users",
+                    ":userUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "credentialUid",
+                      "description": "(Required) Unique identifier for an asset credential."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userUid",
+                      "description": "(Required) Unique identifier for a user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 363,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 1980,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 4884,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 583,\n  \"batchSize\": 5302\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac63ed0d-e257-4216-a1fc-8187cc9c2bad",
+              "name": "Service Unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "user-role-credentials",
+                    ":credentialUid",
+                    "assigned-users",
+                    ":userUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "credentialUid",
+                      "description": "(Required) Unique identifier for an asset credential."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userUid",
+                      "description": "(Required) Unique identifier for a user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 363,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 1980,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 4884,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 583,\n  \"batchSize\": 5302\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "051b1c63-c555-435a-8b25-f3470ab43ae8",
+          "name": "delete User Role Credential User",
+          "request": {
+            "name": "delete User Role Credential User",
+            "description": {
+              "content": "Remove a user from a user-role credential.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "user-role-credentials",
+                ":credentialUid",
+                "assigned-users",
+                ":userUid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "credentialUid",
+                  "description": "(Required) Unique identifier for an asset credential."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userUid",
+                  "description": "(Required) Unique identifier for a user."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "4c994f71-87a3-40ce-8d67-2a93d883a53d",
+              "name": "No content.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "user-role-credentials",
+                    ":credentialUid",
+                    "assigned-users",
+                    ":userUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "credentialUid",
+                      "description": "(Required) Unique identifier for an asset credential."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userUid",
+                      "description": "(Required) Unique identifier for a user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "05ae631e-40a1-458f-aa46-a7203f788ac5",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "user-role-credentials",
+                    ":credentialUid",
+                    "assigned-users",
+                    ":userUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "credentialUid",
+                      "description": "(Required) Unique identifier for an asset credential."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userUid",
+                      "description": "(Required) Unique identifier for a user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cc3b0662-1b20-4a63-ac0e-8c3e88ec473b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "user-role-credentials",
+                    ":credentialUid",
+                    "assigned-users",
+                    ":userUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "credentialUid",
+                      "description": "(Required) Unique identifier for an asset credential."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userUid",
+                      "description": "(Required) Unique identifier for a user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bf08b219-82ea-4644-b1d4-e826b6d69110",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "user-role-credentials",
+                    ":credentialUid",
+                    "assigned-users",
+                    ":userUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "credentialUid",
+                      "description": "(Required) Unique identifier for an asset credential."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userUid",
+                      "description": "(Required) Unique identifier for a user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "265bae43-046b-4e9c-908a-f6380e9e026d",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "user-role-credentials",
+                    ":credentialUid",
+                    "assigned-users",
+                    ":userUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "credentialUid",
+                      "description": "(Required) Unique identifier for an asset credential."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userUid",
+                      "description": "(Required) Unique identifier for a user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 178,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 3944,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 9607,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 289,\n  \"batchSize\": 7829\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2d80d05-9280-4e6e-9869-5d0b64c5d588",
+              "name": "Service Unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "user-role-credentials",
+                    ":credentialUid",
+                    "assigned-users",
+                    ":userUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "credentialUid",
+                      "description": "(Required) Unique identifier for an asset credential."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userUid",
+                      "description": "(Required) Unique identifier for a user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 178,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 3944,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 9607,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 289,\n  \"batchSize\": 7829\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d33d46f-5beb-4fb5-8da1-a3768610c77d",
+          "name": "assign User Role Credentials To User",
+          "request": {
+            "name": "assign User Role Credentials To User",
+            "description": {
+              "content": "Assign user role credentials to a user for mobile application or web application assets in a listing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "user-role-credentials"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "organizationUid",
+                  "value": "<string>",
+                  "description": "(Required) Unique identifier for an organization."
+                },
+                {
+                  "disabled": false,
+                  "key": "listingUid",
+                  "value": "<string>",
+                  "description": "(Required) Unique identifier for a listing."
+                },
+                {
+                  "disabled": false,
+                  "key": "userUid",
+                  "value": "<string>",
+                  "description": "(Required) Unique identifier for a user."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [
+            {
+              "id": "44013c10-5d53-40d5-9d3f-9738a27ac78e",
+              "name": "The assignments occurred successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "user-role-credentials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationUid",
+                      "value": "0276n74tzwj5f97oi6pj005_fswc3bd6hs3xvkl8-op"
+                    },
+                    {
+                      "key": "listingUid",
+                      "value": "0xk240szilqqgi-o4v9l80d0k3q8x7e3v5v"
+                    },
+                    {
+                      "key": "userUid",
+                      "value": "ikjk7ltemdeg68utbmaz8gm2md1in4575riksh4oryq82i"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0ed99aed-9ddf-4870-90a1-b635c6c82178",
+              "name": "No content.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "user-role-credentials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationUid",
+                      "value": "0276n74tzwj5f97oi6pj005_fswc3bd6hs3xvkl8-op"
+                    },
+                    {
+                      "key": "listingUid",
+                      "value": "0xk240szilqqgi-o4v9l80d0k3q8x7e3v5v"
+                    },
+                    {
+                      "key": "userUid",
+                      "value": "ikjk7ltemdeg68utbmaz8gm2md1in4575riksh4oryq82i"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "92d7aa1e-c3cb-4db1-a6b8-3adcb815bc85",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "user-role-credentials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationUid",
+                      "value": "0276n74tzwj5f97oi6pj005_fswc3bd6hs3xvkl8-op"
+                    },
+                    {
+                      "key": "listingUid",
+                      "value": "0xk240szilqqgi-o4v9l80d0k3q8x7e3v5v"
+                    },
+                    {
+                      "key": "userUid",
+                      "value": "ikjk7ltemdeg68utbmaz8gm2md1in4575riksh4oryq82i"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "31778a59-461d-4ee7-aef2-b0fd65c3f041",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "user-role-credentials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationUid",
+                      "value": "0276n74tzwj5f97oi6pj005_fswc3bd6hs3xvkl8-op"
+                    },
+                    {
+                      "key": "listingUid",
+                      "value": "0xk240szilqqgi-o4v9l80d0k3q8x7e3v5v"
+                    },
+                    {
+                      "key": "userUid",
+                      "value": "ikjk7ltemdeg68utbmaz8gm2md1in4575riksh4oryq82i"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5a6cd1f3-2ae6-4f55-83a9-93fa0c3c8cf5",
+              "name": "Conflict.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "user-role-credentials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationUid",
+                      "value": "0276n74tzwj5f97oi6pj005_fswc3bd6hs3xvkl8-op"
+                    },
+                    {
+                      "key": "listingUid",
+                      "value": "0xk240szilqqgi-o4v9l80d0k3q8x7e3v5v"
+                    },
+                    {
+                      "key": "userUid",
+                      "value": "ikjk7ltemdeg68utbmaz8gm2md1in4575riksh4oryq82i"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 178,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 3944,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 9607,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 289,\n  \"batchSize\": 7829\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0411ac17-42be-4624-8641-786e7ab3f1ad",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "user-role-credentials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationUid",
+                      "value": "0276n74tzwj5f97oi6pj005_fswc3bd6hs3xvkl8-op"
+                    },
+                    {
+                      "key": "listingUid",
+                      "value": "0xk240szilqqgi-o4v9l80d0k3q8x7e3v5v"
+                    },
+                    {
+                      "key": "userUid",
+                      "value": "ikjk7ltemdeg68utbmaz8gm2md1in4575riksh4oryq82i"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 178,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 3944,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 9607,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 289,\n  \"batchSize\": 7829\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0fd22942-d57e-4d2e-b917-bd6a7bc140fc",
+              "name": "Service Unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "user-role-credentials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationUid",
+                      "value": "0276n74tzwj5f97oi6pj005_fswc3bd6hs3xvkl8-op"
+                    },
+                    {
+                      "key": "listingUid",
+                      "value": "0xk240szilqqgi-o4v9l80d0k3q8x7e3v5v"
+                    },
+                    {
+                      "key": "userUid",
+                      "value": "ikjk7ltemdeg68utbmaz8gm2md1in4575riksh4oryq82i"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 178,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 3944,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 9607,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 289,\n  \"batchSize\": 7829\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "068b8c63-94c6-4ab9-a6da-27bd2ddb8b23",
+          "name": "Get current user information",
+          "request": {
+            "name": "Get current user information",
+            "description": {
+              "content": "Retrieve information about the currently authenticated user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "users",
+                "whoami"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "39cd0bb3-16bc-4b74-b7fb-15193796b333",
+              "name": "User information retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    "whoami"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assessment_ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"banned\": true,\n  \"email\": \"string\",\n  \"id\": 7874,\n  \"admin\": false,\n  \"invite_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c85506ac-6966-4a38-a784-c23ac995fe7a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    "whoami"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "159ed22b-9037-4688-aa23-4a9d1c2ce012",
+          "name": "Fetch users",
+          "request": {
+            "name": "Fetch users",
+            "description": {
+              "content": "Fetch all organization users (members & admins). Banned users will not be included. Requires admin privileges.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "045776c2-91f2-4f3d-947c-a8e7b717dfd7",
+              "name": "Successfully fetched users",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"assessment_ids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"banned\": false,\n    \"email\": \"string\",\n    \"id\": 1332,\n    \"admin\": true,\n    \"invite_url\": \"string\"\n  },\n  {\n    \"assessment_ids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"banned\": true,\n    \"email\": \"string\",\n    \"id\": 9420,\n    \"admin\": true,\n    \"invite_url\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d44dcc3d-5dee-45f4-ac74-aedd55a8cb07",
+          "name": "Create a new member/admin",
+          "request": {
+            "name": "Create a new member/admin",
+            "description": {
+              "content": "Create a new member/admin and grant it access to assessments (if any). Requires admin privileges.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"admin\": false,\n  \"assessments\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"send_invite\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "415d2e98-ecdd-4ee6-b817-9ff5b9082a50",
+              "name": "The newly created user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"admin\": false,\n  \"assessments\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"send_invite\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assessment_ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"banned\": true,\n  \"email\": \"string\",\n  \"id\": 7874,\n  \"admin\": false,\n  \"invite_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "236a3344-4f37-4579-8ed4-26f1149aa4ba",
+              "name": "Payload includes unpermitted parameters, given assessment IDs are invalid or user creation failed (e.g. e-mail already exists)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"admin\": false,\n  \"assessments\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"send_invite\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "765d31e5-edc5-439e-baba-cd34e646595c",
+              "name": "The requesting party does not have admin privileges",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"admin\": false,\n  \"assessments\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"send_invite\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "77605dc7-af16-4a28-b9bc-9fd21057a707",
+          "name": "Fetch user account",
+          "request": {
+            "name": "Fetch user account",
+            "description": {
+              "content": "Fetch information about a user account. Requires admin privileges.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the user"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bfe325a3-7e4c-4883-9f40-bed0c3dd66a9",
+              "name": "Successfully got users",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the user"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assessment_ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"banned\": true,\n  \"email\": \"string\",\n  \"id\": 7874,\n  \"admin\": false,\n  \"invite_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da14057b-3241-41d8-98d3-31bfbe8f48ad",
+              "name": "No such user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the user"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d60f78c9-3875-4dcd-baf0-e1a21b42702b",
+          "name": "Update user account status",
+          "request": {
+            "name": "Update user account status",
+            "description": {
+              "content": "Update existing user (reactivate and/or grant admin privileges). The user is automatically notified by e-mail upon account reactivation. Requires admin privileges.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "admin",
+                  "value": "<boolean>",
+                  "description": "Flag to indicate whether to grant/remove admin privileges"
+                },
+                {
+                  "disabled": false,
+                  "key": "reactivate",
+                  "value": "<boolean>",
+                  "description": "Flag to indicate whether to reactivate (unban) the user"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the user"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "99f8c73b-4a83-4553-bed9-443a97d18d08",
+              "name": "The updated created user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "admin",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "reactivate",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the user"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assessment_ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"banned\": true,\n  \"email\": \"string\",\n  \"id\": 7874,\n  \"admin\": false,\n  \"invite_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb390908-8568-4b81-a4be-8868ff1af46b",
+              "name": "Payload includes unpermitted parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "admin",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "reactivate",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the user"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5fd334c9-be37-4635-9e0a-daeb54974ee3",
+              "name": "The requesting party does not have admin privileges",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "admin",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "reactivate",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the user"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bec0e187-a06f-4b55-a2f3-7872d45bf2a5",
+              "name": "No such user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "admin",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "reactivate",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the user"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "45d66d3d-67e7-4657-a1ca-973b1fe90928",
+          "name": "Ban/delete user",
+          "request": {
+            "name": "Ban/delete user",
+            "description": {
+              "content": "Ban/delete a user account. Requires admin privileges.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the user"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a5585a48-8a2e-475a-a32f-1c9fbc92eab4",
+              "name": "Successfully banned user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the user"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assessment_ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"banned\": true,\n  \"email\": \"string\",\n  \"id\": 7874,\n  \"admin\": false,\n  \"invite_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7204067b-1b49-4358-b9ad-051eb1b6cf30",
+              "name": "The requesting party does not have admin privileges",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the user"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "833dc7da-43a6-4a16-aa91-014f29b0816d",
+              "name": "No such user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the user"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://client.synack.com/api/assessment",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5050b1ed-99d7-48e9-85c4-eb5735f29adf",
+    "name": "Assessment Service Assessment Groups users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for managing Assessment and related operations on the Synack.\n\n\nContact Support:\n Name: Synack Engineering\n Email: engineering@synack.com",
+      "type": "text/plain"
+    }
+  }
+}

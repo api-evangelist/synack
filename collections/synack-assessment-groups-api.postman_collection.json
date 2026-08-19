@@ -1,0 +1,1834 @@
+{
+  "item": [
+    {
+      "id": "e7778cae-c994-49ae-92d6-c51c6012cb28",
+      "name": "Assessment Groups",
+      "description": {
+        "content": "Users assigned to an Assessment Group, with their roles.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "847df780-935a-4d8f-a192-7434e8631dd7",
+          "name": "List members of an Assessment Group",
+          "request": {
+            "name": "List members of an Assessment Group",
+            "description": {
+              "content": "Returns the users currently assigned to the Assessment Group, with\ntheir roles and membership timestamps.\nSupports pagination, sorting, and an optional role filter.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "assessment-groups",
+                ":assessmentGroupId",
+                "members"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "50"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "createdAt",
+                  "description": "Field to sort by."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDir",
+                  "value": "asc"
+                },
+                {
+                  "disabled": false,
+                  "key": "role",
+                  "value": "<string>",
+                  "description": "Filter members by role."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "assessmentGroupId",
+                  "description": "(Required) Numeric identifier of the Assessment Group."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "47100ba2-e827-4b35-8157-977d185c9a58",
+              "name": "Member collection (may be empty).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessment-groups",
+                    ":assessmentGroupId",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "50"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "createdAt"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "role",
+                      "value": "assessment_operator"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assessmentGroupId",
+                      "description": "(Required) Numeric identifier of the Assessment Group."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"members\": [\n    {\n      \"userUid\": \"string\",\n      \"role\": \"infra_admin\",\n      \"id\": 1100,\n      \"createdAt\": \"1970-09-13T19:03:19.913Z\",\n      \"userEmail\": \"TwQDzg@tBDdSwxiCrieowgqMCCxOJhjQ.fubu\",\n      \"userName\": \"string\"\n    },\n    {\n      \"userUid\": \"string\",\n      \"role\": \"assessment_operator\",\n      \"id\": 2695,\n      \"createdAt\": \"1984-05-07T01:57:35.295Z\",\n      \"userEmail\": \"hfDJ5c1y@GRxSUUuqNvSmXVnucsqOEqACCIO.phmc\",\n      \"userName\": \"string\"\n    }\n  ],\n  \"metadata\": {\n    \"pagination\": {\n      \"total\": 2330,\n      \"page\": 6543,\n      \"perPage\": 4547,\n      \"totalPages\": 3697,\n      \"self\": \"string\",\n      \"prev\": \"string\",\n      \"next\": \"string\",\n      \"first\": \"string\",\n      \"last\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea972e76-1e3d-4106-a622-b95297fc7eca",
+              "name": "Malformed request body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessment-groups",
+                    ":assessmentGroupId",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "50"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "createdAt"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "role",
+                      "value": "assessment_operator"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assessmentGroupId",
+                      "description": "(Required) Numeric identifier of the Assessment Group."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 9003,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://oBzaBTEHYPzxsVBSeYCtFUUEJadxB.zrpaJkiN4HlmlnBAkN3A\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd0c05b3-feba-413d-bddf-d1d61f5e4438",
+              "name": "Missing or invalid authentication credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessment-groups",
+                    ":assessmentGroupId",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "50"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "createdAt"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "role",
+                      "value": "assessment_operator"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assessmentGroupId",
+                      "description": "(Required) Numeric identifier of the Assessment Group."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 9003,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://oBzaBTEHYPzxsVBSeYCtFUUEJadxB.zrpaJkiN4HlmlnBAkN3A\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d2f3289-33e3-4c78-af16-11b7af5b27ef",
+              "name": "Authenticated but lacks permission for this resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessment-groups",
+                    ":assessmentGroupId",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "50"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "createdAt"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "role",
+                      "value": "assessment_operator"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assessmentGroupId",
+                      "description": "(Required) Numeric identifier of the Assessment Group."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 9003,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://oBzaBTEHYPzxsVBSeYCtFUUEJadxB.zrpaJkiN4HlmlnBAkN3A\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "572781d1-5f18-4ea6-9bbc-884aa9826e73",
+              "name": "Resource not found in the acting organization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessment-groups",
+                    ":assessmentGroupId",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "50"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "createdAt"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "role",
+                      "value": "assessment_operator"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assessmentGroupId",
+                      "description": "(Required) Numeric identifier of the Assessment Group."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 9003,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://oBzaBTEHYPzxsVBSeYCtFUUEJadxB.zrpaJkiN4HlmlnBAkN3A\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb0f3e1b-bfd5-4341-96f5-cec75894b873",
+              "name": "Server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessment-groups",
+                    ":assessmentGroupId",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "50"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "createdAt"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "role",
+                      "value": "assessment_operator"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assessmentGroupId",
+                      "description": "(Required) Numeric identifier of the Assessment Group."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 9003,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://oBzaBTEHYPzxsVBSeYCtFUUEJadxB.zrpaJkiN4HlmlnBAkN3A\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "159c1df9-12d4-41a6-a43e-3013efd3a6e9",
+          "name": "Add users to an Assessment Group",
+          "request": {
+            "name": "Add users to an Assessment Group",
+            "description": {
+              "content": "Adds one or more users to an Assessment Group with a specified role.\n\nMaximum 100 members per request.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "assessment-groups",
+                ":assessmentGroupId",
+                "members",
+                "batchAdd"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "assessmentGroupId",
+                  "description": "(Required) Numeric identifier of the Assessment Group."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"members\": [\n    {\n      \"userUid\": \"<string>\",\n      \"role\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7311c1c6-ad46-4e11-ab62-d3396c42018c",
+              "name": "Batch processed. Inspect per-row `status` for outcomes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessment-groups",
+                    ":assessmentGroupId",
+                    "members",
+                    "batchAdd"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assessmentGroupId",
+                      "description": "(Required) Numeric identifier of the Assessment Group."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"members\": [\n    {\n      \"userUid\": \"u_5f3c8b2a\",\n      \"role\": \"assessment_member\"\n    },\n    {\n      \"userUid\": \"u_9e1d4f0c\",\n      \"role\": \"rbac_group_admin\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"userUid\": \"string\",\n      \"status\": \"error\",\n      \"role\": \"assessment_read_only\",\n      \"id\": 8129,\n      \"errorCode\": \"user_not_found\",\n      \"errorDetail\": \"string\"\n    },\n    {\n      \"userUid\": \"string\",\n      \"status\": \"noop\",\n      \"role\": \"assessment_creator\",\n      \"id\": 4308,\n      \"errorCode\": \"user_not_found\",\n      \"errorDetail\": \"string\"\n    }\n  ],\n  \"metadata\": {\n    \"processedAt\": \"1974-11-22T06:27:41.537Z\",\n    \"counts\": {\n      \"added\": 5882,\n      \"removed\": 4396,\n      \"noop\": 8418,\n      \"error\": 1302\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d6ce48bd-44e1-4a6a-9ac9-d9f72168e87b",
+              "name": "Malformed request body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessment-groups",
+                    ":assessmentGroupId",
+                    "members",
+                    "batchAdd"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assessmentGroupId",
+                      "description": "(Required) Numeric identifier of the Assessment Group."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"members\": [\n    {\n      \"userUid\": \"u_5f3c8b2a\",\n      \"role\": \"assessment_member\"\n    },\n    {\n      \"userUid\": \"u_9e1d4f0c\",\n      \"role\": \"rbac_group_admin\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 9003,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://oBzaBTEHYPzxsVBSeYCtFUUEJadxB.zrpaJkiN4HlmlnBAkN3A\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d5e0e91-db32-4394-96c5-38849fa05294",
+              "name": "Missing or invalid authentication credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessment-groups",
+                    ":assessmentGroupId",
+                    "members",
+                    "batchAdd"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assessmentGroupId",
+                      "description": "(Required) Numeric identifier of the Assessment Group."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"members\": [\n    {\n      \"userUid\": \"u_5f3c8b2a\",\n      \"role\": \"assessment_member\"\n    },\n    {\n      \"userUid\": \"u_9e1d4f0c\",\n      \"role\": \"rbac_group_admin\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 9003,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://oBzaBTEHYPzxsVBSeYCtFUUEJadxB.zrpaJkiN4HlmlnBAkN3A\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57f85f43-ca4b-497f-9bd5-ba31c4ea5561",
+              "name": "Authenticated but lacks permission for this resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessment-groups",
+                    ":assessmentGroupId",
+                    "members",
+                    "batchAdd"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assessmentGroupId",
+                      "description": "(Required) Numeric identifier of the Assessment Group."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"members\": [\n    {\n      \"userUid\": \"u_5f3c8b2a\",\n      \"role\": \"assessment_member\"\n    },\n    {\n      \"userUid\": \"u_9e1d4f0c\",\n      \"role\": \"rbac_group_admin\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 9003,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://oBzaBTEHYPzxsVBSeYCtFUUEJadxB.zrpaJkiN4HlmlnBAkN3A\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5b8d20d-fcdb-4824-b9c5-c293aee6f453",
+              "name": "Resource not found in the acting organization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessment-groups",
+                    ":assessmentGroupId",
+                    "members",
+                    "batchAdd"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assessmentGroupId",
+                      "description": "(Required) Numeric identifier of the Assessment Group."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"members\": [\n    {\n      \"userUid\": \"u_5f3c8b2a\",\n      \"role\": \"assessment_member\"\n    },\n    {\n      \"userUid\": \"u_9e1d4f0c\",\n      \"role\": \"rbac_group_admin\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 9003,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://oBzaBTEHYPzxsVBSeYCtFUUEJadxB.zrpaJkiN4HlmlnBAkN3A\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7d0d7a7-6e2a-4c29-a507-ce2d6f13eb20",
+              "name": "Batch exceeds the documented per-request maximum (100 items).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessment-groups",
+                    ":assessmentGroupId",
+                    "members",
+                    "batchAdd"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assessmentGroupId",
+                      "description": "(Required) Numeric identifier of the Assessment Group."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"members\": [\n    {\n      \"userUid\": \"u_5f3c8b2a\",\n      \"role\": \"assessment_member\"\n    },\n    {\n      \"userUid\": \"u_9e1d4f0c\",\n      \"role\": \"rbac_group_admin\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 9003,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://oBzaBTEHYPzxsVBSeYCtFUUEJadxB.zrpaJkiN4HlmlnBAkN3A\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27fd07ed-8fe1-4f34-ae92-7ed7bd743a06",
+              "name": "Server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessment-groups",
+                    ":assessmentGroupId",
+                    "members",
+                    "batchAdd"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assessmentGroupId",
+                      "description": "(Required) Numeric identifier of the Assessment Group."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"members\": [\n    {\n      \"userUid\": \"u_5f3c8b2a\",\n      \"role\": \"assessment_member\"\n    },\n    {\n      \"userUid\": \"u_9e1d4f0c\",\n      \"role\": \"rbac_group_admin\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 9003,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://oBzaBTEHYPzxsVBSeYCtFUUEJadxB.zrpaJkiN4HlmlnBAkN3A\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2711931a-86e1-4755-b2d9-4e9d3fee513e",
+          "name": "Remove users from an Assessment Group",
+          "request": {
+            "name": "Remove users from an Assessment Group",
+            "description": {
+              "content": "Removes one or more users from an Assessment Group.\n\nMaximum 100 user IDs per request.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "assessment-groups",
+                ":assessmentGroupId",
+                "members",
+                "batchRemove"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "assessmentGroupId",
+                  "description": "(Required) Numeric identifier of the Assessment Group."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userUids\": [\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "da1ddaae-f8f6-4fd0-921e-8998d64c0b5c",
+              "name": "Batch processed. Inspect per-row `status` for outcomes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessment-groups",
+                    ":assessmentGroupId",
+                    "members",
+                    "batchRemove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assessmentGroupId",
+                      "description": "(Required) Numeric identifier of the Assessment Group."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userUids\": [\n    \"u_5f3c8b2a\",\n    \"u_9e1d4f0c\",\n    \"u_2a7b6c4d\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"userUid\": \"string\",\n      \"status\": \"noop\",\n      \"errorCode\": \"role_invalid\",\n      \"errorDetail\": \"string\"\n    },\n    {\n      \"userUid\": \"string\",\n      \"status\": \"error\",\n      \"errorCode\": \"role_not_assignable\",\n      \"errorDetail\": \"string\"\n    }\n  ],\n  \"metadata\": {\n    \"processedAt\": \"1950-08-12T08:58:17.900Z\",\n    \"counts\": {\n      \"added\": 7215,\n      \"removed\": 4601,\n      \"noop\": 7391,\n      \"error\": 2242\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2490d642-e977-471d-a04b-eba95d5400c2",
+              "name": "Malformed request body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessment-groups",
+                    ":assessmentGroupId",
+                    "members",
+                    "batchRemove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assessmentGroupId",
+                      "description": "(Required) Numeric identifier of the Assessment Group."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userUids\": [\n    \"u_5f3c8b2a\",\n    \"u_9e1d4f0c\",\n    \"u_2a7b6c4d\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 9003,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://oBzaBTEHYPzxsVBSeYCtFUUEJadxB.zrpaJkiN4HlmlnBAkN3A\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49532bac-7463-4073-857d-51a8249810ee",
+              "name": "Missing or invalid authentication credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessment-groups",
+                    ":assessmentGroupId",
+                    "members",
+                    "batchRemove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assessmentGroupId",
+                      "description": "(Required) Numeric identifier of the Assessment Group."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userUids\": [\n    \"u_5f3c8b2a\",\n    \"u_9e1d4f0c\",\n    \"u_2a7b6c4d\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 9003,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://oBzaBTEHYPzxsVBSeYCtFUUEJadxB.zrpaJkiN4HlmlnBAkN3A\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a8e8cb5-f90b-4322-bb2d-3e3f34c286f3",
+              "name": "Authenticated but lacks permission for this resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessment-groups",
+                    ":assessmentGroupId",
+                    "members",
+                    "batchRemove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assessmentGroupId",
+                      "description": "(Required) Numeric identifier of the Assessment Group."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userUids\": [\n    \"u_5f3c8b2a\",\n    \"u_9e1d4f0c\",\n    \"u_2a7b6c4d\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 9003,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://oBzaBTEHYPzxsVBSeYCtFUUEJadxB.zrpaJkiN4HlmlnBAkN3A\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c155c1c7-4044-4edc-a871-3e6adae9221d",
+              "name": "Resource not found in the acting organization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessment-groups",
+                    ":assessmentGroupId",
+                    "members",
+                    "batchRemove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assessmentGroupId",
+                      "description": "(Required) Numeric identifier of the Assessment Group."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userUids\": [\n    \"u_5f3c8b2a\",\n    \"u_9e1d4f0c\",\n    \"u_2a7b6c4d\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 9003,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://oBzaBTEHYPzxsVBSeYCtFUUEJadxB.zrpaJkiN4HlmlnBAkN3A\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "391cbe82-d6bc-4345-a80f-d20886a3e30a",
+              "name": "Batch exceeds the documented per-request maximum (100 items).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessment-groups",
+                    ":assessmentGroupId",
+                    "members",
+                    "batchRemove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assessmentGroupId",
+                      "description": "(Required) Numeric identifier of the Assessment Group."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userUids\": [\n    \"u_5f3c8b2a\",\n    \"u_9e1d4f0c\",\n    \"u_2a7b6c4d\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 9003,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://oBzaBTEHYPzxsVBSeYCtFUUEJadxB.zrpaJkiN4HlmlnBAkN3A\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1c87bc9-f56c-4c5f-8fe5-33192d3fcab4",
+              "name": "Server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessment-groups",
+                    ":assessmentGroupId",
+                    "members",
+                    "batchRemove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assessmentGroupId",
+                      "description": "(Required) Numeric identifier of the Assessment Group."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userUids\": [\n    \"u_5f3c8b2a\",\n    \"u_9e1d4f0c\",\n    \"u_2a7b6c4d\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 9003,\n  \"title\": \"string\",\n  \"type\": \"https://errors.synack.com/assessment/group-not-found\",\n  \"detail\": \"string\",\n  \"instance\": \"https://oBzaBTEHYPzxsVBSeYCtFUUEJadxB.zrpaJkiN4HlmlnBAkN3A\",\n  \"logId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "853bceec-ef92-4110-8f4c-c7f06c68db56",
+          "name": "Get assessment groups",
+          "request": {
+            "name": "Get assessment groups",
+            "description": {
+              "content": "Retrieve a list of assessment groups",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "assessment_groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6ae683ca-792c-48da-a7c6-0c3c972df4a9",
+              "name": "Assessment groups retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessment_groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 2408,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"created_at\": \"1991-11-29T05:37:55.676Z\"\n  },\n  {\n    \"id\": 9072,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"created_at\": \"2026-01-25T19:45:43.388Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e702b009-9d2d-4365-a5c4-e45752fd1f65",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessment_groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4f1ac687-16fd-493f-8e56-823723427908",
+          "name": "Get a specific assessment group",
+          "request": {
+            "name": "Get a specific assessment group",
+            "description": {
+              "content": "Retrieve details of a specific assessment group",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "assessment_groups",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Assessment group ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "72cff56c-9ebd-4042-ad93-44e30e3e07a6",
+              "name": "Assessment group retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessment_groups",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Assessment group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7556,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"created_at\": \"2019-11-21T03:58:32.513Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4785ddbd-b287-4079-aac6-f08177d63869",
+              "name": "Assessment group not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessment_groups",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Assessment group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://client.synack.com/api/assessment",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "645916c1-ae0f-4ee3-8426-2df23db5fc3c",
+    "name": "Assessment Service Assessment Groups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for managing Assessment and related operations on the Synack.\n\n\nContact Support:\n Name: Synack Engineering\n Email: engineering@synack.com",
+      "type": "text/plain"
+    }
+  }
+}

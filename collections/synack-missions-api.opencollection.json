@@ -1,0 +1,387 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Assessment Service Assessment Groups Missions API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Missions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search for Group of Missions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/campaigns/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sorts by field names."
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search by campaign's title, description or scope"
+              },
+              {
+                "name": "createdByRole",
+                "value": "",
+                "type": "query",
+                "description": "Filter campaigns by created_role"
+              },
+              {
+                "name": "orgUids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by organization UIDs."
+              },
+              {
+                "name": "listingUids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by listing UIDs."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Campaign Status."
+              },
+              {
+                "name": "listingType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by listing types. Search is performed on the campaign's tags."
+              },
+              {
+                "name": "includeTaskStats",
+                "value": "",
+                "type": "query",
+                "description": "If this set to true, then additional tasks stats fields will be set for each campaign in the response which include:\n  * tasksTotal\n  * tasksCompleted\n  * tasksPassed\n  * tasksFailed\n"
+              },
+              {
+                "name": "includeCatalogCategory",
+                "value": "",
+                "type": "query",
+                "description": "If set to true, then the CampaignCatalog that each Campaign belongs to will be included in the response."
+              },
+              {
+                "name": "includePublishedWaiting",
+                "value": "",
+                "type": "query",
+                "description": "If this is set to true, then additional tasksPublishedWaiting field will be set for each campaign in the response, which contains the count of missions that have been in PUBLISHED state for more than 30 minutes.\n"
+              },
+              {
+                "name": "publishedStartDate",
+                "value": "",
+                "type": "query",
+                "description": "It is possible this value alone to the query. If both published start and end date are provided, it is required for startDate < endDate."
+              },
+              {
+                "name": "publishedEndDate",
+                "value": "",
+                "type": "query",
+                "description": "It is possible this value alone to the query. If both published start and end date are provided, it is required for startDate < endDate."
+              },
+              {
+                "name": "deactivated",
+                "value": "",
+                "type": "query",
+                "description": "Filter by activated/deactivated campaigns."
+              },
+              {
+                "name": "creditsDeducted",
+                "value": "",
+                "type": "query",
+                "description": "Whether to return deducted credits."
+              }
+            ]
+          },
+          "docs": "Allows searching for Group of Missions (campaigns) available to the current authenticated user. Group of Missions are filtered based on what current listings and organizations the current user has access to."
+        },
+        {
+          "info": {
+            "name": "Search for Group of Missions by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/campaigns/:campaignID",
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "includeTaskStats",
+                "value": "",
+                "type": "query",
+                "description": "If this set to true, then additional tasks stats fields will be set for the campaign in the response which include:\n  * tasksTotal\n  * tasksCompleted\n  * tasksPassed\n  * tasksFailed\n"
+              },
+              {
+                "name": "includeCatalogCategory",
+                "value": "",
+                "type": "query",
+                "description": "If set to true, then the CampaignCatalog that this Campaign belongs to will be included in the response."
+              },
+              {
+                "name": "creditsDeducted",
+                "value": "",
+                "type": "query",
+                "description": "Whether to return deducted credits."
+              }
+            ]
+          },
+          "docs": "Allows searching for Group of Missions (campaign) by ID if available to the current authenticated user."
+        },
+        {
+          "info": {
+            "name": "Get Group of Missions stats by status.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/campaigns/stats",
+            "params": [
+              {
+                "name": "orgUids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by organization UIDs."
+              },
+              {
+                "name": "listingUids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by listing UIDs."
+              }
+            ]
+          },
+          "docs": "Allows searching for Group of Missions (campaigns) stats by status if available to the current authenticated user."
+        },
+        {
+          "info": {
+            "name": "Search for missions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/tasks",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sorts by field names.\n"
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "approvedStartDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter by approved date (this value can be sent alone to the query). If both approved start and end date are provided, it is required for startDate < endDate."
+              },
+              {
+                "name": "approvedEndDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter by approved date (this value can be sent alone to the query). If both approved start and end date are provided, it is required for startDate < endDate."
+              },
+              {
+                "name": "assetTypes",
+                "value": "",
+                "type": "query",
+                "description": "Filter by asset types."
+              },
+              {
+                "name": "attackTypes",
+                "value": "",
+                "type": "query",
+                "description": "Filter by attack types."
+              },
+              {
+                "name": "categories",
+                "value": "",
+                "type": "query",
+                "description": "Filter by categories."
+              },
+              {
+                "name": "cwe",
+                "value": "",
+                "type": "query",
+                "description": "Filter by CWEs."
+              },
+              {
+                "name": "Uids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tasks UIDs."
+              },
+              {
+                "name": "orgUids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by organization UIDs."
+              },
+              {
+                "name": "listingUids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by listing UIDs."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by task status."
+              },
+              {
+                "name": "sv",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tasks SV."
+              },
+              {
+                "name": "assignee",
+                "value": "",
+                "type": "query",
+                "description": "Filter by user assignee to the tasks."
+              },
+              {
+                "name": "campaignUid",
+                "value": "",
+                "type": "query",
+                "description": "Filter by campaign UID."
+              },
+              {
+                "name": "deactivated",
+                "value": "",
+                "type": "query",
+                "description": "Filter by activated/deactivated tasks and campaigns."
+              },
+              {
+                "name": "deactivatedTasks",
+                "value": "",
+                "type": "query",
+                "description": "Filter by activated/deactivated tasks only - no impact from campaigns."
+              },
+              {
+                "name": "attachments",
+                "value": "",
+                "type": "query",
+                "description": "Include attachments for the tasks in the response. By default is false."
+              },
+              {
+                "name": "viewed",
+                "value": "",
+                "type": "query",
+                "description": "Include the viewed field in the response. By default is false."
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Query used to perform a full text search on task's title, description or scope."
+              },
+              {
+                "name": "taskTemplateUid",
+                "value": "",
+                "type": "query",
+                "description": "Filter by task template UID."
+              },
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by definition ID."
+              },
+              {
+                "name": "batchId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by batch ID."
+              },
+              {
+                "name": "taskGroup",
+                "value": "",
+                "type": "query",
+                "description": "Filter by task group."
+              },
+              {
+                "name": "structuredResponse",
+                "value": "",
+                "type": "query",
+                "description": "Filter by task structured response."
+              },
+              {
+                "name": "taskTypes",
+                "value": "",
+                "type": "query",
+                "description": "Filter task types, case insensitively. Currently accepted values are: \"MISSION\", \"SV2M\" and \"TAAS\"."
+              },
+              {
+                "name": "includeAssignedBySynackUser",
+                "value": "",
+                "type": "query",
+                "description": "Return whether the task was assigned to the researcher by a boss user."
+              },
+              {
+                "name": "includeTaskTemplateCredits",
+                "value": "",
+                "type": "query",
+                "description": "Return the task template credits for the task."
+              }
+            ]
+          },
+          "docs": "Allows searching for missions (tasks) available to the current authenticated user. Missions are filtered based on what current listings and organizations the current user has access to."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

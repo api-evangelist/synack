@@ -1,0 +1,429 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Assessment Service Assessment Groups userroles API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "userroles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getUserRoles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/assets/:assetUid/user-roles",
+            "params": [
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.\n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Optional property to sort results by."
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query",
+                "description": "Direction of sort-order for items in the response."
+              },
+              {
+                "name": "scannable",
+                "value": "",
+                "type": "query",
+                "description": "Constrains the response to include users roles with a matching value for the scannable property."
+              }
+            ]
+          },
+          "docs": "Gets a paginated list of all user roles for a mobile or web application. Returns a 409 status code if the asset is not one of these expected types."
+        },
+        {
+          "info": {
+            "name": "postUserRole",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v2/assets/:assetUid/user-roles",
+            "params": [
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a user role to a mobile or web application asset. Returns a 409 status code if the asset is not one of these expected types."
+        },
+        {
+          "info": {
+            "name": "getUserRole",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/user-roles/:userRoleUid",
+            "params": [
+              {
+                "name": "userRoleUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset user role."
+              }
+            ]
+          },
+          "docs": "Retrieves the properties of the supplied user role."
+        },
+        {
+          "info": {
+            "name": "patchUserRole",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client.synack.com/api/assessment/v2/user-roles/:userRoleUid",
+            "params": [
+              {
+                "name": "userRoleUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset user role."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch properties of a user role for a mobile or web application asset. Will return a 409 status code if the type is not one of these expected types."
+        },
+        {
+          "info": {
+            "name": "deleteUserRole",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client.synack.com/api/assessment/v2/user-roles/:userRoleUid",
+            "params": [
+              {
+                "name": "userRoleUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset user role."
+              }
+            ]
+          },
+          "docs": "Delete a user role from a mobile or web application asset. Will return a 409 status code if the type is not one of these expected types."
+        },
+        {
+          "info": {
+            "name": "patchUserRoleScript",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client.synack.com/api/assessment/v2/user-roles/:userRoleUid/scripts/:scriptUid",
+            "params": [
+              {
+                "name": "userRoleUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset user role."
+              },
+              {
+                "name": "scriptUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset script."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch properties of a script that's been assigned to user role for a mobile or web application asset."
+        },
+        {
+          "info": {
+            "name": "getUserRoleCredentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/user-roles/:userRoleUid/user-role-credentials",
+            "params": [
+              {
+                "name": "userRoleUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset user role."
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.\n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Optional property to sort results by."
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query",
+                "description": "Direction of sort-order for items in the response."
+              },
+              {
+                "name": "userUid",
+                "value": "",
+                "type": "query",
+                "description": "Restricts the credentials to only those available to the user. This query parameter is ignored if the user is a researcher."
+              }
+            ]
+          },
+          "docs": "Gets the paginated credentials owned by the user role."
+        },
+        {
+          "info": {
+            "name": "postUserRoleCredential",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v2/user-roles/:userRoleUid/user-role-credentials",
+            "params": [
+              {
+                "name": "userRoleUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset user role."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a credential to a user role. Returns 409 Conflict if the credentials do not match the structure of previously created credentials."
+        },
+        {
+          "info": {
+            "name": "patchUserRoleCredentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client.synack.com/api/assessment/v2/user-roles/:userRoleUid/user-role-credentials",
+            "params": [
+              {
+                "name": "userRoleUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset user role."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the properties of multlipe user role credentials. Returns 409 Conflict when the credential format does not match existing credentials."
+        },
+        {
+          "info": {
+            "name": "deleteUserRoleCredentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client.synack.com/api/assessment/v2/user-roles/:userRoleUid/user-role-credentials",
+            "params": [
+              {
+                "name": "userRoleUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset user role."
+              },
+              {
+                "name": "credentialUid[]",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for a credential. If not supplied the request will apply to all credentials the user is authorized to access."
+              }
+            ]
+          },
+          "docs": "Delete every credential belonging to the user role."
+        },
+        {
+          "info": {
+            "name": "patchUserRoleCredential",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client.synack.com/api/assessment/v2/user-role-credentials/:credentialUid",
+            "params": [
+              {
+                "name": "credentialUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset credential."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch the properties of a user-role credential. Returns 409 Conflict if the credentials do not match the structure of previously created credentials."
+        },
+        {
+          "info": {
+            "name": "deleteUserRoleCredential",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client.synack.com/api/assessment/v2/user-role-credentials/:credentialUid",
+            "params": [
+              {
+                "name": "credentialUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset credential."
+              }
+            ]
+          },
+          "docs": "Delete a user role credentialt."
+        },
+        {
+          "info": {
+            "name": "putUserRoleCredentialUser",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://client.synack.com/api/assessment/v2/user-role-credentials/:credentialUid/assigned-users/:userUid",
+            "params": [
+              {
+                "name": "credentialUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset credential."
+              },
+              {
+                "name": "userUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for a user."
+              }
+            ]
+          },
+          "docs": "Assign a user to a user-role credential. Credentials with sharing of \"one\" will return a 409 status code when a request is received to add further users. Credentials with sharing of \"all\" will return a 409 status code on any request to add users. There is not limit to the number of users that may be added for sharing of \"many\"."
+        },
+        {
+          "info": {
+            "name": "deleteUserRoleCredentialUser",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client.synack.com/api/assessment/v2/user-role-credentials/:credentialUid/assigned-users/:userUid",
+            "params": [
+              {
+                "name": "credentialUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset credential."
+              },
+              {
+                "name": "userUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for a user."
+              }
+            ]
+          },
+          "docs": "Remove a user from a user-role credential."
+        },
+        {
+          "info": {
+            "name": "assignUserRoleCredentialsToUser",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v2/user-role-credentials",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for an organization."
+              },
+              {
+                "name": "listingUid",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for a listing."
+              },
+              {
+                "name": "userUid",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for a user."
+              }
+            ]
+          },
+          "docs": "Assign user role credentials to a user for mobile application or web application assets in a listing."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

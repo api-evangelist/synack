@@ -1,0 +1,1453 @@
+{
+  "item": [
+    {
+      "id": "be6d08d3-cc3d-4115-8876-b7f209de1a1e",
+      "name": "asset-relationships",
+      "description": {
+        "content": "Relationships between assets.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a3f3a09b-7c3e-430f-a593-de267aa38f89",
+          "name": "post Asset Relationship",
+          "request": {
+            "name": "post Asset Relationship",
+            "description": {
+              "content": "Creates a relationship between two assets.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "asset-relationships"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assetScanner\": \"<string>\",\n  \"createdBy\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"relationshipType\": \"<string>\",\n  \"sourceAssetUid\": \"<string>\",\n  \"startsAt\": \"<dateTime>\",\n  \"targetAssetUid\": \"<string>\",\n  \"uid\": \"<string>\",\n  \"endsAt\": \"<dateTime>\",\n  \"updatedBy\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "01e601a5-2e99-4523-bd34-90331cfa6745",
+              "name": "A relationship between two assets.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "asset-relationships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assetScanner\": \"openVAS\",\n  \"createdBy\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"relationshipType\": \"discoveredBy\",\n  \"sourceAssetUid\": \"424246aa08f1d88f855f7574\",\n  \"startsAt\": \"1947-11-14T20:18:37.830Z\",\n  \"targetAssetUid\": \"952d65735492c21c3626e753\",\n  \"uid\": \"b17e3b6c8e0d\",\n  \"endsAt\": \"1989-05-17T01:29:57.258Z\",\n  \"updatedBy\": \"7eceebffe9f7\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "An identifier for a specific version of a resource",
+                  "key": "ETag",
+                  "value": "W/\"o$2|/_26jv\""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assetScanner\": \"fingerprinter\",\n  \"createdAt\": \"1968-03-16T20:23:36.066Z\",\n  \"createdBy\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"relationshipType\": \"discoveredBy\",\n  \"sourceAssetUid\": \"8a713fc3ab620e227f0547a0\",\n  \"startsAt\": \"2007-12-21T23:29:18.934Z\",\n  \"targetAssetUid\": \"d322e8b4385041fec0052e7c\",\n  \"uid\": \"e7fc06a4771e\",\n  \"endsAt\": \"1967-08-23T23:28:24.952Z\",\n  \"updatedAt\": \"1980-03-20T02:25:22.611Z\",\n  \"updatedBy\": \"3a7560606cdd\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c80ab6e-e8ac-4b69-8f9d-74cdab795a84",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "asset-relationships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assetScanner\": \"openVAS\",\n  \"createdBy\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"relationshipType\": \"discoveredBy\",\n  \"sourceAssetUid\": \"424246aa08f1d88f855f7574\",\n  \"startsAt\": \"1947-11-14T20:18:37.830Z\",\n  \"targetAssetUid\": \"952d65735492c21c3626e753\",\n  \"uid\": \"b17e3b6c8e0d\",\n  \"endsAt\": \"1989-05-17T01:29:57.258Z\",\n  \"updatedBy\": \"7eceebffe9f7\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "511aa896-c6d0-4227-8bd9-d5253fce6767",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "asset-relationships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assetScanner\": \"openVAS\",\n  \"createdBy\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"relationshipType\": \"discoveredBy\",\n  \"sourceAssetUid\": \"424246aa08f1d88f855f7574\",\n  \"startsAt\": \"1947-11-14T20:18:37.830Z\",\n  \"targetAssetUid\": \"952d65735492c21c3626e753\",\n  \"uid\": \"b17e3b6c8e0d\",\n  \"endsAt\": \"1989-05-17T01:29:57.258Z\",\n  \"updatedBy\": \"7eceebffe9f7\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7890e56b-52bd-490a-85bd-37b94f0e0e59",
+              "name": "Conflict.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "asset-relationships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assetScanner\": \"openVAS\",\n  \"createdBy\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"relationshipType\": \"discoveredBy\",\n  \"sourceAssetUid\": \"424246aa08f1d88f855f7574\",\n  \"startsAt\": \"1947-11-14T20:18:37.830Z\",\n  \"targetAssetUid\": \"952d65735492c21c3626e753\",\n  \"uid\": \"b17e3b6c8e0d\",\n  \"endsAt\": \"1989-05-17T01:29:57.258Z\",\n  \"updatedBy\": \"7eceebffe9f7\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 161,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 8023,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 6682,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 6496,\n  \"batchSize\": 8698\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ec48075-8415-40a5-96c6-5ba35ab945c9",
+              "name": "Entity Not Processable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "asset-relationships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assetScanner\": \"openVAS\",\n  \"createdBy\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"relationshipType\": \"discoveredBy\",\n  \"sourceAssetUid\": \"424246aa08f1d88f855f7574\",\n  \"startsAt\": \"1947-11-14T20:18:37.830Z\",\n  \"targetAssetUid\": \"952d65735492c21c3626e753\",\n  \"uid\": \"b17e3b6c8e0d\",\n  \"endsAt\": \"1989-05-17T01:29:57.258Z\",\n  \"updatedBy\": \"7eceebffe9f7\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 161,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 8023,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 6682,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 6496,\n  \"batchSize\": 8698\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f29ab8c5-088a-46cc-82b3-8a3736f92672",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "asset-relationships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assetScanner\": \"openVAS\",\n  \"createdBy\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"relationshipType\": \"discoveredBy\",\n  \"sourceAssetUid\": \"424246aa08f1d88f855f7574\",\n  \"startsAt\": \"1947-11-14T20:18:37.830Z\",\n  \"targetAssetUid\": \"952d65735492c21c3626e753\",\n  \"uid\": \"b17e3b6c8e0d\",\n  \"endsAt\": \"1989-05-17T01:29:57.258Z\",\n  \"updatedBy\": \"7eceebffe9f7\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 161,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 8023,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 6682,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 6496,\n  \"batchSize\": 8698\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04205716-d7ff-481f-a54a-b3448ff5a18e",
+              "name": "Service Unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "asset-relationships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assetScanner\": \"openVAS\",\n  \"createdBy\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"relationshipType\": \"discoveredBy\",\n  \"sourceAssetUid\": \"424246aa08f1d88f855f7574\",\n  \"startsAt\": \"1947-11-14T20:18:37.830Z\",\n  \"targetAssetUid\": \"952d65735492c21c3626e753\",\n  \"uid\": \"b17e3b6c8e0d\",\n  \"endsAt\": \"1989-05-17T01:29:57.258Z\",\n  \"updatedBy\": \"7eceebffe9f7\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 161,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 8023,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 6682,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 6496,\n  \"batchSize\": 8698\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f5dd520-3ead-4ee3-8606-ed40d6a9b695",
+          "name": "patch Asset Relationship",
+          "request": {
+            "name": "patch Asset Relationship",
+            "description": {
+              "content": "Updates a relationship between a two assets.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "asset-relationships",
+                ":assetRelationshipUid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetRelationshipUid",
+                  "description": "(Required) Unique identifier for a relationship between assets."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                "key": "If-Match",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startsAt\": \"<dateTime>\",\n  \"endsAt\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9519873f-8b75-49b1-8270-241a8361b198",
+              "name": "A relationship between two assets.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "asset-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startsAt\": \"<dateTime>\",\n  \"endsAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "An identifier for a specific version of a resource",
+                  "key": "ETag",
+                  "value": "W/\"o$2|/_26jv\""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assetScanner\": \"fingerprinter\",\n  \"createdAt\": \"1968-03-16T20:23:36.066Z\",\n  \"createdBy\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"relationshipType\": \"discoveredBy\",\n  \"sourceAssetUid\": \"8a713fc3ab620e227f0547a0\",\n  \"startsAt\": \"2007-12-21T23:29:18.934Z\",\n  \"targetAssetUid\": \"d322e8b4385041fec0052e7c\",\n  \"uid\": \"e7fc06a4771e\",\n  \"endsAt\": \"1967-08-23T23:28:24.952Z\",\n  \"updatedAt\": \"1980-03-20T02:25:22.611Z\",\n  \"updatedBy\": \"3a7560606cdd\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d2e1966-7c0d-471f-9a96-924810f9bcf5",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "asset-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startsAt\": \"<dateTime>\",\n  \"endsAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7f526ffa-b19d-41e8-a599-c5795bd0610f",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "asset-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startsAt\": \"<dateTime>\",\n  \"endsAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c73e3fc7-20ee-45ea-9781-1829487c0a3b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "asset-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startsAt\": \"<dateTime>\",\n  \"endsAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "87914ce4-c94f-4486-8370-08f8a432e525",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "asset-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startsAt\": \"<dateTime>\",\n  \"endsAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "82b2cc23-6440-447f-9ed7-536bc79ad0fc",
+              "name": "Conflict.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "asset-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startsAt\": \"<dateTime>\",\n  \"endsAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 236,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 7958,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 6181,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 6413,\n  \"batchSize\": 2267\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e30fad3e-8c65-42bc-bc7f-47a944db458c",
+              "name": "Entity Not Processable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "asset-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startsAt\": \"<dateTime>\",\n  \"endsAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 236,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 7958,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 6181,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 6413,\n  \"batchSize\": 2267\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dcd2f8e4-8bed-4e86-951c-29dadbe69e31",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "asset-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startsAt\": \"<dateTime>\",\n  \"endsAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 236,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 7958,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 6181,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 6413,\n  \"batchSize\": 2267\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3479c0a-a953-4794-a791-61ccb58cd9ec",
+              "name": "Service Unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "asset-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Used to prevent the lost-update problem. The operation will only\ncontinue if the ETag of the resource matches the supplied value;\nother was a 412 status will be returned. Provide a returned\nETag value or * to force the operation.\n",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startsAt\": \"<dateTime>\",\n  \"endsAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 236,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 7958,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 6181,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 6413,\n  \"batchSize\": 2267\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a52131e5-e070-437f-b694-b7cb6a897c80",
+          "name": "delete Asset Relationship",
+          "request": {
+            "name": "delete Asset Relationship",
+            "description": {
+              "content": "Deletes a relationship between a two assets.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "asset-relationships",
+                ":assetRelationshipUid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetRelationshipUid",
+                  "description": "(Required) Unique identifier for a relationship between assets."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "2dbd0442-145e-4ef7-a599-f07373cd3a49",
+              "name": "No content.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "asset-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b728c2c1-bfc9-4d05-bf6c-b6aecc5620e8",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "asset-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "030b0b4b-9239-4f07-880a-b378562299c0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "asset-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ec6e5216-eebc-44cc-85df-fecf0a709cd8",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "asset-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b592d011-65f4-4ad1-9910-12ab684a3c6e",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "asset-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 236,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 7958,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 6181,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 6413,\n  \"batchSize\": 2267\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "091143f3-e755-40ec-a975-335d70c8d3da",
+              "name": "Service Unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "asset-relationships",
+                    ":assetRelationshipUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetRelationshipUid",
+                      "description": "(Required) Unique identifier for a relationship between assets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 236,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 7958,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 6181,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 6413,\n  \"batchSize\": 2267\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://client.synack.com/api/assessment",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "10ba8189-ce09-4c87-8340-1473335206f7",
+    "name": "Assessment Service Assessment Groups asset-relationships API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for managing Assessment and related operations on the Synack.\n\n\nContact Support:\n Name: Synack Engineering\n Email: engineering@synack.com",
+      "type": "text/plain"
+    }
+  }
+}

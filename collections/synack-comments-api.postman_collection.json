@@ -1,0 +1,428 @@
+{
+  "item": [
+    {
+      "id": "e51574bd-d8d6-4440-8e79-3fcbaa57c10f",
+      "name": "Comments",
+      "description": {
+        "content": "Operations related to comments",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9e9f1c96-d067-46db-86d2-b0d160f5a91f",
+          "name": "Get vulnerability comments",
+          "request": {
+            "name": "Get vulnerability comments",
+            "description": {
+              "content": "Retrieve comments for a specific vulnerability",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "vulnerabilities",
+                ":vulnerability_id",
+                "comments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vulnerability_id",
+                  "description": "(Required) Vulnerability ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4ab40f42-a159-44d2-a9bd-17695a32bafa",
+              "name": "Comments retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vulnerabilities",
+                    ":vulnerability_id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vulnerability_id",
+                      "description": "(Required) Vulnerability ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 5828,\n    \"text\": \"string\",\n    \"type\": \"string\",\n    \"created_at\": \"2021-08-28T11:41:16.932Z\",\n    \"updated_at\": \"1962-07-05T22:58:07.779Z\",\n    \"user\": {\n      \"email\": \"string\",\n      \"id\": 2263,\n      \"name\": \"string\"\n    },\n    \"attachments\": [\n      {\n        \"id\": 4257,\n        \"filename\": \"string\",\n        \"content_type\": \"string\",\n        \"file_size\": 473,\n        \"created_at\": \"2000-09-29T16:19:44.527Z\"\n      },\n      {\n        \"id\": 5079,\n        \"filename\": \"string\",\n        \"content_type\": \"string\",\n        \"file_size\": 9352,\n        \"created_at\": \"1957-11-02T19:44:13.977Z\"\n      }\n    ]\n  },\n  {\n    \"id\": 4930,\n    \"text\": \"string\",\n    \"type\": \"string\",\n    \"created_at\": \"1947-02-14T13:52:02.079Z\",\n    \"updated_at\": \"1995-07-08T07:24:06.634Z\",\n    \"user\": {\n      \"email\": \"string\",\n      \"id\": 205,\n      \"name\": \"string\"\n    },\n    \"attachments\": [\n      {\n        \"id\": 3932,\n        \"filename\": \"string\",\n        \"content_type\": \"string\",\n        \"file_size\": 6325,\n        \"created_at\": \"2016-07-10T22:57:25.949Z\"\n      },\n      {\n        \"id\": 6750,\n        \"filename\": \"string\",\n        \"content_type\": \"string\",\n        \"file_size\": 1544,\n        \"created_at\": \"1974-01-08T01:30:26.682Z\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "51b0288a-960d-4a28-8863-4a56010efc2b",
+              "name": "Vulnerability not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vulnerabilities",
+                    ":vulnerability_id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vulnerability_id",
+                      "description": "(Required) Vulnerability ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34b896c8-9338-4ea2-b3b8-ad78b7c44bd5",
+          "name": "Create a vulnerability comment",
+          "request": {
+            "name": "Create a vulnerability comment",
+            "description": {
+              "content": "Create a new comment for a specific vulnerability",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "vulnerabilities",
+                ":vulnerability_id",
+                "comments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vulnerability_id",
+                  "description": "(Required) Vulnerability ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "39d32da0-9a35-4a7e-9a93-51443b61b780",
+              "name": "Comment created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vulnerabilities",
+                    ":vulnerability_id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vulnerability_id",
+                      "description": "(Required) Vulnerability ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2305,\n  \"text\": \"string\",\n  \"type\": \"string\",\n  \"created_at\": \"1999-02-28T11:33:45.334Z\",\n  \"updated_at\": \"1985-12-06T19:56:51.524Z\",\n  \"user\": {\n    \"email\": \"string\",\n    \"id\": 1190,\n    \"name\": \"string\"\n  },\n  \"attachments\": [\n    {\n      \"id\": 4077,\n      \"filename\": \"string\",\n      \"content_type\": \"string\",\n      \"file_size\": 7518,\n      \"created_at\": \"1978-10-22T21:55:08.229Z\"\n    },\n    {\n      \"id\": 9302,\n      \"filename\": \"string\",\n      \"content_type\": \"string\",\n      \"file_size\": 6242,\n      \"created_at\": \"1964-05-17T07:25:11.608Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d574127-f590-4c7c-b46d-a084fe81636d",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vulnerabilities",
+                    ":vulnerability_id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vulnerability_id",
+                      "description": "(Required) Vulnerability ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c99493f0-64dc-4823-b334-7d52c00fb5d3",
+              "name": "Vulnerability not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vulnerabilities",
+                    ":vulnerability_id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vulnerability_id",
+                      "description": "(Required) Vulnerability ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://client.synack.com/api/assessment",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e74be6dc-d3e8-4b55-85dc-6fe989efd2f2",
+    "name": "Assessment Service Assessment Groups Comments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for managing Assessment and related operations on the Synack.\n\n\nContact Support:\n Name: Synack Engineering\n Email: engineering@synack.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Assessment Service Assessment Groups API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Assessment Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List members of an Assessment Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/assessment-groups/:assessmentGroupId/members",
+            "params": [
+              {
+                "name": "assessmentGroupId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric identifier of the Assessment Group."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort by."
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "role",
+                "value": "",
+                "type": "query",
+                "description": "Filter members by role."
+              }
+            ]
+          },
+          "docs": "Returns the users currently assigned to the Assessment Group, with\ntheir roles and membership timestamps.\nSupports pagination, sorting, and an optional role filter.\n"
+        },
+        {
+          "info": {
+            "name": "Add users to an Assessment Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v1/assessment-groups/:assessmentGroupId/members/batchAdd",
+            "params": [
+              {
+                "name": "assessmentGroupId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric identifier of the Assessment Group."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds one or more users to an Assessment Group with a specified role.\n\nMaximum 100 members per request.\n"
+        },
+        {
+          "info": {
+            "name": "Remove users from an Assessment Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v1/assessment-groups/:assessmentGroupId/members/batchRemove",
+            "params": [
+              {
+                "name": "assessmentGroupId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric identifier of the Assessment Group."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Removes one or more users from an Assessment Group.\n\nMaximum 100 user IDs per request.\n"
+        },
+        {
+          "info": {
+            "name": "Get assessment groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/assessment_groups"
+          },
+          "docs": "Retrieve a list of assessment groups"
+        },
+        {
+          "info": {
+            "name": "Get a specific assessment group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/assessment_groups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Assessment group ID"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific assessment group"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

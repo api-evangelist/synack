@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Assessment Service Assessment Groups Assessment Lifecycle API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Assessment Lifecycle",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Pause an assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v1/organizations/:organizationUid/assessments/:assessmentUid/pause",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the organization."
+              },
+              {
+                "name": "assessmentUid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the assessment."
+              }
+            ]
+          },
+          "docs": "Pauses testing on an assessment.\nThe assessment must be in an active state to be paused.\nReturns 409 if the assessment is not in a pausable state.\n"
+        },
+        {
+          "info": {
+            "name": "Resume an assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v1/organizations/:organizationUid/assessments/:assessmentUid/resume",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the organization."
+              },
+              {
+                "name": "assessmentUid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the assessment."
+              }
+            ]
+          },
+          "docs": "Resumes testing on a paused assessment.\nThe assessment must be in a paused state to be resumed.\nReturns 409 if the assessment is not currently paused.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

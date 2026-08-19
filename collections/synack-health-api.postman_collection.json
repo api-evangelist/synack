@@ -1,0 +1,165 @@
+{
+  "item": [
+    {
+      "id": "f8eb8873-990a-4975-96be-91e8e0dec63e",
+      "name": "health",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5e5c8a71-aee0-45db-a838-1af776ca5264",
+          "name": "Health check",
+          "request": {
+            "name": "Health check",
+            "description": {
+              "content": "get health",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f9ea8bf5-d97b-44c4-b0c5-e7ad224f2996",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"data\": {\n      \"attributes\": \"\",\n      \"id\": \"string\",\n      \"links\": {\n        \"next\": \"string\",\n        \"prev\": \"string\"\n      },\n      \"meta\": \"\",\n      \"relationships\": {\n        \"key_0\": {\n          \"data\": \"\",\n          \"links\": {\n            \"next\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"prev\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"key_1\": {\n          \"data\": \"\",\n          \"links\": {\n            \"next\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"prev\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"type\": \"top_vulnerable_ips\"\n    },\n    \"errors\": [\n      {\n        \"detail\": \"string\",\n        \"id\": \"string\",\n        \"source\": \"string\",\n        \"status\": 7625,\n        \"title\": \"string\"\n      },\n      {\n        \"detail\": \"string\",\n        \"id\": \"string\",\n        \"source\": \"string\",\n        \"status\": 4517,\n        \"title\": \"string\"\n      }\n    ],\n    \"links\": {\n      \"next\": \"string\",\n      \"prev\": \"string\"\n    },\n    \"meta\": \"\"\n  },\n  {\n    \"data\": {\n      \"attributes\": \"\",\n      \"id\": \"string\",\n      \"links\": {\n        \"next\": \"string\",\n        \"prev\": \"string\"\n      },\n      \"meta\": \"\",\n      \"relationships\": {\n        \"key_0\": {\n          \"data\": \"\",\n          \"links\": {\n            \"next\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"prev\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"key_1\": {\n          \"data\": \"\",\n          \"links\": {\n            \"next\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"prev\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"key_2\": {\n          \"data\": \"\",\n          \"links\": {\n            \"next\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"prev\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"type\": \"last_assets_scan\"\n    },\n    \"errors\": [\n      {\n        \"detail\": \"string\",\n        \"id\": \"string\",\n        \"source\": \"string\",\n        \"status\": 8305,\n        \"title\": \"string\"\n      },\n      {\n        \"detail\": \"string\",\n        \"id\": \"string\",\n        \"source\": \"string\",\n        \"status\": 3797,\n        \"title\": \"string\"\n      }\n    ],\n    \"links\": {\n      \"next\": \"string\",\n      \"prev\": \"string\"\n    },\n    \"meta\": \"\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c3fbc84-f8df-4e38-b5f5-071d864bc339",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://client.synack.com/api/assessment",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9dbd0876-0d0e-400a-9196-10a8180d4d9d",
+    "name": "Assessment Service Assessment Groups health API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for managing Assessment and related operations on the Synack.\n\n\nContact Support:\n Name: Synack Engineering\n Email: engineering@synack.com",
+      "type": "text/plain"
+    }
+  }
+}

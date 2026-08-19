@@ -1,0 +1,181 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Assessment Service Assessment Groups Tests API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve all tests on an assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/assessments/:assessment_id/tests",
+            "params": [
+              {
+                "name": "assessment_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the assessment"
+              }
+            ]
+          },
+          "docs": "Retrieve tests associated with a specific assessment"
+        },
+        {
+          "info": {
+            "name": "Approve a test (as a super admin)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v1/assessments/:assessment_id/tests/:id/approve",
+            "params": [
+              {
+                "name": "assessment_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the assessment"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the test"
+              }
+            ]
+          },
+          "docs": "Approve a test as a super admin, transitioning it from Admin Review to Synack Review status.\nThe test must be in Admin Review status.\n"
+        },
+        {
+          "info": {
+            "name": "Reject a test (as a super admin)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v1/assessments/:assessment_id/tests/:id/reject",
+            "params": [
+              {
+                "name": "assessment_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the assessment"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the test"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reject a test as a super admin, returning it to draft status.\nThe test must be in Admin Review status.\n"
+        },
+        {
+          "info": {
+            "name": "Create a test for an assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v2/organizations/:organizationUid/assessments/:assessmentUid/tests",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the organization"
+              },
+              {
+                "name": "assessmentUid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the assessment"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new test for a specific assessment"
+        },
+        {
+          "info": {
+            "name": "Returns list of latest tests details and statuses per organization and asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/:org_uid/assets/:asset_uid/listings/tests/latest",
+            "params": [
+              {
+                "name": "org_uid",
+                "value": "",
+                "type": "path",
+                "description": "Organization UID"
+              },
+              {
+                "name": "asset_uid",
+                "value": "",
+                "type": "path",
+                "description": "Asset UID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to be returned"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Order By [listing_codename, listing_name]"
+              },
+              {
+                "name": "order_direction",
+                "value": "",
+                "type": "query",
+                "description": "Order Direction [ASC DESC]"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to be returned"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "If provided, show the provided page"
+              }
+            ]
+          },
+          "docs": "Get latest tests details and statuses by organization UID and asset UID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

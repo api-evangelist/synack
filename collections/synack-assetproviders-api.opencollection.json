@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Assessment Service Assessment Groups assetproviders API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "assetproviders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns list of asset providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/:org_uid/assets/providers",
+            "params": [
+              {
+                "name": "org_uid",
+                "value": "",
+                "type": "path",
+                "description": "Organization UID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of provider results to be returned"
+              }
+            ]
+          },
+          "docs": "Get Asset Providers by Organization"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

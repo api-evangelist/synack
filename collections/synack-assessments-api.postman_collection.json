@@ -1,0 +1,4323 @@
+{
+  "item": [
+    {
+      "id": "752d6d35-12f6-461d-82a7-00d5ee9cba60",
+      "name": "Assessments",
+      "description": {
+        "content": "Assets are associated with listings.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bcc67523-571b-4ebc-9094-14ca1d764b9b",
+          "name": "put Listing Asset",
+          "request": {
+            "name": "put Listing Asset",
+            "description": {
+              "content": "Upsert assignment of an asset to a listing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "listings",
+                ":listingUid",
+                "assets",
+                ":assetUid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "listingUid",
+                  "description": "(Required) Unique identifier for an listing."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetUid",
+                  "description": "(Required) Unique identifier for an asset."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"listingUid\": \"<string>\",\n  \"scope\": \"<string>\",\n  \"scopeRules\": [\n    {\n      \"appliesTo\": \"<string>\",\n      \"createdBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"rule\": \"<string>\",\n      \"scope\": \"<string>\",\n      \"uid\": \"<string>\",\n      \"updatedBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    {\n      \"appliesTo\": \"<string>\",\n      \"createdBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"rule\": \"<string>\",\n      \"scope\": \"<string>\",\n      \"uid\": \"<string>\",\n      \"updatedBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  ],\n  \"assetUid\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5a787b72-ece8-44b8-9d21-55410adf5df6",
+              "name": "The assignment of an asset to an listing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets",
+                    ":assetUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"listingUid\": \"s3woe8e641qxe8oqbx-hzq1ngbxfpxg1aa_q\",\n  \"scope\": \"discovered\",\n  \"scopeRules\": [\n    {\n      \"appliesTo\": \"srt\",\n      \"createdBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"rule\": \"/6,~;T%E5%00//%54f(g}Xo%dA%3C%03%96////\",\n      \"scope\": \"in\",\n      \"uid\": \"3146736bd83f\",\n      \"updatedBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    {\n      \"appliesTo\": \"scanners\",\n      \"createdBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"rule\": \"/%d24%6BL//vj@%a8%30O//c%d5|//J%8D%98njsdM%809v//SPYo%a7Z%88//Z%Fb%De@9%b2//%Ecoa://Q!%5a%fc%9F%70y%E3%24//u///\",\n      \"scope\": \"in\",\n      \"uid\": \"ace81997b2ab\",\n      \"updatedBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  ],\n  \"assetUid\": \"4fac7f2601256dbd2f9405cc\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "An identifier for a specific version of a resource",
+                  "key": "ETag",
+                  "value": "\"^JO=<kb6A\""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"listingUid\": \"bdb1arb_p1g38-bp9hv0\",\n  \"scope\": \"blocked\",\n  \"scopeRules\": [\n    {\n      \"appliesTo\": \"both\",\n      \"createdAt\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"createdBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"rule\": \"/%CA@%72%36{%DeH%b0//%Fe=o//KohE%5a///#=//@=\",\n      \"scope\": \"in\",\n      \"uid\": \"53cce01d0e57\",\n      \"updatedAt\": \"2023-07-05T23:55:21.869Z\",\n      \"updatedBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    {\n      \"appliesTo\": \"srt\",\n      \"createdAt\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"createdBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"rule\": \"/%e0S%2b//%D5%e1`A9%3C%cd$%C2~//%DaQ%bDe%cAP%b3%2C//5%a7%E6%d5%B2S%FFj%B9%06%1B///\",\n      \"scope\": \"in\",\n      \"uid\": \"47915c850027\",\n      \"updatedAt\": \"1979-05-13T07:53:05.813Z\",\n      \"updatedBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  ],\n  \"createdAt\": \"2016-04-27T21:35:28.742Z\",\n  \"updatedAt\": \"1980-12-25T21:44:06.543Z\",\n  \"assetUid\": \"ca0d24ad974e1897d6032c2d\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f8d6481-12c4-4ffe-b087-7d7e282f6faf",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets",
+                    ":assetUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"listingUid\": \"s3woe8e641qxe8oqbx-hzq1ngbxfpxg1aa_q\",\n  \"scope\": \"discovered\",\n  \"scopeRules\": [\n    {\n      \"appliesTo\": \"srt\",\n      \"createdBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"rule\": \"/6,~;T%E5%00//%54f(g}Xo%dA%3C%03%96////\",\n      \"scope\": \"in\",\n      \"uid\": \"3146736bd83f\",\n      \"updatedBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    {\n      \"appliesTo\": \"scanners\",\n      \"createdBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"rule\": \"/%d24%6BL//vj@%a8%30O//c%d5|//J%8D%98njsdM%809v//SPYo%a7Z%88//Z%Fb%De@9%b2//%Ecoa://Q!%5a%fc%9F%70y%E3%24//u///\",\n      \"scope\": \"in\",\n      \"uid\": \"ace81997b2ab\",\n      \"updatedBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  ],\n  \"assetUid\": \"4fac7f2601256dbd2f9405cc\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "90cddd87-22d1-4c35-b7b1-7c95c094ca4f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets",
+                    ":assetUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"listingUid\": \"s3woe8e641qxe8oqbx-hzq1ngbxfpxg1aa_q\",\n  \"scope\": \"discovered\",\n  \"scopeRules\": [\n    {\n      \"appliesTo\": \"srt\",\n      \"createdBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"rule\": \"/6,~;T%E5%00//%54f(g}Xo%dA%3C%03%96////\",\n      \"scope\": \"in\",\n      \"uid\": \"3146736bd83f\",\n      \"updatedBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    {\n      \"appliesTo\": \"scanners\",\n      \"createdBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"rule\": \"/%d24%6BL//vj@%a8%30O//c%d5|//J%8D%98njsdM%809v//SPYo%a7Z%88//Z%Fb%De@9%b2//%Ecoa://Q!%5a%fc%9F%70y%E3%24//u///\",\n      \"scope\": \"in\",\n      \"uid\": \"ace81997b2ab\",\n      \"updatedBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  ],\n  \"assetUid\": \"4fac7f2601256dbd2f9405cc\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dc84a974-da2a-4245-86b6-37296bba889e",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets",
+                    ":assetUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"listingUid\": \"s3woe8e641qxe8oqbx-hzq1ngbxfpxg1aa_q\",\n  \"scope\": \"discovered\",\n  \"scopeRules\": [\n    {\n      \"appliesTo\": \"srt\",\n      \"createdBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"rule\": \"/6,~;T%E5%00//%54f(g}Xo%dA%3C%03%96////\",\n      \"scope\": \"in\",\n      \"uid\": \"3146736bd83f\",\n      \"updatedBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    {\n      \"appliesTo\": \"scanners\",\n      \"createdBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"rule\": \"/%d24%6BL//vj@%a8%30O//c%d5|//J%8D%98njsdM%809v//SPYo%a7Z%88//Z%Fb%De@9%b2//%Ecoa://Q!%5a%fc%9F%70y%E3%24//u///\",\n      \"scope\": \"in\",\n      \"uid\": \"ace81997b2ab\",\n      \"updatedBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  ],\n  \"assetUid\": \"4fac7f2601256dbd2f9405cc\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fa0b8192-d32e-4651-a2bf-6945d4cd76d7",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets",
+                    ":assetUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"listingUid\": \"s3woe8e641qxe8oqbx-hzq1ngbxfpxg1aa_q\",\n  \"scope\": \"discovered\",\n  \"scopeRules\": [\n    {\n      \"appliesTo\": \"srt\",\n      \"createdBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"rule\": \"/6,~;T%E5%00//%54f(g}Xo%dA%3C%03%96////\",\n      \"scope\": \"in\",\n      \"uid\": \"3146736bd83f\",\n      \"updatedBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    {\n      \"appliesTo\": \"scanners\",\n      \"createdBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"rule\": \"/%d24%6BL//vj@%a8%30O//c%d5|//J%8D%98njsdM%809v//SPYo%a7Z%88//Z%Fb%De@9%b2//%Ecoa://Q!%5a%fc%9F%70y%E3%24//u///\",\n      \"scope\": \"in\",\n      \"uid\": \"ace81997b2ab\",\n      \"updatedBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  ],\n  \"assetUid\": \"4fac7f2601256dbd2f9405cc\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 284,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 7842,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 9117,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 2982,\n  \"batchSize\": 3365\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58aebbc5-33aa-49cb-abbb-1e930e88fe33",
+              "name": "Service Unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets",
+                    ":assetUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"listingUid\": \"s3woe8e641qxe8oqbx-hzq1ngbxfpxg1aa_q\",\n  \"scope\": \"discovered\",\n  \"scopeRules\": [\n    {\n      \"appliesTo\": \"srt\",\n      \"createdBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"rule\": \"/6,~;T%E5%00//%54f(g}Xo%dA%3C%03%96////\",\n      \"scope\": \"in\",\n      \"uid\": \"3146736bd83f\",\n      \"updatedBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    {\n      \"appliesTo\": \"scanners\",\n      \"createdBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"rule\": \"/%d24%6BL//vj@%a8%30O//c%d5|//J%8D%98njsdM%809v//SPYo%a7Z%88//Z%Fb%De@9%b2//%Ecoa://Q!%5a%fc%9F%70y%E3%24//u///\",\n      \"scope\": \"in\",\n      \"uid\": \"ace81997b2ab\",\n      \"updatedBy\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  ],\n  \"assetUid\": \"4fac7f2601256dbd2f9405cc\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 284,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 7842,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 9117,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 2982,\n  \"batchSize\": 3365\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9dc0c2a9-8546-47e9-98cf-c0db4bf70a9d",
+          "name": "delete Listing Asset",
+          "request": {
+            "name": "delete Listing Asset",
+            "description": {
+              "content": "Delete the assignment of an asset to a listing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "listings",
+                ":listingUid",
+                "assets",
+                ":assetUid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "listingUid",
+                  "description": "(Required) Unique identifier for an listing."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetUid",
+                  "description": "(Required) Unique identifier for an asset."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "eaa12675-ce2d-4d5b-9f61-538ec3fd5ac8",
+              "name": "No content.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets",
+                    ":assetUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "77955478-953f-4f5d-aaa1-32a7c4396721",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets",
+                    ":assetUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "98ae6946-e898-4dc9-b644-9c1834ca9cd5",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets",
+                    ":assetUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "19b08a5a-6944-4a5e-b7a9-a39c9b857035",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets",
+                    ":assetUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e5db72fb-8515-4970-a10a-7eddb6a9daf9",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets",
+                    ":assetUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 293,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 6372,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 1288,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 7738,\n  \"batchSize\": 8363\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fcb753e3-0246-4205-9ef3-13ad28c20b9d",
+              "name": "Service Unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets",
+                    ":assetUid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetUid",
+                      "description": "(Required) Unique identifier for an asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 293,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 6372,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 1288,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 7738,\n  \"batchSize\": 8363\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e68a99a-7579-436b-be00-38d54c5ab8d5",
+          "name": "patch Listing Assets",
+          "request": {
+            "name": "patch Listing Assets",
+            "description": {
+              "content": "Associate or disassociate zero or more assets from a listing. Allows the caller to provide lists of assets to add to and/or remove from being associated with a listing. Unknown assets are ignored.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "listings",
+                ":listingUid",
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "listingUid",
+                  "description": "(Required) Unique identifier for an listing."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"add\": [\n    {\n      \"listingUid\": \"<string>\",\n      \"scope\": \"<string>\",\n      \"scopeRules\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"assetUid\": \"<string>\"\n    },\n    {\n      \"listingUid\": \"<string>\",\n      \"scope\": \"<string>\",\n      \"scopeRules\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"assetUid\": \"<string>\"\n    }\n  ],\n  \"remove\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5930eac0-0056-4961-a58f-4cb8dfa4c481",
+              "name": "No content.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    {\n      \"listingUid\": \"b\",\n      \"scope\": \"out\",\n      \"scopeRules\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"assetUid\": \"d37aaa14a0063176490ff576\"\n    },\n    {\n      \"listingUid\": \"ntaarcid_nx5p47p9mo9r5rkwx\",\n      \"scope\": \"in\",\n      \"scopeRules\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"assetUid\": \"f796bf64149dbd1e1f0d533a\"\n    }\n  ],\n  \"remove\": [\n    \"6b4f395ab72a4ecfbfd8fdc1\",\n    \"0212a939a6bba2508197b7a8\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0c0e53f8-6573-4eeb-b8a8-10ae5bf36862",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    {\n      \"listingUid\": \"b\",\n      \"scope\": \"out\",\n      \"scopeRules\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"assetUid\": \"d37aaa14a0063176490ff576\"\n    },\n    {\n      \"listingUid\": \"ntaarcid_nx5p47p9mo9r5rkwx\",\n      \"scope\": \"in\",\n      \"scopeRules\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"assetUid\": \"f796bf64149dbd1e1f0d533a\"\n    }\n  ],\n  \"remove\": [\n    \"6b4f395ab72a4ecfbfd8fdc1\",\n    \"0212a939a6bba2508197b7a8\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f25b1056-43ac-4cd0-a76d-9520ccd50777",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    {\n      \"listingUid\": \"b\",\n      \"scope\": \"out\",\n      \"scopeRules\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"assetUid\": \"d37aaa14a0063176490ff576\"\n    },\n    {\n      \"listingUid\": \"ntaarcid_nx5p47p9mo9r5rkwx\",\n      \"scope\": \"in\",\n      \"scopeRules\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"assetUid\": \"f796bf64149dbd1e1f0d533a\"\n    }\n  ],\n  \"remove\": [\n    \"6b4f395ab72a4ecfbfd8fdc1\",\n    \"0212a939a6bba2508197b7a8\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "78a355d1-517b-4717-b8d2-e619fb07930c",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    {\n      \"listingUid\": \"b\",\n      \"scope\": \"out\",\n      \"scopeRules\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"assetUid\": \"d37aaa14a0063176490ff576\"\n    },\n    {\n      \"listingUid\": \"ntaarcid_nx5p47p9mo9r5rkwx\",\n      \"scope\": \"in\",\n      \"scopeRules\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"assetUid\": \"f796bf64149dbd1e1f0d533a\"\n    }\n  ],\n  \"remove\": [\n    \"6b4f395ab72a4ecfbfd8fdc1\",\n    \"0212a939a6bba2508197b7a8\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "259e5080-721a-418d-94d0-a369a226ff10",
+              "name": "Returned generally when the size of the request body is too large to process, or specifically when the request contains too many items, typically in a bulk API operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    {\n      \"listingUid\": \"b\",\n      \"scope\": \"out\",\n      \"scopeRules\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"assetUid\": \"d37aaa14a0063176490ff576\"\n    },\n    {\n      \"listingUid\": \"ntaarcid_nx5p47p9mo9r5rkwx\",\n      \"scope\": \"in\",\n      \"scopeRules\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"assetUid\": \"f796bf64149dbd1e1f0d533a\"\n    }\n  ],\n  \"remove\": [\n    \"6b4f395ab72a4ecfbfd8fdc1\",\n    \"0212a939a6bba2508197b7a8\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 284,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 7842,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 9117,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 2982,\n  \"batchSize\": 3365\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38f359d0-e576-4e92-b67c-ff2cf50e6fd6",
+              "name": "Entity Not Processable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    {\n      \"listingUid\": \"b\",\n      \"scope\": \"out\",\n      \"scopeRules\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"assetUid\": \"d37aaa14a0063176490ff576\"\n    },\n    {\n      \"listingUid\": \"ntaarcid_nx5p47p9mo9r5rkwx\",\n      \"scope\": \"in\",\n      \"scopeRules\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"assetUid\": \"f796bf64149dbd1e1f0d533a\"\n    }\n  ],\n  \"remove\": [\n    \"6b4f395ab72a4ecfbfd8fdc1\",\n    \"0212a939a6bba2508197b7a8\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 284,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 7842,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 9117,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 2982,\n  \"batchSize\": 3365\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5a8dea6-4b11-478b-b380-8da4ab0aa40e",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    {\n      \"listingUid\": \"b\",\n      \"scope\": \"out\",\n      \"scopeRules\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"assetUid\": \"d37aaa14a0063176490ff576\"\n    },\n    {\n      \"listingUid\": \"ntaarcid_nx5p47p9mo9r5rkwx\",\n      \"scope\": \"in\",\n      \"scopeRules\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"assetUid\": \"f796bf64149dbd1e1f0d533a\"\n    }\n  ],\n  \"remove\": [\n    \"6b4f395ab72a4ecfbfd8fdc1\",\n    \"0212a939a6bba2508197b7a8\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 293,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 6372,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 1288,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 7738,\n  \"batchSize\": 8363\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f492539-fb0b-45f2-b94b-d2af55a7bb59",
+              "name": "Service Unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add\": [\n    {\n      \"listingUid\": \"b\",\n      \"scope\": \"out\",\n      \"scopeRules\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"assetUid\": \"d37aaa14a0063176490ff576\"\n    },\n    {\n      \"listingUid\": \"ntaarcid_nx5p47p9mo9r5rkwx\",\n      \"scope\": \"in\",\n      \"scopeRules\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"assetUid\": \"f796bf64149dbd1e1f0d533a\"\n    }\n  ],\n  \"remove\": [\n    \"6b4f395ab72a4ecfbfd8fdc1\",\n    \"0212a939a6bba2508197b7a8\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 293,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 6372,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 1288,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 7738,\n  \"batchSize\": 8363\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f0027504-2167-492d-bc4d-d64f6c56e2aa",
+          "name": "delete Listing Assets",
+          "request": {
+            "name": "delete Listing Assets",
+            "description": {
+              "content": "Delete all the association of assets from a listing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "listings",
+                ":listingUid",
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "assetType[]",
+                  "value": "<string>",
+                  "description": "Restrict the returned asset summaries to only assets of the specified type."
+                },
+                {
+                  "disabled": false,
+                  "key": "assetType[]",
+                  "value": "<string>",
+                  "description": "Restrict the returned asset summaries to only assets of the specified type."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "listingUid",
+                  "description": "(Required) Unique identifier for an listing."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "8d142df8-e1e2-41ad-af2e-024d5b38fd62",
+              "name": "No content.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assetType[]",
+                      "value": "host"
+                    },
+                    {
+                      "key": "assetType[]",
+                      "value": "host"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ff0542d0-84e9-42a0-806c-d74c7843a0f6",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assetType[]",
+                      "value": "host"
+                    },
+                    {
+                      "key": "assetType[]",
+                      "value": "host"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d1a0e0d5-72c0-4684-b560-f0f5619cfa76",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assetType[]",
+                      "value": "host"
+                    },
+                    {
+                      "key": "assetType[]",
+                      "value": "host"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d4a1d98e-22d4-40f9-810e-43cee7bb2f48",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assetType[]",
+                      "value": "host"
+                    },
+                    {
+                      "key": "assetType[]",
+                      "value": "host"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 293,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 6372,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 1288,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 7738,\n  \"batchSize\": 8363\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3ab2f9e-5130-4a35-826d-288d02bf7e05",
+              "name": "Service Unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assetType[]",
+                      "value": "host"
+                    },
+                    {
+                      "key": "assetType[]",
+                      "value": "host"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 293,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 6372,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 1288,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 7738,\n  \"batchSize\": 8363\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c360938-5faf-4f9d-95d6-364164b0a9a7",
+          "name": "patch Listing Gateways",
+          "request": {
+            "name": "patch Listing Gateways",
+            "description": {
+              "content": "Associate or disassociate gateway ID from a listing.\nAllows the caller to provide gateway ID to add to and/or remove from\nbeing associated with a listing. Gateway ID equals to `\"nil\"` would disassociate.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "organizations",
+                ":organizationUid",
+                "listings",
+                ":listingUid",
+                "gateways"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationUid",
+                  "description": "(Required) Unique identifier for an organization."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "listingUid",
+                  "description": "(Required) Unique identifier for an listing."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"gatewayId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2d21909c-a958-4dea-acf8-b4f931602dde",
+              "name": "No content.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":organizationUid",
+                    "listings",
+                    ":listingUid",
+                    "gateways"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for an organization."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"gatewayId\": \"82d761e30751fdde\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "513945e0-3af1-4c67-a3c1-1b4791cfdb91",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":organizationUid",
+                    "listings",
+                    ":listingUid",
+                    "gateways"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for an organization."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"gatewayId\": \"82d761e30751fdde\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3813bd9d-b46f-4e64-a235-a624feb5b00f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":organizationUid",
+                    "listings",
+                    ":listingUid",
+                    "gateways"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for an organization."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"gatewayId\": \"82d761e30751fdde\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b0f9d579-670d-4110-9eeb-3464b7b246a5",
+              "name": "Entity Not Processable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":organizationUid",
+                    "listings",
+                    ":listingUid",
+                    "gateways"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for an organization."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"gatewayId\": \"82d761e30751fdde\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 293,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 6372,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 1288,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 7738,\n  \"batchSize\": 8363\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29fbfe0d-84da-42fb-8906-ed9e8afb0856",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":organizationUid",
+                    "listings",
+                    ":listingUid",
+                    "gateways"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) Unique identifier for an organization."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"gatewayId\": \"82d761e30751fdde\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 293,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 6372,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 1288,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 7738,\n  \"batchSize\": 8363\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0fc82983-5a30-4c0f-b6b4-0c7caaf4f3c2",
+          "name": "put Listing Assets Reset Scope Rules",
+          "request": {
+            "name": "put Listing Assets Reset Scope Rules",
+            "description": {
+              "content": "For every asset associated with the listing, reset the scope rules to default rules",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "listings",
+                ":listingUid",
+                "reset-scope-rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "listingUid",
+                  "description": "(Required) Unique identifier for an listing."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "PUT"
+          },
+          "response": [
+            {
+              "id": "75836111-f163-4cf8-bb36-57b940870b39",
+              "name": "No content.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "reset-scope-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3fa9d62b-b0a9-4440-a0a8-75cb01da9237",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "reset-scope-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fe75865d-4fc9-455a-987e-1f0def4c9b1b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "reset-scope-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c8863866-8aa9-473e-906b-132a2f305fec",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "reset-scope-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 293,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 6372,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 1288,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 7738,\n  \"batchSize\": 8363\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8090c866-a16d-450d-a54c-03b5e093d838",
+              "name": "Service Unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "listings",
+                    ":listingUid",
+                    "reset-scope-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listingUid",
+                      "description": "(Required) Unique identifier for an listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 293,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"failedValidation\": [\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"property\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"failedValidations\": [\n    {\n      \"index\": 6372,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"index\": 1288,\n      \"failedValidation\": [\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"message\": \"string\",\n          \"property\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"maxBatchSize\": 7738,\n  \"batchSize\": 8363\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3192324e-452e-4032-ad90-3489b6f82c30",
+          "name": "Get assessments (V1)",
+          "request": {
+            "name": "Get assessments (V1)",
+            "description": {
+              "content": "Retrieve a list of assessments for the current user's organization",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "assessments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "assessment_group_id",
+                  "value": "<integer>",
+                  "description": "Filter by assessment group ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "92549693-b5f3-47b7-bbe0-c57777634e15",
+              "name": "Assessments retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assessment_group_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"uid\": \"assessmentuid921\",\n    \"name\": \"My Security Assessment\",\n    \"createdAt\": \"1974-01-16T09:57:03.870Z\",\n    \"type\": \"web\",\n    \"testCounts\": {\n      \"pending\": 9816,\n      \"scheduled\": 1272,\n      \"active\": 8820,\n      \"paused\": 1821,\n      \"completed\": 5561\n    },\n    \"vulnerabilityCount\": 13,\n    \"description\": \"string\",\n    \"updatedAt\": \"1994-03-21T03:08:05.510Z\",\n    \"tags\": [\n      {\n        \"id\": 2029,\n        \"name\": \"string\",\n        \"editable\": false,\n        \"organization_profile_id\": 6114\n      },\n      {\n        \"id\": 1362,\n        \"name\": \"string\",\n        \"editable\": true,\n        \"organization_profile_id\": 5350\n      }\n    ],\n    \"ownerContacts\": [\n      {\n        \"id\": 4660,\n        \"name\": \"string\",\n        \"email\": \"string\"\n      },\n      {\n        \"id\": 3775,\n        \"name\": \"string\",\n        \"email\": \"string\"\n      }\n    ]\n  },\n  {\n    \"uid\": \"assessmentuid921\",\n    \"name\": \"My Security Assessment\",\n    \"createdAt\": \"2018-08-18T23:37:16.417Z\",\n    \"type\": \"mobile\",\n    \"testCounts\": {\n      \"pending\": 715,\n      \"scheduled\": 3695,\n      \"active\": 7012,\n      \"paused\": 8920,\n      \"completed\": 2788\n    },\n    \"vulnerabilityCount\": 13,\n    \"description\": \"string\",\n    \"updatedAt\": \"1958-07-08T04:53:32.596Z\",\n    \"tags\": [\n      {\n        \"id\": 1271,\n        \"name\": \"string\",\n        \"editable\": false,\n        \"organization_profile_id\": 357\n      },\n      {\n        \"id\": 6511,\n        \"name\": \"string\",\n        \"editable\": true,\n        \"organization_profile_id\": 1166\n      }\n    ],\n    \"ownerContacts\": [\n      {\n        \"id\": 888,\n        \"name\": \"string\",\n        \"email\": \"string\"\n      },\n      {\n        \"id\": 8743,\n        \"name\": \"string\",\n        \"email\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9572150-2ea9-48e6-8495-85f32987a35c",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assessment_group_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "acf1d631-ce9f-41e6-a2bc-0c7e41f00cff",
+          "name": "Get a specific assessment (V1)",
+          "request": {
+            "name": "Get a specific assessment (V1)",
+            "description": {
+              "content": "Retrieve details of a specific assessment",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "assessments",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Assessment ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "72764195-49bb-425d-b552-9018e9484128",
+              "name": "Assessment retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Assessment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uid\": \"assessmentuid921\",\n  \"name\": \"My Security Assessment\",\n  \"createdAt\": \"1976-08-19T11:05:50.611Z\",\n  \"type\": \"mobile\",\n  \"testCounts\": {\n    \"pending\": 8397,\n    \"scheduled\": 5944,\n    \"active\": 3087,\n    \"paused\": 459,\n    \"completed\": 4887\n  },\n  \"vulnerabilityCount\": 13,\n  \"description\": \"string\",\n  \"updatedAt\": \"2014-05-10T17:06:39.852Z\",\n  \"tags\": [\n    {\n      \"id\": 377,\n      \"name\": \"string\",\n      \"editable\": false,\n      \"organization_profile_id\": 7630\n    },\n    {\n      \"id\": 5562,\n      \"name\": \"string\",\n      \"editable\": true,\n      \"organization_profile_id\": 6391\n    }\n  ],\n  \"ownerContacts\": [\n    {\n      \"id\": 9826,\n      \"name\": \"string\",\n      \"email\": \"string\"\n    },\n    {\n      \"id\": 2089,\n      \"name\": \"string\",\n      \"email\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5fc41527-2f4d-47f3-9954-2a775daa300a",
+              "name": "Assessment not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Assessment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c6e34da6-601f-439a-94e5-0e999d02320e",
+          "name": "Get testing hours for an assessment",
+          "request": {
+            "name": "Get testing hours for an assessment",
+            "description": {
+              "content": "Retrieve testing hours statistics for a specific assessment",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "assessments",
+                ":id",
+                "testing_hours"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Assessment ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "adfc31c4-d663-48a4-96d6-b5d3046cd52d",
+              "name": "Testing hours retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessments",
+                    ":id",
+                    "testing_hours"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Assessment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"stats_total\": 9911,\n  \"from\": \"1974-07-21T10:35:52.558Z\",\n  \"to\": \"1959-07-06T07:20:02.495Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6885d2d2-549a-44c7-bc98-2ce5bfaa3374",
+          "name": "Create new assessment update that is visible to researchers",
+          "request": {
+            "name": "Create new assessment update that is visible to researchers",
+            "description": {
+              "content": "Post a new update for the assessment",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "assessments",
+                ":id",
+                "updates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) UID of the assessment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "15919dd0-adec-4d1e-911e-8c930c9a88f3",
+              "name": "Assessment update created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessments",
+                    ":id",
+                    "updates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) UID of the assessment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"assessment_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c7484d0-c683-445f-a003-fd1c285ecd7b",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessments",
+                    ":id",
+                    "updates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) UID of the assessment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee930531-0f2c-4c2c-82c5-ccc9117c254e",
+              "name": "Forbidden - user does not have permission to update this assessment",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessments",
+                    ":id",
+                    "updates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) UID of the assessment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9bce9353-bb96-4ba6-bb18-f9acbde4fa3d",
+              "name": "Assessment not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessments",
+                    ":id",
+                    "updates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) UID of the assessment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d25bf1df-727b-4bd1-a6b1-21ac43323b3d",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assessments",
+                    ":id",
+                    "updates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) UID of the assessment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "901c673e-a01e-472b-ae22-82487a0883f1",
+          "name": "Get assessments for an organization",
+          "request": {
+            "name": "Get assessments for an organization",
+            "description": {
+              "content": "Retrieve a paginated list of assessments for a specific organization with filtering and sorting options",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "organizations",
+                ":organizationUid",
+                "assessments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "created_at",
+                  "description": "Field to sort by"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDir",
+                  "value": "desc",
+                  "description": "Sort direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "10",
+                  "description": "Number of items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search term to filter assessments by name"
+                },
+                {
+                  "disabled": false,
+                  "key": "types[]",
+                  "value": "<string>",
+                  "description": "Filter by assessment types"
+                },
+                {
+                  "disabled": false,
+                  "key": "types[]",
+                  "value": "<string>",
+                  "description": "Filter by assessment types"
+                },
+                {
+                  "disabled": false,
+                  "key": "tagIds[]",
+                  "value": "<integer>",
+                  "description": "Filter by tag IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "tagIds[]",
+                  "value": "<integer>",
+                  "description": "Filter by tag IDs"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationUid",
+                  "description": "(Required) The unique identifier of the organization"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0a925037-7011-482b-ab37-71a2c3107f61",
+              "name": "Successfully retrieved assessments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":organizationUid",
+                    "assessments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tagIds[]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tagIds[]",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) The unique identifier of the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assessments\": [\n    {\n      \"uid\": \"assessmentuid921\",\n      \"name\": \"My Security Assessment\",\n      \"createdAt\": \"1958-06-04T17:21:53.551Z\",\n      \"type\": \"mobile\",\n      \"testCounts\": {\n        \"pending\": 4021,\n        \"scheduled\": 8778,\n        \"active\": 1238,\n        \"paused\": 4802,\n        \"completed\": 6064\n      },\n      \"vulnerabilityCount\": 13,\n      \"description\": \"string\",\n      \"updatedAt\": \"2021-04-24T22:33:29.693Z\",\n      \"tags\": [\n        {\n          \"id\": 241,\n          \"name\": \"string\",\n          \"editable\": false,\n          \"organization_profile_id\": 1924\n        },\n        {\n          \"id\": 75,\n          \"name\": \"string\",\n          \"editable\": true,\n          \"organization_profile_id\": 8760\n        }\n      ],\n      \"ownerContacts\": [\n        {\n          \"id\": 4556,\n          \"name\": \"string\",\n          \"email\": \"string\"\n        },\n        {\n          \"id\": 174,\n          \"name\": \"string\",\n          \"email\": \"string\"\n        }\n      ]\n    },\n    {\n      \"uid\": \"assessmentuid921\",\n      \"name\": \"My Security Assessment\",\n      \"createdAt\": \"2019-12-18T13:34:27.422Z\",\n      \"type\": \"api\",\n      \"testCounts\": {\n        \"pending\": 5712,\n        \"scheduled\": 3503,\n        \"active\": 8673,\n        \"paused\": 3246,\n        \"completed\": 6962\n      },\n      \"vulnerabilityCount\": 13,\n      \"description\": \"string\",\n      \"updatedAt\": \"1952-03-23T15:19:29.364Z\",\n      \"tags\": [\n        {\n          \"id\": 5394,\n          \"name\": \"string\",\n          \"editable\": false,\n          \"organization_profile_id\": 9418\n        },\n        {\n          \"id\": 2232,\n          \"name\": \"string\",\n          \"editable\": false,\n          \"organization_profile_id\": 3252\n        }\n      ],\n      \"ownerContacts\": [\n        {\n          \"id\": 1500,\n          \"name\": \"string\",\n          \"email\": \"string\"\n        },\n        {\n          \"id\": 1789,\n          \"name\": \"string\",\n          \"email\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"metadata\": {\n    \"pagination\": {\n      \"total\": 3047,\n      \"page\": 2488,\n      \"perPage\": 2756,\n      \"totalPages\": 4966,\n      \"first\": \"http://IdAPwPUd.unzPYNfTgITzLLjULQdaXfv17LKHmoMyCzYrXKTACoWkG\",\n      \"last\": \"https://TiqbegnvvZalUEHU.xgEdSjeku2txnKiJOf2FXjC4TRpGg0RdUE1EDx\",\n      \"self\": \"https://Cgd.gvmlbCujbaWK-ZhBbrpjAgXA4DL4xnlg8N.ScoYIN2v\",\n      \"prev\": \"http://CZKYozevqBeodSDCRkXakdPvCZESs.tmbp6.dzHaQ-bqscQILXc7WTK1.awFj.7piUYcJJ6QeyesXVe2zUK5ocbtw\",\n      \"next\": \"http://fwfJoNxPDwtIwcbzF.vrMRQ9ZadiTLJbuyVj,zz.dVUAgWUg,YUectKJ+Dgya9HraxNXJKn98EPZIkxe80Nev\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8bab09fa-a955-456d-8d59-da31a1d061fa",
+              "name": "Invalid query parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":organizationUid",
+                    "assessments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tagIds[]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tagIds[]",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) The unique identifier of the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"invalidParams\": [\n    {\n      \"name\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"reason\": \"string\"\n    }\n  ],\n  \"organization\": \"string\",\n  \"title\": \"string\",\n  \"type\": \"string\",\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1deb1ff7-99e3-4abb-84c1-472048c5d79f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":organizationUid",
+                    "assessments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tagIds[]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tagIds[]",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) The unique identifier of the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "28e145ec-243f-4ccc-86eb-4d64765933c5",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":organizationUid",
+                    "assessments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tagIds[]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tagIds[]",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) The unique identifier of the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2ceba677-3022-4a57-b8c4-24c086305dc8",
+              "name": "Organization not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":organizationUid",
+                    "assessments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tagIds[]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tagIds[]",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) The unique identifier of the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c4abb39-ac07-4289-afcf-650d447608d4",
+          "name": "Create a new assessment",
+          "request": {
+            "name": "Create a new assessment",
+            "description": {
+              "content": "Creates a new assessment for an organization",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "organizations",
+                ":organizationUid",
+                "assessments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationUid",
+                  "description": "(Required) The unique identifier of the organization"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"authenticationSelfRegistrationEnabled\": \"<boolean>\",\n  \"orgListingGroupId\": \"<integer>\",\n  \"categoryId\": \"<integer>\",\n  \"ownerContactsAttributes\": [\n    {\n      \"userId\": \"<string>\"\n    },\n    {\n      \"userId\": \"<string>\"\n    }\n  ],\n  \"assets\": [\n    {\n      \"uid\": \"<string>\"\n    },\n    {\n      \"uid\": \"<string>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"gatewayId\": \"<string>\",\n  \"tagNames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"files\": [\n    {\n      \"signedId\": \"<string>\"\n    },\n    {\n      \"signedId\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "56848b8d-4c31-44a9-b875-236b42c1a202",
+              "name": "Assessment created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":organizationUid",
+                    "assessments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) The unique identifier of the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"authenticationSelfRegistrationEnabled\": \"<boolean>\",\n  \"orgListingGroupId\": \"<integer>\",\n  \"categoryId\": \"<integer>\",\n  \"ownerContactsAttributes\": [\n    {\n      \"userId\": \"<string>\"\n    },\n    {\n      \"userId\": \"<string>\"\n    }\n  ],\n  \"assets\": [\n    {\n      \"uid\": \"<string>\"\n    },\n    {\n      \"uid\": \"<string>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"gatewayId\": \"<string>\",\n  \"tagNames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"files\": [\n    {\n      \"signedId\": \"<string>\"\n    },\n    {\n      \"signedId\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assessment\": {\n    \"uid\": \"assessmentuid921\",\n    \"name\": \"My Security Assessment\",\n    \"createdAt\": \"1963-04-22T23:38:17.820Z\",\n    \"type\": \"api\",\n    \"testCounts\": {\n      \"pending\": 1185,\n      \"scheduled\": 7279,\n      \"active\": 5840,\n      \"paused\": 9547,\n      \"completed\": 5196\n    },\n    \"vulnerabilityCount\": 13,\n    \"description\": \"string\",\n    \"updatedAt\": \"2010-11-27T18:30:03.401Z\",\n    \"tags\": [\n      {\n        \"id\": 7217,\n        \"name\": \"string\",\n        \"editable\": true,\n        \"organization_profile_id\": 3366\n      },\n      {\n        \"id\": 1298,\n        \"name\": \"string\",\n        \"editable\": true,\n        \"organization_profile_id\": 6056\n      }\n    ],\n    \"ownerContacts\": [\n      {\n        \"id\": 4331,\n        \"name\": \"string\",\n        \"email\": \"string\"\n      },\n      {\n        \"id\": 4263,\n        \"name\": \"string\",\n        \"email\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64392aba-521a-46ca-9e94-60bbea5acfaa",
+              "name": "Invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":organizationUid",
+                    "assessments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) The unique identifier of the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"authenticationSelfRegistrationEnabled\": \"<boolean>\",\n  \"orgListingGroupId\": \"<integer>\",\n  \"categoryId\": \"<integer>\",\n  \"ownerContactsAttributes\": [\n    {\n      \"userId\": \"<string>\"\n    },\n    {\n      \"userId\": \"<string>\"\n    }\n  ],\n  \"assets\": [\n    {\n      \"uid\": \"<string>\"\n    },\n    {\n      \"uid\": \"<string>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"gatewayId\": \"<string>\",\n  \"tagNames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"files\": [\n    {\n      \"signedId\": \"<string>\"\n    },\n    {\n      \"signedId\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"invalidParams\": [\n    {\n      \"name\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"reason\": \"string\"\n    }\n  ],\n  \"organization\": \"string\",\n  \"title\": \"string\",\n  \"type\": \"string\",\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "43ee3740-858f-452b-9e22-434c4591b61a",
+              "name": "Invalid operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":organizationUid",
+                    "assessments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) The unique identifier of the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"authenticationSelfRegistrationEnabled\": \"<boolean>\",\n  \"orgListingGroupId\": \"<integer>\",\n  \"categoryId\": \"<integer>\",\n  \"ownerContactsAttributes\": [\n    {\n      \"userId\": \"<string>\"\n    },\n    {\n      \"userId\": \"<string>\"\n    }\n  ],\n  \"assets\": [\n    {\n      \"uid\": \"<string>\"\n    },\n    {\n      \"uid\": \"<string>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"gatewayId\": \"<string>\",\n  \"tagNames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"files\": [\n    {\n      \"signedId\": \"<string>\"\n    },\n    {\n      \"signedId\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"organization\": \"string\",\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "174c0f95-592f-408c-a7ec-bfe22e44e6cc",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":organizationUid",
+                    "assessments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) The unique identifier of the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"authenticationSelfRegistrationEnabled\": \"<boolean>\",\n  \"orgListingGroupId\": \"<integer>\",\n  \"categoryId\": \"<integer>\",\n  \"ownerContactsAttributes\": [\n    {\n      \"userId\": \"<string>\"\n    },\n    {\n      \"userId\": \"<string>\"\n    }\n  ],\n  \"assets\": [\n    {\n      \"uid\": \"<string>\"\n    },\n    {\n      \"uid\": \"<string>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"gatewayId\": \"<string>\",\n  \"tagNames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"files\": [\n    {\n      \"signedId\": \"<string>\"\n    },\n    {\n      \"signedId\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"organization\": \"string\",\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "548b99d4-dfe2-40a3-a2b7-4288d5af7eb9",
+          "name": "Get assessment statistics",
+          "request": {
+            "name": "Get assessment statistics",
+            "description": {
+              "content": "Retrieve statistics for a specific assessment",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "organizations",
+                ":organizationUid",
+                "assessments",
+                ":assessmentUid",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationUid",
+                  "description": "(Required) The unique identifier of the organization"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assessmentUid",
+                  "description": "(Required) The unique identifier of the assessment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5454ea97-4b4f-42c4-81fe-5cc02e240e6c",
+              "name": "Assessment statistics retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":organizationUid",
+                    "assessments",
+                    ":assessmentUid",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) The unique identifier of the organization"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessmentUid",
+                      "description": "(Required) The unique identifier of the assessment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tests\": 779,\n  \"averageRemediationDays\": 3300,\n  \"vulnerabilities\": {\n    \"inReview\": 5738,\n    \"accepted\": 7511,\n    \"acceptedOpen\": 6349\n  },\n  \"missions\": {\n    \"active\": 683,\n    \"completed\": 7869\n  },\n  \"coverage\": {\n    \"pageHits\": 6772,\n    \"classifiedTraffic\": 8792\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b37aad9a-80ae-4872-b66b-b438fde6fec3",
+              "name": "Assessment not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations",
+                    ":organizationUid",
+                    "assessments",
+                    ":assessmentUid",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationUid",
+                      "description": "(Required) The unique identifier of the organization"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessmentUid",
+                      "description": "(Required) The unique identifier of the assessment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://client.synack.com/api/assessment",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cce0718a-f9c2-438b-a554-8d9f423007c3",
+    "name": "Assessment Service Assessment Groups Assessments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for managing Assessment and related operations on the Synack.\n\n\nContact Support:\n Name: Synack Engineering\n Email: engineering@synack.com",
+      "type": "text/plain"
+    }
+  }
+}

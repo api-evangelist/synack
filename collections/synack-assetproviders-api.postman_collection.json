@@ -1,0 +1,330 @@
+{
+  "item": [
+    {
+      "id": "ba0a2319-e9cf-499a-8ec6-525d30ab8d13",
+      "name": "assetproviders",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "08aecff7-4cc7-40ea-94bd-76069e60138c",
+          "name": "Returns list of asset providers",
+          "request": {
+            "name": "Returns list of asset providers",
+            "description": {
+              "content": "Get Asset Providers by Organization",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                ":org_uid",
+                "assets",
+                "providers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of provider results to be returned"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org_uid",
+                  "description": "(Required) Organization UID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4805d039-2ecc-4572-88d5-7e46a9e8f5e5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":org_uid",
+                    "assets",
+                    "providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_uid",
+                      "description": "(Required) Organization UID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"attributes\": \"\",\n    \"id\": \"string\",\n    \"links\": {\n      \"next\": \"string\",\n      \"prev\": \"string\"\n    },\n    \"meta\": \"\",\n    \"relationships\": {\n      \"key_0\": {\n        \"data\": \"\",\n        \"links\": {\n          \"next\": \"string\",\n          \"prev\": \"string\"\n        }\n      },\n      \"key_1\": {\n        \"data\": \"\",\n        \"links\": {\n          \"next\": \"string\",\n          \"prev\": \"string\"\n        }\n      },\n      \"key_2\": {\n        \"data\": \"\",\n        \"links\": {\n          \"next\": \"string\",\n          \"prev\": \"string\"\n        }\n      },\n      \"key_3\": {\n        \"data\": \"\",\n        \"links\": {\n          \"next\": \"string\",\n          \"prev\": \"string\"\n        }\n      }\n    },\n    \"type\": \"asset_providers\"\n  },\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"id\": \"string\",\n      \"source\": \"string\",\n      \"status\": 1378,\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"id\": \"string\",\n      \"source\": \"string\",\n      \"status\": 9343,\n      \"title\": \"string\"\n    }\n  ],\n  \"links\": {\n    \"next\": \"string\",\n    \"prev\": \"string\"\n  },\n  \"meta\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "043097bf-d714-4410-9d92-e206494589d0",
+              "name": "bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":org_uid",
+                    "assets",
+                    "providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_uid",
+                      "description": "(Required) Organization UID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"id\": \"string\",\n  \"source\": \"string\",\n  \"status\": 1144,\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a00676a3-b73f-4c9e-8a96-8375fb90eed5",
+              "name": "Bearer token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":org_uid",
+                    "assets",
+                    "providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_uid",
+                      "description": "(Required) Organization UID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"id\": \"string\",\n  \"source\": \"string\",\n  \"status\": 1144,\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb7f50b1-7797-4c1c-bb06-87b0d63aefd7",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":org_uid",
+                    "assets",
+                    "providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_uid",
+                      "description": "(Required) Organization UID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"id\": \"string\",\n  \"source\": \"string\",\n  \"status\": 1144,\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://client.synack.com/api/assessment",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1faaa316-8dc4-4905-a897-29fb49da56e2",
+    "name": "Assessment Service Assessment Groups assetproviders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for managing Assessment and related operations on the Synack.\n\n\nContact Support:\n Name: Synack Engineering\n Email: engineering@synack.com",
+      "type": "text/plain"
+    }
+  }
+}

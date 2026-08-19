@@ -1,0 +1,1564 @@
+{
+  "item": [
+    {
+      "id": "82b75b27-2b1d-4810-a4cf-bb241643acc7",
+      "name": "Vulnerabilities",
+      "description": {
+        "content": "Operations related to security vulnerabilities",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "33a06c47-fbcc-4133-b2bd-676796685efe",
+          "name": "Get vulnerabilities",
+          "request": {
+            "name": "Get vulnerabilities",
+            "description": {
+              "content": "Retrieve a paginated list of vulnerabilities with filtering options",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "vulnerabilities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter[search]",
+                  "value": "<string>",
+                  "description": "Search term for vulnerabilities"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[status_id]",
+                  "value": "<integer>",
+                  "description": "Filter by vulnerability status ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[updated_within]",
+                  "value": "<integer>",
+                  "description": "Filter by vulnerabilities updated within specified seconds"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[updated_since]",
+                  "value": "<dateTime>",
+                  "description": "Filter by vulnerabilities updated since specified date"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[include_attachments]",
+                  "value": "<boolean>",
+                  "description": "Include vulnerability attachments"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "1",
+                  "description": "Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "50",
+                  "description": "Page size"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b5171060-f518-4d6a-88fe-8b783759d500",
+              "name": "Vulnerabilities retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vulnerabilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[search]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[status_id]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[updated_within]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[updated_since]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[include_attachments]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 9983,\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"severity\": \"Informational\",\n    \"status\": \"string\",\n    \"cvss_score\": 9397.541813652391,\n    \"created_at\": \"1964-09-18T16:20:34.074Z\",\n    \"updated_at\": \"1964-12-21T19:08:18.475Z\",\n    \"tags\": [\n      {\n        \"id\": 178,\n        \"name\": \"string\",\n        \"editable\": false,\n        \"organization_profile_id\": 4607\n      },\n      {\n        \"id\": 2134,\n        \"name\": \"string\",\n        \"editable\": false,\n        \"organization_profile_id\": 4564\n      }\n    ],\n    \"attachments\": [\n      {\n        \"id\": 6239,\n        \"filename\": \"string\",\n        \"content_type\": \"string\",\n        \"file_size\": 6029,\n        \"created_at\": \"2003-04-20T05:22:50.250Z\"\n      },\n      {\n        \"id\": 9131,\n        \"filename\": \"string\",\n        \"content_type\": \"string\",\n        \"file_size\": 1757,\n        \"created_at\": \"1959-09-18T00:38:11.517Z\"\n      }\n    ]\n  },\n  {\n    \"id\": 9758,\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"severity\": \"High\",\n    \"status\": \"string\",\n    \"cvss_score\": 1663.3504922293364,\n    \"created_at\": \"1996-06-22T01:34:58.875Z\",\n    \"updated_at\": \"2003-06-09T13:19:29.013Z\",\n    \"tags\": [\n      {\n        \"id\": 1573,\n        \"name\": \"string\",\n        \"editable\": false,\n        \"organization_profile_id\": 6689\n      },\n      {\n        \"id\": 7039,\n        \"name\": \"string\",\n        \"editable\": true,\n        \"organization_profile_id\": 7104\n      }\n    ],\n    \"attachments\": [\n      {\n        \"id\": 1917,\n        \"filename\": \"string\",\n        \"content_type\": \"string\",\n        \"file_size\": 2160,\n        \"created_at\": \"1959-12-26T00:14:21.779Z\"\n      },\n      {\n        \"id\": 1522,\n        \"filename\": \"string\",\n        \"content_type\": \"string\",\n        \"file_size\": 419,\n        \"created_at\": \"2020-03-05T04:58:31.593Z\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8915c459-e49d-4165-b276-8098ffd7610c",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vulnerabilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[search]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[status_id]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[updated_within]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[updated_since]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[include_attachments]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "430c7671-8c16-41cc-8d4d-cbf1115c7362",
+          "name": "Get a specific vulnerability",
+          "request": {
+            "name": "Get a specific vulnerability",
+            "description": {
+              "content": "Retrieve details of a specific vulnerability",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "vulnerabilities",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Vulnerability ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ecd96d9-6c14-4572-a392-8d614ff691d6",
+              "name": "Vulnerability retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vulnerabilities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Vulnerability ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9047,\n  \"title\": \"string\",\n  \"description\": \"string\",\n  \"severity\": \"Informational\",\n  \"status\": \"string\",\n  \"cvss_score\": 8976.196746916652,\n  \"created_at\": \"2008-05-14T16:55:55.003Z\",\n  \"updated_at\": \"1958-08-20T14:12:40.468Z\",\n  \"tags\": [\n    {\n      \"id\": 1578,\n      \"name\": \"string\",\n      \"editable\": false,\n      \"organization_profile_id\": 9546\n    },\n    {\n      \"id\": 4644,\n      \"name\": \"string\",\n      \"editable\": false,\n      \"organization_profile_id\": 3253\n    }\n  ],\n  \"attachments\": [\n    {\n      \"id\": 4917,\n      \"filename\": \"string\",\n      \"content_type\": \"string\",\n      \"file_size\": 1427,\n      \"created_at\": \"1991-06-20T12:16:55.085Z\"\n    },\n    {\n      \"id\": 6016,\n      \"filename\": \"string\",\n      \"content_type\": \"string\",\n      \"file_size\": 860,\n      \"created_at\": \"1989-11-13T20:47:18.429Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3feb4c72-dffd-4495-8e10-84c0826189bf",
+              "name": "Vulnerability not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vulnerabilities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Vulnerability ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "27580ae4-42db-42e9-9685-b761222acead",
+          "name": "Update a vulnerability",
+          "request": {
+            "name": "Update a vulnerability",
+            "description": {
+              "content": "Update a specific vulnerability's status or tags",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "vulnerabilities",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Vulnerability ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status_id\": \"<integer>\",\n  \"tags\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"tag_list\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "984cd580-0b08-40a3-8d0b-b809badbe7bd",
+              "name": "Vulnerability updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vulnerabilities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Vulnerability ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status_id\": \"<integer>\",\n  \"tags\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"tag_list\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9047,\n  \"title\": \"string\",\n  \"description\": \"string\",\n  \"severity\": \"Informational\",\n  \"status\": \"string\",\n  \"cvss_score\": 8976.196746916652,\n  \"created_at\": \"2008-05-14T16:55:55.003Z\",\n  \"updated_at\": \"1958-08-20T14:12:40.468Z\",\n  \"tags\": [\n    {\n      \"id\": 1578,\n      \"name\": \"string\",\n      \"editable\": false,\n      \"organization_profile_id\": 9546\n    },\n    {\n      \"id\": 4644,\n      \"name\": \"string\",\n      \"editable\": false,\n      \"organization_profile_id\": 3253\n    }\n  ],\n  \"attachments\": [\n    {\n      \"id\": 4917,\n      \"filename\": \"string\",\n      \"content_type\": \"string\",\n      \"file_size\": 1427,\n      \"created_at\": \"1991-06-20T12:16:55.085Z\"\n    },\n    {\n      \"id\": 6016,\n      \"filename\": \"string\",\n      \"content_type\": \"string\",\n      \"file_size\": 860,\n      \"created_at\": \"1989-11-13T20:47:18.429Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e05a104-f890-451b-afda-1bc4c60bc584",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vulnerabilities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Vulnerability ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status_id\": \"<integer>\",\n  \"tags\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"tag_list\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "54e68797-a3ff-430d-be79-08db44beff5e",
+              "name": "Vulnerability not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vulnerabilities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Vulnerability ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status_id\": \"<integer>\",\n  \"tags\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"tag_list\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e4a7419b-eb35-4ab2-a5c5-c324f834bd8e",
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vulnerabilities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Vulnerability ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status_id\": \"<integer>\",\n  \"tags\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"tag_list\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df0431de-dbcd-4a5b-b46c-fcf578ff737f",
+          "name": "Returns list of exploitable vulnerabilities on a given organization and asset uid",
+          "request": {
+            "name": "Returns list of exploitable vulnerabilities on a given organization and asset uid",
+            "description": {
+              "content": "Get exploitable vulnerabilities by organization and assets uid",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                ":org_uid",
+                "assets",
+                ":asset_uid",
+                "vulns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "statuses[]",
+                  "value": "<string>",
+                  "description": "Vulnerability status"
+                },
+                {
+                  "disabled": false,
+                  "key": "statuses[]",
+                  "value": "<string>",
+                  "description": "Vulnerability status"
+                },
+                {
+                  "disabled": false,
+                  "key": "vuln_cvss[]",
+                  "value": "<string>",
+                  "description": "Vulnerability CVSS range [0.0-0.0, 0.1-3.9, 4.0-6.9, 7.0-8.9, 9.0-10.0]"
+                },
+                {
+                  "disabled": false,
+                  "key": "vuln_cvss[]",
+                  "value": "<string>",
+                  "description": "Vulnerability CVSS range [0.0-0.0, 0.1-3.9, 4.0-6.9, 7.0-8.9, 9.0-10.0]"
+                },
+                {
+                  "disabled": false,
+                  "key": "patch_verification[]",
+                  "value": "<string>",
+                  "description": "Patch verification status [requested failed cancelled verified blocked]"
+                },
+                {
+                  "disabled": false,
+                  "key": "patch_verification[]",
+                  "value": "<string>",
+                  "description": "Patch verification status [requested failed cancelled verified blocked]"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "severity",
+                  "description": "Order by [title, severity, created_at, status]"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_direction",
+                  "value": "asc",
+                  "description": "Order direction [asc desc]"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to be returned"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "If provided, show the provided page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org_uid",
+                  "description": "(Required) Organization UID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "asset_uid",
+                  "description": "(Required) Asset UID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b12b0847-c955-4061-b5d9-6dab2fdcff82",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":org_uid",
+                    "assets",
+                    ":asset_uid",
+                    "vulns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statuses[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vuln_cvss[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vuln_cvss[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "patch_verification[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "patch_verification[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "severity"
+                    },
+                    {
+                      "key": "order_direction",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_uid",
+                      "description": "(Required) Organization UID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "asset_uid",
+                      "description": "(Required) Asset UID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"attributes\": \"\",\n    \"id\": \"string\",\n    \"links\": {\n      \"next\": \"string\",\n      \"prev\": \"string\"\n    },\n    \"meta\": \"\",\n    \"relationships\": {\n      \"key_0\": {\n        \"data\": \"\",\n        \"links\": {\n          \"next\": \"string\",\n          \"prev\": \"string\"\n        }\n      }\n    },\n    \"type\": \"last_tested_counts\"\n  },\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"id\": \"string\",\n      \"source\": \"string\",\n      \"status\": 9364,\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"id\": \"string\",\n      \"source\": \"string\",\n      \"status\": 2322,\n      \"title\": \"string\"\n    }\n  ],\n  \"links\": {\n    \"next\": \"string\",\n    \"prev\": \"string\"\n  },\n  \"meta\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f79a16b-3393-41bb-bd45-d2fe6108b5ec",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":org_uid",
+                    "assets",
+                    ":asset_uid",
+                    "vulns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statuses[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vuln_cvss[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vuln_cvss[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "patch_verification[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "patch_verification[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "severity"
+                    },
+                    {
+                      "key": "order_direction",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_uid",
+                      "description": "(Required) Organization UID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "asset_uid",
+                      "description": "(Required) Asset UID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"id\": \"string\",\n  \"source\": \"string\",\n  \"status\": 1208,\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa58228b-1b39-42ee-8f01-86ef4aa7455d",
+              "name": "Bearer token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":org_uid",
+                    "assets",
+                    ":asset_uid",
+                    "vulns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statuses[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vuln_cvss[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vuln_cvss[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "patch_verification[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "patch_verification[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "severity"
+                    },
+                    {
+                      "key": "order_direction",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_uid",
+                      "description": "(Required) Organization UID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "asset_uid",
+                      "description": "(Required) Asset UID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"id\": \"string\",\n  \"source\": \"string\",\n  \"status\": 1208,\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b94c7d43-0cf7-46bb-905f-a8f9f98f3872",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":org_uid",
+                    "assets",
+                    ":asset_uid",
+                    "vulns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statuses[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vuln_cvss[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vuln_cvss[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "patch_verification[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "patch_verification[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "severity"
+                    },
+                    {
+                      "key": "order_direction",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_uid",
+                      "description": "(Required) Organization UID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "asset_uid",
+                      "description": "(Required) Asset UID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"id\": \"string\",\n  \"source\": \"string\",\n  \"status\": 1208,\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bbe81af8-4718-4128-a905-6bc94b3b70fc",
+          "name": "Returns top-5 CISA known-exploitable vulnerabilities",
+          "request": {
+            "name": "Returns top-5 CISA known-exploitable vulnerabilities",
+            "description": {
+              "content": "Get top-5 CISA known-exploitable vulnerabilities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                ":org_uid",
+                "metrics",
+                "vulnerabilities",
+                "exploitable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "listing_uid",
+                  "value": "<string>",
+                  "description": "Listing UID. If `false` is provided, it will return count of assets that does not belong to any listing nor seed group"
+                },
+                {
+                  "disabled": false,
+                  "key": "seed_group_uid",
+                  "value": "<string>",
+                  "description": "Seed group UID."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of CISA CVEs results to be returned"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org_uid",
+                  "description": "(Required) Organization UID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bf501c19-12eb-4699-90f5-d593dc8a81c7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":org_uid",
+                    "metrics",
+                    "vulnerabilities",
+                    "exploitable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "listing_uid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "seed_group_uid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_uid",
+                      "description": "(Required) Organization UID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"attributes\": \"\",\n    \"id\": \"string\",\n    \"links\": {\n      \"next\": \"string\",\n      \"prev\": \"string\"\n    },\n    \"meta\": \"\",\n    \"relationships\": {\n      \"key_0\": {\n        \"data\": \"\",\n        \"links\": {\n          \"next\": \"string\",\n          \"prev\": \"string\"\n        }\n      }\n    },\n    \"type\": \"last_tested_counts\"\n  },\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"id\": \"string\",\n      \"source\": \"string\",\n      \"status\": 9364,\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"id\": \"string\",\n      \"source\": \"string\",\n      \"status\": 2322,\n      \"title\": \"string\"\n    }\n  ],\n  \"links\": {\n    \"next\": \"string\",\n    \"prev\": \"string\"\n  },\n  \"meta\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7576587-3f8e-484a-9c7d-9e1729412e4c",
+              "name": "bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":org_uid",
+                    "metrics",
+                    "vulnerabilities",
+                    "exploitable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "listing_uid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "seed_group_uid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_uid",
+                      "description": "(Required) Organization UID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"id\": \"string\",\n  \"source\": \"string\",\n  \"status\": 1208,\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a9563f7-ddec-49c1-a12a-3e9ca2ece4b5",
+              "name": "Bearer token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":org_uid",
+                    "metrics",
+                    "vulnerabilities",
+                    "exploitable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "listing_uid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "seed_group_uid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_uid",
+                      "description": "(Required) Organization UID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"id\": \"string\",\n  \"source\": \"string\",\n  \"status\": 1208,\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22ef3259-a1e0-475e-9b5c-b58afc63b3ab",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":org_uid",
+                    "metrics",
+                    "vulnerabilities",
+                    "exploitable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "listing_uid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "seed_group_uid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_uid",
+                      "description": "(Required) Organization UID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"id\": \"string\",\n  \"source\": \"string\",\n  \"status\": 1208,\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://client.synack.com/api/assessment",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d760b325-cf25-4c69-9164-d4cff565f82c",
+    "name": "Assessment Service Assessment Groups Vulnerabilities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for managing Assessment and related operations on the Synack.\n\n\nContact Support:\n Name: Synack Engineering\n Email: engineering@synack.com",
+      "type": "text/plain"
+    }
+  }
+}

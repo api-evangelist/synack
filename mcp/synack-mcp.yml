@@ -2,11 +2,9 @@ generated: '2026-07-21'
 method: derived
 status: candidate
 source: openapi/*.yaml
-note: >-
-  No official hosted/remote MCP server is published by Synack. This is a
-  candidate tool surface derived from the Enterprise API operations — a
-  starting point for a Synack MCP server, not a live endpoint. Tools map
-  one-to-one to real operationIds verified against the specs.
+note: No official hosted/remote MCP server is published by Synack. This is a candidate tool surface derived
+  from the Enterprise API operations — a starting point for a Synack MCP server, not a live endpoint.
+  Tools map one-to-one to real operationIds verified against the specs.
 server:
   name: synack
   transport: http
@@ -57,3 +55,9 @@ tools:
 - name: create_tag
   description: Create new asset/org tags.
   source_operation: openapi/synack-tagging-openapi.yaml#postTags
+deployment:
+  mode: none
+  verified: derived
+  tools: 15
+  checked: '2026-08-12'
+  source: catalog MCP census

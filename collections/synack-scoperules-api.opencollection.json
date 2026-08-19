@@ -1,0 +1,151 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Assessment Service Assessment Groups scoperules API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "scoperules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getScopeRules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/assets/:assetUid/scope-rules",
+            "params": [
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.\n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Optional property to sort results by."
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query",
+                "description": "Direction of sort-order for items in the response."
+              }
+            ]
+          },
+          "docs": "Gets a list of all scope rules for a host or web application asset."
+        },
+        {
+          "info": {
+            "name": "postScopeRule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v2/assets/:assetUid/scope-rules",
+            "params": [
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a scope rule to a web application or host asset. Returns a 409 status code if the asset is not one of these expected types."
+        },
+        {
+          "info": {
+            "name": "getScopeRule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/scope-rules/:scopeRuleUid",
+            "params": [
+              {
+                "name": "scopeRuleUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for a scope rule."
+              }
+            ]
+          },
+          "docs": "Retrieve a scope rule."
+        },
+        {
+          "info": {
+            "name": "patchScopeRule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client.synack.com/api/assessment/v2/scope-rules/:scopeRuleUid",
+            "params": [
+              {
+                "name": "scopeRuleUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for a scope rule."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch properties of a scope rule for a host asset with CIDRs or web application asset. Will return a 409 status code if the type is not one of these expected types."
+        },
+        {
+          "info": {
+            "name": "deleteScopeRule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client.synack.com/api/assessment/v2/scope-rules/:scopeRuleUid",
+            "params": [
+              {
+                "name": "scopeRuleUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for a scope rule."
+              }
+            ]
+          },
+          "docs": "Delete a scope rule from a host or web application asset. Will return a 409 status code if the type is not one of these expected types."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,199 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Assessment Service Assessment Groups scripts API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "scripts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getAssetScripts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/assets/:assetUid/scripts",
+            "params": [
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.\n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Optional property to sort results by."
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query",
+                "description": "Direction of sort-order for items in the response."
+              }
+            ]
+          },
+          "docs": "Gets all scripts owned by the mobile or web application asset. Returns 409 status if the asset is not of one of these types."
+        },
+        {
+          "info": {
+            "name": "postAssetScript",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v2/assets/:assetUid/scripts",
+            "params": [
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a script to a mobile or web application asset. Returns 409 status if the asset is of any other type..\n"
+        },
+        {
+          "info": {
+            "name": "getAssetScript",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/scripts/:scriptUid",
+            "params": [
+              {
+                "name": "scriptUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset script."
+              }
+            ]
+          },
+          "docs": "Gets an asset script."
+        },
+        {
+          "info": {
+            "name": "patchAssetScript",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client.synack.com/api/assessment/v2/scripts/:scriptUid",
+            "params": [
+              {
+                "name": "scriptUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset script."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch the properties of an asset script.\n"
+        },
+        {
+          "info": {
+            "name": "deleteAssetScript",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client.synack.com/api/assessment/v2/scripts/:scriptUid",
+            "params": [
+              {
+                "name": "scriptUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset script."
+              }
+            ]
+          },
+          "docs": "Delete a script from a asset.\n"
+        },
+        {
+          "info": {
+            "name": "getAssetScriptData",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/scripts/:scriptUid/script-data",
+            "params": [
+              {
+                "name": "scriptUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset script."
+              }
+            ]
+          },
+          "docs": "Gets the script data for an asset script."
+        },
+        {
+          "info": {
+            "name": "patchUserRoleScript",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client.synack.com/api/assessment/v2/user-roles/:userRoleUid/scripts/:scriptUid",
+            "params": [
+              {
+                "name": "userRoleUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset user role."
+              },
+              {
+                "name": "scriptUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset script."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch properties of a script that's been assigned to user role for a mobile or web application asset."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,417 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Assessment Service Assessment Groups networks API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "networks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "postAssetBulk",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v2/bulk/assets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates Assets in my Synack org. Note: In the Body, choose the Object pull down that corresponds to the asset type you want to add; Object 1 for Cloud, Object 2 for Hosts, Object 3 for Mobile, Object 4 for Networks, Object 5 for Web. For example; to add more than 1 Host IP address, choose Option 2, then specify multiple IP ranges with /32 CIDRs (adding a new Item for each).\n"
+        },
+        {
+          "info": {
+            "name": "bulkUpdateAssetLifecycleState",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v2/bulk/assets/lifecycle-state:update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk updates the asset life cycle property. Checks the validity of assets and returns 409 Conflict if rules are violated.\n"
+        },
+        {
+          "info": {
+            "name": "bulkUpdateAssetCriticality",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v2/bulk/assets/criticality:update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk update the criticality of multiple assets.\n"
+        },
+        {
+          "info": {
+            "name": "getAssets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/assets",
+            "params": [
+              {
+                "name": "organizationUid[]",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for an organization. If not supplied the request will apply to all organizations the user is authorized to access."
+              },
+              {
+                "name": "listingUid[]",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for an listing. If not supplied the request will apply to all listings the user is authorized to access."
+              },
+              {
+                "name": "assetType[]",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the returned asset summaries to only assets of the specified type."
+              },
+              {
+                "name": "hostType[]",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the returned asset summaries to only the types of host assets requested when assetType also includes host.\n"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Optional query parameter for a search string that will be used to match within the label or location properties of assets. If this query parameter is provided, any location query parameter will be ignored.\n"
+              },
+              {
+                "name": "active",
+                "value": "",
+                "type": "query",
+                "description": "Optional parameter that determines whether the response includes assets regardless of active state (the default, if this query parameter is not provided); active assets only if true; or inactive assets only if false.\n"
+              },
+              {
+                "name": "inProduction",
+                "value": "",
+                "type": "query",
+                "description": "Optional query parameter that determines whether production or non-production assets will be included in the response.\n"
+              },
+              {
+                "name": "maxHostDiscoveryAgeMins",
+                "value": "",
+                "type": "query",
+                "description": "Optional query parameter to get host assets which are discovered by cloudEnumeration scanner shifted by maxHostDiscoveryAgeMins. Assets which are added via boss or discovered by other type of scanners will be included in response. E.g. CloudEnumeration hosts are valid for 1 hour from each time they are discovered, maxHostDiscoveryAgeMins=0 means that if the end time of the relationship has passed, the asset will not be returned - maxHostDiscoveryAgeMins=60 however, would return assets that were still valid 60 minutes ago\n"
+              },
+              {
+                "name": "scope[]",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the returned assets to only assets associated to listings by the specified scopes."
+              },
+              {
+                "name": "cloudPlatform[]",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the returned assets to only assets enumerated from a particular cloud platform."
+              },
+              {
+                "name": "location",
+                "value": "",
+                "type": "query",
+                "description": "Prefix search of the derived location property.\n"
+              },
+              {
+                "name": "errorCode[]",
+                "value": "",
+                "type": "query",
+                "description": "Filter assets to only include assets with matching error codes."
+              },
+              {
+                "name": "portNumber[]",
+                "value": "",
+                "type": "query",
+                "description": "Filter assets to only include hosts with open ports matching the port number."
+              },
+              {
+                "name": "maxOpenPorts",
+                "value": "",
+                "type": "query",
+                "description": "Max open ports from a single IP address."
+              },
+              {
+                "name": "hasNetwork",
+                "value": "",
+                "type": "query",
+                "description": "Filter assets to include/exclude those with networks.\nDeprecating.\n"
+              },
+              {
+                "name": "networkUid[]",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for a network.\nIf not supplied the request will apply to all networks the user is authorized to access.\nDeprecating.\n"
+              },
+              {
+                "name": "gatewayId[]",
+                "value": "",
+                "type": "query",
+                "description": "Unique gateway id.\nIf not supplied the request will apply to all gateways.\n"
+              },
+              {
+                "name": "earliestCreatedAt",
+                "value": "",
+                "type": "query",
+                "description": "Filter assets with a createdAt date greater or equal to this value"
+              },
+              {
+                "name": "latestCreatedAt",
+                "value": "",
+                "type": "query",
+                "description": "Filter assets with a createdAt date less than or equal to this value"
+              },
+              {
+                "name": "userUid",
+                "value": "",
+                "type": "query",
+                "description": "Restricts the credentials to only those available to the user. This query parameter is ignored if the user is a researcher."
+              },
+              {
+                "name": "relationshipTargetAssetUid",
+                "value": "",
+                "type": "query",
+                "description": "Filter assets which have a relationship with targetAssetUid equal to this value.\n"
+              },
+              {
+                "name": "relationshipType",
+                "value": "",
+                "type": "query",
+                "description": "Filter assets which have a relationship of this type.\n"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.\n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Optional property to sort results by."
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query",
+                "description": "Direction of sort-order for items in the response."
+              },
+              {
+                "name": "origin",
+                "value": "",
+                "type": "query",
+                "description": "Optional property to filter results by human created or system discovered assets."
+              },
+              {
+                "name": "lifecycleState[]",
+                "value": "",
+                "type": "query",
+                "description": "Optional property to filter results by asset lifecycle state. When not supplied, all assets except `archived` will be returned."
+              },
+              {
+                "name": "omitFields",
+                "value": "",
+                "type": "query",
+                "description": "Fields to omit from response."
+              },
+              {
+                "name": "ipRanges[]",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the returned asset summaries to only assets of the specified ip ranges."
+              }
+            ]
+          },
+          "docs": "Retrieve the list of assets for one or more organizations, considering filtering and pagination query parameters. When an organization-level OAuth2 scope is provided, the results will be restricted to those organizations the user is authorized for. Similarly, if a listing- level OAuth2 scope is provided, the results will be restricted to those listings the user is authorized for.\nAdditional query parameters generally restrict the resulting set of assets according to AND semantics.\nUse of organiz"
+        },
+        {
+          "info": {
+            "name": "postAsset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v2/assets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an asset in my Synack org. In the Body, choose the Object pull down that corresponds to the asset type you want to add; Object 1 for Cloud, Object 2 for Host, Object 3 for Mobile, Object 4 for Network, Object 5 for Web\n"
+        },
+        {
+          "info": {
+            "name": "getAsset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/assets/:assetUid",
+            "params": [
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              },
+              {
+                "name": "userUid",
+                "value": "",
+                "type": "query",
+                "description": "Restricts the credentials to only those available to the user. This query parameter is ignored if the user is a researcher."
+              }
+            ]
+          },
+          "docs": "Retrieves a single asset. If the user is a researcher, only the credentials they are authorized to access will be returned. If the asset is of cloud account type, only a user with asset_scan_gr scope can access its credential data.\n"
+        },
+        {
+          "info": {
+            "name": "patchAsset",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client.synack.com/api/assessment/v2/assets/:assetUid",
+            "params": [
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patches the properties of a single asset.\n"
+        },
+        {
+          "info": {
+            "name": "deleteAsset",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client.synack.com/api/assessment/v2/assets/:assetUid",
+            "params": [
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              }
+            ]
+          },
+          "docs": "Deletes an asset. This is intended to be a privileged operation. Regular use should be to mark the asset as inactive. Any relationships that involve the deleted asset will be also be deleted, as will any association to listings.\n"
+        },
+        {
+          "info": {
+            "name": "getDiscoveredAssetSummaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/organizations/:organizationUid/discovered-assets",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an organization."
+              },
+              {
+                "name": "listingUid[]",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for an listing. If not supplied the request will apply to all listings the user is authorized to access."
+              },
+              {
+                "name": "assetType[]",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the returned asset summaries to only assets of the specified type."
+              },
+              {
+                "name": "hostType[]",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the returned asset summaries to only the types of host assets requested when assetType also includes host.\n"
+              },
+              {
+                "name": "seedUid[]",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the returned asset summaries to only those discovered from provided seed identifier."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Optional query parameter for a search string that will be used to match within the label or location properties of assets. If this query parameter is provided, any location query parameter will be ignored.\n"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.\n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Optional property to sort results by."
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query",
+                "description": "Direction of sort-order for items in the response."
+              }
+            ]
+          },
+          "docs": "Retrieve the list summarized properties for discovered assets belonging to  an organization, considering filtering and pagination query parameters.\nAdditional query parameters generally restrict the resulting set of assets according to AND semantics.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

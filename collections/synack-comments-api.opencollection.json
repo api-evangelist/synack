@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Assessment Service Assessment Groups Comments API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Comments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get vulnerability comments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/vulnerabilities/:vulnerability_id/comments",
+            "params": [
+              {
+                "name": "vulnerability_id",
+                "value": "",
+                "type": "path",
+                "description": "Vulnerability ID"
+              }
+            ]
+          },
+          "docs": "Retrieve comments for a specific vulnerability"
+        },
+        {
+          "info": {
+            "name": "Create a vulnerability comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v1/vulnerabilities/:vulnerability_id/comments",
+            "params": [
+              {
+                "name": "vulnerability_id",
+                "value": "",
+                "type": "path",
+                "description": "Vulnerability ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new comment for a specific vulnerability"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

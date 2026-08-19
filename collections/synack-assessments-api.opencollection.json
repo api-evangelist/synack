@@ -1,0 +1,363 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Assessment Service Assessment Groups Assessments API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Assessments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "putListingAsset",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://client.synack.com/api/assessment/v2/listings/:listingUid/assets/:assetUid",
+            "params": [
+              {
+                "name": "listingUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an listing."
+              },
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert assignment of an asset to a listing."
+        },
+        {
+          "info": {
+            "name": "deleteListingAsset",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client.synack.com/api/assessment/v2/listings/:listingUid/assets/:assetUid",
+            "params": [
+              {
+                "name": "listingUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an listing."
+              },
+              {
+                "name": "assetUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an asset."
+              }
+            ]
+          },
+          "docs": "Delete the assignment of an asset to a listing."
+        },
+        {
+          "info": {
+            "name": "patchListingAssets",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client.synack.com/api/assessment/v2/listings/:listingUid/assets",
+            "params": [
+              {
+                "name": "listingUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an listing."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Associate or disassociate zero or more assets from a listing. Allows the caller to provide lists of assets to add to and/or remove from being associated with a listing. Unknown assets are ignored."
+        },
+        {
+          "info": {
+            "name": "deleteListingAssets",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client.synack.com/api/assessment/v2/listings/:listingUid/assets",
+            "params": [
+              {
+                "name": "listingUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an listing."
+              },
+              {
+                "name": "assetType[]",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the returned asset summaries to only assets of the specified type."
+              }
+            ]
+          },
+          "docs": "Delete all the association of assets from a listing."
+        },
+        {
+          "info": {
+            "name": "patchListingGateways",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client.synack.com/api/assessment/v2/organizations/:organizationUid/listings/:listingUid/gateways",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an organization."
+              },
+              {
+                "name": "listingUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an listing."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Associate or disassociate gateway ID from a listing.\nAllows the caller to provide gateway ID to add to and/or remove from\nbeing associated with a listing. Gateway ID equals to `\"nil\"` would disassociate.\n"
+        },
+        {
+          "info": {
+            "name": "putListingAssetsResetScopeRules",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://client.synack.com/api/assessment/v2/listings/:listingUid/reset-scope-rules",
+            "params": [
+              {
+                "name": "listingUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for an listing."
+              }
+            ]
+          },
+          "docs": "For every asset associated with the listing, reset the scope rules to default rules"
+        },
+        {
+          "info": {
+            "name": "Get assessments (V1)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/assessments",
+            "params": [
+              {
+                "name": "assessment_group_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by assessment group ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of assessments for the current user's organization"
+        },
+        {
+          "info": {
+            "name": "Get a specific assessment (V1)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/assessments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Assessment ID"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific assessment"
+        },
+        {
+          "info": {
+            "name": "Get testing hours for an assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v1/assessments/:id/testing_hours",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Assessment ID"
+              }
+            ]
+          },
+          "docs": "Retrieve testing hours statistics for a specific assessment"
+        },
+        {
+          "info": {
+            "name": "Create new assessment update that is visible to researchers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v1/assessments/:id/updates",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "UID of the assessment"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Post a new update for the assessment"
+        },
+        {
+          "info": {
+            "name": "Get assessments for an organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/organizations/:organizationUid/assessments",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the organization"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort by"
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search term to filter assessments by name"
+              },
+              {
+                "name": "types[]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by assessment types"
+              },
+              {
+                "name": "tagIds[]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tag IDs"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of assessments for a specific organization with filtering and sorting options"
+        },
+        {
+          "info": {
+            "name": "Create a new assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client.synack.com/api/assessment/v2/organizations/:organizationUid/assessments",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the organization"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new assessment for an organization"
+        },
+        {
+          "info": {
+            "name": "Get assessment statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client.synack.com/api/assessment/v2/organizations/:organizationUid/assessments/:assessmentUid/stats",
+            "params": [
+              {
+                "name": "organizationUid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the organization"
+              },
+              {
+                "name": "assessmentUid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the assessment"
+              }
+            ]
+          },
+          "docs": "Retrieve statistics for a specific assessment"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
