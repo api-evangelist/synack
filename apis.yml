@@ -42,6 +42,14 @@ tags:
 - Attack Surface Management
 - Crowdsourced Security
 - Compliance
+tags_raw:
+- Company
+- Security
+- Penetration Testing
+- Vulnerability Management
+- Attack Surface Management
+- Crowdsourced Security
+- Compliance
 - API
 maintainers:
 - FN: Kin Lane
@@ -115,6 +123,8 @@ apis:
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
   tags:
+  - Cloud Accounts
+  tags_raw:
   - cloudaccounts
   properties:
   - type: OpenAPI
@@ -135,6 +145,8 @@ apis:
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
   tags:
+  - Credentials
+  tags_raw:
   - credentials
   properties:
   - type: OpenAPI
@@ -155,6 +167,8 @@ apis:
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
   tags:
+  - Health
+  tags_raw:
   - health
   properties:
   - type: OpenAPI
@@ -185,6 +199,8 @@ apis:
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
   tags:
+  - Mobile Apps
+  tags_raw:
   - mobileapps
   properties:
   - type: OpenAPI
@@ -195,6 +211,8 @@ apis:
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
   tags:
+  - Networks
+  tags_raw:
   - networks
   properties:
   - type: OpenAPI
@@ -215,6 +233,8 @@ apis:
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
   tags:
+  - Ports
+  tags_raw:
   - ports
   properties:
   - type: OpenAPI
@@ -235,6 +255,8 @@ apis:
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
   tags:
+  - Scripts
+  tags_raw:
   - scripts
   properties:
   - type: OpenAPI
@@ -285,6 +307,8 @@ apis:
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
   tags:
+  - User Roles
+  tags_raw:
   - userroles
   properties:
   - type: OpenAPI
@@ -295,6 +319,8 @@ apis:
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
   tags:
+  - User
+  tags_raw:
   - users
   properties:
   - type: OpenAPI
@@ -325,6 +351,8 @@ apis:
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
   tags:
+  - Web App
+  tags_raw:
   - webapps
   properties:
   - type: OpenAPI
