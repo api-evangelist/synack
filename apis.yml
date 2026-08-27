@@ -117,18 +117,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/synack-assets-api-openapi.yml
-- aid: synack:synack-cloudaccounts-api
-  name: Synack cloudaccounts API
-  description: Cloud account assets.
-  humanURL: https://docs.synack.com/
-  baseURL: https://api.synack.com
-  tags:
-  - Cloud Accounts
-  tags_raw:
-  - cloudaccounts
-  properties:
-  - type: OpenAPI
-    url: openapi/synack-cloudaccounts-api-openapi.yml
 - aid: synack:synack-comments-api
   name: Synack Comments API
   description: Operations related to comments
@@ -205,18 +193,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/synack-mobileapps-api-openapi.yml
-- aid: synack:synack-networks-api
-  name: Synack networks API
-  description: Network assets.
-  humanURL: https://docs.synack.com/
-  baseURL: https://api.synack.com
-  tags:
-  - Networks
-  tags_raw:
-  - networks
-  properties:
-  - type: OpenAPI
-    url: openapi/synack-networks-api-openapi.yml
 - aid: synack:synack-patch-verifications-api
   name: Synack Patch Verifications API
   description: Operations related to patch verifications
@@ -227,40 +203,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/synack-patch-verifications-api-openapi.yml
-- aid: synack:synack-ports-api
-  name: Synack ports API
-  description: Ports for single host assets.
-  humanURL: https://docs.synack.com/
-  baseURL: https://api.synack.com
-  tags:
-  - Ports
-  tags_raw:
-  - ports
-  properties:
-  - type: OpenAPI
-    url: openapi/synack-ports-api-openapi.yml
-- aid: synack:synack-scoperules-api
-  name: Synack scoperules API
-  description: Scope-rules provide fine grained control for what is in and out of scope for an asset.
-  humanURL: https://docs.synack.com/
-  baseURL: https://api.synack.com
-  tags:
-  - scoperules
-  properties:
-  - type: OpenAPI
-    url: openapi/synack-scoperules-api-openapi.yml
-- aid: synack:synack-scripts-api
-  name: Synack scripts API
-  description: Scripts for mobile and web applications.
-  humanURL: https://docs.synack.com/
-  baseURL: https://api.synack.com
-  tags:
-  - Scripts
-  tags_raw:
-  - scripts
-  properties:
-  - type: OpenAPI
-    url: openapi/synack-scripts-api-openapi.yml
 - aid: synack:synack-seeds-api
   name: Synack Seeds API
   description: Collections of seeds associated with a listing.
@@ -301,18 +243,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/synack-tests-api-openapi.yml
-- aid: synack:synack-userroles-api
-  name: Synack userroles API
-  description: Defines persona-specific user roles for asset credential management.
-  humanURL: https://docs.synack.com/
-  baseURL: https://api.synack.com
-  tags:
-  - User Roles
-  tags_raw:
-  - userroles
-  properties:
-  - type: OpenAPI
-    url: openapi/synack-userroles-api-openapi.yml
 - aid: synack:synack-users-api
   name: Synack users API
   description: Users of credentials.
