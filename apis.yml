@@ -9,6 +9,18 @@ description: >-
   seeds), vulnerabilities and suspected vulnerabilities, missions and campaigns,
   tagging, tests, users, and streaming analytics across nine REST services,
   secured with OAuth2 scopes and JWT bearer tokens.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
