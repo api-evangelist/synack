@@ -145,7 +145,7 @@ apis:
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
   tags:
-  - Credentials
+  - credentials
   tags_raw:
   - credentials
   properties:
@@ -199,7 +199,7 @@ apis:
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
   tags:
-  - Mobile Apps
+  - mobileapps
   tags_raw:
   - mobileapps
   properties:
@@ -293,7 +293,7 @@ apis:
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
   tags:
-  - Web App
+  - webapps
   tags_raw:
   - webapps
   properties:
