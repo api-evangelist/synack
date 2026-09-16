@@ -193,18 +193,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/synack-missions-api-openapi.yml
-- aid: synack:synack-mobileapps-api
-  name: Synack mobileapps API
-  description: Mobile application assets.
-  humanURL: https://docs.synack.com/
-  baseURL: https://api.synack.com
-  tags:
-  - Mobile Apps
-  tags_raw:
-  - mobileapps
-  properties:
-  - type: OpenAPI
-    url: openapi/synack-mobileapps-api-openapi.yml
 - aid: synack:synack-patch-verifications-api
   name: Synack Patch Verifications API
   description: Operations related to patch verifications
@@ -287,18 +275,26 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/synack-vulnerability-statuses-api-openapi.yml
-- aid: synack:synack-webapps-api
-  name: Synack webapps API
+- aid: synack:synack-mobile-apps-api
+  name: Synack Mobile Apps API
+  description: Mobile application assets.
+  humanURL: https://docs.synack.com/
+  baseURL: https://api.synack.com
+  tags:
+  - Mobile Apps
+  properties:
+  - type: OpenAPI
+    url: openapi/synack-mobile-apps-api-openapi.yml
+- aid: synack:synack-web-apps-api
+  name: Synack Web Apps API
   description: Web application assets.
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
   tags:
-  - Web App
-  tags_raw:
-  - webapps
+  - Web Apps
   properties:
   - type: OpenAPI
-    url: openapi/synack-webapps-api-openapi.yml
+    url: openapi/synack-web-apps-api-openapi.yml
 common:
 - type: Overlay
   url: overlays/synack-assessment-v1-overlay.yaml
