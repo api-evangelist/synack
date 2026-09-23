@@ -1,17 +1,15 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Assessment Service Assessment Groups assetproviders API
-  version: 1.0.0
-  description: 'APIs for managing Assessment and related operations on the Synack.
-
-    '
+  title: Streaming Service Assetproviders API
+  description: API for streaming service
+  version: 1.38.1
   contact:
     name: Synack Engineering
     email: engineering@synack.com
 servers:
-- url: https://client.synack.com/api/assessment
+- url: https://client.synack.com/api/streaming
   description: Commercial
-- url: https://client.synack.us/api/assessment
+- url: https://client.synack.us/api/streaming
   description: FedRAMP (Medium)
 security:
 - bearerAuth: []
@@ -65,28 +63,27 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Links:
+    Relationship:
       type: object
       properties:
-        next:
-          type: string
-        prev:
-          type: string
-    Data:
+        data: {}
+        links:
+          $ref: '#/components/schemas/Links'
+    Document:
       type: object
       properties:
-        attributes: {}
-        id:
-          type: string
+        data:
+          $ref: '#/components/schemas/Data'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        included:
+          type: array
+          items: {}
         links:
           $ref: '#/components/schemas/Links'
         meta: {}
-        relationships:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/Relationship'
-        type:
-          $ref: '#/components/schemas/ResourceType'
     ResourceType:
       type: string
       enum:
@@ -111,21 +108,28 @@ components:
       - tags
       - last_tested_counts
       - last_assets_scan
-    Document:
+    Data:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/Data'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-        included:
-          type: array
-          items: {}
+        attributes: {}
+        id:
+          type: string
         links:
           $ref: '#/components/schemas/Links'
         meta: {}
+        relationships:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Relationship'
+        type:
+          $ref: '#/components/schemas/ResourceType'
+    Links:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
     Error:
       type: object
       properties:
@@ -139,12 +143,6 @@ components:
           type: integer
         title:
           type: string
-    Relationship:
-      type: object
-      properties:
-        data: {}
-        links:
-          $ref: '#/components/schemas/Links'
   securitySchemes:
     bearerAuth:
       type: http

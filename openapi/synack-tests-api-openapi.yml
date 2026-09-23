@@ -1,20 +1,24 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Assessment Service Assessment Groups Tests API
-  version: 1.0.0
-  description: 'APIs for managing Assessment and related operations on the Synack.
-
-    '
+  title: Synack Tests API
   contact:
     name: Synack Engineering
     email: engineering@synack.com
+  version: '1.0'
+  description: 'Operations tagged Tests across 3 of this provider''s published API definitions: synack-monolith-v1-openapi.yaml, synack-monolith-v2-openapi.yaml, synack-streaming-openapi.yaml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://client.synack.com/api/assessment
+- url: https://api.synack.com
+  description: Commercial - V1 API
+- url: https://api.synack.us
+  description: FedRAMP (Medium) - V1 API
+- url: https://client.synack.com/api
+  description: Commercial - V2 API
+- url: https://client.synack.us/api
+  description: FedRAMP (Medium) - V2 API
+- url: https://client.synack.com/api/streaming
   description: Commercial
-- url: https://client.synack.us/api/assessment
+- url: https://client.synack.us/api/streaming
   description: FedRAMP (Medium)
-security:
-- bearerAuth: []
 tags:
 - name: Tests
   description: Operations related to security tests
@@ -54,15 +58,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/errors'
+      security:
+      - BearerAuth: []
+      - BasicAuth: []
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.synack.com
+      description: Commercial - V1 API
+    - url: https://api.synack.us
+      description: FedRAMP (Medium) - V1 API
   /v1/assessments/{assessment_id}/tests/{id}/approve:
     post:
       operationId: approveTest
       summary: Approve a test (as a super admin)
       description: 'Approve a test as a super admin, transitioning it from Admin Review to Synack Review status.
 
-        The test must be in Admin Review status.
-
-        '
+        The test must be in Admin Review status.'
       tags:
       - Tests
       parameters:
@@ -109,15 +120,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/errors'
+      security:
+      - BearerAuth: []
+      - BasicAuth: []
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.synack.com
+      description: Commercial - V1 API
+    - url: https://api.synack.us
+      description: FedRAMP (Medium) - V1 API
   /v1/assessments/{assessment_id}/tests/{id}/reject:
     post:
       operationId: rejectTest
       summary: Reject a test (as a super admin)
       description: 'Reject a test as a super admin, returning it to draft status.
 
-        The test must be in Admin Review status.
-
-        '
+        The test must be in Admin Review status.'
       tags:
       - Tests
       parameters:
@@ -174,6 +192,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/errors'
+      security:
+      - BearerAuth: []
+      - BasicAuth: []
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.synack.com
+      description: Commercial - V1 API
+    - url: https://api.synack.us
+      description: FedRAMP (Medium) - V1 API
   /v2/organizations/{organizationUid}/assessments/{assessmentUid}/tests:
     post:
       operationId: createAssessmentTest
@@ -237,6 +264,15 @@ paths:
                 $ref: '#/components/schemas/ValidationProblemDetails'
         '404':
           description: Assessment not found
+      security:
+      - BearerAuth: []
+      - BasicAuth: []
+      - ApiKeyAuth: []
+    servers:
+    - url: https://client.synack.com/api
+      description: Commercial - V2 API
+    - url: https://client.synack.us/api
+      description: FedRAMP (Medium) - V2 API
   /v1/{org_uid}/assets/{asset_uid}/listings/tests/latest:
     get:
       x-mint:
@@ -318,8 +354,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://client.synack.com/api/streaming
+      description: Commercial
+    - url: https://client.synack.us/api/streaming
+      description: FedRAMP (Medium)
 components:
   schemas:
+    Test:
+      type: object
+      properties:
+        name:
+          type: string
+        testPlan:
+          type: string
+          enum:
+          - Synack365
+          - Synack90
+          - Synack14
+        testObjective:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
     ProblemDetailsSubProblem:
       type: object
       required:
@@ -332,13 +391,17 @@ components:
         reason:
           type: string
           description: The reason why the parameter is invalid
-    Links:
-      type: object
-      properties:
-        next:
-          type: string
-        prev:
-          type: string
+    ValidationProblemDetails:
+      allOf:
+      - $ref: '#/components/schemas/ProblemDetails'
+      - type: object
+        required:
+        - invalidParams
+        properties:
+          invalidParams:
+            type: array
+            items:
+              $ref: '#/components/schemas/ProblemDetailsSubProblem'
     ProblemDetails:
       type: object
       required:
@@ -358,21 +421,27 @@ components:
         organization:
           type: string
           description: The organization UID associated with the problem
-    Data:
+    Relationship:
       type: object
       properties:
-        attributes: {}
-        id:
-          type: string
+        data: {}
+        links:
+          $ref: '#/components/schemas/Links'
+    Document:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Data'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        included:
+          type: array
+          items: {}
         links:
           $ref: '#/components/schemas/Links'
         meta: {}
-        relationships:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/Relationship'
-        type:
-          $ref: '#/components/schemas/ResourceType'
     ResourceType:
       type: string
       enum:
@@ -397,37 +466,28 @@ components:
       - tags
       - last_tested_counts
       - last_assets_scan
-    Document:
+    Data:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/Data'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-        included:
-          type: array
-          items: {}
+        attributes: {}
+        id:
+          type: string
         links:
           $ref: '#/components/schemas/Links'
         meta: {}
-    Test:
+        relationships:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Relationship'
+        type:
+          $ref: '#/components/schemas/ResourceType'
+    Links:
       type: object
       properties:
-        name:
+        next:
           type: string
-        testPlan:
+        prev:
           type: string
-          enum:
-          - Synack365
-          - Synack90
-          - Synack14
-        testObjective:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
     Error:
       type: object
       properties:
@@ -441,25 +501,23 @@ components:
           type: integer
         title:
           type: string
-    Relationship:
-      type: object
-      properties:
-        data: {}
-        links:
-          $ref: '#/components/schemas/Links'
-    ValidationProblemDetails:
-      allOf:
-      - $ref: '#/components/schemas/ProblemDetails'
-      - type: object
-        required:
-        - invalidParams
-        properties:
-          invalidParams:
-            type: array
-            items:
-              $ref: '#/components/schemas/ProblemDetailsSubProblem'
   securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    BasicAuth:
+      type: http
+      scheme: basic
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Auth
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
+x-refined-from:
+- synack-monolith-v1-openapi.yaml
+- synack-monolith-v2-openapi.yaml
+- synack-streaming-openapi.yaml

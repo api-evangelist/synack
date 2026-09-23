@@ -1,20 +1,20 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Assessment Service Assessment Groups API
-  version: 1.0.0
-  description: 'APIs for managing Assessment and related operations on the Synack.
-
-    '
+  title: Synack Assessment Groups API
   contact:
     name: Synack Engineering
     email: engineering@synack.com
+  version: '1.0'
+  description: 'Operations tagged Assessment Groups across 2 of this provider''s published API definitions: synack-assessment-v1-openapi.yaml, synack-monolith-v1-openapi.yaml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://client.synack.com/api/assessment
   description: Commercial
 - url: https://client.synack.us/api/assessment
   description: FedRAMP (Medium)
-security:
-- bearerAuth: []
+- url: https://api.synack.com
+  description: Commercial - V1 API
+- url: https://api.synack.us
+  description: FedRAMP (Medium) - V1 API
 tags:
 - name: Assessment Groups
   description: Users assigned to an Assessment Group, with their roles.
@@ -26,9 +26,7 @@ paths:
 
         their roles and membership timestamps.
 
-        Supports pagination, sorting, and an optional role filter.
-
-        '
+        Supports pagination, sorting, and an optional role filter.'
       operationId: listAssessmentGroupMembers
       tags:
       - Assessment Groups
@@ -87,15 +85,20 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalServerError'
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://client.synack.com/api/assessment
+      description: Commercial
+    - url: https://client.synack.us/api/assessment
+      description: FedRAMP (Medium)
   /v1/assessment-groups/{assessmentGroupId}/members/batchAdd:
     post:
       summary: Add users to an Assessment Group
       description: 'Adds one or more users to an Assessment Group with a specified role.
 
 
-        Maximum 100 members per request.
-
-        '
+        Maximum 100 members per request.'
       operationId: batchAddAssessmentGroupMembers
       tags:
       - Assessment Groups
@@ -135,15 +138,20 @@ paths:
           $ref: '#/components/responses/RequestEntityTooLarge'
         '500':
           $ref: '#/components/responses/InternalServerError'
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://client.synack.com/api/assessment
+      description: Commercial
+    - url: https://client.synack.us/api/assessment
+      description: FedRAMP (Medium)
   /v1/assessment-groups/{assessmentGroupId}/members/batchRemove:
     post:
       summary: Remove users from an Assessment Group
       description: 'Removes one or more users from an Assessment Group.
 
 
-        Maximum 100 user IDs per request.
-
-        '
+        Maximum 100 user IDs per request.'
       operationId: batchRemoveAssessmentGroupMembers
       tags:
       - Assessment Groups
@@ -182,6 +190,13 @@ paths:
           $ref: '#/components/responses/RequestEntityTooLarge'
         '500':
           $ref: '#/components/responses/InternalServerError'
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://client.synack.com/api/assessment
+      description: Commercial
+    - url: https://client.synack.us/api/assessment
+      description: FedRAMP (Medium)
   /v1/assessment_groups:
     get:
       operationId: getAssessmentGroups
@@ -200,6 +215,15 @@ paths:
                   $ref: '#/components/schemas/AssessmentGroup'
         '401':
           description: Unauthorized
+      security:
+      - BearerAuth: []
+      - BasicAuth: []
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.synack.com
+      description: Commercial - V1 API
+    - url: https://api.synack.us
+      description: FedRAMP (Medium) - V1 API
   /v1/assessment_groups/{id}:
     get:
       operationId: getAssessmentGroup
@@ -223,208 +247,29 @@ paths:
                 $ref: '#/components/schemas/AssessmentGroup'
         '404':
           description: Assessment group not found
+      security:
+      - BearerAuth: []
+      - BasicAuth: []
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.synack.com
+      description: Commercial - V1 API
+    - url: https://api.synack.us
+      description: FedRAMP (Medium) - V1 API
 components:
-  responses:
-    Forbidden:
-      description: Authenticated but lacks permission for this resource.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/Problem'
-    RequestEntityTooLarge:
-      description: Batch exceeds the documented per-request maximum (100 items).
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/Problem'
-    NotFound:
-      description: Resource not found in the acting organization.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/Problem'
-    Unauthorized:
-      description: Missing or invalid authentication credentials.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/Problem'
-    BadRequest:
-      description: Malformed request body.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/Problem'
-    InternalServerError:
-      description: Server error.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/Problem'
   schemas:
-    AddMemberResult:
-      type: object
-      description: 'Per-row outcome for a batchAdd request. `errorCode` and
-
-        `errorDetail` are populated only when `status == "error"`.
-
-        '
-      required:
-      - userUid
-      - status
-      properties:
-        userUid:
-          type: string
-        status:
-          $ref: '#/components/schemas/AddMemberResultStatus'
-        role:
-          $ref: '#/components/schemas/AssessmentGroupRole'
-        id:
-          type: integer
-        errorCode:
-          $ref: '#/components/schemas/PerRowErrorCode'
-        errorDetail:
-          type: string
-    MembersCollectionResponse:
+    BatchAddMembersResponse:
       type: object
       required:
-      - members
+      - results
       - metadata
       properties:
-        members:
+        results:
           type: array
           items:
-            $ref: '#/components/schemas/Member'
+            $ref: '#/components/schemas/AddMemberResult'
         metadata:
-          $ref: '#/components/schemas/CollectionMetadata'
-    RemoveMemberResultStatus:
-      type: string
-      enum:
-      - removed
-      - noop
-      - error
-    AssessmentGroup:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        description:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-    BatchCounts:
-      type: object
-      description: Per-row outcome counts for a batch operation.
-      properties:
-        added:
-          type: integer
-          minimum: 0
-        removed:
-          type: integer
-          minimum: 0
-        noop:
-          type: integer
-          minimum: 0
-        error:
-          type: integer
-          minimum: 0
-    Pagination:
-      type: object
-      required:
-      - total
-      - page
-      - perPage
-      - totalPages
-      - self
-      properties:
-        total:
-          type: integer
-          minimum: 0
-        page:
-          type: integer
-          minimum: 1
-        perPage:
-          type: integer
-          minimum: 1
-        totalPages:
-          type: integer
-          minimum: 0
-        prev:
-          type: string
-        next:
-          type: string
-        first:
-          type: string
-        last:
-          type: string
-        self:
-          type: string
-    AddMemberResultStatus:
-      type: string
-      enum:
-      - added
-      - noop
-      - error
-    Member:
-      type: object
-      required:
-      - userUid
-      - role
-      - id
-      - createdAt
-      properties:
-        userUid:
-          type: string
-        userEmail:
-          type: string
-          format: email
-          nullable: true
-          description: Member's email address. Omitted when unavailable.
-        userName:
-          type: string
-          nullable: true
-          description: Member's display name (first + last). Omitted when unavailable.
-        role:
-          $ref: '#/components/schemas/AssessmentGroupRole'
-        id:
-          type: integer
-          description: Identifier of the underlying membership row.
-        createdAt:
-          type: string
-          format: date-time
-          description: When the user became a member of this group (RFC 3339).
-    PerRowErrorCode:
-      type: string
-      description: Stable code identifying why a per-row outcome failed.
-      enum:
-      - user_not_found
-      - user_not_in_org
-      - role_invalid
-      - role_not_assignable
-      - forbidden
-      - internal_error
-    BatchMetadata:
-      type: object
-      properties:
-        processedAt:
-          type: string
-          format: date-time
-        counts:
-          $ref: '#/components/schemas/BatchCounts'
-    BatchAddMembersRequest:
-      type: object
-      required:
-      - members
-      properties:
-        members:
-          type: array
-          minItems: 1
-          maxItems: 100
-          items:
-            $ref: '#/components/schemas/MemberAddInput'
+          $ref: '#/components/schemas/BatchMetadata'
     BatchRemoveMembersResponse:
       type: object
       required:
@@ -460,18 +305,6 @@ components:
         logId:
           type: string
           description: Unique log message identifier for support.
-    BatchAddMembersResponse:
-      type: object
-      required:
-      - results
-      - metadata
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/AddMemberResult'
-        metadata:
-          $ref: '#/components/schemas/BatchMetadata'
     BatchRemoveMembersRequest:
       type: object
       required:
@@ -487,6 +320,106 @@ components:
             minLength: 1
             maxLength: 64
             pattern: ^[a-zA-Z0-9_-]+$
+    MembersCollectionResponse:
+      type: object
+      required:
+      - members
+      - metadata
+      properties:
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/Member'
+        metadata:
+          $ref: '#/components/schemas/CollectionMetadata'
+    MemberAddInput:
+      type: object
+      required:
+      - userUid
+      - role
+      properties:
+        userUid:
+          type: string
+          minLength: 1
+          maxLength: 64
+          pattern: ^[a-zA-Z0-9_-]+$
+        role:
+          $ref: '#/components/schemas/AssessmentGroupRole'
+    AddMemberResult:
+      type: object
+      description: 'Per-row outcome for a batchAdd request. `errorCode` and
+
+        `errorDetail` are populated only when `status == "error"`.
+
+        '
+      required:
+      - userUid
+      - status
+      properties:
+        userUid:
+          type: string
+        status:
+          $ref: '#/components/schemas/AddMemberResultStatus'
+        role:
+          $ref: '#/components/schemas/AssessmentGroupRole'
+        id:
+          type: integer
+        errorCode:
+          $ref: '#/components/schemas/PerRowErrorCode'
+        errorDetail:
+          type: string
+    BatchCounts:
+      type: object
+      description: Per-row outcome counts for a batch operation.
+      properties:
+        added:
+          type: integer
+          minimum: 0
+        removed:
+          type: integer
+          minimum: 0
+        noop:
+          type: integer
+          minimum: 0
+        error:
+          type: integer
+          minimum: 0
+    Member:
+      type: object
+      required:
+      - userUid
+      - role
+      - id
+      - createdAt
+      properties:
+        userUid:
+          type: string
+        userEmail:
+          type: string
+          format: email
+          nullable: true
+          description: Member's email address. Omitted when unavailable.
+        userName:
+          type: string
+          nullable: true
+          description: Member's display name (first + last). Omitted when unavailable.
+        role:
+          $ref: '#/components/schemas/AssessmentGroupRole'
+        id:
+          type: integer
+          description: Identifier of the underlying membership row.
+        createdAt:
+          type: string
+          format: date-time
+          description: When the user became a member of this group (RFC 3339).
+    BatchMetadata:
+      type: object
+      properties:
+        processedAt:
+          type: string
+          format: date-time
+        counts:
+          $ref: '#/components/schemas/BatchCounts'
     CollectionMetadata:
       type: object
       required:
@@ -498,6 +431,39 @@ components:
           type: array
           items:
             type: object
+    PerRowErrorCode:
+      type: string
+      description: Stable code identifying why a per-row outcome failed.
+      enum:
+      - user_not_found
+      - user_not_in_org
+      - role_invalid
+      - role_not_assignable
+      - forbidden
+      - internal_error
+    RemoveMemberResultStatus:
+      type: string
+      enum:
+      - removed
+      - noop
+      - error
+    AddMemberResultStatus:
+      type: string
+      enum:
+      - added
+      - noop
+      - error
+    BatchAddMembersRequest:
+      type: object
+      required:
+      - members
+      properties:
+        members:
+          type: array
+          minItems: 1
+          maxItems: 100
+          items:
+            $ref: '#/components/schemas/MemberAddInput'
     AssessmentGroupRole:
       type: string
       description: 'Strongbolt role granted to (or held by) an Assessment Group
@@ -514,19 +480,37 @@ components:
       - assessment_read_only
       - assessment_operator
       - infra_admin
-    MemberAddInput:
+    Pagination:
       type: object
       required:
-      - userUid
-      - role
+      - total
+      - page
+      - perPage
+      - totalPages
+      - self
       properties:
-        userUid:
+        total:
+          type: integer
+          minimum: 0
+        page:
+          type: integer
+          minimum: 1
+        perPage:
+          type: integer
+          minimum: 1
+        totalPages:
+          type: integer
+          minimum: 0
+        prev:
           type: string
-          minLength: 1
-          maxLength: 64
-          pattern: ^[a-zA-Z0-9_-]+$
-        role:
-          $ref: '#/components/schemas/AssessmentGroupRole'
+        next:
+          type: string
+        first:
+          type: string
+        last:
+          type: string
+        self:
+          type: string
     RemoveMemberResult:
       type: object
       description: 'Per-row outcome for a batchRemove request. `errorCode` and
@@ -546,6 +530,18 @@ components:
           $ref: '#/components/schemas/PerRowErrorCode'
         errorDetail:
           type: string
+    AssessmentGroup:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        created_at:
+          type: string
+          format: date-time
   parameters:
     AssessmentGroupId:
       name: assessmentGroupId
@@ -555,8 +551,59 @@ components:
       schema:
         type: integer
         minimum: 1
+  responses:
+    NotFound:
+      description: Resource not found in the acting organization.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    Forbidden:
+      description: Authenticated but lacks permission for this resource.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    BadRequest:
+      description: Malformed request body.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    RequestEntityTooLarge:
+      description: Batch exceeds the documented per-request maximum (100 items).
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    Unauthorized:
+      description: Missing or invalid authentication credentials.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    InternalServerError:
+      description: Server error.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    BasicAuth:
+      type: http
+      scheme: basic
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Auth
+x-refined-from:
+- synack-assessment-v1-openapi.yaml
+- synack-monolith-v1-openapi.yaml

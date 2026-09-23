@@ -1,20 +1,15 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Assessment Service Assessment Groups external-relationships API
-  version: 1.0.0
-  description: 'APIs for managing Assessment and related operations on the Synack.
-
-    '
+  title: Asset Service External Relationships API
+  version: 2.1.020
   contact:
     name: Synack Engineering
     email: engineering@synack.com
 servers:
-- url: https://client.synack.com/api/assessment
+- url: https://client.synack.com/api/asset
   description: Commercial
-- url: https://client.synack.us/api/assessment
+- url: https://client.synack.us/api/asset
   description: FedRAMP (Medium)
-security:
-- bearerAuth: []
 tags:
 - name: external-relationships
 paths:
@@ -58,6 +53,8 @@ paths:
         - asset_boss_ow
         - asset_client_lw
         - asset_boss_lw
+      summary: Post external relationship
+      x-summary-source: derived
   /v2/external-relationships/{assetRelationshipUid}:
     patch:
       x-excluded: true
@@ -94,6 +91,8 @@ paths:
         - asset_boss_ow
         - asset_client_lw
         - asset_boss_lw
+      summary: Patch external relationship
+      x-summary-source: derived
     delete:
       x-excluded: true
       operationId: deleteExternalRelationship
@@ -122,16 +121,58 @@ paths:
         - asset_boss_ow
         - asset_client_lw
         - asset_boss_lw
+      summary: Delete external relationship
+      x-summary-source: derived
 components:
-  parameters:
-    AssetRelationshipUIDPath:
-      name: assetRelationshipUid
-      in: path
-      schema:
-        $ref: '#/components/schemas/UID'
-      required: true
-      description: Unique identifier for a relationship between assets.
+  responses:
+    422EntityNotProcessable:
+      description: Entity Not Processable
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    503ServiceUnavailable:
+      description: Service Unavailable.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    ExternalRelationshipResponse:
+      description: A relationship between asset in AssetService and asset in an external service.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ExternalRelationship'
+    500InternalServerError:
+      description: Internal Server Error.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    404NotFound:
+      description: Not found.
+    401Unauthorized:
+      description: Unauthorized.
+    204NoContent:
+      description: No content.
+    403Forbidden:
+      description: Forbidden
+    400BadRequest:
+      description: Bad Request
+    409Conflict:
+      description: Conflict.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
   schemas:
+    AssetRelationshipUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      description: Unique identifier for a scan.
     FailedValidation:
       type: object
       required:
@@ -146,69 +187,36 @@ components:
         message:
           type: string
           readOnly: true
-    OperationUserUID:
-      type: string
-      pattern: ^[0-9a-f]{12}
-      readOnly: true
-      description: Automatically set by the server to the requesting user whenever the resource is updated. May be a user account or a service account if the action is performed by an automated.
-    Creatable:
+    Updatable:
+      allOf:
+      - $ref: '#/components/schemas/Creatable'
+      - type: object
+        properties:
+          updatedAt:
+            type: string
+            format: date-time
+            readOnly: true
+            description: Automatically set by the server to the time the request was processed whenever the resource is updated.
+          updatedBy:
+            $ref: '#/components/schemas/OperationUserUID'
+    IndexedFailedValidations:
       type: object
-      required:
-      - createdAt
-      - createdBy
       properties:
-        createdAt:
-          type: string
-          format: date-time
+        index:
+          type: integer
+          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
           readOnly: true
-          description: Automatically set by the server to the time the request was processed whenever the resource was created.
-        createdBy:
-          $ref: '#/components/schemas/OperationUserUID'
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
     UID:
       type: string
       pattern: ^[0-9a-f]{12}
       readOnly: true
       description: Unique Identifier.
-    ExternalRelationship:
-      description: 'A relationship between two assets. Source asset points to an asset in AssetService `assets` table while Target asset points to some external asset stored outside of AssetService. The target is fully identified by two fields: `targetUid` and `targetService`. Generally the relationship may be read as `source`-asset `type` `target`-asset. There cannot be multiple relationships between a pair of assets with the same `type`. Relationships have a `startsAt` date-time and an optional `endsAt` time; a relationship is considered `active` at a point-in-time if the `startsAt` date is prior-to/equal-to the time point, and the `endsAt` time is unset or is after/equal-to the time point. Furthermore, for any given `type` linking a pair of assets, there can only be one active relationship at any given time point. A new relationship cannot be created with a `startsAt` time after an existing relationship''s `startsAt` when that relationship has an unset `endsAt` date-time, or the relationship has an `endsAt` after/equal-to the `startsAt` of the new relationship (such that these relationships active ranges would overlap).
-
-        '
-      allOf:
-      - type: object
-        required:
-        - type
-        - sourceAssetUid
-        - targetUid
-        - targetService
-        - startsAt
-        properties:
-          uid:
-            $ref: '#/components/schemas/AssetRelationshipUID'
-          type:
-            description: Type of relationship between assets. The direction of reading is `sourceAsset` -- `type` -- `targetAsset`.
-            type: string
-            enum:
-            - discoveredBy
-          sourceAssetUid:
-            $ref: '#/components/schemas/AssetUID'
-          targetUid:
-            $ref: '#/components/schemas/ExternalUID'
-          targetService:
-            description: The type of the external service, holding the "target" entity.
-            type: string
-            enum:
-            - assetDiscovery
-            - fractalScan
-            - xpanse
-          startsAt:
-            type: string
-            format: date-time
-            description: The date-time at which the relationship between the source and target assets was observed to begin.
-          endsAt:
-            type: string
-            format: date-time
-            description: The date-time at which the relationship between the source and target assets was observed to end.
-      - $ref: '#/components/schemas/Updatable'
     ProblemDetails:
       type: object
       description: 'See [RFC 7807: Problem Details for HTTP APIs](https://tools.ietf.org/html/rfc7807)'
@@ -254,39 +262,6 @@ components:
           type: integer
           description: Batch size sent when batch is too large.
           readOnly: true
-    IndexedFailedValidations:
-      type: object
-      properties:
-        index:
-          type: integer
-          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
-          readOnly: true
-        failedValidation:
-          type: array
-          description: Array of failed validation rules.
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/FailedValidation'
-    AssetUID:
-      type: string
-      pattern: ^[0-9a-f]{24}
-      description: Unique identifier for an asset.
-    Updatable:
-      allOf:
-      - $ref: '#/components/schemas/Creatable'
-      - type: object
-        properties:
-          updatedAt:
-            type: string
-            format: date-time
-            readOnly: true
-            description: Automatically set by the server to the time the request was processed whenever the resource is updated.
-          updatedBy:
-            $ref: '#/components/schemas/OperationUserUID'
-    AssetRelationshipUID:
-      type: string
-      pattern: ^[0-9a-f]{12}
-      description: Unique identifier for a scan.
     AssetRelationshipUpdate:
       type: object
       description: Updatable properties for all types of asset relationship.
@@ -296,66 +271,106 @@ components:
           format: date-time
           description: The date-time at which the relationship between the source and target asset is observed to first begin.
         endsAt:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
           description: The date-time at which the relationship between the source and target asset was last observed.
-          nullable: true
+    ExternalRelationship:
+      description: 'A relationship between two assets. Source asset points to an asset in AssetService `assets` table while Target asset points to some external asset stored outside of AssetService. The target is fully identified by two fields: `targetUid` and `targetService`. Generally the relationship may be read as `source`-asset `type` `target`-asset. There cannot be multiple relationships between a pair of assets with the same `type`. Relationships have a `startsAt` date-time and an optional `endsAt` time; a relationship is considered `active` at a point-in-time if the `startsAt` date is prior-to/equal-to the time point, and the `endsAt` time is unset or is after/equal-to the time point. Furthermore, for any given `type` linking a pair of assets, there can only be one active relationship at any given time point. A new relationship cannot be created with a `startsAt` time after an existing relationship''s `startsAt` when that relationship has an unset `endsAt` date-time, or the relationship has an `endsAt` after/equal-to the `startsAt` of the new relationship (such that these relationships active ranges would overlap).
+
+        '
+      allOf:
+      - type: object
+        required:
+        - type
+        - sourceAssetUid
+        - targetUid
+        - targetService
+        - startsAt
+        properties:
+          uid:
+            $ref: '#/components/schemas/AssetRelationshipUID'
+          type:
+            description: Type of relationship between assets. The direction of reading is `sourceAsset` -- `type` -- `targetAsset`.
+            type: string
+            enum:
+            - discoveredBy
+          sourceAssetUid:
+            $ref: '#/components/schemas/AssetUID'
+          targetUid:
+            $ref: '#/components/schemas/ExternalUID'
+          targetService:
+            description: The type of the external service, holding the "target" entity.
+            type: string
+            enum:
+            - assetDiscovery
+            - fractalScan
+            - xpanse
+          startsAt:
+            type: string
+            format: date-time
+            description: The date-time at which the relationship between the source and target assets was observed to begin.
+          endsAt:
+            type: string
+            format: date-time
+            description: The date-time at which the relationship between the source and target assets was observed to end.
+      - $ref: '#/components/schemas/Updatable'
+    Creatable:
+      type: object
+      required:
+      - createdAt
+      - createdBy
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Automatically set by the server to the time the request was processed whenever the resource was created.
+        createdBy:
+          $ref: '#/components/schemas/OperationUserUID'
+    AssetUID:
+      type: string
+      pattern: ^[0-9a-f]{24}
+      description: Unique identifier for an asset.
+    OperationUserUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      readOnly: true
+      description: Automatically set by the server to the requesting user whenever the resource is updated. May be a user account or a service account if the action is performed by an automated.
     ExternalUID:
       type: string
       pattern: ^[0-9a-zA-Z-_]{1,}$
       description: Unique identifier for an external entity. It has much more loose requirements than AssetUID since in general we don't control these external services.
-  responses:
-    409Conflict:
-      description: Conflict.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    503ServiceUnavailable:
-      description: Service Unavailable.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    403Forbidden:
-      description: Forbidden
-    500InternalServerError:
-      description: Internal Server Error.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    404NotFound:
-      description: Not found.
-    204NoContent:
-      description: No content.
-    400BadRequest:
-      description: Bad Request
-    422EntityNotProcessable:
-      description: Entity Not Processable
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    ExternalRelationshipResponse:
-      description: A relationship between asset in AssetService and asset in an external service.
-      headers:
-        ETag:
-          $ref: '#/components/headers/ETag'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ExternalRelationship'
-    401Unauthorized:
-      description: Unauthorized.
   headers:
     ETag:
       description: An identifier for a specific version of a resource
       schema:
         type: string
         pattern: ^(?:W\/)?\".*\"$
+  parameters:
+    AssetRelationshipUIDPath:
+      name: assetRelationshipUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/UID'
+      required: true
+      description: Unique identifier for a relationship between assets.
   securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
+    OAuth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: login.synack.com
+          scopes:
+            asset_lr: Grants per-listing read access for all types of assets.
+            asset_srt_lr: Grants per-listing read access to assets that may be read by SRTs.
+            asset_or: Grants organization-level read access for all types of assets owned by a particular organization.
+            asset_boss_ow: Grants organization-level access to assets owned by a particular organization that may be modified by BOSS users.
+            asset_boss_lw: Grants per-listing write access to assets that may be modified by BOSS users.
+            asset_client_ow: Grants organization-level access to assets owned by a particular organization that may be modified by Client users.
+            asset_client_lw: Grants per-listing write access to assets that may be modified by Client users.
+            asset_user_or: Grants user-level read access to asset stats that owned by a particular organization.
+            asset_gr: Grants unrestricted read access to all assets. Except for credential data of cloud accout assets.
+            asset_gw: Grants unrestricted write access to all assets.
+            asset_scan_gr: Grants unrestricted read access to all assets. Including credential data of cloud account assets.

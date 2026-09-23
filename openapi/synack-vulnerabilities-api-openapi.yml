@@ -1,20 +1,20 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Assessment Service Assessment Groups Vulnerabilities API
-  version: 1.0.0
-  description: 'APIs for managing Assessment and related operations on the Synack.
-
-    '
+  title: Synack Vulnerabilities API
   contact:
     name: Synack Engineering
     email: engineering@synack.com
+  version: '1.0'
+  description: 'Operations tagged Vulnerabilities across 2 of this provider''s published API definitions: synack-monolith-v1-openapi.yaml, synack-streaming-openapi.yaml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://client.synack.com/api/assessment
+- url: https://api.synack.com
+  description: Commercial - V1 API
+- url: https://api.synack.us
+  description: FedRAMP (Medium) - V1 API
+- url: https://client.synack.com/api/streaming
   description: Commercial
-- url: https://client.synack.us/api/assessment
+- url: https://client.synack.us/api/streaming
   description: FedRAMP (Medium)
-security:
-- bearerAuth: []
 tags:
 - name: Vulnerabilities
   description: Operations related to security vulnerabilities
@@ -79,6 +79,15 @@ paths:
                   $ref: '#/components/schemas/Vulnerability'
         '400':
           description: Bad request
+      security:
+      - BearerAuth: []
+      - BasicAuth: []
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.synack.com
+      description: Commercial - V1 API
+    - url: https://api.synack.us
+      description: FedRAMP (Medium) - V1 API
   /v1/vulnerabilities/{id}:
     get:
       operationId: getVulnerability
@@ -102,6 +111,10 @@ paths:
                 $ref: '#/components/schemas/Vulnerability'
         '404':
           description: Vulnerability not found
+      security:
+      - BearerAuth: []
+      - BasicAuth: []
+      - ApiKeyAuth: []
     patch:
       operationId: updateVulnerability
       summary: Update a vulnerability
@@ -148,12 +161,21 @@ paths:
           description: Vulnerability not found
         '422':
           description: Unprocessable entity
+      security:
+      - BearerAuth: []
+      - BasicAuth: []
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.synack.com
+      description: Commercial - V1 API
+    - url: https://api.synack.us
+      description: FedRAMP (Medium) - V1 API
   /v1/{org_uid}/assets/{asset_uid}/vulns:
     get:
       x-mint:
         metadata:
           title: Get Vulnerabilities for an Asset
-      summary: Returns list of exploitable vulnerabilities on a given organization and asset uid
+      summary: Returns list of exploitable vulnerabilities on a given organization and asset…
       description: Get exploitable vulnerabilities by organization and assets uid
       operationId: getAssetVulnerabilities
       tags:
@@ -253,6 +275,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://client.synack.com/api/streaming
+      description: Commercial
+    - url: https://client.synack.us/api/streaming
+      description: FedRAMP (Medium)
   /v1/{org_uid}/metrics/vulnerabilities/exploitable:
     get:
       x-mint:
@@ -310,8 +339,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://client.synack.com/api/streaming
+      description: Commercial
+    - url: https://client.synack.us/api/streaming
+      description: FedRAMP (Medium)
 components:
   schemas:
+    Attachment:
+      type: object
+      properties:
+        id:
+          type: integer
+        filename:
+          type: string
+        content_type:
+          type: string
+        file_size:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        editable:
+          type: boolean
+        organization_profile_id:
+          type: integer
     Vulnerability:
       type: object
       properties:
@@ -348,53 +409,27 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Attachment'
-    Links:
+    Relationship:
       type: object
       properties:
-        next:
-          type: string
-        prev:
-          type: string
-    Tag:
+        data: {}
+        links:
+          $ref: '#/components/schemas/Links'
+    Document:
       type: object
       properties:
-        id:
-          type: integer
-        name:
-          type: string
-        editable:
-          type: boolean
-        organization_profile_id:
-          type: integer
-    Attachment:
-      type: object
-      properties:
-        id:
-          type: integer
-        filename:
-          type: string
-        content_type:
-          type: string
-        file_size:
-          type: integer
-        created_at:
-          type: string
-          format: date-time
-    Data:
-      type: object
-      properties:
-        attributes: {}
-        id:
-          type: string
+        data:
+          $ref: '#/components/schemas/Data'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        included:
+          type: array
+          items: {}
         links:
           $ref: '#/components/schemas/Links'
         meta: {}
-        relationships:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/Relationship'
-        type:
-          $ref: '#/components/schemas/ResourceType'
     ResourceType:
       type: string
       enum:
@@ -419,21 +454,28 @@ components:
       - tags
       - last_tested_counts
       - last_assets_scan
-    Document:
+    Data:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/Data'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-        included:
-          type: array
-          items: {}
+        attributes: {}
+        id:
+          type: string
         links:
           $ref: '#/components/schemas/Links'
         meta: {}
+        relationships:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Relationship'
+        type:
+          $ref: '#/components/schemas/ResourceType'
+    Links:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
     Error:
       type: object
       properties:
@@ -447,14 +489,22 @@ components:
           type: integer
         title:
           type: string
-    Relationship:
-      type: object
-      properties:
-        data: {}
-        links:
-          $ref: '#/components/schemas/Links'
   securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    BasicAuth:
+      type: http
+      scheme: basic
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Auth
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
+x-refined-from:
+- synack-monolith-v1-openapi.yaml
+- synack-streaming-openapi.yaml

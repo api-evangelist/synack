@@ -1,17 +1,15 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Assessment Service Assessment Groups Missions API
-  version: 1.0.0
-  description: 'APIs for managing Assessment and related operations on the Synack.
-
-    '
+  title: Mission Service v2 Missions API
+  description: RESTful API for managing campaigns, tasks, and mission-related operations.
+  version: 1.0.29
   contact:
     name: Synack Engineering
     email: engineering@synack.com
 servers:
-- url: https://client.synack.com/api/assessment
+- url: https://client.synack.com/api/tasks
   description: Commercial
-- url: https://client.synack.us/api/assessment
+- url: https://client.synack.us/api/tasks
   description: FedRAMP (Medium)
 security:
 - bearerAuth: []
@@ -26,7 +24,7 @@ paths:
           title: Get Group of Missions
       tags:
       - Missions
-      summary: Search for Group of Missions.
+      summary: Search for Group of Missions
       description: Allows searching for Group of Missions (campaigns) available to the current authenticated user. Group of Missions are filtered based on what current listings and organizations the current user has access to.
       operationId: GetCampaigns
       parameters:
@@ -209,7 +207,7 @@ paths:
           title: Get a specific Group of Missions
       tags:
       - Missions
-      summary: Search for Group of Missions by ID.
+      summary: Search for Group of Missions by ID
       description: Allows searching for Group of Missions (campaign) by ID if available to the current authenticated user.
       operationId: GetCampaignByID
       parameters:
@@ -271,7 +269,7 @@ paths:
           title: Get Group of Missions stats
       tags:
       - Missions
-      summary: Get Group of Missions stats by status.
+      summary: Get Group of Missions stats by status
       description: Allows searching for Group of Missions (campaigns) stats by status if available to the current authenticated user.
       operationId: GetCampaignsStats
       parameters:
@@ -319,7 +317,7 @@ paths:
           title: Get missions
       tags:
       - Missions
-      summary: Search for missions.
+      summary: Search for missions
       description: Allows searching for missions (tasks) available to the current authenticated user. Missions are filtered based on what current listings and organizations the current user has access to.
       operationId: GetTasks
       parameters:
@@ -585,9 +583,16 @@ paths:
                 type: object
 components:
   schemas:
-    ResponseErrMsg:
+    HeaderPaginationTotalPages:
       type: string
-      description: When included, this error message provides the developer a more descriptive error message in the default lang (english). This error message should not be used to show to the client.
+      description: The total number of pages available for the specified query.
+    SortDir:
+      type: string
+      description: Sort direction.
+      default: desc
+      enum:
+      - asc
+      - desc
     CatalogCategoryResult:
       type: object
       description: The CatalogCategory which this Campaign belongs to (via CampaignTemplate).
@@ -597,6 +602,230 @@ components:
           format: uuid
         name:
           type: string
+    GetCampaignsStatsResult:
+      type: object
+      description: Response model used by the GET /campaigns/stats endpoint.
+      properties:
+        all:
+          type: integer
+        active:
+          type: integer
+        inReview:
+          type: integer
+        completed:
+          type: integer
+    ResponseErrMsg:
+      type: string
+      description: When included, this error message provides the developer a more descriptive error message in the default lang (english). This error message should not be used to show to the client.
+    GetCampaignResult:
+      type: object
+      description: Response model used by the GET /campaigns/:campaignID endpoint.
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        assetType:
+          type: array
+          items:
+            type: string
+        isRetestable:
+          type: boolean
+          description: "This flag will be set to true if these conditions are met:\n  * The campaign is completed.\n  * The campaign is not a retest (parentUid is NULL).\n  * The campaign's listing has the boss active flag set to true.\n  * The campaign's listing has active tests.\n  * The campaign's listing is not paused by the client.\n"
+        parentUid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        status:
+          $ref: '#/components/schemas/CampaignStatus'
+        createdOn:
+          type: string
+          format: date
+        modifiedOn:
+          type:
+          - string
+          - 'null'
+          format: date
+        publishedOn:
+          type:
+          - string
+          - 'null'
+          format: date
+        completedOn:
+          type:
+          - string
+          - 'null'
+          format: date
+        scheduledOn:
+          type:
+          - string
+          - 'null'
+          format: date
+        listing:
+          type: object
+        scope:
+          type: string
+        tasksCompleted:
+          type: integer
+        tasksTotal:
+          type: integer
+        tasksPassed:
+          type: integer
+        tasksFailed:
+          type: integer
+        campaignTemplateUid:
+          type: string
+          format: uuid
+        campaignTemplateVersion:
+          type: integer
+        deactivated:
+          type:
+          - string
+          - 'null'
+          format: date
+        organizationUid:
+          type: string
+          format: uuid
+        creditsDeducted:
+          type:
+          - integer
+          - 'null'
+        catalogCategory:
+          $ref: '#/components/schemas/CatalogCategoryResult'
+    ExtErrorCode400:
+      type: integer
+      format: int64
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      description: "400 Bad Request extended error codes:\n  * 1 - Invalid Parameters found in the request.\n  * 2 - Campaign is not retestable.\n  * 3 - Some Task IDs were not found. When this code is set, the payload will contain a string array with all of the Task IDs that were not found.\n  * 4 - Task ID was not specified when trying to spend credits.\n  * 5 - Task is deactivated.\n  * 7 - Campaign template was not found.\n  * 8 - Task already has v1 evidence information.\n  * 9 - Some requested Task Templates for instantiation were not found.\n  * 10 - No active sprint was found for listing.\n  * 11 - Invalid task response value.\n  * 12 - Some requested Campaign for missionize was not found.\n  * 13 - Some SVs already have tasks associated.\n  * 14 - Some requested Task Templates for missionize were not found.\n  * 15 - Type not supported during missionize.\n  * 16 - The requested task types echoed in the payload are not allowed for the current user.\n  * 17 - The requested does not have enough balance to created.\n"
+    GetTasksAttachmentsResult:
+      type: object
+      description: "Response model used in the GET /tasks endpoint. It will only be seen by:\n  * Users with Client role (only if the task is in APPROVED status).\n"
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        originalFilename:
+          type: string
+        data:
+          type: string
+        thumbnailData:
+          type: string
+        sizeInBytes:
+          type: integer
+        groupId:
+          type: string
+        position:
+          type: integer
+        createdOn:
+          type: string
+          format: date
+        createdBy:
+          type: string
+        modifiedOn:
+          type: string
+          format: date
+        modifiedBy:
+          type: string
+        deletedOn:
+          type: string
+          format: date
+        version:
+          type: integer
+        mimeType:
+          type: string
+        tasks:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Task id
+              title:
+                type: string
+                description: Task title
+              description:
+                type: string
+                description: Task description
+              definitionUID:
+                type: string
+                description: Task definition ID
+              definitionName:
+                type: string
+                description: Task definition Name
+              structuredResponse:
+                type: string
+                description: 'yes, no, n/a, etc... The short response for the question this task poses (e.g.: is foo vulnerable to bar)'
+              assetTypes:
+                type: array
+                description: Task CATEGORIES splitted
+                items:
+                  type: string
+              attackTypes:
+                type: array
+                description: Task TAGS splitted
+                items:
+                  type: string
+              attachments:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetTasksAttachmentsForReportResult'
+              completedOn:
+                type: string
+                format: date-time
+              scope:
+                type: string
+              status:
+                type: string
+              type:
+                type: string
+              categories:
+                type: array
+                description: SYN_CATEGORIES
+                items:
+                  type: string
+              response:
+                type: string
+                description: Task evidence on string format. For v1 just is sent the value. For v2 to Introduction, methodology and conclusion
+              controlFamily:
+                type: string
+                description: Info retrieved from task.DEFINITIONDATA by string "control family"
+              fismaLow:
+                type: string
+                description: Info retrieved from task.DEFINITIONDATA by string "applicable to FISMA Low"
+              fismaModerate:
+                type: string
+                description: Info retrieved from task.DEFINITIONDATA by string "applicable to FISMA Moderate"
+              fismaHigh:
+                type: string
+                description: Info retrieved from task.DEFINITIONDATA by string "applicable to FISMA High"
+    PerPage:
+      type: integer
+      description: Number of items to show per page.
+      minimum: 1
+      default: 1
+    RequestID:
+      type: string
+      format: uuid
+      description: A unique UUID generated for every request. In the case of an error, this error should be included in the error report by the user so that we can easily filter the logs and find the error quicker.
     Page:
       type: integer
       description: Page to start showing results from.
@@ -670,13 +899,15 @@ components:
         status:
           $ref: '#/components/schemas/CampaignStatus'
         published:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
         completed:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
         tasksCompleted:
           type: integer
         tasksTotal:
@@ -692,32 +923,47 @@ components:
           type: boolean
           description: "This flag will be set to true if these conditions are met:\n  * The campaign is completed.\n  * The campaign is not a retest (parentUid is NULL).\n  * The campaign's listing has the boss active flag set to true.\n  * The campaign's listing has active tests.\n  * The campaign's listing is not paused by the client.\n"
         parentUid:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
         deactivated:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
         createdOn:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
         createdByRole:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         creditsDeducted:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
         catalogCategory:
           $ref: '#/components/schemas/CatalogCategoryResult'
-    HeaderPaginationTotalPages:
+    TaskStatus:
       type: string
-      description: The total number of pages available for the specified query.
-    RequestID:
+      description: Task status enum.
+      enum:
+      - APPROVED
+      - CLAIMED
+      - CREATED
+      - COMPLETED
+      - FOR_REVIEW
+      - PUBLISHED
+    CampaignStatus:
       type: string
-      format: uuid
-      description: A unique UUID generated for every request. In the case of an error, this error should be included in the error report by the user so that we can easily filter the logs and find the error quicker.
+      description: Campaign status enum.
+      enum:
+      - CREATED
+      - COMPLETED
+      - PUBLISHED
     GetTasksResult:
       type: object
       description: Response model used by the GET /tasks endpoint. All nullable fields will be omitted from the response body if their value is null.
@@ -864,254 +1110,15 @@ components:
         assignedBySynackUser:
           type: boolean
           description: Whether this task was assigned to a researcher by a boss user or not. Only available to researcher users when specifying 'includeAssignedBySynackUser=true' in the query string.
-    CampaignStatus:
-      type: string
-      description: Campaign status enum.
-      enum:
-      - CREATED
-      - COMPLETED
-      - PUBLISHED
-    TaskStatus:
-      type: string
-      description: Task status enum.
-      enum:
-      - APPROVED
-      - CLAIMED
-      - CREATED
-      - COMPLETED
-      - FOR_REVIEW
-      - PUBLISHED
-    HeaderPaginationLimit:
-      type: string
-      description: The number of per page entries.
-    SortDir:
-      type: string
-      description: Sort direction.
-      default: desc
-      enum:
-      - asc
-      - desc
-    HeaderPaginationTotalCount:
-      type: string
-      description: The total number of entries available for the specified query.
-    GetCampaignsStatsResult:
-      type: object
-      description: Response model used by the GET /campaigns/stats endpoint.
-      properties:
-        all:
-          type: integer
-          nullable: false
-        active:
-          type: integer
-          nullable: false
-        inReview:
-          type: integer
-          nullable: false
-        completed:
-          type: integer
-          nullable: false
-    GetCampaignResult:
-      type: object
-      description: Response model used by the GET /campaigns/:campaignID endpoint.
-      properties:
-        id:
-          type: string
-          format: uuid
-        title:
-          type: string
-        description:
-          type: string
-        assetType:
-          type: array
-          items:
-            type: string
-        isRetestable:
-          type: boolean
-          description: "This flag will be set to true if these conditions are met:\n  * The campaign is completed.\n  * The campaign is not a retest (parentUid is NULL).\n  * The campaign's listing has the boss active flag set to true.\n  * The campaign's listing has active tests.\n  * The campaign's listing is not paused by the client.\n"
-        parentUid:
-          type: string
-          format: uuid
-          nullable: true
-        status:
-          $ref: '#/components/schemas/CampaignStatus'
-        createdOn:
-          type: string
-          format: date
-          nullable: false
-        modifiedOn:
-          type: string
-          format: date
-          nullable: true
-        publishedOn:
-          type: string
-          format: date
-          nullable: true
-        completedOn:
-          type: string
-          format: date
-          nullable: true
-        scheduledOn:
-          type: string
-          format: date
-          nullable: true
-        listing:
-          type: object
-        scope:
-          type: string
-        tasksCompleted:
-          type: integer
-        tasksTotal:
-          type: integer
-        tasksPassed:
-          type: integer
-        tasksFailed:
-          type: integer
-        campaignTemplateUid:
-          type: string
-          format: uuid
-        campaignTemplateVersion:
-          type: integer
-        deactivated:
-          type: string
-          format: date
-          nullable: true
-        organizationUid:
-          type: string
-          format: uuid
-        creditsDeducted:
-          type: integer
-          nullable: true
-        catalogCategory:
-          $ref: '#/components/schemas/CatalogCategoryResult'
-    ExtErrorCode400:
-      type: integer
-      format: int64
-      enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 7
-      - 8
-      - 9
-      - 10
-      - 11
-      description: "400 Bad Request extended error codes:\n  * 1 - Invalid Parameters found in the request.\n  * 2 - Campaign is not retestable.\n  * 3 - Some Task IDs were not found. When this code is set, the payload will contain a string array with all of the Task IDs that were not found.\n  * 4 - Task ID was not specified when trying to spend credits.\n  * 5 - Task is deactivated.\n  * 7 - Campaign template was not found.\n  * 8 - Task already has v1 evidence information.\n  * 9 - Some requested Task Templates for instantiation were not found.\n  * 10 - No active sprint was found for listing.\n  * 11 - Invalid task response value.\n  * 12 - Some requested Campaign for missionize was not found.\n  * 13 - Some SVs already have tasks associated.\n  * 14 - Some requested Task Templates for missionize were not found.\n  * 15 - Type not supported during missionize.\n  * 16 - The requested task types echoed in the payload are not allowed for the current user.\n  * 17 - The requested does not have enough balance to created.\n"
-    PerPage:
-      type: integer
-      description: Number of items to show per page.
-      minimum: 1
-      default: 1
-    GetTasksAttachmentsResult:
-      type: object
-      description: "Response model used in the GET /tasks endpoint. It will only be seen by:\n  * Users with Client role (only if the task is in APPROVED status).\n"
-      properties:
-        id:
-          type: string
-          format: uuid
-        title:
-          type: string
-        description:
-          type: string
-        originalFilename:
-          type: string
-        data:
-          type: string
-        thumbnailData:
-          type: string
-        sizeInBytes:
-          type: integer
-        groupId:
-          type: string
-        position:
-          type: integer
-        createdOn:
-          type: string
-          format: date
-        createdBy:
-          type: string
-        modifiedOn:
-          type: string
-          format: date
-        modifiedBy:
-          type: string
-        deletedOn:
-          type: string
-          format: date
-        version:
-          type: integer
-        mimeType:
-          type: string
-        tasks:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: Task id
-              title:
-                type: string
-                description: Task title
-              description:
-                type: string
-                description: Task description
-              definitionUID:
-                type: string
-                description: Task definition ID
-              definitionName:
-                type: string
-                description: Task definition Name
-              structuredResponse:
-                type: string
-                description: 'yes, no, n/a, etc... The short response for the question this task poses (e.g.: is foo vulnerable to bar)'
-              assetTypes:
-                type: array
-                description: Task CATEGORIES splitted
-                items:
-                  type: string
-              attackTypes:
-                type: array
-                description: Task TAGS splitted
-                items:
-                  type: string
-              attachments:
-                type: array
-                items:
-                  $ref: '#/components/schemas/GetTasksAttachmentsForReportResult'
-              completedOn:
-                type: string
-                format: date-time
-              scope:
-                type: string
-              status:
-                type: string
-              type:
-                type: string
-              categories:
-                type: array
-                description: SYN_CATEGORIES
-                items:
-                  type: string
-              response:
-                type: string
-                description: Task evidence on string format. For v1 just is sent the value. For v2 to Introduction, methodology and conclusion
-              controlFamily:
-                type: string
-                description: Info retrieved from task.DEFINITIONDATA by string "control family"
-              fismaLow:
-                type: string
-                description: Info retrieved from task.DEFINITIONDATA by string "applicable to FISMA Low"
-              fismaModerate:
-                type: string
-                description: Info retrieved from task.DEFINITIONDATA by string "applicable to FISMA Moderate"
-              fismaHigh:
-                type: string
-                description: Info retrieved from task.DEFINITIONDATA by string "applicable to FISMA High"
     HeaderPaginationCurrentPage:
       type: string
       description: The current page requested on the query params.
+    HeaderPaginationTotalCount:
+      type: string
+      description: The total number of entries available for the specified query.
+    HeaderPaginationLimit:
+      type: string
+      description: The number of per page entries.
   securitySchemes:
     bearerAuth:
       type: http

@@ -1,20 +1,28 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Assessment Service Assessment Groups Tags API
-  version: 1.0.0
-  description: 'APIs for managing Assessment and related operations on the Synack.
-
-    '
+  title: Synack Tags API
   contact:
     name: Synack Engineering
     email: engineering@synack.com
+  version: '1.0'
+  description: 'Operations tagged Tags across 4 of this provider''s published API definitions: synack-asset-discovery-openapi.yaml, synack-monolith-v1-openapi.yaml, synack-streaming-openapi.yaml, synack-tagging-openapi.yaml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://client.synack.com/api/assessment
+- url: https://client.synack.com/api/asset-discovery
   description: Commercial
-- url: https://client.synack.us/api/assessment
+- url: https://client.synack.us/api/asset-discovery
   description: FedRAMP (Medium)
-security:
-- bearerAuth: []
+- url: https://api.synack.com
+  description: Commercial - V1 API
+- url: https://api.synack.us
+  description: FedRAMP (Medium) - V1 API
+- url: https://client.synack.com/api/streaming
+  description: Commercial
+- url: https://client.synack.us/api/streaming
+  description: FedRAMP (Medium)
+- url: https://client.synack.com/api/tagging
+  description: Commercial
+- url: https://client.synack.us/api/tagging
+  description: FedRAMP (Medium)
 tags:
 - name: Tags
   description: Tags applied to seeds and seed groups.
@@ -27,9 +35,7 @@ paths:
       operationId: updateSeedGroupTags
       tags:
       - Tags
-      description: 'Updates a seed groups tags.
-
-        '
+      description: Updates a seed groups tags.
       x-mint:
         metadata:
           title: Update Seed Group Tags
@@ -64,6 +70,13 @@ paths:
       security:
       - OAuth2:
         - assetdiscovery_ow
+      summary: Update seed group tags
+      x-summary-source: derived
+    servers:
+    - url: https://client.synack.com/api/asset-discovery
+      description: Commercial
+    - url: https://client.synack.us/api/asset-discovery
+      description: FedRAMP (Medium)
   /v1/vulnerability_tags:
     get:
       operationId: getVulnerabilityTags
@@ -82,6 +95,10 @@ paths:
                   $ref: '#/components/schemas/Tag_2'
         '401':
           description: Unauthorized
+      security:
+      - BearerAuth: []
+      - BasicAuth: []
+      - ApiKeyAuth: []
     post:
       operationId: createVulnerabilityTag
       summary: Create a vulnerability tag
@@ -109,6 +126,15 @@ paths:
                 $ref: '#/components/schemas/Tag_2'
         '400':
           description: Bad request
+      security:
+      - BearerAuth: []
+      - BasicAuth: []
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.synack.com
+      description: Commercial - V1 API
+    - url: https://api.synack.us
+      description: FedRAMP (Medium) - V1 API
   /v1/vulnerability_tags/{id}:
     put:
       operationId: updateVulnerabilityTag
@@ -144,10 +170,13 @@ paths:
           description: Bad request
         '404':
           description: Tag not found
+      security:
+      - BearerAuth: []
+      - BasicAuth: []
+      - ApiKeyAuth: []
     delete:
       operationId: deleteVulnerabilityTag
       summary: Delete a vulnerability tag
-      description: Delete a vulnerability tag
       tags:
       - Tags
       parameters:
@@ -162,6 +191,15 @@ paths:
           description: Tag deleted successfully
         '404':
           description: Tag not found
+      security:
+      - BearerAuth: []
+      - BasicAuth: []
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.synack.com
+      description: Commercial - V1 API
+    - url: https://api.synack.us
+      description: FedRAMP (Medium) - V1 API
   /v1/assessment_tags:
     get:
       summary: Retrieve a list of assessments tags
@@ -204,6 +242,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/errors'
+      security:
+      - BearerAuth: []
+      - BasicAuth: []
+      - ApiKeyAuth: []
+      operationId: getV1AssessmentTags
+      x-operation-id-source: derived
     post:
       summary: Create a new assessment tag
       description: Create a new tag and associate it with an assessment. Only organization admins are able to create new tags.
@@ -260,6 +304,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/errors'
+      security:
+      - BearerAuth: []
+      - BasicAuth: []
+      - ApiKeyAuth: []
+      operationId: postV1AssessmentTags
+      x-operation-id-source: derived
+    servers:
+    - url: https://api.synack.com
+      description: Commercial - V1 API
+    - url: https://api.synack.us
+      description: FedRAMP (Medium) - V1 API
   /v1/assessment_tags/{id}:
     put:
       summary: Update the name of an assessment tag record
@@ -320,6 +375,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/errors'
+      security:
+      - BearerAuth: []
+      - BasicAuth: []
+      - ApiKeyAuth: []
+      operationId: putV1AssessmentTagsById
+      x-operation-id-source: derived
     delete:
       summary: Remove an assessment tag record
       description: Remove a tag. Only organization admins are able to delete tags.
@@ -347,6 +408,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/errors'
+      security:
+      - BearerAuth: []
+      - BasicAuth: []
+      - ApiKeyAuth: []
+      operationId: deleteV1AssessmentTagsById
+      x-operation-id-source: derived
+    servers:
+    - url: https://api.synack.com
+      description: Commercial - V1 API
+    - url: https://api.synack.us
+      description: FedRAMP (Medium) - V1 API
   /v1/{org_uid}/tags:
     get:
       x-mint:
@@ -403,6 +475,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://client.synack.com/api/streaming
+      description: Commercial
+    - url: https://client.synack.us/api/streaming
+      description: FedRAMP (Medium)
   /v1.0/organizations/{orgUid}/tags:
     parameters:
     - $ref: '#/components/parameters/OrganizationUIDPath_2'
@@ -410,7 +489,9 @@ paths:
       operationId: postTags
       tags:
       - Tags
-      description: "Create new tags. \n409 Conflict is logged as warn if the name matches the name of a tag that already exists in a given org uid.\n"
+      description: 'Create new tags.
+
+        409 Conflict is logged as warn if the name matches the name of a tag that already exists in a given org uid.'
       x-mint:
         metadata:
           title: Create Asset Tags
@@ -456,13 +537,13 @@ paths:
         - asset_boss_lw
         - asset_client_lw
         - asset_lr
+      summary: Post tags
+      x-summary-source: derived
     delete:
       operationId: deleteTags
       tags:
       - Tags
-      description: 'Deletes tags.
-
-        '
+      description: Deletes tags.
       x-mint:
         metadata:
           title: Delete Asset Tags
@@ -493,13 +574,13 @@ paths:
         - asset_gw
         - asset_boss_ow
         - asset_client_ow
+      summary: Delete tags
+      x-summary-source: derived
     patch:
       operationId: patchTags
       tags:
       - Tags
-      description: 'Attach/detach entities to/from org uids and/or tag uids.
-
-        '
+      description: Attach/detach entities to/from org uids and/or tag uids.
       x-mint:
         metadata:
           title: Attach/Detach Tags to Assets.
@@ -543,6 +624,13 @@ paths:
         - asset_boss_lw
         - asset_client_lw
         - asset_lr
+      summary: Patch tags
+      x-summary-source: derived
+    servers:
+    - url: https://client.synack.com/api/tagging
+      description: Commercial
+    - url: https://client.synack.us/api/tagging
+      description: FedRAMP (Medium)
   /v1.0/organizations/{orgUid}/tags/{tagUid}:
     parameters:
     - $ref: '#/components/parameters/OrganizationUIDPath_2'
@@ -551,9 +639,7 @@ paths:
       operationId: putTags
       tags:
       - Tags
-      description: 'Updates tag name by tag uid.
-
-        '
+      description: Updates tag name by tag uid.
       x-mint:
         metadata:
           title: Update Tag Name
@@ -592,37 +678,97 @@ paths:
         - asset_gw
         - asset_boss_ow
         - asset_client_ow
+      summary: Put tags
+      x-summary-source: derived
+    servers:
+    - url: https://client.synack.com/api/tagging
+      description: Commercial
+    - url: https://client.synack.us/api/tagging
+      description: FedRAMP (Medium)
 components:
+  responses:
+    413RequestEntityTooLarge:
+      description: 'Returned generally when the size of the request body is too large to process, or specifically when the request contains too many items, typically in a bulk API operation.
+
+        '
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    422EntityNotProcessable:
+      description: Entity Not Processable
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    503ServiceUnavailable:
+      description: Service Unavailable.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    500InternalServerError:
+      description: Internal Server Error.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    204NoContent:
+      description: No content.
+    403Forbidden:
+      description: Forbidden
+    400BadRequest:
+      description: Bad Request
+    409Conflict:
+      description: Conflict.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    401Unauthorized:
+      description: Unauthorized.
+    413RequestEntityTooLarge_2:
+      description: Returned generally when the size of the request body is too large to process, or specifically when the request contains too many items, typically in a bulk API operation.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    PaginatedTagsResponse:
+      description: Paginated tags.
+      headers:
+        Pagination-Limit:
+          $ref: '#/components/headers/PaginationLimit'
+        Pagination-Current-Page:
+          $ref: '#/components/headers/PaginationCurrentPage'
+        Pagination-Total-Pages:
+          $ref: '#/components/headers/PaginationTotalPages'
+        Pagination-Total-Count:
+          $ref: '#/components/headers/PaginationTotalCount'
+        Link:
+          $ref: '#/components/headers/Link'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PageOfTags'
+    404NotFound:
+      description: Not found.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    412PreconditionFailed:
+      description: Precondition Failed.
+    400BadRequest_2:
+      description: Bad Request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    Entity:
-      allOf:
-      - type: object
-        required:
-        - uid
-        - entityType
-        properties:
-          uid:
-            $ref: '#/components/schemas/EntityUID'
-          entityType:
-            $ref: '#/components/schemas/EntityType'
-    TagUIDs:
-      type: array
-      items:
-        $ref: '#/components/schemas/TagUID'
-    Tag:
+    OrganizationUID:
       type: string
-      pattern: ^[-_0-9a-zA-Z]{1,16}
-    Tag_2:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        editable:
-          type: boolean
-        organization_profile_id:
-          type: integer
+      pattern: ^[-_0-9a-z]{1,50}
+      description: Unique identifier for an organization.
     FailedValidation:
       type: object
       required:
@@ -637,116 +783,55 @@ components:
         message:
           type: string
           readOnly: true
-    PageOfTags:
+    BatchTagsUpdate:
       type: object
+      description: Tags to remove and add to seeds and seed group
       properties:
-        tags:
-          $ref: '#/components/schemas/Tags'
-    Relationship:
-      type: object
-      properties:
-        data: {}
-        links:
-          $ref: '#/components/schemas/Links'
-    PatchTags:
-      type: object
-      required:
-      - uids
-      properties:
-        uids:
-          $ref: '#/components/schemas/TagUIDs'
-        addEntities:
-          $ref: '#/components/schemas/Entities'
-        delEntityUids:
-          $ref: '#/components/schemas/DelEntities'
-    EntityType:
+        seedGroupTagsToDelete:
+          type: array
+          description: Array of tags to delete from the seed group.
+          items:
+            $ref: '#/components/schemas/Tag'
+        seedGroupTagsToAdd:
+          type: array
+          description: Array of tags to add to the seed group.
+          items:
+            $ref: '#/components/schemas/Tag'
+        seedUids:
+          type: array
+          description: Array of seed uids to apply tag update to.
+          items:
+            $ref: '#/components/schemas/SeedUID'
+        seedTagsToDelete:
+          type: array
+          description: Array of tags to delete from the supplied seeds.
+          items:
+            $ref: '#/components/schemas/Tag'
+        seedTagsToAdd:
+          type: array
+          description: Array of tags to add to the supplied seeds.
+          items:
+            $ref: '#/components/schemas/Tag'
+    Tag:
       type: string
-      enum:
-      - asset
-      - assessment
-      - seed
-      - seedGroup
-      - exploitableVulnerability
-      - suspectedVulnerability
-      description: Entity type
-    TagUID:
-      type: string
-      pattern: ^[0-9a-f]{12}
-      description: Unique identifier for a tag.
-    EntityUID:
-      type: string
-      pattern: ^[0-9a-f]{12}
-      description: Unique identifier for an entity.
-    Data:
-      type: object
-      properties:
-        attributes: {}
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/Links'
-        meta: {}
-        relationships:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/Relationship'
-        type:
-          $ref: '#/components/schemas/ResourceType'
-    SeedGroupUID:
-      type: string
-      pattern: ^[0-9a-f]{12}
-      description: Unique identifier for a seed group.
-    Tags:
-      type: array
-      items:
-        $ref: '#/components/schemas/Tag_3'
-    UpdateTag:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          $ref: '#/components/schemas/TagName'
-    DeleteTags:
-      type: object
-      required:
-      - uids
-      properties:
-        uids:
-          $ref: '#/components/schemas/TagUIDs'
-    Error:
-      type: object
-      properties:
-        detail:
-          type: string
-        id:
-          type: string
-        source:
-          type: string
-        status:
-          type: integer
-        title:
-          type: string
-    Tag_3:
-      allOf:
-      - type: object
-        required:
-        - uid
-        - name
-        - orgUid
-        properties:
-          uid:
-            $ref: '#/components/schemas/TagUID'
-          name:
-            $ref: '#/components/schemas/TagName'
-          orgUid:
-            $ref: '#/components/schemas/OrgUID'
-          entities:
-            $ref: '#/components/schemas/Entities'
+      pattern: ^[-_0-9a-zA-Z]{1,16}
     SeedUID:
       type: string
       pattern: ^[0-9a-f]{24}
       description: Unique identifier for a seed.
+    IndexedFailedValidations:
+      type: object
+      properties:
+        index:
+          type: integer
+          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
     ProblemDetails:
       type: object
       description: 'See [RFC 7807: Problem Details for HTTP APIs](https://tools.ietf.org/html/rfc7807)'
@@ -792,26 +877,42 @@ components:
           type: integer
           description: Batch size sent when batch is too large.
           readOnly: true
-    IndexedFailedValidations:
+    SeedGroupUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      description: Unique identifier for a seed group.
+    Tag_2:
       type: object
       properties:
-        index:
+        id:
           type: integer
-          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
-          readOnly: true
-        failedValidation:
+        name:
+          type: string
+        editable:
+          type: boolean
+        organization_profile_id:
+          type: integer
+    Relationship:
+      type: object
+      properties:
+        data: {}
+        links:
+          $ref: '#/components/schemas/Links'
+    Document:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Data'
+        errors:
           type: array
-          description: Array of failed validation rules.
-          readOnly: true
           items:
-            $ref: '#/components/schemas/FailedValidation'
-    TagName:
-      type: string
-      description: User-supplied name for this tag.
-    OrganizationUID:
-      type: string
-      pattern: ^[-_0-9a-z]{1,50}
-      description: Unique identifier for an organization.
+            $ref: '#/components/schemas/Error'
+        included:
+          type: array
+          items: {}
+        links:
+          $ref: '#/components/schemas/Links'
+        meta: {}
     ResourceType:
       type: string
       enum:
@@ -836,6 +937,151 @@ components:
       - tags
       - last_tested_counts
       - last_assets_scan
+    Data:
+      type: object
+      properties:
+        attributes: {}
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/Links'
+        meta: {}
+        relationships:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Relationship'
+        type:
+          $ref: '#/components/schemas/ResourceType'
+    Links:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+        id:
+          type: string
+        source:
+          type: string
+        status:
+          type: integer
+        title:
+          type: string
+    EntityType:
+      type: string
+      enum:
+      - asset
+      - assessment
+      - seed
+      - seedGroup
+      - exploitableVulnerability
+      - suspectedVulnerability
+      description: Entity type
+    Entities:
+      type: array
+      items:
+        $ref: '#/components/schemas/Entity'
+    EntityUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      description: Unique identifier for an entity.
+    DeleteTags:
+      type: object
+      required:
+      - uids
+      properties:
+        uids:
+          $ref: '#/components/schemas/TagUIDs'
+    Tag_3:
+      allOf:
+      - type: object
+        required:
+        - uid
+        - name
+        - orgUid
+        properties:
+          uid:
+            $ref: '#/components/schemas/TagUID'
+          name:
+            $ref: '#/components/schemas/TagName'
+          orgUid:
+            $ref: '#/components/schemas/OrgUID'
+          entities:
+            $ref: '#/components/schemas/Entities'
+    NewTags:
+      type: object
+      properties:
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/NewTag'
+    PatchTags:
+      type: object
+      required:
+      - uids
+      properties:
+        uids:
+          $ref: '#/components/schemas/TagUIDs'
+        addEntities:
+          $ref: '#/components/schemas/Entities'
+        delEntityUids:
+          $ref: '#/components/schemas/DelEntities'
+    DelEntities:
+      type: array
+      items:
+        $ref: '#/components/schemas/EntityUID'
+    Entity:
+      allOf:
+      - type: object
+        required:
+        - uid
+        - entityType
+        properties:
+          uid:
+            $ref: '#/components/schemas/EntityUID'
+          entityType:
+            $ref: '#/components/schemas/EntityType'
+    UpdateTag:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          $ref: '#/components/schemas/TagName'
+    NewTag:
+      allOf:
+      - type: object
+        required:
+        - name
+        properties:
+          name:
+            $ref: '#/components/schemas/TagName'
+          entities:
+            $ref: '#/components/schemas/Entities'
+    TagName:
+      type: string
+      description: User-supplied name for this tag.
+    TagUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      description: Unique identifier for a tag.
+    Tags:
+      type: array
+      items:
+        $ref: '#/components/schemas/Tag_3'
+    OrgUID:
+      type: string
+      pattern: ^[0-9a-z]{1,50}
+      description: Unique identifier for an organization.
+    TagUIDs:
+      type: array
+      items:
+        $ref: '#/components/schemas/TagUID'
     ErrorResponse:
       type: object
       description: Error response
@@ -848,89 +1094,52 @@ components:
           type: string
           readOnly: true
           description: Message detailing the problem.
-    Entities:
-      type: array
-      items:
-        $ref: '#/components/schemas/Entity'
-    DelEntities:
-      type: array
-      items:
-        $ref: '#/components/schemas/EntityUID'
-    Links:
-      type: object
-      properties:
-        next:
-          type: string
-        prev:
-          type: string
-    BatchTagsUpdate:
-      type: object
-      description: Tags to remove and add to seeds and seed group
-      properties:
-        seedGroupTagsToDelete:
-          type: array
-          description: Array of tags to delete from the seed group.
-          items:
-            $ref: '#/components/schemas/Tag'
-        seedGroupTagsToAdd:
-          type: array
-          description: Array of tags to add to the seed group.
-          items:
-            $ref: '#/components/schemas/Tag'
-        seedUids:
-          type: array
-          description: Array of seed uids to apply tag update to.
-          items:
-            $ref: '#/components/schemas/SeedUID'
-        seedTagsToDelete:
-          type: array
-          description: Array of tags to delete from the supplied seeds.
-          items:
-            $ref: '#/components/schemas/Tag'
-        seedTagsToAdd:
-          type: array
-          description: Array of tags to add to the supplied seeds.
-          items:
-            $ref: '#/components/schemas/Tag'
-    OrgUID:
-      type: string
-      pattern: ^[0-9a-z]{1,50}
-      description: Unique identifier for an organization.
-    Document:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Data'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-        included:
-          type: array
-          items: {}
-        links:
-          $ref: '#/components/schemas/Links'
-        meta: {}
-    NewTag:
-      allOf:
-      - type: object
-        required:
-        - name
-        properties:
-          name:
-            $ref: '#/components/schemas/TagName'
-          entities:
-            $ref: '#/components/schemas/Entities'
-    NewTags:
+    PageOfTags:
       type: object
       properties:
         tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/NewTag'
+          $ref: '#/components/schemas/Tags'
+  parameters:
+    OrganizationUIDPath:
+      name: organizationUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/OrganizationUID'
+      required: true
+      description: Unique identifier for an organization group.
+    SeedGroupUIDPath:
+      name: seedGroupUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/SeedGroupUID'
+      required: true
+      description: Unique identifier for a seed group.
+    OrganizationUIDPath_2:
+      name: orgUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/OrgUID'
+      required: true
+      description: Unique identifier for an organization group.
+    TagUIDPath:
+      name: tagUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/TagUID'
+      required: true
+      description: Unique identifier for a tag.
   headers:
-    PaginationCurrentPage:
-      description: Current page in a paginated response.
+    Link:
+      description: Standard link header.
+      schema:
+        type: string
+    PaginationTotalCount:
+      description: Total number of items in all pages of a paginated response.
+      schema:
+        format: int32
+        minimum: 1
+    PaginationLimit:
+      description: Maximum number of items returned in a paginated response.
       schema:
         type: integer
         format: int32
@@ -941,130 +1150,41 @@ components:
         type: integer
         format: int32
         minimum: 1
-    PaginationLimit:
-      description: Maximum number of items returned in a paginated response.
+    PaginationCurrentPage:
+      description: Current page in a paginated response.
       schema:
         type: integer
         format: int32
         minimum: 1
-    PaginationTotalCount:
-      description: Total number of items in all pages of a paginated response.
-      schema:
-        format: int32
-        minimum: 1
-    Link:
-      description: Standard link header.
-      schema:
-        type: string
-  responses:
-    400BadRequest_2:
-      description: Bad Request
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    PaginatedTagsResponse:
-      description: Paginated tags.
-      headers:
-        Pagination-Limit:
-          $ref: '#/components/headers/PaginationLimit'
-        Pagination-Current-Page:
-          $ref: '#/components/headers/PaginationCurrentPage'
-        Pagination-Total-Pages:
-          $ref: '#/components/headers/PaginationTotalPages'
-        Pagination-Total-Count:
-          $ref: '#/components/headers/PaginationTotalCount'
-        Link:
-          $ref: '#/components/headers/Link'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PageOfTags'
-    409Conflict:
-      description: Conflict.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    503ServiceUnavailable:
-      description: Service Unavailable.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    403Forbidden:
-      description: Forbidden
-    500InternalServerError:
-      description: Internal Server Error.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    404NotFound:
-      description: Not found.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    413RequestEntityTooLarge:
-      description: 'Returned generally when the size of the request body is too large to process, or specifically when the request contains too many items, typically in a bulk API operation.
-
-        '
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    412PreconditionFailed:
-      description: Precondition Failed.
-    400BadRequest:
-      description: Bad Request
-    204NoContent:
-      description: No content.
-    422EntityNotProcessable:
-      description: Entity Not Processable
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    401Unauthorized:
-      description: Unauthorized.
-    413RequestEntityTooLarge_2:
-      description: Returned generally when the size of the request body is too large to process, or specifically when the request contains too many items, typically in a bulk API operation.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-  parameters:
-    TagUIDPath:
-      name: tagUid
-      in: path
-      schema:
-        $ref: '#/components/schemas/TagUID'
-      required: true
-      description: Unique identifier for a tag.
-    SeedGroupUIDPath:
-      name: seedGroupUid
-      in: path
-      schema:
-        $ref: '#/components/schemas/SeedGroupUID'
-      required: true
-      description: Unique identifier for a seed group.
-    OrganizationUIDPath:
-      name: organizationUid
-      in: path
-      schema:
-        $ref: '#/components/schemas/OrganizationUID'
-      required: true
-      description: Unique identifier for an organization group.
-    OrganizationUIDPath_2:
-      name: orgUid
-      in: path
-      schema:
-        $ref: '#/components/schemas/OrgUID'
-      required: true
-      description: Unique identifier for an organization group.
   securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: login.synack.com
+          scopes:
+            assetdiscovery_gr: Grants global-level to read seed groups and seeds.
+            assetdiscovery_or: Grants organization-level to read seed groups and seeds.
+            assetdiscovery_ow: Grants organization-level to create or modify seed groups and seeds.
+            assetdiscovery_lr: Grants listing-level to read seed groups and seeds.
+            asset_client_lw: Grants listing-level to write seed groups and seeds.
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    BasicAuth:
+      type: http
+      scheme: basic
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Auth
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
+x-refined-from:
+- synack-asset-discovery-openapi.yaml
+- synack-monolith-v1-openapi.yaml
+- synack-streaming-openapi.yaml
+- synack-tagging-openapi.yaml
