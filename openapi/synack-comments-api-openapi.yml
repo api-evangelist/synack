@@ -87,6 +87,27 @@ paths:
           description: Vulnerability not found
 components:
   schemas:
+    Comment:
+      type: object
+      properties:
+        id:
+          type: integer
+        text:
+          type: string
+        type:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        user:
+          $ref: '#/components/schemas/CommentUser'
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
     Attachment:
       type: object
       properties:
@@ -117,27 +138,6 @@ components:
         email:
           type: string
           description: e-mail address of the user
-    Comment:
-      type: object
-      properties:
-        id:
-          type: integer
-        text:
-          type: string
-        type:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        user:
-          $ref: '#/components/schemas/CommentUser'
-        attachments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Attachment'
   securitySchemes:
     BearerAuth:
       type: http

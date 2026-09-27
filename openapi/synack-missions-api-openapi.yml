@@ -583,9 +583,12 @@ paths:
                 type: object
 components:
   schemas:
-    HeaderPaginationTotalPages:
+    HeaderPaginationTotalCount:
       type: string
-      description: The total number of pages available for the specified query.
+      description: The total number of entries available for the specified query.
+    HeaderPaginationLimit:
+      type: string
+      description: The number of per page entries.
     SortDir:
       type: string
       description: Sort direction.
@@ -593,6 +596,83 @@ components:
       enum:
       - asc
       - desc
+    GetCampaignsResult:
+      type: object
+      description: Response model used by the GET /campaigns/ endpoint. All nullable fields will be omitted from the response body if their value is null.
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        listingUid:
+          type: string
+          format: uuid
+        listingCodename:
+          type: string
+        listingName:
+          type: string
+        organizationUid:
+          type: string
+          format: uuid
+        organizationName:
+          type: string
+        organizationCodename:
+          type: string
+        status:
+          $ref: '#/components/schemas/CampaignStatus'
+        published:
+          type:
+          - string
+          - 'null'
+          format: date
+        completed:
+          type:
+          - string
+          - 'null'
+          format: date
+        tasksCompleted:
+          type: integer
+        tasksTotal:
+          type: integer
+        tasksPassed:
+          type: integer
+        tasksFailed:
+          type: integer
+        tasksPublishedWaiting:
+          type: integer
+          description: Count of missions that have been in PUBLISHED state for more than 30 minutes.
+        isRetestable:
+          type: boolean
+          description: "This flag will be set to true if these conditions are met:\n  * The campaign is completed.\n  * The campaign is not a retest (parentUid is NULL).\n  * The campaign's listing has the boss active flag set to true.\n  * The campaign's listing has active tests.\n  * The campaign's listing is not paused by the client.\n"
+        parentUid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deactivated:
+          type:
+          - string
+          - 'null'
+          format: date
+        createdOn:
+          type:
+          - string
+          - 'null'
+          format: date
+        createdByRole:
+          type:
+          - string
+          - 'null'
+        creditsDeducted:
+          type:
+          - integer
+          - 'null'
+        catalogCategory:
+          $ref: '#/components/schemas/CatalogCategoryResult'
+    ResponseErrMsg:
+      type: string
+      description: When included, this error message provides the developer a more descriptive error message in the default lang (english). This error message should not be used to show to the client.
     CatalogCategoryResult:
       type: object
       description: The CatalogCategory which this Campaign belongs to (via CampaignTemplate).
@@ -614,9 +694,9 @@ components:
           type: integer
         completed:
           type: integer
-    ResponseErrMsg:
+    HeaderPaginationCurrentPage:
       type: string
-      description: When included, this error message provides the developer a more descriptive error message in the default lang (english). This error message should not be used to show to the client.
+      description: The current page requested on the query params.
     GetCampaignResult:
       type: object
       description: Response model used by the GET /campaigns/:campaignID endpoint.
@@ -696,21 +776,6 @@ components:
           - 'null'
         catalogCategory:
           $ref: '#/components/schemas/CatalogCategoryResult'
-    ExtErrorCode400:
-      type: integer
-      format: int64
-      enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 7
-      - 8
-      - 9
-      - 10
-      - 11
-      description: "400 Bad Request extended error codes:\n  * 1 - Invalid Parameters found in the request.\n  * 2 - Campaign is not retestable.\n  * 3 - Some Task IDs were not found. When this code is set, the payload will contain a string array with all of the Task IDs that were not found.\n  * 4 - Task ID was not specified when trying to spend credits.\n  * 5 - Task is deactivated.\n  * 7 - Campaign template was not found.\n  * 8 - Task already has v1 evidence information.\n  * 9 - Some requested Task Templates for instantiation were not found.\n  * 10 - No active sprint was found for listing.\n  * 11 - Invalid task response value.\n  * 12 - Some requested Campaign for missionize was not found.\n  * 13 - Some SVs already have tasks associated.\n  * 14 - Some requested Task Templates for missionize were not found.\n  * 15 - Type not supported during missionize.\n  * 16 - The requested task types echoed in the payload are not allowed for the current user.\n  * 17 - The requested does not have enough balance to created.\n"
     GetTasksAttachmentsResult:
       type: object
       description: "Response model used in the GET /tasks endpoint. It will only be seen by:\n  * Users with Client role (only if the task is in APPROVED status).\n"
@@ -817,153 +882,13 @@ components:
               fismaHigh:
                 type: string
                 description: Info retrieved from task.DEFINITIONDATA by string "applicable to FISMA High"
-    PerPage:
-      type: integer
-      description: Number of items to show per page.
-      minimum: 1
-      default: 1
+    HeaderPaginationTotalPages:
+      type: string
+      description: The total number of pages available for the specified query.
     RequestID:
       type: string
       format: uuid
       description: A unique UUID generated for every request. In the case of an error, this error should be included in the error report by the user so that we can easily filter the logs and find the error quicker.
-    Page:
-      type: integer
-      description: Page to start showing results from.
-      minimum: 1
-      default: 1
-    GetTasksAttachmentsForReportResult:
-      type: object
-      description: Attachments related to that task
-      properties:
-        uid:
-          type: string
-          format: uuid
-        title:
-          type: string
-        description:
-          type: string
-        originalFilename:
-          type: string
-        sizeInBytes:
-          type: number
-        groupUID:
-          type: string
-          format: uuid
-        createdOn:
-          type: string
-          format: date
-        modifiedOn:
-          type: string
-          format: date
-        createdBy:
-          type: string
-        modifiedBy:
-          type: string
-        version:
-          type: integer
-          format: uint
-        data:
-          type: string
-          description: URL to download attachment from GCS. Can be incomplete if there is an error obtaining URL. API will return 206 partial content.
-        thumbnailData:
-          type: string
-          description: URL to download attachment thumbnail from GCS. Can be incomplete if there is an error obtaining URL. API will return 206 partial content.
-        position:
-          type: integer
-          format: int
-        mimeType:
-          type: string
-    GetCampaignsResult:
-      type: object
-      description: Response model used by the GET /campaigns/ endpoint. All nullable fields will be omitted from the response body if their value is null.
-      properties:
-        id:
-          type: string
-          format: uuid
-        title:
-          type: string
-        listingUid:
-          type: string
-          format: uuid
-        listingCodename:
-          type: string
-        listingName:
-          type: string
-        organizationUid:
-          type: string
-          format: uuid
-        organizationName:
-          type: string
-        organizationCodename:
-          type: string
-        status:
-          $ref: '#/components/schemas/CampaignStatus'
-        published:
-          type:
-          - string
-          - 'null'
-          format: date
-        completed:
-          type:
-          - string
-          - 'null'
-          format: date
-        tasksCompleted:
-          type: integer
-        tasksTotal:
-          type: integer
-        tasksPassed:
-          type: integer
-        tasksFailed:
-          type: integer
-        tasksPublishedWaiting:
-          type: integer
-          description: Count of missions that have been in PUBLISHED state for more than 30 minutes.
-        isRetestable:
-          type: boolean
-          description: "This flag will be set to true if these conditions are met:\n  * The campaign is completed.\n  * The campaign is not a retest (parentUid is NULL).\n  * The campaign's listing has the boss active flag set to true.\n  * The campaign's listing has active tests.\n  * The campaign's listing is not paused by the client.\n"
-        parentUid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deactivated:
-          type:
-          - string
-          - 'null'
-          format: date
-        createdOn:
-          type:
-          - string
-          - 'null'
-          format: date
-        createdByRole:
-          type:
-          - string
-          - 'null'
-        creditsDeducted:
-          type:
-          - integer
-          - 'null'
-        catalogCategory:
-          $ref: '#/components/schemas/CatalogCategoryResult'
-    TaskStatus:
-      type: string
-      description: Task status enum.
-      enum:
-      - APPROVED
-      - CLAIMED
-      - CREATED
-      - COMPLETED
-      - FOR_REVIEW
-      - PUBLISHED
-    CampaignStatus:
-      type: string
-      description: Campaign status enum.
-      enum:
-      - CREATED
-      - COMPLETED
-      - PUBLISHED
     GetTasksResult:
       type: object
       description: Response model used by the GET /tasks endpoint. All nullable fields will be omitted from the response body if their value is null.
@@ -1110,15 +1035,90 @@ components:
         assignedBySynackUser:
           type: boolean
           description: Whether this task was assigned to a researcher by a boss user or not. Only available to researcher users when specifying 'includeAssignedBySynackUser=true' in the query string.
-    HeaderPaginationCurrentPage:
+    Page:
+      type: integer
+      description: Page to start showing results from.
+      minimum: 1
+      default: 1
+    TaskStatus:
       type: string
-      description: The current page requested on the query params.
-    HeaderPaginationTotalCount:
+      description: Task status enum.
+      enum:
+      - APPROVED
+      - CLAIMED
+      - CREATED
+      - COMPLETED
+      - FOR_REVIEW
+      - PUBLISHED
+    ExtErrorCode400:
+      type: integer
+      format: int64
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      description: "400 Bad Request extended error codes:\n  * 1 - Invalid Parameters found in the request.\n  * 2 - Campaign is not retestable.\n  * 3 - Some Task IDs were not found. When this code is set, the payload will contain a string array with all of the Task IDs that were not found.\n  * 4 - Task ID was not specified when trying to spend credits.\n  * 5 - Task is deactivated.\n  * 7 - Campaign template was not found.\n  * 8 - Task already has v1 evidence information.\n  * 9 - Some requested Task Templates for instantiation were not found.\n  * 10 - No active sprint was found for listing.\n  * 11 - Invalid task response value.\n  * 12 - Some requested Campaign for missionize was not found.\n  * 13 - Some SVs already have tasks associated.\n  * 14 - Some requested Task Templates for missionize were not found.\n  * 15 - Type not supported during missionize.\n  * 16 - The requested task types echoed in the payload are not allowed for the current user.\n  * 17 - The requested does not have enough balance to created.\n"
+    CampaignStatus:
       type: string
-      description: The total number of entries available for the specified query.
-    HeaderPaginationLimit:
-      type: string
-      description: The number of per page entries.
+      description: Campaign status enum.
+      enum:
+      - CREATED
+      - COMPLETED
+      - PUBLISHED
+    GetTasksAttachmentsForReportResult:
+      type: object
+      description: Attachments related to that task
+      properties:
+        uid:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        originalFilename:
+          type: string
+        sizeInBytes:
+          type: number
+        groupUID:
+          type: string
+          format: uuid
+        createdOn:
+          type: string
+          format: date
+        modifiedOn:
+          type: string
+          format: date
+        createdBy:
+          type: string
+        modifiedBy:
+          type: string
+        version:
+          type: integer
+          format: uint
+        data:
+          type: string
+          description: URL to download attachment from GCS. Can be incomplete if there is an error obtaining URL. API will return 206 partial content.
+        thumbnailData:
+          type: string
+          description: URL to download attachment thumbnail from GCS. Can be incomplete if there is an error obtaining URL. API will return 206 partial content.
+        position:
+          type: integer
+          format: int
+        mimeType:
+          type: string
+    PerPage:
+      type: integer
+      description: Number of items to show per page.
+      minimum: 1
+      default: 1
   securitySchemes:
     bearerAuth:
       type: http

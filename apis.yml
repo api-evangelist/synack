@@ -102,7 +102,7 @@ apis:
   - type: OpenAPI
     url: openapi/synack-assessments-api-openapi.yml
 - aid: synack:synack-asset-relationships-api
-  name: Synack asset-relationships API
+  name: Synack Asset Relationships API
   description: Relationships between assets.
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
@@ -112,7 +112,7 @@ apis:
   - type: OpenAPI
     url: openapi/synack-asset-relationships-api-openapi.yml
 - aid: synack:synack-assetproviders-api
-  name: Synack assetproviders API
+  name: Synack Assetproviders API
   description: The assetproviders API from Synack — 1 operation(s) for assetproviders.
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
@@ -142,7 +142,7 @@ apis:
   - type: OpenAPI
     url: openapi/synack-comments-api-openapi.yml
 - aid: synack:synack-credentials-api
-  name: Synack credentials API
+  name: Synack Credentials API
   description: Credentials are restricted to authorized users.
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
@@ -154,7 +154,7 @@ apis:
   - type: OpenAPI
     url: openapi/synack-credentials-api-openapi.yml
 - aid: synack:synack-external-relationships-api
-  name: Synack external-relationships API
+  name: Synack External Relationships API
   description: The external-relationships API from Synack — 2 operation(s) for external-relationships.
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
@@ -164,7 +164,7 @@ apis:
   - type: OpenAPI
     url: openapi/synack-external-relationships-api-openapi.yml
 - aid: synack:synack-health-api
-  name: Synack health API
+  name: Synack Health API
   description: The health API from Synack — 1 operation(s) for health.
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
@@ -248,7 +248,7 @@ apis:
   - type: OpenAPI
     url: openapi/synack-tests-api-openapi.yml
 - aid: synack:synack-users-api
-  name: Synack users API
+  name: Synack Users API
   description: Users of credentials.
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
@@ -285,8 +285,6 @@ apis:
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
   tags:
-  - Mobile App
-  tags_raw:
   - Mobile Apps
   properties:
   - type: OpenAPI
@@ -297,8 +295,6 @@ apis:
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
   tags:
-  - Web App
-  tags_raw:
   - Web Apps
   properties:
   - type: OpenAPI

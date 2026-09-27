@@ -708,14 +708,15 @@ paths:
       description: FedRAMP (Medium) - V2 API
 components:
   schemas:
-    AssetType:
+    ScopeRuleInclusion:
       type: string
       enum:
-      - cloudaccount
-      - host
-      - network
-      - mobileapp
-      - webapp
+      - in
+      - out
+    GatewayID:
+      type: string
+      pattern: ^[0-9a-f]{16}
+      description: Identifier for Launchpoint-managed VPN gateway.
     GatewayIDInput:
       type: object
       required:
@@ -724,87 +725,23 @@ components:
       properties:
         gatewayId:
           $ref: '#/components/schemas/GatewayID'
-    ListingAsset:
-      allOf:
-      - $ref: '#/components/schemas/AssetListing'
-      - type: object
-        description: Assignment of an asset to a listing.
-        properties:
-          assetUid:
-            $ref: '#/components/schemas/AssetUID'
-    OrganizationUID:
+    WebRULE:
       type: string
-      pattern: ^[-_0-9a-z]{1,50}
-      description: Unique identifier for an organization.
-    ScopeRule:
-      allOf:
-      - $ref: '#/components/schemas/ScopeRuleSummary'
-      - $ref: '#/components/schemas/Updatable'
-    FailedValidation:
-      type: object
-      required:
-      - message
-      properties:
-        property:
-          type: string
-          readOnly: true
-        value:
-          type: string
-          readOnly: true
-        message:
-          type: string
-          readOnly: true
-    Updatable:
-      allOf:
-      - $ref: '#/components/schemas/Creatable'
-      - type: object
-        properties:
-          updatedAt:
-            type: string
-            format: date-time
-            readOnly: true
-            description: Automatically set by the server to the time the request was processed whenever the resource is updated.
-          updatedBy:
-            $ref: '#/components/schemas/OperationUserUID'
-    ScopeRuleApplicability:
+      pattern: ^(/([a-zA-Z0-9_-~!$&'()+,;=:@.]|%[0-9a-fA-F]{2})+/)*(/?((([A-z]|[0-9]|[-_~])|%[0-9a-fA-F]{2}|[!$&'()*+,;=]|[:@])|[/?])*){0,1}//(#((([A-z]|[0-9]|[-_~.])|%[0-9a-fA-F]{2}|[!$&'()*+,;=]|[:@])|[/?])*){0,1}/?$
+      description: Rule for web asset validation
+    AssetType:
       type: string
       enum:
-      - scanners
-      - srt
-      - both
+      - cloudaccount
+      - host
+      - network
+      - mobileapp
+      - webapp
     ListingUID:
       type: string
       pattern: ^[-_0-9a-z]{1,50}
       description: Unique identifier for an listing.
       readOnly: true
-    ScopeRuleSummary:
-      type: object
-      description: Part of the scope of an asset that is included/excluded from a specific activity.
-      required:
-      - uid
-      - rule
-      - scope
-      - appliesTo
-      properties:
-        uid:
-          $ref: '#/components/schemas/UID'
-        rule:
-          $ref: '#/components/schemas/WebRULE'
-          description: A textual definition of the scope rule. Format will vary by assetType.
-        scope:
-          $ref: '#/components/schemas/ScopeRuleInclusion'
-        appliesTo:
-          $ref: '#/components/schemas/ScopeRuleApplicability'
-    Scope:
-      description: 'Set to _in_-scope means automated and manual testing _should_ occur; _out_-of-scope means automated and manual testing _must not_ occur; _discovered_ means observed through automated discovery and may be automatically removed if not observed again during subseqent discovery activities.
-
-        '
-      type: string
-      enum:
-      - in
-      - out
-      - discovered
-      - blocked
     AssetListing:
       type: object
       description: Listings the asset is assigned to.
@@ -828,29 +765,28 @@ components:
           format: date-time
           readOnly: true
           description: Automatically set by the server to the time the listing asset association is updated.
-    IndexedFailedValidations:
+    ScopeRule:
+      allOf:
+      - $ref: '#/components/schemas/ScopeRuleSummary'
+      - $ref: '#/components/schemas/Updatable'
+    Creatable:
       type: object
+      required:
+      - createdAt
+      - createdBy
       properties:
-        index:
-          type: integer
-          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
+        createdAt:
+          type: string
+          format: date-time
           readOnly: true
-        failedValidation:
-          type: array
-          description: Array of failed validation rules.
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/FailedValidation'
+          description: Automatically set by the server to the time the request was processed whenever the resource was created.
+        createdBy:
+          $ref: '#/components/schemas/OperationUserUID'
     UID:
       type: string
       pattern: ^[0-9a-f]{12}
       readOnly: true
       description: Unique Identifier.
-    ScopeRuleInclusion:
-      type: string
-      enum:
-      - in
-      - out
     ProblemDetails:
       type: object
       description: 'See [RFC 7807: Problem Details for HTTP APIs](https://tools.ietf.org/html/rfc7807)'
@@ -896,31 +832,82 @@ components:
           type: integer
           description: Batch size sent when batch is too large.
           readOnly: true
-    WebRULE:
+    ScopeRuleSummary:
+      type: object
+      description: Part of the scope of an asset that is included/excluded from a specific activity.
+      required:
+      - uid
+      - rule
+      - scope
+      - appliesTo
+      properties:
+        uid:
+          $ref: '#/components/schemas/UID'
+        rule:
+          $ref: '#/components/schemas/WebRULE'
+          description: A textual definition of the scope rule. Format will vary by assetType.
+        scope:
+          $ref: '#/components/schemas/ScopeRuleInclusion'
+        appliesTo:
+          $ref: '#/components/schemas/ScopeRuleApplicability'
+    Scope:
+      description: 'Set to _in_-scope means automated and manual testing _should_ occur; _out_-of-scope means automated and manual testing _must not_ occur; _discovered_ means observed through automated discovery and may be automatically removed if not observed again during subseqent discovery activities.
+
+        '
       type: string
-      pattern: ^(/([a-zA-Z0-9_-~!$&'()+,;=:@.]|%[0-9a-fA-F]{2})+/)*(/?((([A-z]|[0-9]|[-_~])|%[0-9a-fA-F]{2}|[!$&'()*+,;=]|[:@])|[/?])*){0,1}//(#((([A-z]|[0-9]|[-_~.])|%[0-9a-fA-F]{2}|[!$&'()*+,;=]|[:@])|[/?])*){0,1}/?$
-      description: Rule for web asset validation
-    GatewayID:
+      enum:
+      - in
+      - out
+      - discovered
+      - blocked
+    ScopeRuleApplicability:
       type: string
-      pattern: ^[0-9a-f]{16}
-      description: Identifier for Launchpoint-managed VPN gateway.
+      enum:
+      - scanners
+      - srt
+      - both
     AssetUID:
       type: string
       pattern: ^[0-9a-f]{24}
       description: Unique identifier for an asset.
-    Creatable:
+    FailedValidation:
       type: object
       required:
-      - createdAt
-      - createdBy
+      - message
       properties:
-        createdAt:
+        property:
           type: string
-          format: date-time
           readOnly: true
-          description: Automatically set by the server to the time the request was processed whenever the resource was created.
-        createdBy:
-          $ref: '#/components/schemas/OperationUserUID'
+        value:
+          type: string
+          readOnly: true
+        message:
+          type: string
+          readOnly: true
+    ListingAsset:
+      allOf:
+      - $ref: '#/components/schemas/AssetListing'
+      - type: object
+        description: Assignment of an asset to a listing.
+        properties:
+          assetUid:
+            $ref: '#/components/schemas/AssetUID'
+    Updatable:
+      allOf:
+      - $ref: '#/components/schemas/Creatable'
+      - type: object
+        properties:
+          updatedAt:
+            type: string
+            format: date-time
+            readOnly: true
+            description: Automatically set by the server to the time the request was processed whenever the resource is updated.
+          updatedBy:
+            $ref: '#/components/schemas/OperationUserUID'
+    OrganizationUID:
+      type: string
+      pattern: ^[-_0-9a-z]{1,50}
+      description: Unique identifier for an organization.
     BulkListingAsset:
       type: object
       description: Asset UIDs to associate to and/or remove from a listing.
@@ -940,6 +927,67 @@ components:
       pattern: ^[0-9a-f]{12}
       readOnly: true
       description: Automatically set by the server to the requesting user whenever the resource is updated. May be a user account or a service account if the action is performed by an automated.
+    IndexedFailedValidations:
+      type: object
+      properties:
+        index:
+          type: integer
+          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        editable:
+          type: boolean
+        organization_profile_id:
+          type: integer
+    TestCounts:
+      type: object
+      required:
+      - pending
+      - scheduled
+      - active
+      - paused
+      - completed
+      properties:
+        pending:
+          type: integer
+          minimum: 0
+        scheduled:
+          type: integer
+          minimum: 0
+        active:
+          type: integer
+          minimum: 0
+        paused:
+          type: integer
+          minimum: 0
+        completed:
+          type: integer
+          minimum: 0
+    OwnerContact:
+      type: object
+      required:
+      - id
+      - name
+      - email
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
     Assessment:
       type: object
       required:
@@ -986,63 +1034,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/OwnerContact'
-    Tag:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        editable:
-          type: boolean
-        organization_profile_id:
-          type: integer
-    OwnerContact:
-      type: object
-      required:
-      - id
-      - name
-      - email
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        email:
-          type: string
-    TestCounts:
-      type: object
-      required:
-      - pending
-      - scheduled
-      - active
-      - paused
-      - completed
-      properties:
-        pending:
-          type: integer
-          minimum: 0
-        scheduled:
-          type: integer
-          minimum: 0
-        active:
-          type: integer
-          minimum: 0
-        paused:
-          type: integer
-          minimum: 0
-        completed:
-          type: integer
-          minimum: 0
-    VulnerabilityCounts:
-      type: object
-      properties:
-        inReview:
-          type: integer
-        accepted:
-          type: integer
-        acceptedOpen:
-          type: integer
     ProblemDetailsSubProblem:
       type: object
       required:
@@ -1055,39 +1046,6 @@ components:
         reason:
           type: string
           description: The reason why the parameter is invalid
-    MissionCounts:
-      type: object
-      properties:
-        active:
-          type: integer
-        completed:
-          type: integer
-    CoverageData:
-      type: object
-      properties:
-        pageHits:
-          type: integer
-        classifiedTraffic:
-          type: integer
-    ProblemDetails_2:
-      type: object
-      required:
-      - type
-      - title
-      - organization
-      properties:
-        type:
-          type: string
-          description: A URI reference that identifies the problem type
-        title:
-          type: string
-          description: A short, human-readable summary of the problem type
-        detail:
-          type: string
-          description: A human-readable explanation specific to this occurrence of the problem
-        organization:
-          type: string
-          description: The organization UID associated with the problem
     PaginationMetadata:
       type: object
       required:
@@ -1126,6 +1084,45 @@ components:
         next:
           type: string
           format: uri
+    ValidationProblemDetails:
+      allOf:
+      - $ref: '#/components/schemas/ProblemDetails_2'
+      - type: object
+        required:
+        - invalidParams
+        properties:
+          invalidParams:
+            type: array
+            items:
+              $ref: '#/components/schemas/ProblemDetailsSubProblem'
+    VulnerabilityCounts:
+      type: object
+      properties:
+        inReview:
+          type: integer
+        accepted:
+          type: integer
+        acceptedOpen:
+          type: integer
+    ProblemDetails_2:
+      type: object
+      required:
+      - type
+      - title
+      - organization
+      properties:
+        type:
+          type: string
+          description: A URI reference that identifies the problem type
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem
+        organization:
+          type: string
+          description: The organization UID associated with the problem
     AssessmentStats:
       type: object
       properties:
@@ -1139,65 +1136,20 @@ components:
           $ref: '#/components/schemas/MissionCounts'
         coverage:
           $ref: '#/components/schemas/CoverageData'
-    ValidationProblemDetails:
-      allOf:
-      - $ref: '#/components/schemas/ProblemDetails_2'
-      - type: object
-        required:
-        - invalidParams
-        properties:
-          invalidParams:
-            type: array
-            items:
-              $ref: '#/components/schemas/ProblemDetailsSubProblem'
-  responses:
-    413RequestEntityTooLarge:
-      description: Returned generally when the size of the request body is too large to process, or specifically when the request contains too many items, typically in a bulk API operation.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    422EntityNotProcessable:
-      description: Entity Not Processable
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    503ServiceUnavailable:
-      description: Service Unavailable.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    500InternalServerError:
-      description: Internal Server Error.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    404NotFound:
-      description: Not found.
-    SingleListingAsset:
-      description: The assignment of an asset to an listing.
-      headers:
-        ETag:
-          $ref: '#/components/headers/ETag'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ListingAsset'
-    401Unauthorized:
-      description: Unauthorized.
-    204NoContent:
-      description: No content.
-    403Forbidden:
-      description: Forbidden
-  headers:
-    ETag:
-      description: An identifier for a specific version of a resource
-      schema:
-        type: string
-        pattern: ^(?:W\/)?\".*\"$
+    MissionCounts:
+      type: object
+      properties:
+        active:
+          type: integer
+        completed:
+          type: integer
+    CoverageData:
+      type: object
+      properties:
+        pageHits:
+          type: integer
+        classifiedTraffic:
+          type: integer
   parameters:
     OrganizationUIDPath:
       name: organizationUid
@@ -1206,13 +1158,13 @@ components:
         $ref: '#/components/schemas/OrganizationUID'
       required: true
       description: Unique identifier for an organization.
-    ListingUIDPath:
-      name: listingUid
+    AssetUIDPath:
+      name: assetUid
       in: path
       schema:
-        $ref: '#/components/schemas/ListingUID'
+        $ref: '#/components/schemas/AssetUID'
       required: true
-      description: Unique identifier for an listing.
+      description: Unique identifier for an asset.
     AssetTypeQuery:
       name: assetType[]
       in: query
@@ -1223,13 +1175,61 @@ components:
       required: false
       explode: true
       description: Restrict the returned asset summaries to only assets of the specified type.
-    AssetUIDPath:
-      name: assetUid
+    ListingUIDPath:
+      name: listingUid
       in: path
       schema:
-        $ref: '#/components/schemas/AssetUID'
+        $ref: '#/components/schemas/ListingUID'
       required: true
-      description: Unique identifier for an asset.
+      description: Unique identifier for an listing.
+  responses:
+    413RequestEntityTooLarge:
+      description: Returned generally when the size of the request body is too large to process, or specifically when the request contains too many items, typically in a bulk API operation.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    404NotFound:
+      description: Not found.
+    500InternalServerError:
+      description: Internal Server Error.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    503ServiceUnavailable:
+      description: Service Unavailable.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    422EntityNotProcessable:
+      description: Entity Not Processable
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    403Forbidden:
+      description: Forbidden
+    401Unauthorized:
+      description: Unauthorized.
+    SingleListingAsset:
+      description: The assignment of an asset to an listing.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ListingAsset'
+    204NoContent:
+      description: No content.
+  headers:
+    ETag:
+      description: An identifier for a specific version of a resource
+      schema:
+        type: string
+        pattern: ^(?:W\/)?\".*\"$
   securitySchemes:
     OAuth2:
       type: oauth2
