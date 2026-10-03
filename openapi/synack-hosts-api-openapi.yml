@@ -320,31 +320,114 @@ paths:
       summary: Delete scope rule
       x-summary-source: derived
 components:
+  parameters:
+    PortProtocolPath:
+      name: portProtocol
+      in: path
+      schema:
+        $ref: '#/components/schemas/PortProtocol'
+      required: true
+      description: Port protocol.
+    PortNumberPath:
+      name: portNumber
+      in: path
+      schema:
+        $ref: '#/components/schemas/PortNumber'
+      required: true
+      description: Port number.
+    AssetUIDPath:
+      name: assetUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/AssetUID'
+      required: true
+      description: Unique identifier for an asset.
+    PerPageQuery:
+      name: perPage
+      in: query
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 5000
+      required: false
+      description: 'Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.
+
+        '
+    IfMatch:
+      name: If-Match
+      in: header
+      required: true
+      description: 'Used to prevent the lost-update problem. The operation will only
+
+        continue if the ETag of the resource matches the supplied value;
+
+        other was a 412 status will be returned. Provide a returned
+
+        ETag value or * to force the operation.
+
+        '
+      schema:
+        type: string
+        pattern: ^(?:\".*\"|\*)$
+    PageQuery:
+      name: page
+      in: query
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      required: false
+      description: 'Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.
+
+        '
+    SortDirQuery:
+      name: sortDir
+      in: query
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        default: asc
+      required: false
+      description: Direction of sort-order for items in the response.
+    ScopeRuleUIDPath:
+      name: scopeRuleUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/UID'
+      required: true
+      description: Unique identifier for a scope rule.
   schemas:
-    ArrayOfScopeRules:
-      type: array
-      items:
-        $ref: '#/components/schemas/ScopeRule'
-    ScopeRuleUpdate:
-      type: object
-      description: Updatable properties of a Scope Rule.
-      properties:
-        rule:
-          type: string
-          description: A textual definition of the scope rule. Format will vary by assetType.
-        scope:
-          $ref: '#/components/schemas/ScopeRuleInclusion'
-        appliesTo:
-          $ref: '#/components/schemas/ScopeRuleApplicability'
-    ScopeRuleInclusion:
+    Updatable:
+      allOf:
+      - $ref: '#/components/schemas/Creatable'
+      - type: object
+        properties:
+          updatedAt:
+            type: string
+            format: date-time
+            readOnly: true
+            description: Automatically set by the server to the time the request was processed whenever the resource is updated.
+          updatedBy:
+            $ref: '#/components/schemas/OperationUserUID'
+    OperationUserUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      readOnly: true
+      description: Automatically set by the server to the requesting user whenever the resource is updated. May be a user account or a service account if the action is performed by an automated.
+    PortObservedState:
       type: string
       enum:
-      - in
-      - out
-    WebRULE:
-      type: string
-      pattern: ^(/([a-zA-Z0-9_-~!$&'()+,;=:@.]|%[0-9a-fA-F]{2})+/)*(/?((([A-z]|[0-9]|[-_~])|%[0-9a-fA-F]{2}|[!$&'()*+,;=]|[:@])|[/?])*){0,1}//(#((([A-z]|[0-9]|[-_~.])|%[0-9a-fA-F]{2}|[!$&'()*+,;=]|[:@])|[/?])*){0,1}/?$
-      description: Rule for web asset validation
+      - open
+      - closed
+      - filtered
+      description: Observed state reported by automated scanning.
+    ScopeRule:
+      allOf:
+      - $ref: '#/components/schemas/ScopeRuleSummary'
+      - $ref: '#/components/schemas/Updatable'
     PortUpdate:
       type: object
       properties:
@@ -357,6 +440,102 @@ components:
             '
         observedState:
           $ref: '#/components/schemas/PortObservedState'
+    ProblemDetails:
+      type: object
+      description: 'See [RFC 7807: Problem Details for HTTP APIs](https://tools.ietf.org/html/rfc7807)'
+      properties:
+        type:
+          type: string
+          readOnly: true
+        title:
+          type: string
+          readOnly: true
+        status:
+          type: integer
+          format: int32
+          minimum: 100
+          maximum: 511
+          description: HTTP Status code.
+          readOnly: true
+        detail:
+          type: string
+          description: Message detailing the problem.
+          readOnly: true
+        instance:
+          type: string
+          description: generated problem instance number to correlate with logs
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
+        failedValidations:
+          type: array
+          description: Array of indexed failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/IndexedFailedValidations'
+        maxBatchSize:
+          type: integer
+          description: Maximum processable batch size.
+          readOnly: true
+        batchSize:
+          type: integer
+          description: Batch size sent when batch is too large.
+          readOnly: true
+    PortNumber:
+      type: integer
+      format: int32
+      minimum: 0
+      maximum: 65535
+    ArrayOfScopeRules:
+      type: array
+      items:
+        $ref: '#/components/schemas/ScopeRule'
+    UID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      readOnly: true
+      description: Unique Identifier.
+    FailedValidation:
+      type: object
+      required:
+      - message
+      properties:
+        property:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+        message:
+          type: string
+          readOnly: true
+    IndexedFailedValidations:
+      type: object
+      properties:
+        index:
+          type: integer
+          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
+    WebRULE:
+      type: string
+      pattern: ^(/([a-zA-Z0-9_-~!$&'()+,;=:@.]|%[0-9a-fA-F]{2})+/)*(/?((([A-z]|[0-9]|[-_~])|%[0-9a-fA-F]{2}|[!$&'()*+,;=]|[:@])|[/?])*){0,1}//(#((([A-z]|[0-9]|[-_~.])|%[0-9a-fA-F]{2}|[!$&'()*+,;=]|[:@])|[/?])*){0,1}/?$
+      description: Rule for web asset validation
+    ScopeRuleApplicability:
+      type: string
+      enum:
+      - scanners
+      - srt
+      - both
     Port:
       allOf:
       - type: object
@@ -411,27 +590,22 @@ components:
             description: Port banner according to fingerprinting.
             readOnly: true
       - $ref: '#/components/schemas/Updatable'
-    PortProtocol:
+    ScopeRuleInclusion:
       type: string
       enum:
-      - tcp
-      - udp
-    PortNumber:
-      type: integer
-      format: int32
-      minimum: 0
-      maximum: 65535
-    ScopeRule:
-      allOf:
-      - $ref: '#/components/schemas/ScopeRuleSummary'
-      - $ref: '#/components/schemas/Updatable'
-    PortObservedState:
-      type: string
-      enum:
-      - open
-      - closed
-      - filtered
-      description: Observed state reported by automated scanning.
+      - in
+      - out
+    ScopeRuleUpdate:
+      type: object
+      description: Updatable properties of a Scope Rule.
+      properties:
+        rule:
+          type: string
+          description: A textual definition of the scope rule. Format will vary by assetType.
+        scope:
+          $ref: '#/components/schemas/ScopeRuleInclusion'
+        appliesTo:
+          $ref: '#/components/schemas/ScopeRuleApplicability'
     Creatable:
       type: object
       required:
@@ -445,56 +619,15 @@ components:
           description: Automatically set by the server to the time the request was processed whenever the resource was created.
         createdBy:
           $ref: '#/components/schemas/OperationUserUID'
-    UID:
+    PortProtocol:
       type: string
-      pattern: ^[0-9a-f]{12}
-      readOnly: true
-      description: Unique Identifier.
-    ProblemDetails:
-      type: object
-      description: 'See [RFC 7807: Problem Details for HTTP APIs](https://tools.ietf.org/html/rfc7807)'
-      properties:
-        type:
-          type: string
-          readOnly: true
-        title:
-          type: string
-          readOnly: true
-        status:
-          type: integer
-          format: int32
-          minimum: 100
-          maximum: 511
-          description: HTTP Status code.
-          readOnly: true
-        detail:
-          type: string
-          description: Message detailing the problem.
-          readOnly: true
-        instance:
-          type: string
-          description: generated problem instance number to correlate with logs
-          readOnly: true
-        failedValidation:
-          type: array
-          description: Array of failed validation rules.
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/FailedValidation'
-        failedValidations:
-          type: array
-          description: Array of indexed failed validation rules.
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/IndexedFailedValidations'
-        maxBatchSize:
-          type: integer
-          description: Maximum processable batch size.
-          readOnly: true
-        batchSize:
-          type: integer
-          description: Batch size sent when batch is too large.
-          readOnly: true
+      enum:
+      - tcp
+      - udp
+    AssetUID:
+      type: string
+      pattern: ^[0-9a-f]{24}
+      description: Unique identifier for an asset.
     ScopeRuleSummary:
       type: object
       description: Part of the scope of an asset that is included/excluded from a specific activity.
@@ -513,12 +646,6 @@ components:
           $ref: '#/components/schemas/ScopeRuleInclusion'
         appliesTo:
           $ref: '#/components/schemas/ScopeRuleApplicability'
-    ScopeRuleApplicability:
-      type: string
-      enum:
-      - scanners
-      - srt
-      - both
     Scope:
       description: 'Set to _in_-scope means automated and manual testing _should_ occur; _out_-of-scope means automated and manual testing _must not_ occur; _discovered_ means observed through automated discovery and may be automatically removed if not observed again during subseqent discovery activities.
 
@@ -529,166 +656,6 @@ components:
       - out
       - discovered
       - blocked
-    AssetUID:
-      type: string
-      pattern: ^[0-9a-f]{24}
-      description: Unique identifier for an asset.
-    FailedValidation:
-      type: object
-      required:
-      - message
-      properties:
-        property:
-          type: string
-          readOnly: true
-        value:
-          type: string
-          readOnly: true
-        message:
-          type: string
-          readOnly: true
-    Updatable:
-      allOf:
-      - $ref: '#/components/schemas/Creatable'
-      - type: object
-        properties:
-          updatedAt:
-            type: string
-            format: date-time
-            readOnly: true
-            description: Automatically set by the server to the time the request was processed whenever the resource is updated.
-          updatedBy:
-            $ref: '#/components/schemas/OperationUserUID'
-    OperationUserUID:
-      type: string
-      pattern: ^[0-9a-f]{12}
-      readOnly: true
-      description: Automatically set by the server to the requesting user whenever the resource is updated. May be a user account or a service account if the action is performed by an automated.
-    IndexedFailedValidations:
-      type: object
-      properties:
-        index:
-          type: integer
-          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
-          readOnly: true
-        failedValidation:
-          type: array
-          description: Array of failed validation rules.
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/FailedValidation'
-  parameters:
-    SortDirQuery:
-      name: sortDir
-      in: query
-      schema:
-        type: string
-        enum:
-        - asc
-        - desc
-        default: asc
-      required: false
-      description: Direction of sort-order for items in the response.
-    PageQuery:
-      name: page
-      in: query
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-      required: false
-      description: 'Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.
-
-        '
-    ScopeRuleUIDPath:
-      name: scopeRuleUid
-      in: path
-      schema:
-        $ref: '#/components/schemas/UID'
-      required: true
-      description: Unique identifier for a scope rule.
-    AssetUIDPath:
-      name: assetUid
-      in: path
-      schema:
-        $ref: '#/components/schemas/AssetUID'
-      required: true
-      description: Unique identifier for an asset.
-    IfMatch:
-      name: If-Match
-      in: header
-      required: true
-      description: 'Used to prevent the lost-update problem. The operation will only
-
-        continue if the ETag of the resource matches the supplied value;
-
-        other was a 412 status will be returned. Provide a returned
-
-        ETag value or * to force the operation.
-
-        '
-      schema:
-        type: string
-        pattern: ^(?:\".*\"|\*)$
-    PerPageQuery:
-      name: perPage
-      in: query
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 5000
-      required: false
-      description: 'Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.
-
-        '
-    PortNumberPath:
-      name: portNumber
-      in: path
-      schema:
-        $ref: '#/components/schemas/PortNumber'
-      required: true
-      description: Port number.
-    PortProtocolPath:
-      name: portProtocol
-      in: path
-      schema:
-        $ref: '#/components/schemas/PortProtocol'
-      required: true
-      description: Port protocol.
-  headers:
-    PaginationCurrentPage:
-      description: Current page in a paginated response.
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-    Link:
-      description: Standard link header.
-      schema:
-        type: string
-    ETag:
-      description: An identifier for a specific version of a resource
-      schema:
-        type: string
-        pattern: ^(?:W\/)?\".*\"$
-    PaginationTotalCount:
-      description: Total number of items in all pages of a paginated response.
-      schema:
-        format: int32
-        minimum: 1
-    PaginationTotalPages:
-      description: Total number of pages in a paginated response.
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-    PaginationLimit:
-      description: Maximum number of items returned in a paginated response.
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
   responses:
     PaginatedArrayOfScopeRules:
       description: Paginated scope rules of a host with CIDRs or web application asset.
@@ -707,31 +674,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ArrayOfScopeRules'
-    SinglePort:
-      description: The current state of a host port.
-      headers:
-        ETag:
-          $ref: '#/components/headers/ETag'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Port'
-    404NotFound:
-      description: Not found.
-    500InternalServerError:
-      description: Internal Server Error.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
+    401Unauthorized:
+      description: Unauthorized.
+    204NoContent:
+      description: No content.
     503ServiceUnavailable:
       description: Service Unavailable.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    422EntityNotProcessable:
-      description: Entity Not Processable
       content:
         application/problem+json:
           schema:
@@ -745,20 +693,72 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ScopeRule'
-    403Forbidden:
-      description: Forbidden
-    412PreconditionFailed:
-      description: Precondition Failed.
-    401Unauthorized:
-      description: Unauthorized.
-    204NoContent:
-      description: No content.
     409Conflict:
       description: Conflict.
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/ProblemDetails'
+    403Forbidden:
+      description: Forbidden
+    500InternalServerError:
+      description: Internal Server Error.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    412PreconditionFailed:
+      description: Precondition Failed.
+    404NotFound:
+      description: Not found.
+    SinglePort:
+      description: The current state of a host port.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Port'
+    422EntityNotProcessable:
+      description: Entity Not Processable
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+  headers:
+    PaginationTotalPages:
+      description: Total number of pages in a paginated response.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    PaginationLimit:
+      description: Maximum number of items returned in a paginated response.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    PaginationTotalCount:
+      description: Total number of items in all pages of a paginated response.
+      schema:
+        format: int32
+        minimum: 1
+    Link:
+      description: Standard link header.
+      schema:
+        type: string
+    PaginationCurrentPage:
+      description: Current page in a paginated response.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    ETag:
+      description: An identifier for a specific version of a resource
+      schema:
+        type: string
+        pattern: ^(?:W\/)?\".*\"$
   securitySchemes:
     OAuth2:
       type: oauth2

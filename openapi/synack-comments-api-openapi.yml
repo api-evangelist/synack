@@ -87,6 +87,22 @@ paths:
           description: Vulnerability not found
 components:
   schemas:
+    CommentUser:
+      required:
+      - email
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          description: name of the user
+        email:
+          type: string
+          description: e-mail address of the user
     Comment:
       type: object
       properties:
@@ -122,22 +138,6 @@ components:
         created_at:
           type: string
           format: date-time
-    CommentUser:
-      required:
-      - email
-      - id
-      - name
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-          description: name of the user
-        email:
-          type: string
-          description: e-mail address of the user
   securitySchemes:
     BearerAuth:
       type: http

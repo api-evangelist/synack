@@ -379,18 +379,6 @@ components:
         createdAt:
           type: string
           format: date-time
-    ProblemDetailsSubProblem:
-      type: object
-      required:
-      - name
-      - reason
-      properties:
-        name:
-          type: string
-          description: The parameter name that caused the validation error
-        reason:
-          type: string
-          description: The reason why the parameter is invalid
     ValidationProblemDetails:
       allOf:
       - $ref: '#/components/schemas/ProblemDetails'
@@ -421,27 +409,18 @@ components:
         organization:
           type: string
           description: The organization UID associated with the problem
-    Data:
+    ProblemDetailsSubProblem:
       type: object
+      required:
+      - name
+      - reason
       properties:
-        attributes: {}
-        id:
+        name:
           type: string
-        links:
-          $ref: '#/components/schemas/Links'
-        meta: {}
-        relationships:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/Relationship'
-        type:
-          $ref: '#/components/schemas/ResourceType'
-    Relationship:
-      type: object
-      properties:
-        data: {}
-        links:
-          $ref: '#/components/schemas/Links'
+          description: The parameter name that caused the validation error
+        reason:
+          type: string
+          description: The reason why the parameter is invalid
     ResourceType:
       type: string
       enum:
@@ -466,6 +445,28 @@ components:
       - tags
       - last_tested_counts
       - last_assets_scan
+    Data:
+      type: object
+      properties:
+        attributes: {}
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/Links'
+        meta: {}
+        relationships:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Relationship'
+        type:
+          $ref: '#/components/schemas/ResourceType'
+    Links:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
     Error:
       type: object
       properties:
@@ -494,13 +495,12 @@ components:
         links:
           $ref: '#/components/schemas/Links'
         meta: {}
-    Links:
+    Relationship:
       type: object
       properties:
-        next:
-          type: string
-        prev:
-          type: string
+        data: {}
+        links:
+          $ref: '#/components/schemas/Links'
   securitySchemes:
     BearerAuth:
       type: http

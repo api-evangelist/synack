@@ -63,27 +63,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Data:
-      type: object
-      properties:
-        attributes: {}
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/Links'
-        meta: {}
-        relationships:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/Relationship'
-        type:
-          $ref: '#/components/schemas/ResourceType'
-    Relationship:
-      type: object
-      properties:
-        data: {}
-        links:
-          $ref: '#/components/schemas/Links'
     ResourceType:
       type: string
       enum:
@@ -108,6 +87,28 @@ components:
       - tags
       - last_tested_counts
       - last_assets_scan
+    Data:
+      type: object
+      properties:
+        attributes: {}
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/Links'
+        meta: {}
+        relationships:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Relationship'
+        type:
+          $ref: '#/components/schemas/ResourceType'
+    Links:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
     Error:
       type: object
       properties:
@@ -136,13 +137,12 @@ components:
         links:
           $ref: '#/components/schemas/Links'
         meta: {}
-    Links:
+    Relationship:
       type: object
       properties:
-        next:
-          type: string
-        prev:
-          type: string
+        data: {}
+        links:
+          $ref: '#/components/schemas/Links'
   securitySchemes:
     bearerAuth:
       type: http

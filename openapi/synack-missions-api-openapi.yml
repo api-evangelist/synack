@@ -583,12 +583,13 @@ paths:
                 type: object
 components:
   schemas:
-    HeaderPaginationTotalCount:
+    CampaignStatus:
       type: string
-      description: The total number of entries available for the specified query.
-    HeaderPaginationLimit:
-      type: string
-      description: The number of per page entries.
+      description: Campaign status enum.
+      enum:
+      - CREATED
+      - COMPLETED
+      - PUBLISHED
     SortDir:
       type: string
       description: Sort direction.
@@ -596,6 +597,19 @@ components:
       enum:
       - asc
       - desc
+    HeaderPaginationTotalCount:
+      type: string
+      description: The total number of entries available for the specified query.
+    TaskStatus:
+      type: string
+      description: Task status enum.
+      enum:
+      - APPROVED
+      - CLAIMED
+      - CREATED
+      - COMPLETED
+      - FOR_REVIEW
+      - PUBLISHED
     GetCampaignsResult:
       type: object
       description: Response model used by the GET /campaigns/ endpoint. All nullable fields will be omitted from the response body if their value is null.
@@ -670,33 +684,31 @@ components:
           - 'null'
         catalogCategory:
           $ref: '#/components/schemas/CatalogCategoryResult'
-    ResponseErrMsg:
-      type: string
-      description: When included, this error message provides the developer a more descriptive error message in the default lang (english). This error message should not be used to show to the client.
-    CatalogCategoryResult:
-      type: object
-      description: The CatalogCategory which this Campaign belongs to (via CampaignTemplate).
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-    GetCampaignsStatsResult:
-      type: object
-      description: Response model used by the GET /campaigns/stats endpoint.
-      properties:
-        all:
-          type: integer
-        active:
-          type: integer
-        inReview:
-          type: integer
-        completed:
-          type: integer
-    HeaderPaginationCurrentPage:
-      type: string
-      description: The current page requested on the query params.
+    Page:
+      type: integer
+      description: Page to start showing results from.
+      minimum: 1
+      default: 1
+    ExtErrorCode400:
+      type: integer
+      format: int64
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      description: "400 Bad Request extended error codes:\n  * 1 - Invalid Parameters found in the request.\n  * 2 - Campaign is not retestable.\n  * 3 - Some Task IDs were not found. When this code is set, the payload will contain a string array with all of the Task IDs that were not found.\n  * 4 - Task ID was not specified when trying to spend credits.\n  * 5 - Task is deactivated.\n  * 7 - Campaign template was not found.\n  * 8 - Task already has v1 evidence information.\n  * 9 - Some requested Task Templates for instantiation were not found.\n  * 10 - No active sprint was found for listing.\n  * 11 - Invalid task response value.\n  * 12 - Some requested Campaign for missionize was not found.\n  * 13 - Some SVs already have tasks associated.\n  * 14 - Some requested Task Templates for missionize were not found.\n  * 15 - Type not supported during missionize.\n  * 16 - The requested task types echoed in the payload are not allowed for the current user.\n  * 17 - The requested does not have enough balance to created.\n"
+    PerPage:
+      type: integer
+      description: Number of items to show per page.
+      minimum: 1
+      default: 1
     GetCampaignResult:
       type: object
       description: Response model used by the GET /campaigns/:campaignID endpoint.
@@ -776,119 +788,6 @@ components:
           - 'null'
         catalogCategory:
           $ref: '#/components/schemas/CatalogCategoryResult'
-    GetTasksAttachmentsResult:
-      type: object
-      description: "Response model used in the GET /tasks endpoint. It will only be seen by:\n  * Users with Client role (only if the task is in APPROVED status).\n"
-      properties:
-        id:
-          type: string
-          format: uuid
-        title:
-          type: string
-        description:
-          type: string
-        originalFilename:
-          type: string
-        data:
-          type: string
-        thumbnailData:
-          type: string
-        sizeInBytes:
-          type: integer
-        groupId:
-          type: string
-        position:
-          type: integer
-        createdOn:
-          type: string
-          format: date
-        createdBy:
-          type: string
-        modifiedOn:
-          type: string
-          format: date
-        modifiedBy:
-          type: string
-        deletedOn:
-          type: string
-          format: date
-        version:
-          type: integer
-        mimeType:
-          type: string
-        tasks:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: Task id
-              title:
-                type: string
-                description: Task title
-              description:
-                type: string
-                description: Task description
-              definitionUID:
-                type: string
-                description: Task definition ID
-              definitionName:
-                type: string
-                description: Task definition Name
-              structuredResponse:
-                type: string
-                description: 'yes, no, n/a, etc... The short response for the question this task poses (e.g.: is foo vulnerable to bar)'
-              assetTypes:
-                type: array
-                description: Task CATEGORIES splitted
-                items:
-                  type: string
-              attackTypes:
-                type: array
-                description: Task TAGS splitted
-                items:
-                  type: string
-              attachments:
-                type: array
-                items:
-                  $ref: '#/components/schemas/GetTasksAttachmentsForReportResult'
-              completedOn:
-                type: string
-                format: date-time
-              scope:
-                type: string
-              status:
-                type: string
-              type:
-                type: string
-              categories:
-                type: array
-                description: SYN_CATEGORIES
-                items:
-                  type: string
-              response:
-                type: string
-                description: Task evidence on string format. For v1 just is sent the value. For v2 to Introduction, methodology and conclusion
-              controlFamily:
-                type: string
-                description: Info retrieved from task.DEFINITIONDATA by string "control family"
-              fismaLow:
-                type: string
-                description: Info retrieved from task.DEFINITIONDATA by string "applicable to FISMA Low"
-              fismaModerate:
-                type: string
-                description: Info retrieved from task.DEFINITIONDATA by string "applicable to FISMA Moderate"
-              fismaHigh:
-                type: string
-                description: Info retrieved from task.DEFINITIONDATA by string "applicable to FISMA High"
-    HeaderPaginationTotalPages:
-      type: string
-      description: The total number of pages available for the specified query.
-    RequestID:
-      type: string
-      format: uuid
-      description: A unique UUID generated for every request. In the case of an error, this error should be included in the error report by the user so that we can easily filter the logs and find the error quicker.
     GetTasksResult:
       type: object
       description: Response model used by the GET /tasks endpoint. All nullable fields will be omitted from the response body if their value is null.
@@ -1035,43 +934,27 @@ components:
         assignedBySynackUser:
           type: boolean
           description: Whether this task was assigned to a researcher by a boss user or not. Only available to researcher users when specifying 'includeAssignedBySynackUser=true' in the query string.
-    Page:
-      type: integer
-      description: Page to start showing results from.
-      minimum: 1
-      default: 1
-    TaskStatus:
+    HeaderPaginationCurrentPage:
       type: string
-      description: Task status enum.
-      enum:
-      - APPROVED
-      - CLAIMED
-      - CREATED
-      - COMPLETED
-      - FOR_REVIEW
-      - PUBLISHED
-    ExtErrorCode400:
-      type: integer
-      format: int64
-      enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 7
-      - 8
-      - 9
-      - 10
-      - 11
-      description: "400 Bad Request extended error codes:\n  * 1 - Invalid Parameters found in the request.\n  * 2 - Campaign is not retestable.\n  * 3 - Some Task IDs were not found. When this code is set, the payload will contain a string array with all of the Task IDs that were not found.\n  * 4 - Task ID was not specified when trying to spend credits.\n  * 5 - Task is deactivated.\n  * 7 - Campaign template was not found.\n  * 8 - Task already has v1 evidence information.\n  * 9 - Some requested Task Templates for instantiation were not found.\n  * 10 - No active sprint was found for listing.\n  * 11 - Invalid task response value.\n  * 12 - Some requested Campaign for missionize was not found.\n  * 13 - Some SVs already have tasks associated.\n  * 14 - Some requested Task Templates for missionize were not found.\n  * 15 - Type not supported during missionize.\n  * 16 - The requested task types echoed in the payload are not allowed for the current user.\n  * 17 - The requested does not have enough balance to created.\n"
-    CampaignStatus:
+      description: The current page requested on the query params.
+    GetCampaignsStatsResult:
+      type: object
+      description: Response model used by the GET /campaigns/stats endpoint.
+      properties:
+        all:
+          type: integer
+        active:
+          type: integer
+        inReview:
+          type: integer
+        completed:
+          type: integer
+    HeaderPaginationTotalPages:
       type: string
-      description: Campaign status enum.
-      enum:
-      - CREATED
-      - COMPLETED
-      - PUBLISHED
+      description: The total number of pages available for the specified query.
+    ResponseErrMsg:
+      type: string
+      description: When included, this error message provides the developer a more descriptive error message in the default lang (english). This error message should not be used to show to the client.
     GetTasksAttachmentsForReportResult:
       type: object
       description: Attachments related to that task
@@ -1114,11 +997,128 @@ components:
           format: int
         mimeType:
           type: string
-    PerPage:
-      type: integer
-      description: Number of items to show per page.
-      minimum: 1
-      default: 1
+    GetTasksAttachmentsResult:
+      type: object
+      description: "Response model used in the GET /tasks endpoint. It will only be seen by:\n  * Users with Client role (only if the task is in APPROVED status).\n"
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        originalFilename:
+          type: string
+        data:
+          type: string
+        thumbnailData:
+          type: string
+        sizeInBytes:
+          type: integer
+        groupId:
+          type: string
+        position:
+          type: integer
+        createdOn:
+          type: string
+          format: date
+        createdBy:
+          type: string
+        modifiedOn:
+          type: string
+          format: date
+        modifiedBy:
+          type: string
+        deletedOn:
+          type: string
+          format: date
+        version:
+          type: integer
+        mimeType:
+          type: string
+        tasks:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Task id
+              title:
+                type: string
+                description: Task title
+              description:
+                type: string
+                description: Task description
+              definitionUID:
+                type: string
+                description: Task definition ID
+              definitionName:
+                type: string
+                description: Task definition Name
+              structuredResponse:
+                type: string
+                description: 'yes, no, n/a, etc... The short response for the question this task poses (e.g.: is foo vulnerable to bar)'
+              assetTypes:
+                type: array
+                description: Task CATEGORIES splitted
+                items:
+                  type: string
+              attackTypes:
+                type: array
+                description: Task TAGS splitted
+                items:
+                  type: string
+              attachments:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetTasksAttachmentsForReportResult'
+              completedOn:
+                type: string
+                format: date-time
+              scope:
+                type: string
+              status:
+                type: string
+              type:
+                type: string
+              categories:
+                type: array
+                description: SYN_CATEGORIES
+                items:
+                  type: string
+              response:
+                type: string
+                description: Task evidence on string format. For v1 just is sent the value. For v2 to Introduction, methodology and conclusion
+              controlFamily:
+                type: string
+                description: Info retrieved from task.DEFINITIONDATA by string "control family"
+              fismaLow:
+                type: string
+                description: Info retrieved from task.DEFINITIONDATA by string "applicable to FISMA Low"
+              fismaModerate:
+                type: string
+                description: Info retrieved from task.DEFINITIONDATA by string "applicable to FISMA Moderate"
+              fismaHigh:
+                type: string
+                description: Info retrieved from task.DEFINITIONDATA by string "applicable to FISMA High"
+    RequestID:
+      type: string
+      format: uuid
+      description: A unique UUID generated for every request. In the case of an error, this error should be included in the error report by the user so that we can easily filter the logs and find the error quicker.
+    HeaderPaginationLimit:
+      type: string
+      description: The number of per page entries.
+    CatalogCategoryResult:
+      type: object
+      description: The CatalogCategory which this Campaign belongs to (via CampaignTemplate).
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

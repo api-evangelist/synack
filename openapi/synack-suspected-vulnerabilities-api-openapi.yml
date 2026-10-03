@@ -563,27 +563,6 @@ components:
         automated_triage_status_updated_at:
           type: string
           format: date-time
-    Data:
-      type: object
-      properties:
-        attributes: {}
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/Links'
-        meta: {}
-        relationships:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/Relationship'
-        type:
-          $ref: '#/components/schemas/ResourceType'
-    Relationship:
-      type: object
-      properties:
-        data: {}
-        links:
-          $ref: '#/components/schemas/Links'
     ResourceType:
       type: string
       enum:
@@ -608,6 +587,28 @@ components:
       - tags
       - last_tested_counts
       - last_assets_scan
+    Data:
+      type: object
+      properties:
+        attributes: {}
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/Links'
+        meta: {}
+        relationships:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Relationship'
+        type:
+          $ref: '#/components/schemas/ResourceType'
+    Links:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
     Error:
       type: object
       properties:
@@ -636,174 +637,27 @@ components:
         links:
           $ref: '#/components/schemas/Links'
         meta: {}
-    Links:
+    Relationship:
       type: object
       properties:
-        next:
-          type: string
-        prev:
-          type: string
-    Metadata:
-      type: object
-      description: Additional metadata accompanying API responses
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        actions:
-          type: object
-          description: Available actions that can be performed on the returned data
+        data: {}
+        links:
+          $ref: '#/components/schemas/Links'
     SuspectedVulnerabilitiesCreateRequest:
       description: List of objects, describing the properties of suspected vulnerabilities to create
       type: array
       items:
         $ref: '#/components/schemas/NewSuspectedVulnerability'
-    SuspectedVulnerability_2:
+    ExternalJobTriageAgentBlock:
       type: object
+      description: Block data for a vulnerability triage, including analysis and reporting
       properties:
-        id:
-          type: integer
-          format: int64
-          description: Unique numeric identifier for the suspected vulnerability
-          example: 2000
-        assetUid:
+        parentThoughtId:
           type: string
-          description: Unique identifier for the asset where the vulnerability was discovered
-          example: ah28034gsjdf98eqwgbjufj
-        listingUid:
+          description: Unique identifier for the parent thought
+        predecessorThoughtId:
           type: string
-          description: Unique identifier for the penetration testing listing/engagement scope
-          example: ah28034gsjdf
-        listingCodename:
-          type: string
-          description: Human-readable codename for the penetration testing engagement
-          example: ACME-H001
-        organizationUid:
-          type: string
-          description: Unique identifier for the organization that owns this vulnerability
-          example: ah28034gsjdf
-        categoryInScope:
-          type: boolean
-          description: Indicates whether this vulnerability category is within the current testing scope
-        confidence:
-          type: string
-          description: Confidence level of the vulnerability assessment (e.g., 'firm', 'tentative', 'certain')
-          example: firm
-        cvssBase:
-          type: number
-          format: double
-          description: CVSS (Common Vulnerability Scoring System) base score indicating severity (0-10 scale)
-          example: 5.4
-        exploitableLocations:
-          type: array
-          description: List of key-value maps describing exploitable locations
-          items:
-            $ref: '#/components/schemas/StringMap'
-        falsePositive:
-          type: boolean
-          description: Flag indicating whether this vulnerability has been determined to be a false positive
-        payload:
-          type: object
-          description: Additional vulnerability data and metadata from the detection source
-          $ref: '#/components/schemas/StringMap'
-        referenceUrls:
-          type: array
-          items:
-            type: string
-          description: External reference URLs providing additional context about the vulnerability
-          example:
-          - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring_ec2.html
-          - https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html
-        severity:
-          type: string
-          description: Normalized severity classification (e.g., 'low', 'medium', 'high', 'critical')
-          example: low
-        source:
-          type: string
-          description: Tool or system that originally detected this vulnerability
-          example: synack
-        sourceId:
-          type: string
-          description: Unique identifier for the source job or detection run that created this vulnerability
-          example: job-abc-123
-        vulnerabilityStatusId:
-          type: integer
-          format: int64
-          description: Numeric identifier for the vulnerability's current status in the workflow
-        reasonTitle:
-          type: string
-          description: Brief title explaining the reason for the current status or assessment
-        reasonDescription:
-          type: string
-          description: Detailed explanation of the reasoning behind the current status or triage decision
-        automatedTriageStatus:
-          type: string
-          description: Current status of the vulnerability in the automated triage workflow
-        automatedTriageStatusUpdatedAt:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp when the automated triage status was last updated
-          example: '2023-12-25T15:45:30.123Z'
-        cves:
-          type: array
-          description: List of Common Vulnerabilities and Exposures (CVE) identifiers associated with this vulnerability
-          items:
-            type: string
-            example: CVE-2025-1238923
-        cwes:
-          type: array
-          description: List of Common Weakness Enumeration (CWE) identifiers classifying this vulnerability type
-          items:
-            type: string
-            example: CWE-1238923
-        status:
-          type: string
-          description: Current workflow status of the vulnerability (e.g., 'eligible', 'vulnerable', 'not_vulnerable')
-        typeId:
-          type: string
-          description: String identifier for the vulnerability type classification
-          example: Type-69d55e
-        typeTitle:
-          type: string
-          description: Title of the vulnerability type
-          example: SQL Injection
-        typeCategoryId:
-          type: string
-          description: Identifier for the category that this vulnerability type belongs to
-        typeCategoryParentName:
-          type: string
-          description: Name of the parent category for hierarchical vulnerability classification
-        typeCategoryChildName:
-          type: string
-          description: Name of the child category for hierarchical vulnerability classification
-        typeDescription:
-          type: string
-          description: Description of the vulnerability type
-        exploitableVulnerabilityId:
-          type: string
-          description: Unique identifier linking this vulnerability to exploitable vulnerability records
-          example: test_e859b6a8371c-m001-4
-        createdAt:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp when the vulnerability was first created in the system
-          example: '2023-12-25T15:45:30.123Z'
-        lastDetectedAt:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp when the vulnerability was most recently detected or confirmed
-          example: '2023-12-25T15:45:30.123Z'
-        triageIneligibleReason:
-          type: string
-          description: Reason why the vulnerability is not eligible for automated triage
-          example: Triage already started or performed.
-        solution:
-          type: string
-          description: Solution to the vulnerability
-          example: Microsoft has released security update KB5002113 to address this issue.
-        vendorRiskScore:
-          type: number
-          description: A risk score value provided by the vendor of the imported vulnerability.
-          example: 1.3
+          description: Unique identifier for the predecessor thought
     Error_2:
       type: object
       description: Standard error response format following RFC 7807 Problem Details specification
@@ -826,152 +680,6 @@ components:
         instance:
           type: string
           description: URI reference identifying the specific occurrence of the problem
-    ExternalJobTriageAgentThought:
-      type: object
-      description: Thought data for a vulnerability triage, including analysis and reporting
-      properties:
-        triageId:
-          type: string
-          description: Unique identifier for this triage assessment
-        targetId:
-          type: string
-          description: Unique identifier for the target of this triage assessment
-        thoughtId:
-          type: string
-          description: Unique identifier for this thought
-        thoughtType:
-          type: string
-          description: Type of thought
-        thoughtContent:
-          type: string
-          description: Content of the thought
-        toolExecution:
-          $ref: '#/components/schemas/ExternalJobTriageAgentToolExecution'
-        block:
-          $ref: '#/components/schemas/ExternalJobTriageAgentBlock'
-        addedAt:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp when the thought was added
-    SuspectedVulnerabilitiesSummaries:
-      type: object
-      description: Statistical summary information about the vulnerabilities in the result set
-      properties:
-        counts:
-          $ref: '#/components/schemas/SuspectedVulnerabilitiesSummaries_Counts'
-    Pagination:
-      type: object
-      description: Pagination metadata for navigating through large result sets
-      required:
-      - total
-      - page
-      - perPage
-      - totalPages
-      properties:
-        total:
-          type: integer
-          description: Total number of items across all pages
-        page:
-          type: integer
-          description: Current page number (1-based)
-        perPage:
-          type: integer
-          description: Number of items per page
-        totalPages:
-          type: integer
-          description: Total number of pages available
-        prev:
-          type: string
-          description: URL for the previous page (null if on first page)
-        next:
-          type: string
-          description: URL for the next page (null if on last page)
-        first:
-          type: string
-          description: URL for the first page
-        last:
-          type: string
-          description: URL for the last page
-        self:
-          type: string
-          description: URL for the current page
-    SuspectedVulnerabilitiesSummaries_SummarySeverity:
-      type: object
-      description: Summary severity of the vulnerabilities
-      properties:
-        critical:
-          type: integer
-          description: Number of critical severity vulnerabilities
-        high:
-          type: integer
-          description: Number of high severity vulnerabilities
-        medium:
-          type: integer
-          description: Number of medium severity vulnerabilities
-        low:
-          type: integer
-          description: Number of low severity vulnerabilities
-        none:
-          type: integer
-          description: Number of vulnerabilities with no assigned severity
-          example: 0
-        total:
-          type: integer
-          description: Total number of vulnerabilities across all severity levels
-          example: 100
-    ExternalJobTriageAgentToolExecution:
-      type: object
-      description: Tool execution data for a vulnerability triage, including analysis and reporting
-      properties:
-        name:
-          type: string
-          description: Name of the tool
-        input:
-          type: string
-          description: Input to the tool
-        output:
-          type: string
-          description: Output of the tool
-        error:
-          type: string
-          description: Error of the tool
-    SuspectedVulnerabilityTriage:
-      type: object
-      description: Triage assessment data for a vulnerability, including analysis and reporting
-      properties:
-        id:
-          type: string
-          description: Unique identifier for this triage assessment
-        content:
-          type: object
-          description: Detailed content of the triage analysis
-          properties:
-            thoughts:
-              type: array
-              description: List of analytical thoughts or observations from the triage process
-              items:
-                $ref: '#/components/schemas/ExternalJobTriageAgentThought'
-            report:
-              type: string
-              description: Comprehensive triage report with findings and recommendations
-    SuspectedVulnerabilitiesSummaries_Counts:
-      type: object
-      description: Numerical counts of vulnerabilities grouped by various attributes
-      properties:
-        severity:
-          $ref: '#/components/schemas/SuspectedVulnerabilitiesSummaries_SummarySeverity'
-        status:
-          $ref: '#/components/schemas/SuspectedVulnerabilitiesSummaries_SummaryStatus'
-    ExternalJobTriageAgentBlock:
-      type: object
-      description: Block data for a vulnerability triage, including analysis and reporting
-      properties:
-        parentThoughtId:
-          type: string
-          description: Unique identifier for the parent thought
-        predecessorThoughtId:
-          type: string
-          description: Unique identifier for the predecessor thought
     NewSuspectedVulnerability:
       description: Object, describing properties of a new suspected vulnerability to create
       type: object
@@ -1128,10 +836,219 @@ components:
       - cvssVersion
       - lastFoundAt
       - source
-    StringMap:
+    SuspectedVulnerability_2:
       type: object
-      additionalProperties:
-        type: string
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique numeric identifier for the suspected vulnerability
+          example: 2000
+        assetUid:
+          type: string
+          description: Unique identifier for the asset where the vulnerability was discovered
+          example: ah28034gsjdf98eqwgbjufj
+        listingUid:
+          type: string
+          description: Unique identifier for the penetration testing listing/engagement scope
+          example: ah28034gsjdf
+        listingCodename:
+          type: string
+          description: Human-readable codename for the penetration testing engagement
+          example: ACME-H001
+        organizationUid:
+          type: string
+          description: Unique identifier for the organization that owns this vulnerability
+          example: ah28034gsjdf
+        categoryInScope:
+          type: boolean
+          description: Indicates whether this vulnerability category is within the current testing scope
+        confidence:
+          type: string
+          description: Confidence level of the vulnerability assessment (e.g., 'firm', 'tentative', 'certain')
+          example: firm
+        cvssBase:
+          type: number
+          format: double
+          description: CVSS (Common Vulnerability Scoring System) base score indicating severity (0-10 scale)
+          example: 5.4
+        exploitableLocations:
+          type: array
+          description: List of key-value maps describing exploitable locations
+          items:
+            $ref: '#/components/schemas/StringMap'
+        falsePositive:
+          type: boolean
+          description: Flag indicating whether this vulnerability has been determined to be a false positive
+        payload:
+          type: object
+          description: Additional vulnerability data and metadata from the detection source
+          $ref: '#/components/schemas/StringMap'
+        referenceUrls:
+          type: array
+          items:
+            type: string
+          description: External reference URLs providing additional context about the vulnerability
+          example:
+          - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring_ec2.html
+          - https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html
+        severity:
+          type: string
+          description: Normalized severity classification (e.g., 'low', 'medium', 'high', 'critical')
+          example: low
+        source:
+          type: string
+          description: Tool or system that originally detected this vulnerability
+          example: synack
+        sourceId:
+          type: string
+          description: Unique identifier for the source job or detection run that created this vulnerability
+          example: job-abc-123
+        vulnerabilityStatusId:
+          type: integer
+          format: int64
+          description: Numeric identifier for the vulnerability's current status in the workflow
+        reasonTitle:
+          type: string
+          description: Brief title explaining the reason for the current status or assessment
+        reasonDescription:
+          type: string
+          description: Detailed explanation of the reasoning behind the current status or triage decision
+        automatedTriageStatus:
+          type: string
+          description: Current status of the vulnerability in the automated triage workflow
+        automatedTriageStatusUpdatedAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the automated triage status was last updated
+          example: '2023-12-25T15:45:30.123Z'
+        cves:
+          type: array
+          description: List of Common Vulnerabilities and Exposures (CVE) identifiers associated with this vulnerability
+          items:
+            type: string
+            example: CVE-2025-1238923
+        cwes:
+          type: array
+          description: List of Common Weakness Enumeration (CWE) identifiers classifying this vulnerability type
+          items:
+            type: string
+            example: CWE-1238923
+        status:
+          type: string
+          description: Current workflow status of the vulnerability (e.g., 'eligible', 'vulnerable', 'not_vulnerable')
+        typeId:
+          type: string
+          description: String identifier for the vulnerability type classification
+          example: Type-69d55e
+        typeTitle:
+          type: string
+          description: Title of the vulnerability type
+          example: SQL Injection
+        typeCategoryId:
+          type: string
+          description: Identifier for the category that this vulnerability type belongs to
+        typeCategoryParentName:
+          type: string
+          description: Name of the parent category for hierarchical vulnerability classification
+        typeCategoryChildName:
+          type: string
+          description: Name of the child category for hierarchical vulnerability classification
+        typeDescription:
+          type: string
+          description: Description of the vulnerability type
+        exploitableVulnerabilityId:
+          type: string
+          description: Unique identifier linking this vulnerability to exploitable vulnerability records
+          example: test_e859b6a8371c-m001-4
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the vulnerability was first created in the system
+          example: '2023-12-25T15:45:30.123Z'
+        lastDetectedAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the vulnerability was most recently detected or confirmed
+          example: '2023-12-25T15:45:30.123Z'
+        triageIneligibleReason:
+          type: string
+          description: Reason why the vulnerability is not eligible for automated triage
+          example: Triage already started or performed.
+        solution:
+          type: string
+          description: Solution to the vulnerability
+          example: Microsoft has released security update KB5002113 to address this issue.
+        vendorRiskScore:
+          type: number
+          description: A risk score value provided by the vendor of the imported vulnerability.
+          example: 1.3
+    Pagination:
+      type: object
+      description: Pagination metadata for navigating through large result sets
+      required:
+      - total
+      - page
+      - perPage
+      - totalPages
+      properties:
+        total:
+          type: integer
+          description: Total number of items across all pages
+        page:
+          type: integer
+          description: Current page number (1-based)
+        perPage:
+          type: integer
+          description: Number of items per page
+        totalPages:
+          type: integer
+          description: Total number of pages available
+        prev:
+          type: string
+          description: URL for the previous page (null if on first page)
+        next:
+          type: string
+          description: URL for the next page (null if on last page)
+        first:
+          type: string
+          description: URL for the first page
+        last:
+          type: string
+          description: URL for the last page
+        self:
+          type: string
+          description: URL for the current page
+    SuspectedVulnerabilitiesSummaries:
+      type: object
+      description: Statistical summary information about the vulnerabilities in the result set
+      properties:
+        counts:
+          $ref: '#/components/schemas/SuspectedVulnerabilitiesSummaries_Counts'
+    SuspectedVulnerabilitiesSummaries_SummarySeverity:
+      type: object
+      description: Summary severity of the vulnerabilities
+      properties:
+        critical:
+          type: integer
+          description: Number of critical severity vulnerabilities
+        high:
+          type: integer
+          description: Number of high severity vulnerabilities
+        medium:
+          type: integer
+          description: Number of medium severity vulnerabilities
+        low:
+          type: integer
+          description: Number of low severity vulnerabilities
+        none:
+          type: integer
+          description: Number of vulnerabilities with no assigned severity
+          example: 0
+        total:
+          type: integer
+          description: Total number of vulnerabilities across all severity levels
+          example: 100
     SuspectedVulnerabilitiesSummaries_SummaryStatus:
       type: object
       description: Summary status of the vulnerabilities
@@ -1195,56 +1112,104 @@ components:
             description: Associated triage assessments for this vulnerability
             items:
               $ref: '#/components/schemas/SuspectedVulnerabilityTriage'
+    Metadata:
+      type: object
+      description: Additional metadata accompanying API responses
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        actions:
+          type: object
+          description: Available actions that can be performed on the returned data
+    ExternalJobTriageAgentThought:
+      type: object
+      description: Thought data for a vulnerability triage, including analysis and reporting
+      properties:
+        triageId:
+          type: string
+          description: Unique identifier for this triage assessment
+        targetId:
+          type: string
+          description: Unique identifier for the target of this triage assessment
+        thoughtId:
+          type: string
+          description: Unique identifier for this thought
+        thoughtType:
+          type: string
+          description: Type of thought
+        thoughtContent:
+          type: string
+          description: Content of the thought
+        toolExecution:
+          $ref: '#/components/schemas/ExternalJobTriageAgentToolExecution'
+        block:
+          $ref: '#/components/schemas/ExternalJobTriageAgentBlock'
+        addedAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the thought was added
+    ExternalJobTriageAgentToolExecution:
+      type: object
+      description: Tool execution data for a vulnerability triage, including analysis and reporting
+      properties:
+        name:
+          type: string
+          description: Name of the tool
+        input:
+          type: string
+          description: Input to the tool
+        output:
+          type: string
+          description: Output of the tool
+        error:
+          type: string
+          description: Error of the tool
+    SuspectedVulnerabilitiesSummaries_Counts:
+      type: object
+      description: Numerical counts of vulnerabilities grouped by various attributes
+      properties:
+        severity:
+          $ref: '#/components/schemas/SuspectedVulnerabilitiesSummaries_SummarySeverity'
+        status:
+          $ref: '#/components/schemas/SuspectedVulnerabilitiesSummaries_SummaryStatus'
+    StringMap:
+      type: object
+      additionalProperties:
+        type: string
+    SuspectedVulnerabilityTriage:
+      type: object
+      description: Triage assessment data for a vulnerability, including analysis and reporting
+      properties:
+        id:
+          type: string
+          description: Unique identifier for this triage assessment
+        content:
+          type: object
+          description: Detailed content of the triage analysis
+          properties:
+            thoughts:
+              type: array
+              description: List of analytical thoughts or observations from the triage process
+              items:
+                $ref: '#/components/schemas/ExternalJobTriageAgentThought'
+            report:
+              type: string
+              description: Comprehensive triage report with findings and recommendations
   responses:
-    Unauthorized:
-      description: 'Unauthorized - Authentication failed. The bearer token is missing, expired,
-
-        invalid, or lacks sufficient permissions to access this resource.
-
-        '
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error_2'
-    NotFound:
-      description: 'Not Found - The requested resource does not exist. This may occur when
-
-        referencing invalid organization UIDs or non-existent vulnerability IDs.
-
-        '
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error_2'
-    UnprocessableEntity:
-      description: 'Unprocessable Entity - The request is well-formed but contains semantic errors
-
-        or business logic violations that prevent processing (e.g., invalid status transitions).
-
-        '
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error_2'
-    SuspectedVulnerabilityResponse:
-      description: 'Successfully retrieved detailed information for a single suspected vulnerability,
-
-        including associated triage data and related metadata.
-
-        '
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              suspectedVulnerability:
-                $ref: '#/components/schemas/SuspectedVulnerabilityWithTriages'
-              metadata:
-                $ref: '#/components/schemas/Metadata'
     UnexpectedError:
       description: 'Unexpected Error - An unhandled error condition occurred. This represents
 
         an edge case scenario that requires technical support intervention.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error_2'
+    BadRequest:
+      description: 'Bad Request - The request is malformed, contains invalid parameters, or missing
+
+        required fields. Check request syntax and parameter values.
 
         '
       content:
@@ -1260,10 +1225,20 @@ components:
             description: List of numeric identifiers of newly created suspected vulnerabilities
             items:
               type: integer
-    BadRequest:
-      description: 'Bad Request - The request is malformed, contains invalid parameters, or missing
+    UnprocessableEntity:
+      description: 'Unprocessable Entity - The request is well-formed but contains semantic errors
 
-        required fields. Check request syntax and parameter values.
+        or business logic violations that prevent processing (e.g., invalid status transitions).
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error_2'
+    Unauthorized:
+      description: 'Unauthorized - Authentication failed. The bearer token is missing, expired,
+
+        invalid, or lacks sufficient permissions to access this resource.
 
         '
       content:
@@ -1328,6 +1303,31 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error_2'
+    NotFound:
+      description: 'Not Found - The requested resource does not exist. This may occur when
+
+        referencing invalid organization UIDs or non-existent vulnerability IDs.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error_2'
+    SuspectedVulnerabilityResponse:
+      description: 'Successfully retrieved detailed information for a single suspected vulnerability,
+
+        including associated triage data and related metadata.
+
+        '
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              suspectedVulnerability:
+                $ref: '#/components/schemas/SuspectedVulnerabilityWithTriages'
+              metadata:
+                $ref: '#/components/schemas/Metadata'
   securitySchemes:
     BearerAuth:
       type: http
