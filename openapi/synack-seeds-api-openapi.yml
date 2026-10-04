@@ -439,69 +439,42 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    SeedGroupUID:
-      type: string
-      pattern: ^[0-9a-f]{12}
-      description: Unique identifier for a seed group.
-    Updatable:
-      allOf:
-      - type: object
-        properties:
-          updatedAt:
-            type: string
-            format: date-time
-            readOnly: true
-            description: Automatically set by the server to the time the request was processed whenever the resource is updated.
-          updatedBy:
-            $ref: '#/components/schemas/OperationUserUID'
-      - $ref: '#/components/schemas/Creatable'
-    OperationUserUID:
-      type: string
-      pattern: ^[0-9a-f]{12}
-      readOnly: true
-      description: Automatically set by the server to the requesting user whenever the resource is updated. May be a user account or a service account if the action is performed by an automated.
-    SeedUID:
-      type: string
-      pattern: ^[0-9a-f]{24}
-      description: Unique identifier for a seed.
-    SeedGroupUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-        asmEnabled:
-          type: boolean
-        autoConfirmationEnabled:
-          type: boolean
-          description: Indicates whether discovered assets from this seed group will be created as unconfirmed or confirmed.
     OrganizationUID:
       type: string
       pattern: ^[-_0-9a-z]{1,50}
       description: Unique identifier for an organization.
-    ProblemDetails:
+    ArrayOfSeedGroups:
+      type: array
+      items:
+        $ref: '#/components/schemas/SeedGroup'
+    ListingUID:
+      type: string
+      pattern: ^[-_0-9a-z]{1,50}
+      description: Unique identifier for an listing.
+    FailedValidation:
       type: object
-      description: 'See [RFC 7807: Problem Details for HTTP APIs](https://tools.ietf.org/html/rfc7807)'
+      required:
+      - message
       properties:
-        type:
+        property:
           type: string
           readOnly: true
-        title:
+        value:
           type: string
           readOnly: true
-        status:
+        message:
+          type: string
+          readOnly: true
+    ArrayOfSeeds:
+      type: array
+      items:
+        $ref: '#/components/schemas/Seed'
+    IndexedFailedValidations:
+      type: object
+      properties:
+        index:
           type: integer
-          format: int32
-          minimum: 100
-          maximum: 511
-          description: HTTP Status code.
-          readOnly: true
-        detail:
-          type: string
-          description: Message detailing the problem.
-          readOnly: true
-        instance:
-          type: string
-          description: generated problem instance number to correlate with logs
+          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
           readOnly: true
         failedValidation:
           type: array
@@ -509,25 +482,6 @@ components:
           readOnly: true
           items:
             $ref: '#/components/schemas/FailedValidation'
-        failedValidations:
-          type: array
-          description: Array of indexed failed validation rules.
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/IndexedFailedValidations'
-        maxBatchSize:
-          type: integer
-          description: Maximum processable batch size.
-          readOnly: true
-        batchSize:
-          type: integer
-          description: Batch size sent when batch is too large.
-          readOnly: true
-    UID:
-      type: string
-      pattern: ^[0-9a-f]{12}
-      readOnly: true
-      description: Unique Identifier.
     SeedGroup:
       allOf:
       - type: object
@@ -576,60 +530,6 @@ components:
             items:
               $ref: '#/components/schemas/Tag'
       - $ref: '#/components/schemas/Updatable'
-    ArrayOfSeeds:
-      type: array
-      items:
-        $ref: '#/components/schemas/Seed'
-    ListingUID:
-      type: string
-      pattern: ^[-_0-9a-z]{1,50}
-      description: Unique identifier for an listing.
-    NewSeedGroup:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        autoConfirmationEnabled:
-          type: boolean
-        seeds:
-          type: array
-          items:
-            $ref: '#/components/schemas/NewSeed'
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tag'
-    IndexedFailedValidations:
-      type: object
-      properties:
-        index:
-          type: integer
-          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
-          readOnly: true
-        failedValidation:
-          type: array
-          description: Array of failed validation rules.
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/FailedValidation'
-    Tag:
-      type: string
-      pattern: ^[-_0-9a-zA-Z]{1,16}
-    Creatable:
-      type: object
-      required:
-      - createdAt
-      - createdBy
-      properties:
-        createdAt:
-          type: string
-          format: date-time
-          readOnly: true
-          description: Automatically set by the server to the time the request was processed whenever the resource was created.
-        createdBy:
-          $ref: '#/components/schemas/OperationUserUID'
     BatchTagsUpdate:
       type: object
       description: Tags to remove and add to seeds and seed group
@@ -659,6 +559,75 @@ components:
           description: Array of tags to add to the supplied seeds.
           items:
             $ref: '#/components/schemas/Tag'
+    SeedUID:
+      type: string
+      pattern: ^[0-9a-f]{24}
+      description: Unique identifier for a seed.
+    Creatable:
+      type: object
+      required:
+      - createdAt
+      - createdBy
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Automatically set by the server to the time the request was processed whenever the resource was created.
+        createdBy:
+          $ref: '#/components/schemas/OperationUserUID'
+    Tag:
+      type: string
+      pattern: ^[-_0-9a-zA-Z]{1,16}
+    SeedGroupUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      description: Unique identifier for a seed group.
+    ProblemDetails:
+      type: object
+      description: 'See [RFC 7807: Problem Details for HTTP APIs](https://tools.ietf.org/html/rfc7807)'
+      properties:
+        type:
+          type: string
+          readOnly: true
+        title:
+          type: string
+          readOnly: true
+        status:
+          type: integer
+          format: int32
+          minimum: 100
+          maximum: 511
+          description: HTTP Status code.
+          readOnly: true
+        detail:
+          type: string
+          description: Message detailing the problem.
+          readOnly: true
+        instance:
+          type: string
+          description: generated problem instance number to correlate with logs
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
+        failedValidations:
+          type: array
+          description: Array of indexed failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/IndexedFailedValidations'
+        maxBatchSize:
+          type: integer
+          description: Maximum processable batch size.
+          readOnly: true
+        batchSize:
+          type: integer
+          description: Batch size sent when batch is too large.
+          readOnly: true
     Seed:
       allOf:
       - type: object
@@ -683,10 +652,16 @@ components:
             items:
               $ref: '#/components/schemas/Tag'
       - $ref: '#/components/schemas/Updatable'
-    ArrayOfSeedGroups:
-      type: array
-      items:
-        $ref: '#/components/schemas/SeedGroup'
+    OperationUserUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      readOnly: true
+      description: Automatically set by the server to the requesting user whenever the resource is updated. May be a user account or a service account if the action is performed by an automated.
+    UID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      readOnly: true
+      description: Unique Identifier.
     NewSeed:
       type: object
       required:
@@ -701,6 +676,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Tag'
+    NewSeedGroup:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        autoConfirmationEnabled:
+          type: boolean
+        seeds:
+          type: array
+          items:
+            $ref: '#/components/schemas/NewSeed'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
     SeedType:
       type: string
       enum:
@@ -708,83 +700,138 @@ components:
       - domain
       - cidr
       - ip_range
-    FailedValidation:
+    Updatable:
+      allOf:
+      - type: object
+        properties:
+          updatedAt:
+            type: string
+            format: date-time
+            readOnly: true
+            description: Automatically set by the server to the time the request was processed whenever the resource is updated.
+          updatedBy:
+            $ref: '#/components/schemas/OperationUserUID'
+      - $ref: '#/components/schemas/Creatable'
+    SeedGroupUpdate:
       type: object
-      required:
-      - message
       properties:
-        property:
+        name:
           type: string
-          readOnly: true
-        value:
-          type: string
-          readOnly: true
-        message:
-          type: string
-          readOnly: true
+        asmEnabled:
+          type: boolean
+        autoConfirmationEnabled:
+          type: boolean
+          description: Indicates whether discovered assets from this seed group will be created as unconfirmed or confirmed.
+  headers:
+    Link:
+      description: Standard link header.
+      schema:
+        type: string
+    ETag:
+      description: An identifier for a specific version of a resource
+      schema:
+        type: string
+        pattern: ^(?:W\/)?\".*\"$
+    PaginationTotalPages:
+      description: Total number of pages in a paginated response.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    PaginationLimit:
+      description: Maximum number of items returned in a paginated response.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    PaginationCurrentPage:
+      description: Current page in a paginated response.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    PaginationTotalCount:
+      description: Total number of items in all pages of a paginated response.
+      schema:
+        format: int32
+        minimum: 1
+  parameters:
+    SeedGroupUIDPath:
+      name: seedGroupUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/SeedGroupUID'
+      required: true
+      description: Unique identifier for a seed group.
+    SeedUIDPath:
+      name: seedUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/UID'
+      required: true
+      description: Unique identifier for a seed.
+    SortDirQuery:
+      name: sortDir
+      in: query
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        default: asc
+      required: false
+      description: Direction of sort-order for items in the response.
+    PerPageQuery:
+      name: perPage
+      in: query
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 5000
+      required: false
+      description: 'Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.
+
+        '
+    PageQuery:
+      name: page
+      in: query
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      required: false
+      description: 'Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.
+
+        '
+    OrganizationUIDPath:
+      name: organizationUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/OrganizationUID'
+      required: true
+      description: Unique identifier for an organization group.
   responses:
-    SingleSeedGroupWithSeedsResponse:
-      description: The current state of the requested asset.
-      headers:
-        ETag:
-          $ref: '#/components/headers/ETag'
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              seedGroup:
-                description: The created seed group
-                $ref: '#/components/schemas/SeedGroup'
-              failedSeedValidations:
-                type: array
-                description: Array of failed validation rules for the seeds.
-                readOnly: true
-                items:
-                  $ref: '#/components/schemas/FailedValidation'
-    PaginatedSeedsResponse:
-      description: Paginated seeds.
-      headers:
-        Pagination-Limit:
-          $ref: '#/components/headers/PaginationLimit'
-        Pagination-Current-Page:
-          $ref: '#/components/headers/PaginationCurrentPage'
-        Pagination-Total-Pages:
-          $ref: '#/components/headers/PaginationTotalPages'
-        Pagination-Total-Count:
-          $ref: '#/components/headers/PaginationTotalCount'
-        Link:
-          $ref: '#/components/headers/Link'
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              seeds:
-                $ref: '#/components/schemas/ArrayOfSeeds'
     401Unauthorized:
       description: Unauthorized.
+    413RequestEntityTooLarge:
+      description: 'Returned generally when the size of the request body is too large to process, or specifically when the request contains too many items, typically in a bulk API operation.
+
+        '
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
     400BadRequest:
       description: Bad Request
-    204NoContent:
-      description: No content.
     503ServiceUnavailable:
       description: Service Unavailable.
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/ProblemDetails'
-    SingleSeedResponse:
-      description: The current state of a scope rule.
-      headers:
-        ETag:
-          $ref: '#/components/headers/ETag'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Seed'
-    409Conflict:
-      description: Conflict.
+    422EntityNotProcessable:
+      description: Entity Not Processable
       content:
         application/problem+json:
           schema:
@@ -795,18 +842,34 @@ components:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/ProblemDetails'
-    403Forbidden:
-      description: Forbidden
-    404NotFound:
-      description: Not found.
-    413RequestEntityTooLarge:
-      description: 'Returned generally when the size of the request body is too large to process, or specifically when the request contains too many items, typically in a bulk API operation.
-
-        '
+    204NoContent:
+      description: No content.
+    409Conflict:
+      description: Conflict.
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/ProblemDetails'
+    SingleSeedGroupResponse:
+      description: The current state of the requested asset.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SeedGroup'
+    SingleSeedResponse:
+      description: The current state of a scope rule.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Seed'
+    403Forbidden:
+      description: Forbidden
     PaginatedSeedGroupsResponse:
       description: Paginated seed groups.
       headers:
@@ -827,13 +890,7 @@ components:
             properties:
               seedGroups:
                 $ref: '#/components/schemas/ArrayOfSeedGroups'
-    422EntityNotProcessable:
-      description: Entity Not Processable
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    SingleSeedGroupResponse:
+    SingleSeedGroupWithSeedsResponse:
       description: The current state of the requested asset.
       headers:
         ETag:
@@ -841,96 +898,39 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/SeedGroup'
-  headers:
-    PaginationTotalPages:
-      description: Total number of pages in a paginated response.
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-    PaginationLimit:
-      description: Maximum number of items returned in a paginated response.
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-    PaginationTotalCount:
-      description: Total number of items in all pages of a paginated response.
-      schema:
-        format: int32
-        minimum: 1
-    Link:
-      description: Standard link header.
-      schema:
-        type: string
-    PaginationCurrentPage:
-      description: Current page in a paginated response.
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-    ETag:
-      description: An identifier for a specific version of a resource
-      schema:
-        type: string
-        pattern: ^(?:W\/)?\".*\"$
-  parameters:
-    PerPageQuery:
-      name: perPage
-      in: query
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 5000
-      required: false
-      description: 'Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.
-
-        '
-    OrganizationUIDPath:
-      name: organizationUid
-      in: path
-      schema:
-        $ref: '#/components/schemas/OrganizationUID'
-      required: true
-      description: Unique identifier for an organization group.
-    PageQuery:
-      name: page
-      in: query
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-      required: false
-      description: 'Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.
-
-        '
-    SortDirQuery:
-      name: sortDir
-      in: query
-      schema:
-        type: string
-        enum:
-        - asc
-        - desc
-        default: asc
-      required: false
-      description: Direction of sort-order for items in the response.
-    SeedGroupUIDPath:
-      name: seedGroupUid
-      in: path
-      schema:
-        $ref: '#/components/schemas/SeedGroupUID'
-      required: true
-      description: Unique identifier for a seed group.
-    SeedUIDPath:
-      name: seedUid
-      in: path
-      schema:
-        $ref: '#/components/schemas/UID'
-      required: true
-      description: Unique identifier for a seed.
+            type: object
+            properties:
+              seedGroup:
+                description: The created seed group
+                $ref: '#/components/schemas/SeedGroup'
+              failedSeedValidations:
+                type: array
+                description: Array of failed validation rules for the seeds.
+                readOnly: true
+                items:
+                  $ref: '#/components/schemas/FailedValidation'
+    404NotFound:
+      description: Not found.
+    PaginatedSeedsResponse:
+      description: Paginated seeds.
+      headers:
+        Pagination-Limit:
+          $ref: '#/components/headers/PaginationLimit'
+        Pagination-Current-Page:
+          $ref: '#/components/headers/PaginationCurrentPage'
+        Pagination-Total-Pages:
+          $ref: '#/components/headers/PaginationTotalPages'
+        Pagination-Total-Count:
+          $ref: '#/components/headers/PaginationTotalCount'
+        Link:
+          $ref: '#/components/headers/Link'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              seeds:
+                $ref: '#/components/schemas/ArrayOfSeeds'
   securitySchemes:
     OAuth2:
       type: oauth2

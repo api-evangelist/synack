@@ -379,17 +379,18 @@ components:
         createdAt:
           type: string
           format: date-time
-    ValidationProblemDetails:
-      allOf:
-      - $ref: '#/components/schemas/ProblemDetails'
-      - type: object
-        required:
-        - invalidParams
-        properties:
-          invalidParams:
-            type: array
-            items:
-              $ref: '#/components/schemas/ProblemDetailsSubProblem'
+    ProblemDetailsSubProblem:
+      type: object
+      required:
+      - name
+      - reason
+      properties:
+        name:
+          type: string
+          description: The parameter name that caused the validation error
+        reason:
+          type: string
+          description: The reason why the parameter is invalid
     ProblemDetails:
       type: object
       required:
@@ -409,18 +410,58 @@ components:
         organization:
           type: string
           description: The organization UID associated with the problem
-    ProblemDetailsSubProblem:
+    ValidationProblemDetails:
+      allOf:
+      - $ref: '#/components/schemas/ProblemDetails'
+      - type: object
+        required:
+        - invalidParams
+        properties:
+          invalidParams:
+            type: array
+            items:
+              $ref: '#/components/schemas/ProblemDetailsSubProblem'
+    Links:
       type: object
-      required:
-      - name
-      - reason
       properties:
-        name:
+        next:
           type: string
-          description: The parameter name that caused the validation error
-        reason:
+        prev:
           type: string
-          description: The reason why the parameter is invalid
+    Relationship:
+      type: object
+      properties:
+        data: {}
+        links:
+          $ref: '#/components/schemas/Links'
+    Document:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Data'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        included:
+          type: array
+          items: {}
+        links:
+          $ref: '#/components/schemas/Links'
+        meta: {}
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+        id:
+          type: string
+        source:
+          type: string
+        status:
+          type: integer
+        title:
+          type: string
     ResourceType:
       type: string
       enum:
@@ -460,47 +501,6 @@ components:
             $ref: '#/components/schemas/Relationship'
         type:
           $ref: '#/components/schemas/ResourceType'
-    Links:
-      type: object
-      properties:
-        next:
-          type: string
-        prev:
-          type: string
-    Error:
-      type: object
-      properties:
-        detail:
-          type: string
-        id:
-          type: string
-        source:
-          type: string
-        status:
-          type: integer
-        title:
-          type: string
-    Document:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Data'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-        included:
-          type: array
-          items: {}
-        links:
-          $ref: '#/components/schemas/Links'
-        meta: {}
-    Relationship:
-      type: object
-      properties:
-        data: {}
-        links:
-          $ref: '#/components/schemas/Links'
   securitySchemes:
     BearerAuth:
       type: http

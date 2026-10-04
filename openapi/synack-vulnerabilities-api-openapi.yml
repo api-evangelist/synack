@@ -348,6 +348,31 @@ paths:
       description: FedRAMP (Medium)
 components:
   schemas:
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        editable:
+          type: boolean
+        organization_profile_id:
+          type: integer
+    Attachment:
+      type: object
+      properties:
+        id:
+          type: integer
+        filename:
+          type: string
+        content_type:
+          type: string
+        file_size:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
     Vulnerability:
       type: object
       properties:
@@ -384,31 +409,47 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Attachment'
-    Attachment:
+    Links:
       type: object
       properties:
-        id:
-          type: integer
-        filename:
+        next:
           type: string
-        content_type:
+        prev:
           type: string
-        file_size:
-          type: integer
-        created_at:
-          type: string
-          format: date-time
-    Tag:
+    Relationship:
       type: object
       properties:
-        id:
-          type: integer
-        name:
+        data: {}
+        links:
+          $ref: '#/components/schemas/Links'
+    Document:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Data'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        included:
+          type: array
+          items: {}
+        links:
+          $ref: '#/components/schemas/Links'
+        meta: {}
+    Error:
+      type: object
+      properties:
+        detail:
           type: string
-        editable:
-          type: boolean
-        organization_profile_id:
+        id:
+          type: string
+        source:
+          type: string
+        status:
           type: integer
+        title:
+          type: string
     ResourceType:
       type: string
       enum:
@@ -448,47 +489,6 @@ components:
             $ref: '#/components/schemas/Relationship'
         type:
           $ref: '#/components/schemas/ResourceType'
-    Links:
-      type: object
-      properties:
-        next:
-          type: string
-        prev:
-          type: string
-    Error:
-      type: object
-      properties:
-        detail:
-          type: string
-        id:
-          type: string
-        source:
-          type: string
-        status:
-          type: integer
-        title:
-          type: string
-    Document:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Data'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-        included:
-          type: array
-          items: {}
-        links:
-          $ref: '#/components/schemas/Links'
-        meta: {}
-    Relationship:
-      type: object
-      properties:
-        data: {}
-        links:
-          $ref: '#/components/schemas/Links'
   securitySchemes:
     BearerAuth:
       type: http

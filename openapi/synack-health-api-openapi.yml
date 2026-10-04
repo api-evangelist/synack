@@ -41,6 +41,47 @@ paths:
                 type: string
 components:
   schemas:
+    Links:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+    Relationship:
+      type: object
+      properties:
+        data: {}
+        links:
+          $ref: '#/components/schemas/Links'
+    Document:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Data'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        included:
+          type: array
+          items: {}
+        links:
+          $ref: '#/components/schemas/Links'
+        meta: {}
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+        id:
+          type: string
+        source:
+          type: string
+        status:
+          type: integer
+        title:
+          type: string
     ResourceType:
       type: string
       enum:
@@ -80,47 +121,6 @@ components:
             $ref: '#/components/schemas/Relationship'
         type:
           $ref: '#/components/schemas/ResourceType'
-    Links:
-      type: object
-      properties:
-        next:
-          type: string
-        prev:
-          type: string
-    Error:
-      type: object
-      properties:
-        detail:
-          type: string
-        id:
-          type: string
-        source:
-          type: string
-        status:
-          type: integer
-        title:
-          type: string
-    Document:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Data'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-        included:
-          type: array
-          items: {}
-        links:
-          $ref: '#/components/schemas/Links'
-        meta: {}
-    Relationship:
-      type: object
-      properties:
-        data: {}
-        links:
-          $ref: '#/components/schemas/Links'
   securitySchemes:
     bearerAuth:
       type: http

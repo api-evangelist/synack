@@ -72,21 +72,6 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  parameters:
-    AssessmentUid:
-      name: assessmentUid
-      in: path
-      required: true
-      description: The unique identifier of the assessment.
-      schema:
-        type: string
-    OrganizationUid:
-      name: organizationUid
-      in: path
-      required: true
-      description: The unique identifier of the organization.
-      schema:
-        type: string
   responses:
     Conflict:
       description: The resource is not in a state that permits the requested action.
@@ -94,8 +79,8 @@ components:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/Problem'
-    InternalServerError:
-      description: Server error.
+    Forbidden:
+      description: Authenticated but lacks permission for this resource.
       content:
         application/problem+json:
           schema:
@@ -112,8 +97,8 @@ components:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/Problem'
-    Forbidden:
-      description: Authenticated but lacks permission for this resource.
+    InternalServerError:
+      description: Server error.
       content:
         application/problem+json:
           schema:
@@ -142,6 +127,21 @@ components:
         logId:
           type: string
           description: Unique log message identifier for support.
+  parameters:
+    AssessmentUid:
+      name: assessmentUid
+      in: path
+      required: true
+      description: The unique identifier of the assessment.
+      schema:
+        type: string
+    OrganizationUid:
+      name: organizationUid
+      in: path
+      required: true
+      description: The unique identifier of the organization.
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

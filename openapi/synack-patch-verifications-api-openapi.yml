@@ -84,6 +84,20 @@ paths:
           description: Vulnerability not found
 components:
   schemas:
+    PatchVerification:
+      type: object
+      properties:
+        id:
+          type: integer
+        message:
+          type: string
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        user:
+          $ref: '#/components/schemas/User'
     User:
       required:
       - assessment_ids
@@ -112,20 +126,6 @@ components:
         banned:
           type: boolean
           description: boolean flag to indicate whether the user has been banned
-    PatchVerification:
-      type: object
-      properties:
-        id:
-          type: integer
-        message:
-          type: string
-        status:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        user:
-          $ref: '#/components/schemas/User'
   securitySchemes:
     BearerAuth:
       type: http

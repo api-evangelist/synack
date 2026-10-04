@@ -563,6 +563,47 @@ components:
         automated_triage_status_updated_at:
           type: string
           format: date-time
+    Links:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+    Relationship:
+      type: object
+      properties:
+        data: {}
+        links:
+          $ref: '#/components/schemas/Links'
+    Document:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Data'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        included:
+          type: array
+          items: {}
+        links:
+          $ref: '#/components/schemas/Links'
+        meta: {}
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+        id:
+          type: string
+        source:
+          type: string
+        status:
+          type: integer
+        title:
+          type: string
     ResourceType:
       type: string
       enum:
@@ -602,84 +643,6 @@ components:
             $ref: '#/components/schemas/Relationship'
         type:
           $ref: '#/components/schemas/ResourceType'
-    Links:
-      type: object
-      properties:
-        next:
-          type: string
-        prev:
-          type: string
-    Error:
-      type: object
-      properties:
-        detail:
-          type: string
-        id:
-          type: string
-        source:
-          type: string
-        status:
-          type: integer
-        title:
-          type: string
-    Document:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Data'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-        included:
-          type: array
-          items: {}
-        links:
-          $ref: '#/components/schemas/Links'
-        meta: {}
-    Relationship:
-      type: object
-      properties:
-        data: {}
-        links:
-          $ref: '#/components/schemas/Links'
-    SuspectedVulnerabilitiesCreateRequest:
-      description: List of objects, describing the properties of suspected vulnerabilities to create
-      type: array
-      items:
-        $ref: '#/components/schemas/NewSuspectedVulnerability'
-    ExternalJobTriageAgentBlock:
-      type: object
-      description: Block data for a vulnerability triage, including analysis and reporting
-      properties:
-        parentThoughtId:
-          type: string
-          description: Unique identifier for the parent thought
-        predecessorThoughtId:
-          type: string
-          description: Unique identifier for the predecessor thought
-    Error_2:
-      type: object
-      description: Standard error response format following RFC 7807 Problem Details specification
-      required:
-      - status
-      - title
-      properties:
-        type:
-          type: string
-          description: URI reference that identifies the problem type
-        status:
-          type: integer
-          description: HTTP status code for this occurrence of the problem
-        title:
-          type: string
-          description: Human-readable summary of the problem type
-        detail:
-          type: string
-          description: Human-readable explanation specific to this occurrence
-        instance:
-          type: string
-          description: URI reference identifying the specific occurrence of the problem
     NewSuspectedVulnerability:
       description: Object, describing properties of a new suspected vulnerability to create
       type: object
@@ -836,6 +799,49 @@ components:
       - cvssVersion
       - lastFoundAt
       - source
+    SuspectedVulnerabilitiesSummaries_SummarySeverity:
+      type: object
+      description: Summary severity of the vulnerabilities
+      properties:
+        critical:
+          type: integer
+          description: Number of critical severity vulnerabilities
+        high:
+          type: integer
+          description: Number of high severity vulnerabilities
+        medium:
+          type: integer
+          description: Number of medium severity vulnerabilities
+        low:
+          type: integer
+          description: Number of low severity vulnerabilities
+        none:
+          type: integer
+          description: Number of vulnerabilities with no assigned severity
+          example: 0
+        total:
+          type: integer
+          description: Total number of vulnerabilities across all severity levels
+          example: 100
+    SuspectedVulnerabilitiesSummaries_Counts:
+      type: object
+      description: Numerical counts of vulnerabilities grouped by various attributes
+      properties:
+        severity:
+          $ref: '#/components/schemas/SuspectedVulnerabilitiesSummaries_SummarySeverity'
+        status:
+          $ref: '#/components/schemas/SuspectedVulnerabilitiesSummaries_SummaryStatus'
+    SuspectedVulnerabilitiesSummaries:
+      type: object
+      description: Statistical summary information about the vulnerabilities in the result set
+      properties:
+        counts:
+          $ref: '#/components/schemas/SuspectedVulnerabilitiesSummaries_Counts'
+    SuspectedVulnerabilitiesCreateRequest:
+      description: List of objects, describing the properties of suspected vulnerabilities to create
+      type: array
+      items:
+        $ref: '#/components/schemas/NewSuspectedVulnerability'
     SuspectedVulnerability_2:
       type: object
       properties:
@@ -983,72 +989,52 @@ components:
           type: number
           description: A risk score value provided by the vendor of the imported vulnerability.
           example: 1.3
-    Pagination:
+    SuspectedVulnerabilityTriage:
       type: object
-      description: Pagination metadata for navigating through large result sets
-      required:
-      - total
-      - page
-      - perPage
-      - totalPages
+      description: Triage assessment data for a vulnerability, including analysis and reporting
       properties:
-        total:
-          type: integer
-          description: Total number of items across all pages
-        page:
-          type: integer
-          description: Current page number (1-based)
-        perPage:
-          type: integer
-          description: Number of items per page
-        totalPages:
-          type: integer
-          description: Total number of pages available
-        prev:
+        id:
           type: string
-          description: URL for the previous page (null if on first page)
-        next:
-          type: string
-          description: URL for the next page (null if on last page)
-        first:
-          type: string
-          description: URL for the first page
-        last:
-          type: string
-          description: URL for the last page
-        self:
-          type: string
-          description: URL for the current page
-    SuspectedVulnerabilitiesSummaries:
+          description: Unique identifier for this triage assessment
+        content:
+          type: object
+          description: Detailed content of the triage analysis
+          properties:
+            thoughts:
+              type: array
+              description: List of analytical thoughts or observations from the triage process
+              items:
+                $ref: '#/components/schemas/ExternalJobTriageAgentThought'
+            report:
+              type: string
+              description: Comprehensive triage report with findings and recommendations
+    ExternalJobTriageAgentThought:
       type: object
-      description: Statistical summary information about the vulnerabilities in the result set
+      description: Thought data for a vulnerability triage, including analysis and reporting
       properties:
-        counts:
-          $ref: '#/components/schemas/SuspectedVulnerabilitiesSummaries_Counts'
-    SuspectedVulnerabilitiesSummaries_SummarySeverity:
-      type: object
-      description: Summary severity of the vulnerabilities
-      properties:
-        critical:
-          type: integer
-          description: Number of critical severity vulnerabilities
-        high:
-          type: integer
-          description: Number of high severity vulnerabilities
-        medium:
-          type: integer
-          description: Number of medium severity vulnerabilities
-        low:
-          type: integer
-          description: Number of low severity vulnerabilities
-        none:
-          type: integer
-          description: Number of vulnerabilities with no assigned severity
-          example: 0
-        total:
-          type: integer
-          description: Total number of vulnerabilities across all severity levels
-          example: 100
+        triageId:
+          type: string
+          description: Unique identifier for this triage assessment
+        targetId:
+          type: string
+          description: Unique identifier for the target of this triage assessment
+        thoughtId:
+          type: string
+          description: Unique identifier for this thought
+        thoughtType:
+          type: string
+          description: Type of thought
+        thoughtContent:
+          type: string
+          description: Content of the thought
+        toolExecution:
+          $ref: '#/components/schemas/ExternalJobTriageAgentToolExecution'
+        block:
+          $ref: '#/components/schemas/ExternalJobTriageAgentBlock'
+        addedAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the thought was added
     SuspectedVulnerabilitiesSummaries_SummaryStatus:
       type: object
       description: Summary status of the vulnerabilities
@@ -1097,6 +1083,15 @@ components:
           type: integer
           description: Total number of vulnerabilities across all status categories
           example: 100
+    Metadata:
+      type: object
+      description: Additional metadata accompanying API responses
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        actions:
+          type: object
+          description: Available actions that can be performed on the returned data
     SuspectedVulnerabilityWithTriages:
       description: 'Extended suspected vulnerability schema that includes embedded triage assessments.
 
@@ -1112,42 +1107,6 @@ components:
             description: Associated triage assessments for this vulnerability
             items:
               $ref: '#/components/schemas/SuspectedVulnerabilityTriage'
-    Metadata:
-      type: object
-      description: Additional metadata accompanying API responses
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        actions:
-          type: object
-          description: Available actions that can be performed on the returned data
-    ExternalJobTriageAgentThought:
-      type: object
-      description: Thought data for a vulnerability triage, including analysis and reporting
-      properties:
-        triageId:
-          type: string
-          description: Unique identifier for this triage assessment
-        targetId:
-          type: string
-          description: Unique identifier for the target of this triage assessment
-        thoughtId:
-          type: string
-          description: Unique identifier for this thought
-        thoughtType:
-          type: string
-          description: Type of thought
-        thoughtContent:
-          type: string
-          description: Content of the thought
-        toolExecution:
-          $ref: '#/components/schemas/ExternalJobTriageAgentToolExecution'
-        block:
-          $ref: '#/components/schemas/ExternalJobTriageAgentBlock'
-        addedAt:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp when the thought was added
     ExternalJobTriageAgentToolExecution:
       type: object
       description: Tool execution data for a vulnerability triage, including analysis and reporting
@@ -1164,67 +1123,89 @@ components:
         error:
           type: string
           description: Error of the tool
-    SuspectedVulnerabilitiesSummaries_Counts:
-      type: object
-      description: Numerical counts of vulnerabilities grouped by various attributes
-      properties:
-        severity:
-          $ref: '#/components/schemas/SuspectedVulnerabilitiesSummaries_SummarySeverity'
-        status:
-          $ref: '#/components/schemas/SuspectedVulnerabilitiesSummaries_SummaryStatus'
     StringMap:
       type: object
       additionalProperties:
         type: string
-    SuspectedVulnerabilityTriage:
+    Error_2:
       type: object
-      description: Triage assessment data for a vulnerability, including analysis and reporting
+      description: Standard error response format following RFC 7807 Problem Details specification
+      required:
+      - status
+      - title
       properties:
-        id:
+        type:
           type: string
-          description: Unique identifier for this triage assessment
-        content:
-          type: object
-          description: Detailed content of the triage analysis
-          properties:
-            thoughts:
-              type: array
-              description: List of analytical thoughts or observations from the triage process
-              items:
-                $ref: '#/components/schemas/ExternalJobTriageAgentThought'
-            report:
-              type: string
-              description: Comprehensive triage report with findings and recommendations
+          description: URI reference that identifies the problem type
+        status:
+          type: integer
+          description: HTTP status code for this occurrence of the problem
+        title:
+          type: string
+          description: Human-readable summary of the problem type
+        detail:
+          type: string
+          description: Human-readable explanation specific to this occurrence
+        instance:
+          type: string
+          description: URI reference identifying the specific occurrence of the problem
+    Pagination:
+      type: object
+      description: Pagination metadata for navigating through large result sets
+      required:
+      - total
+      - page
+      - perPage
+      - totalPages
+      properties:
+        total:
+          type: integer
+          description: Total number of items across all pages
+        page:
+          type: integer
+          description: Current page number (1-based)
+        perPage:
+          type: integer
+          description: Number of items per page
+        totalPages:
+          type: integer
+          description: Total number of pages available
+        prev:
+          type: string
+          description: URL for the previous page (null if on first page)
+        next:
+          type: string
+          description: URL for the next page (null if on last page)
+        first:
+          type: string
+          description: URL for the first page
+        last:
+          type: string
+          description: URL for the last page
+        self:
+          type: string
+          description: URL for the current page
+    ExternalJobTriageAgentBlock:
+      type: object
+      description: Block data for a vulnerability triage, including analysis and reporting
+      properties:
+        parentThoughtId:
+          type: string
+          description: Unique identifier for the parent thought
+        predecessorThoughtId:
+          type: string
+          description: Unique identifier for the predecessor thought
   responses:
-    UnexpectedError:
-      description: 'Unexpected Error - An unhandled error condition occurred. This represents
+    Forbidden:
+      description: 'Forbidden - Access denied. The authenticated user lacks permission to access
 
-        an edge case scenario that requires technical support intervention.
-
-        '
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error_2'
-    BadRequest:
-      description: 'Bad Request - The request is malformed, contains invalid parameters, or missing
-
-        required fields. Check request syntax and parameter values.
+        the requested resource or perform the specified operation.
 
         '
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error_2'
-    SuspectedVulnerabilitiesCreateResponse:
-      description: Response to a POST request, inserting new suspected vulnerabilities for the organization
-      content:
-        application/json:
-          schema:
-            type: array
-            description: List of numeric identifiers of newly created suspected vulnerabilities
-            items:
-              type: integer
     UnprocessableEntity:
       description: 'Unprocessable Entity - The request is well-formed but contains semantic errors
 
@@ -1235,10 +1216,10 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error_2'
-    Unauthorized:
-      description: 'Unauthorized - Authentication failed. The bearer token is missing, expired,
+    BadRequest:
+      description: 'Bad Request - The request is malformed, contains invalid parameters, or missing
 
-        invalid, or lacks sufficient permissions to access this resource.
+        required fields. Check request syntax and parameter values.
 
         '
       content:
@@ -1283,10 +1264,10 @@ components:
               ah28034gsjdf98eqwgbjufj,Test Reason Title,Test Reason Description,Medium,6.4,srt_review,tentative,false,synack
 
               '
-    Forbidden:
-      description: 'Forbidden - Access denied. The authenticated user lacks permission to access
+    UnexpectedError:
+      description: 'Unexpected Error - An unhandled error condition occurred. This represents
 
-        the requested resource or perform the specified operation.
+        an edge case scenario that requires technical support intervention.
 
         '
       content:
@@ -1297,16 +1278,6 @@ components:
       description: 'Internal Server Error - An unexpected server-side error occurred. This indicates
 
         a system issue that should be reported to the engineering team for investigation.
-
-        '
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error_2'
-    NotFound:
-      description: 'Not Found - The requested resource does not exist. This may occur when
-
-        referencing invalid organization UIDs or non-existent vulnerability IDs.
 
         '
       content:
@@ -1328,6 +1299,35 @@ components:
                 $ref: '#/components/schemas/SuspectedVulnerabilityWithTriages'
               metadata:
                 $ref: '#/components/schemas/Metadata'
+    Unauthorized:
+      description: 'Unauthorized - Authentication failed. The bearer token is missing, expired,
+
+        invalid, or lacks sufficient permissions to access this resource.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error_2'
+    SuspectedVulnerabilitiesCreateResponse:
+      description: Response to a POST request, inserting new suspected vulnerabilities for the organization
+      content:
+        application/json:
+          schema:
+            type: array
+            description: List of numeric identifiers of newly created suspected vulnerabilities
+            items:
+              type: integer
+    NotFound:
+      description: 'Not Found - The requested resource does not exist. This may occur when
+
+        referencing invalid organization UIDs or non-existent vulnerability IDs.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error_2'
   securitySchemes:
     BearerAuth:
       type: http

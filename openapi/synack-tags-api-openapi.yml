@@ -687,18 +687,77 @@ paths:
       description: FedRAMP (Medium)
 components:
   schemas:
-    SeedGroupUID:
-      type: string
-      pattern: ^[0-9a-f]{12}
-      description: Unique identifier for a seed group.
-    SeedUID:
-      type: string
-      pattern: ^[0-9a-f]{24}
-      description: Unique identifier for a seed.
     OrganizationUID:
       type: string
       pattern: ^[-_0-9a-z]{1,50}
       description: Unique identifier for an organization.
+    FailedValidation:
+      type: object
+      required:
+      - message
+      properties:
+        property:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+        message:
+          type: string
+          readOnly: true
+    IndexedFailedValidations:
+      type: object
+      properties:
+        index:
+          type: integer
+          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
+    BatchTagsUpdate:
+      type: object
+      description: Tags to remove and add to seeds and seed group
+      properties:
+        seedGroupTagsToDelete:
+          type: array
+          description: Array of tags to delete from the seed group.
+          items:
+            $ref: '#/components/schemas/Tag'
+        seedGroupTagsToAdd:
+          type: array
+          description: Array of tags to add to the seed group.
+          items:
+            $ref: '#/components/schemas/Tag'
+        seedUids:
+          type: array
+          description: Array of seed uids to apply tag update to.
+          items:
+            $ref: '#/components/schemas/SeedUID'
+        seedTagsToDelete:
+          type: array
+          description: Array of tags to delete from the supplied seeds.
+          items:
+            $ref: '#/components/schemas/Tag'
+        seedTagsToAdd:
+          type: array
+          description: Array of tags to add to the supplied seeds.
+          items:
+            $ref: '#/components/schemas/Tag'
+    SeedUID:
+      type: string
+      pattern: ^[0-9a-f]{24}
+      description: Unique identifier for a seed.
+    Tag:
+      type: string
+      pattern: ^[-_0-9a-zA-Z]{1,16}
+    SeedGroupUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      description: Unique identifier for a seed group.
     ProblemDetails:
       type: object
       description: 'See [RFC 7807: Problem Details for HTTP APIs](https://tools.ietf.org/html/rfc7807)'
@@ -744,65 +803,6 @@ components:
           type: integer
           description: Batch size sent when batch is too large.
           readOnly: true
-    IndexedFailedValidations:
-      type: object
-      properties:
-        index:
-          type: integer
-          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
-          readOnly: true
-        failedValidation:
-          type: array
-          description: Array of failed validation rules.
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/FailedValidation'
-    Tag:
-      type: string
-      pattern: ^[-_0-9a-zA-Z]{1,16}
-    BatchTagsUpdate:
-      type: object
-      description: Tags to remove and add to seeds and seed group
-      properties:
-        seedGroupTagsToDelete:
-          type: array
-          description: Array of tags to delete from the seed group.
-          items:
-            $ref: '#/components/schemas/Tag'
-        seedGroupTagsToAdd:
-          type: array
-          description: Array of tags to add to the seed group.
-          items:
-            $ref: '#/components/schemas/Tag'
-        seedUids:
-          type: array
-          description: Array of seed uids to apply tag update to.
-          items:
-            $ref: '#/components/schemas/SeedUID'
-        seedTagsToDelete:
-          type: array
-          description: Array of tags to delete from the supplied seeds.
-          items:
-            $ref: '#/components/schemas/Tag'
-        seedTagsToAdd:
-          type: array
-          description: Array of tags to add to the supplied seeds.
-          items:
-            $ref: '#/components/schemas/Tag'
-    FailedValidation:
-      type: object
-      required:
-      - message
-      properties:
-        property:
-          type: string
-          readOnly: true
-        value:
-          type: string
-          readOnly: true
-        message:
-          type: string
-          readOnly: true
     Tag_2:
       type: object
       properties:
@@ -814,6 +814,47 @@ components:
           type: boolean
         organization_profile_id:
           type: integer
+    Links:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+    Relationship:
+      type: object
+      properties:
+        data: {}
+        links:
+          $ref: '#/components/schemas/Links'
+    Document:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Data'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        included:
+          type: array
+          items: {}
+        links:
+          $ref: '#/components/schemas/Links'
+        meta: {}
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+        id:
+          type: string
+        source:
+          type: string
+        status:
+          type: integer
+        title:
+          type: string
     ResourceType:
       type: string
       enum:
@@ -853,80 +894,25 @@ components:
             $ref: '#/components/schemas/Relationship'
         type:
           $ref: '#/components/schemas/ResourceType'
-    Links:
-      type: object
-      properties:
-        next:
-          type: string
-        prev:
-          type: string
-    Error:
-      type: object
-      properties:
-        detail:
-          type: string
-        id:
-          type: string
-        source:
-          type: string
-        status:
-          type: integer
-        title:
-          type: string
-    Document:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Data'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-        included:
-          type: array
-          items: {}
-        links:
-          $ref: '#/components/schemas/Links'
-        meta: {}
-    Relationship:
-      type: object
-      properties:
-        data: {}
-        links:
-          $ref: '#/components/schemas/Links'
     TagUIDs:
       type: array
       items:
         $ref: '#/components/schemas/TagUID'
-    Entities:
-      type: array
-      items:
-        $ref: '#/components/schemas/Entity'
-    Tags:
-      type: array
-      items:
-        $ref: '#/components/schemas/Tag_3'
-    NewTags:
-      type: object
-      properties:
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/NewTag'
     EntityUID:
       type: string
       pattern: ^[0-9a-f]{12}
       description: Unique identifier for an entity.
-    NewTag:
-      allOf:
-      - type: object
-        required:
-        - name
-        properties:
-          name:
-            $ref: '#/components/schemas/TagName'
-          entities:
-            $ref: '#/components/schemas/Entities'
+    OrgUID:
+      type: string
+      pattern: ^[0-9a-z]{1,50}
+      description: Unique identifier for an organization.
+    DeleteTags:
+      type: object
+      required:
+      - uids
+      properties:
+        uids:
+          $ref: '#/components/schemas/TagUIDs'
     UpdateTag:
       type: object
       required:
@@ -934,13 +920,33 @@ components:
       properties:
         name:
           $ref: '#/components/schemas/TagName'
-    TagName:
+    Entity:
+      allOf:
+      - type: object
+        required:
+        - uid
+        - entityType
+        properties:
+          uid:
+            $ref: '#/components/schemas/EntityUID'
+          entityType:
+            $ref: '#/components/schemas/EntityType'
+    PageOfTags:
+      type: object
+      properties:
+        tags:
+          $ref: '#/components/schemas/Tags'
+    NewTags:
+      type: object
+      properties:
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/NewTag'
+    TagUID:
       type: string
-      description: User-supplied name for this tag.
-    DelEntities:
-      type: array
-      items:
-        $ref: '#/components/schemas/EntityUID'
+      pattern: ^[0-9a-f]{12}
+      description: Unique identifier for a tag.
     Tag_3:
       allOf:
       - type: object
@@ -968,10 +974,41 @@ components:
           $ref: '#/components/schemas/Entities'
         delEntityUids:
           $ref: '#/components/schemas/DelEntities'
-    OrgUID:
+    EntityType:
       type: string
-      pattern: ^[0-9a-z]{1,50}
-      description: Unique identifier for an organization.
+      enum:
+      - asset
+      - assessment
+      - seed
+      - seedGroup
+      - exploitableVulnerability
+      - suspectedVulnerability
+      description: Entity type
+    NewTag:
+      allOf:
+      - type: object
+        required:
+        - name
+        properties:
+          name:
+            $ref: '#/components/schemas/TagName'
+          entities:
+            $ref: '#/components/schemas/Entities'
+    TagName:
+      type: string
+      description: User-supplied name for this tag.
+    Tags:
+      type: array
+      items:
+        $ref: '#/components/schemas/Tag_3'
+    DelEntities:
+      type: array
+      items:
+        $ref: '#/components/schemas/EntityUID'
+    Entities:
+      type: array
+      items:
+        $ref: '#/components/schemas/Entity'
     ErrorResponse:
       type: object
       description: Error response
@@ -984,52 +1021,35 @@ components:
           type: string
           readOnly: true
           description: Message detailing the problem.
-    EntityType:
-      type: string
-      enum:
-      - asset
-      - assessment
-      - seed
-      - seedGroup
-      - exploitableVulnerability
-      - suspectedVulnerability
-      description: Entity type
-    PageOfTags:
-      type: object
-      properties:
-        tags:
-          $ref: '#/components/schemas/Tags'
-    TagUID:
-      type: string
-      pattern: ^[0-9a-f]{12}
-      description: Unique identifier for a tag.
-    Entity:
-      allOf:
-      - type: object
-        required:
-        - uid
-        - entityType
-        properties:
-          uid:
-            $ref: '#/components/schemas/EntityUID'
-          entityType:
-            $ref: '#/components/schemas/EntityType'
-    DeleteTags:
-      type: object
-      required:
-      - uids
-      properties:
-        uids:
-          $ref: '#/components/schemas/TagUIDs'
   responses:
     401Unauthorized:
       description: Unauthorized.
+    413RequestEntityTooLarge:
+      description: 'Returned generally when the size of the request body is too large to process, or specifically when the request contains too many items, typically in a bulk API operation.
+
+        '
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
     400BadRequest:
       description: Bad Request
-    204NoContent:
-      description: No content.
     503ServiceUnavailable:
       description: Service Unavailable.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    204NoContent:
+      description: No content.
+    500InternalServerError:
+      description: Internal Server Error.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    422EntityNotProcessable:
+      description: Entity Not Processable
       content:
         application/problem+json:
           schema:
@@ -1040,24 +1060,12 @@ components:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/ProblemDetails'
-    500InternalServerError:
-      description: Internal Server Error.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
     403Forbidden:
       description: Forbidden
-    413RequestEntityTooLarge:
-      description: 'Returned generally when the size of the request body is too large to process, or specifically when the request contains too many items, typically in a bulk API operation.
-
-        '
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    422EntityNotProcessable:
-      description: Entity Not Processable
+    412PreconditionFailed:
+      description: Precondition Failed.
+    413RequestEntityTooLarge_2:
+      description: Returned generally when the size of the request body is too large to process, or specifically when the request contains too many items, typically in a bulk API operation.
       content:
         application/problem+json:
           schema:
@@ -1091,22 +1099,7 @@ components:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    412PreconditionFailed:
-      description: Precondition Failed.
-    413RequestEntityTooLarge_2:
-      description: Returned generally when the size of the request body is too large to process, or specifically when the request contains too many items, typically in a bulk API operation.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
   parameters:
-    OrganizationUIDPath:
-      name: organizationUid
-      in: path
-      schema:
-        $ref: '#/components/schemas/OrganizationUID'
-      required: true
-      description: Unique identifier for an organization group.
     SeedGroupUIDPath:
       name: seedGroupUid
       in: path
@@ -1114,6 +1107,13 @@ components:
         $ref: '#/components/schemas/SeedGroupUID'
       required: true
       description: Unique identifier for a seed group.
+    OrganizationUIDPath:
+      name: organizationUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/OrganizationUID'
+      required: true
+      description: Unique identifier for an organization group.
     TagUIDPath:
       name: tagUid
       in: path
@@ -1129,6 +1129,10 @@ components:
       required: true
       description: Unique identifier for an organization group.
   headers:
+    Link:
+      description: Standard link header.
+      schema:
+        type: string
     PaginationTotalPages:
       description: Total number of pages in a paginated response.
       schema:
@@ -1141,19 +1145,15 @@ components:
         type: integer
         format: int32
         minimum: 1
-    PaginationTotalCount:
-      description: Total number of items in all pages of a paginated response.
-      schema:
-        format: int32
-        minimum: 1
-    Link:
-      description: Standard link header.
-      schema:
-        type: string
     PaginationCurrentPage:
       description: Current page in a paginated response.
       schema:
         type: integer
+        format: int32
+        minimum: 1
+    PaginationTotalCount:
+      description: Total number of items in all pages of a paginated response.
+      schema:
         format: int32
         minimum: 1
   securitySchemes:

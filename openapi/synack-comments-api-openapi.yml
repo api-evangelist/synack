@@ -87,22 +87,6 @@ paths:
           description: Vulnerability not found
 components:
   schemas:
-    CommentUser:
-      required:
-      - email
-      - id
-      - name
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-          description: name of the user
-        email:
-          type: string
-          description: e-mail address of the user
     Comment:
       type: object
       properties:
@@ -124,6 +108,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Attachment'
+    CommentUser:
+      required:
+      - email
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          description: name of the user
+        email:
+          type: string
+          description: e-mail address of the user
     Attachment:
       type: object
       properties:

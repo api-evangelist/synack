@@ -203,97 +203,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ArrayOfAssetScripts:
-      type: array
-      items:
-        $ref: '#/components/schemas/AssetScript'
-    Updatable:
-      allOf:
-      - $ref: '#/components/schemas/Creatable'
-      - type: object
-        properties:
-          updatedAt:
-            type: string
-            format: date-time
-            readOnly: true
-            description: Automatically set by the server to the time the request was processed whenever the resource is updated.
-          updatedBy:
-            $ref: '#/components/schemas/OperationUserUID'
-    ArrayOfAssetCredentials:
-      type: array
-      items:
-        $ref: '#/components/schemas/AssetCredential'
-    ArrayOfWebApps:
-      description: List of simplified web assets, used by listing scanner workflows for TarantulaBurp and TarantulaBurpValidator plugins.
-      type: array
-      items:
-        $ref: '#/components/schemas/WebApp'
-    AssetCredential:
-      description: Credential used by an application in context of a user role.
-      allOf:
-      - type: object
-        required:
-        - credentialData
-        - status
-        - sharing
-        properties:
-          uid:
-            $ref: '#/components/schemas/UID'
-          credentialData:
-            $ref: '#/components/schemas/Base64Data'
-          status:
-            $ref: '#/components/schemas/CheckerStatus'
-          lastCheckedAt:
-            type: string
-            format: date-time
-            description: The last date time the credential was checked.
-          sharing:
-            $ref: '#/components/schemas/CredentialSharing'
-          assignedUsers:
-            description: User assigned to a credential and role.
-            type: array
-            readOnly: true
-            items:
-              $ref: '#/components/schemas/UserUID'
-      - $ref: '#/components/schemas/Updatable'
-    WebAppScript:
-      description: Auxiliary type for WebApp struct. It is a simplified object describing session handling script for a web application.
-      allOf:
-      - type: object
-        required:
-        - uid
-        - role
-        - data
-        properties:
-          uid:
-            type: string
-            description: UID of the session handling script
-          role:
-            type: string
-            description: Type of the script
-            enum:
-            - authentication
-            - sessionValidation
-            - recordedLogin
-          data:
-            type: string
-            description: Body of the script
-    OperationUserUID:
-      type: string
-      pattern: ^[0-9a-f]{12}
-      readOnly: true
-      description: Automatically set by the server to the requesting user whenever the resource is updated. May be a user account or a service account if the action is performed by an automated.
-    UserUID:
-      type: string
-      pattern: ^[-_0-9a-z]{1,100}
-      description: Unique identifier for a user.
-    CheckerStatus:
-      type: string
-      enum:
-      - unchecked
-      - invalid
-      - valid
-      description: Status reported by automated checkers.
     HTTPingSettings:
       description: HTTPingSettings represents custom settings for webapp reachability checks. All fields are optional.
       type: object
@@ -350,10 +259,156 @@ components:
           - 401
           - 403
           - 500
+    ArrayOfAssetCredentials:
+      type: array
+      items:
+        $ref: '#/components/schemas/AssetCredential'
+    ArrayOfWebApps:
+      description: List of simplified web assets, used by listing scanner workflows for TarantulaBurp and TarantulaBurpValidator plugins.
+      type: array
+      items:
+        $ref: '#/components/schemas/WebApp'
+    ScriptRole:
+      type: string
+      enum:
+      - authentication
+      - sessionValidation
+      - recordedLogin
+    ListingUID:
+      type: string
+      pattern: ^[-_0-9a-z]{1,50}
+      description: Unique identifier for an listing.
+      readOnly: true
+    FailedValidation:
+      type: object
+      required:
+      - message
+      properties:
+        property:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+        message:
+          type: string
+          readOnly: true
+    IndexedFailedValidations:
+      type: object
+      properties:
+        index:
+          type: integer
+          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
+    HTTPingSettings_Headers:
+      type: object
+      properties:
+        additionalProperties:
+          type: object
+          additionalProperties:
+            type: string
+    AssetCredential:
+      description: Credential used by an application in context of a user role.
+      allOf:
+      - type: object
+        required:
+        - credentialData
+        - status
+        - sharing
+        properties:
+          uid:
+            $ref: '#/components/schemas/UID'
+          credentialData:
+            $ref: '#/components/schemas/Base64Data'
+          status:
+            $ref: '#/components/schemas/CheckerStatus'
+          lastCheckedAt:
+            type: string
+            format: date-time
+            description: The last date time the credential was checked.
+          sharing:
+            $ref: '#/components/schemas/CredentialSharing'
+          assignedUsers:
+            description: User assigned to a credential and role.
+            type: array
+            readOnly: true
+            items:
+              $ref: '#/components/schemas/UserUID'
+      - $ref: '#/components/schemas/Updatable'
+    WebAppScopeRule:
+      description: Auxiliary type for WebApp struct. It is a simplified object describing scope rule for a web application.
+      allOf:
+      - type: object
+        required:
+        - inScope
+        - rule
+        properties:
+          inScope:
+            type: boolean
+            description: Defines whether the pattern describes an out of scope or in scope URLs of the web application.
+          rule:
+            type: string
+            description: Contains a pattern for web application URLs
+    CredentialSharing:
+      type: string
+      description: Determines the limits on users that may be assigned; "one" permits only one user to be assigned, "many" places no limit, and "all" prevents any users to explicitly assigned as all users are implicitly allowed to use the credential.
+      enum:
+      - one
+      - many
+      - all
+    WebAppScript:
+      description: Auxiliary type for WebApp struct. It is a simplified object describing session handling script for a web application.
+      allOf:
+      - type: object
+        required:
+        - uid
+        - role
+        - data
+        properties:
+          uid:
+            type: string
+            description: UID of the session handling script
+          role:
+            type: string
+            description: Type of the script
+            enum:
+            - authentication
+            - sessionValidation
+            - recordedLogin
+          data:
+            type: string
+            description: Body of the script
+    UserUID:
+      type: string
+      pattern: ^[-_0-9a-z]{1,100}
+      description: Unique identifier for a user.
+    AssetUID:
+      type: string
+      pattern: ^[0-9a-f]{24}
+      description: Unique identifier for an asset.
     Base64Data:
       type: string
       description: Base64 encoding of data.
       example: TXkgdm9pY2UgaXMgbXkgcGFzc3dvcmQu
+    Creatable:
+      type: object
+      required:
+      - createdAt
+      - createdBy
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Automatically set by the server to the time the request was processed whenever the resource was created.
+        createdBy:
+          $ref: '#/components/schemas/OperationUserUID'
     WebApp:
       description: Simplified object describing web asset, used by TarantulaBurp and TarantulaBurpValidator plugins. Contains HTTPing settings, scope rules, session handling scripts, SRT credentials and credential user UIDs.
       allOf:
@@ -384,6 +439,26 @@ components:
             description: List of SRT credentials assigned to the web application
             items:
               $ref: '#/components/schemas/WebAppCredential'
+    WebAppCredential:
+      description: Auxiliary type for WebApp struct. It is a simplified object describing SRT credential for a session handling script of web application.
+      allOf:
+      - type: object
+        required:
+        - uid
+        - data
+        - users
+        properties:
+          uid:
+            type: string
+            description: UID of the credential
+          data:
+            type: string
+            description: Credential data
+          users:
+            type: array
+            description: UIDs of users assigned to the credential
+            items:
+              type: string
     ProblemDetails:
       type: object
       description: 'See [RFC 7807: Problem Details for HTTP APIs](https://tools.ietf.org/html/rfc7807)'
@@ -429,80 +504,27 @@ components:
           type: integer
           description: Batch size sent when batch is too large.
           readOnly: true
+    OperationUserUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      readOnly: true
+      description: Automatically set by the server to the requesting user whenever the resource is updated. May be a user account or a service account if the action is performed by an automated.
+    CheckerStatus:
+      type: string
+      enum:
+      - unchecked
+      - invalid
+      - valid
+      description: Status reported by automated checkers.
     UID:
       type: string
       pattern: ^[0-9a-f]{12}
       readOnly: true
       description: Unique Identifier.
-    ScriptRole:
-      type: string
-      enum:
-      - authentication
-      - sessionValidation
-      - recordedLogin
-    ListingUID:
-      type: string
-      pattern: ^[-_0-9a-z]{1,50}
-      description: Unique identifier for an listing.
-      readOnly: true
-    HTTPingSettings_Headers:
-      type: object
-      properties:
-        additionalProperties:
-          type: object
-          additionalProperties:
-            type: string
-    IndexedFailedValidations:
-      type: object
-      properties:
-        index:
-          type: integer
-          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
-          readOnly: true
-        failedValidation:
-          type: array
-          description: Array of failed validation rules.
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/FailedValidation'
-    CredentialSharing:
-      type: string
-      description: Determines the limits on users that may be assigned; "one" permits only one user to be assigned, "many" places no limit, and "all" prevents any users to explicitly assigned as all users are implicitly allowed to use the credential.
-      enum:
-      - one
-      - many
-      - all
-    Creatable:
-      type: object
-      required:
-      - createdAt
-      - createdBy
-      properties:
-        createdAt:
-          type: string
-          format: date-time
-          readOnly: true
-          description: Automatically set by the server to the time the request was processed whenever the resource was created.
-        createdBy:
-          $ref: '#/components/schemas/OperationUserUID'
-    WebAppScopeRule:
-      description: Auxiliary type for WebApp struct. It is a simplified object describing scope rule for a web application.
-      allOf:
-      - type: object
-        required:
-        - inScope
-        - rule
-        properties:
-          inScope:
-            type: boolean
-            description: Defines whether the pattern describes an out of scope or in scope URLs of the web application.
-          rule:
-            type: string
-            description: Contains a pattern for web application URLs
-    AssetUID:
-      type: string
-      pattern: ^[0-9a-f]{24}
-      description: Unique identifier for an asset.
+    ArrayOfAssetScripts:
+      type: array
+      items:
+        $ref: '#/components/schemas/AssetScript'
     AssetScript:
       allOf:
       - type: object
@@ -518,49 +540,103 @@ components:
           scriptData:
             $ref: '#/components/schemas/Base64Data'
       - $ref: '#/components/schemas/Updatable'
-    WebAppCredential:
-      description: Auxiliary type for WebApp struct. It is a simplified object describing SRT credential for a session handling script of web application.
+    Updatable:
       allOf:
+      - $ref: '#/components/schemas/Creatable'
       - type: object
-        required:
-        - uid
-        - data
-        - users
         properties:
-          uid:
+          updatedAt:
             type: string
-            description: UID of the credential
-          data:
-            type: string
-            description: Credential data
-          users:
-            type: array
-            description: UIDs of users assigned to the credential
-            items:
-              type: string
-    FailedValidation:
-      type: object
-      required:
-      - message
-      properties:
-        property:
-          type: string
-          readOnly: true
-        value:
-          type: string
-          readOnly: true
-        message:
-          type: string
-          readOnly: true
+            format: date-time
+            readOnly: true
+            description: Automatically set by the server to the time the request was processed whenever the resource is updated.
+          updatedBy:
+            $ref: '#/components/schemas/OperationUserUID'
+  parameters:
+    AssetUIDPath:
+      name: assetUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/AssetUID'
+      required: true
+      description: Unique identifier for an asset.
+    SortDirQuery:
+      name: sortDir
+      in: query
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        default: asc
+      required: false
+      description: Direction of sort-order for items in the response.
+    PerPageQuery:
+      name: perPage
+      in: query
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 5000
+      required: false
+      description: 'Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.
+
+        '
+    PageQuery:
+      name: page
+      in: query
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      required: false
+      description: 'Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.
+
+        '
+    ListingUIDPath:
+      name: listingUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/ListingUID'
+      required: true
+      description: Unique identifier for an listing.
+  headers:
+    Link:
+      description: Standard link header.
+      schema:
+        type: string
+    ETag:
+      description: An identifier for a specific version of a resource
+      schema:
+        type: string
+        pattern: ^(?:W\/)?\".*\"$
+    PaginationTotalPages:
+      description: Total number of pages in a paginated response.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    PaginationLimit:
+      description: Maximum number of items returned in a paginated response.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    PaginationCurrentPage:
+      description: Current page in a paginated response.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    PaginationTotalCount:
+      description: Total number of items in all pages of a paginated response.
+      schema:
+        format: int32
+        minimum: 1
   responses:
     401Unauthorized:
       description: Unauthorized.
-    WebApp:
-      description: Web asset with its HTTPing settings, scope rules, session handling scripts, SRT credentials and credential user UIDs. Used to generate input for web scanners like TarantulaBurp and TarantulaBurpValidator.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/WebApp'
     PaginatedArrayOfAssetCredentials:
       description: Paginated credentials for an asset.
       headers:
@@ -578,14 +654,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ArrayOfAssetCredentials'
-    400BadRequest:
-      description: Bad Request
-    ArrayOfWebAppsResponse:
-      description: List of web assets with their HTTPing settings, scope rules, session handling scripts, SRT credentials and credential user UIDs. Used to generate input for web scanners like TarantulaBurp and TarantulaBurpValidator.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ArrayOfWebApps'
     SingleAssetScript:
       description: An application script.
       headers:
@@ -595,14 +663,18 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/AssetScript'
+    412PreconditionFailed:
+      description: Precondition Failed.
+    400BadRequest:
+      description: Bad Request
+    WebApp:
+      description: Web asset with its HTTPing settings, scope rules, session handling scripts, SRT credentials and credential user UIDs. Used to generate input for web scanners like TarantulaBurp and TarantulaBurpValidator.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WebApp'
     503ServiceUnavailable:
       description: Service Unavailable.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    409Conflict:
-      description: Conflict.
       content:
         application/problem+json:
           schema:
@@ -630,94 +702,22 @@ components:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/ProblemDetails'
+    409Conflict:
+      description: Conflict.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
     403Forbidden:
       description: Forbidden
-    412PreconditionFailed:
-      description: Precondition Failed.
     404NotFound:
       description: Not found.
-  headers:
-    PaginationTotalPages:
-      description: Total number of pages in a paginated response.
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-    PaginationLimit:
-      description: Maximum number of items returned in a paginated response.
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-    PaginationTotalCount:
-      description: Total number of items in all pages of a paginated response.
-      schema:
-        format: int32
-        minimum: 1
-    Link:
-      description: Standard link header.
-      schema:
-        type: string
-    PaginationCurrentPage:
-      description: Current page in a paginated response.
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-    ETag:
-      description: An identifier for a specific version of a resource
-      schema:
-        type: string
-        pattern: ^(?:W\/)?\".*\"$
-  parameters:
-    ListingUIDPath:
-      name: listingUid
-      in: path
-      schema:
-        $ref: '#/components/schemas/ListingUID'
-      required: true
-      description: Unique identifier for an listing.
-    AssetUIDPath:
-      name: assetUid
-      in: path
-      schema:
-        $ref: '#/components/schemas/AssetUID'
-      required: true
-      description: Unique identifier for an asset.
-    PerPageQuery:
-      name: perPage
-      in: query
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 5000
-      required: false
-      description: 'Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.
-
-        '
-    PageQuery:
-      name: page
-      in: query
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-      required: false
-      description: 'Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.
-
-        '
-    SortDirQuery:
-      name: sortDir
-      in: query
-      schema:
-        type: string
-        enum:
-        - asc
-        - desc
-        default: asc
-      required: false
-      description: Direction of sort-order for items in the response.
+    ArrayOfWebAppsResponse:
+      description: List of web assets with their HTTPing settings, scope rules, session handling scripts, SRT credentials and credential user UIDs. Used to generate input for web scanners like TarantulaBurp and TarantulaBurpValidator.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ArrayOfWebApps'
   securitySchemes:
     OAuth2:
       type: oauth2
