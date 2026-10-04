@@ -211,7 +211,7 @@ apis:
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
   tags:
-  - Seed
+  - Seeds
   tags_raw:
   - Seeds
   properties:
@@ -285,6 +285,8 @@ apis:
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
   tags:
+  - Mobile App
+  tags_raw:
   - Mobile Apps
   properties:
   - type: OpenAPI
@@ -295,11 +297,16 @@ apis:
   humanURL: https://docs.synack.com/
   baseURL: https://api.synack.com
   tags:
+  - Web App
+  tags_raw:
   - Web Apps
   properties:
   - type: OpenAPI
     url: openapi/synack-web-apps-api-openapi.yml
 common:
+- type: CapabilityMap
+  url: capabilities/synack-capability-edges.yml
+  name: Synack Business Capability Map
 - type: Overlay
   url: overlays/synack-assessment-v1-overlay.yaml
 - type: DeveloperPortal
