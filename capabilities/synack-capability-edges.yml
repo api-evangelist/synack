@@ -1,0 +1,86 @@
+slug: synack
+provider: Synack
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 7
+edges:
+- tag: Vulnerabilities
+  spec_file: synack-vulnerabilities-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.95
+  evidence: GET /v1/{org_uid}/assets/{asset_uid}/vulns 'Returns list of exploitable vulnerabilities on
+    a given organization and asset'; getTopCISACVEs 'Returns top-5 CISA known-exploitable vulnerabilities'
+  reason: Operations list, retrieve and update confirmed vulnerabilities per asset and report known-exploitable
+    CVEs — unambiguously vulnerability identification, prioritisation and remediation management.
+- tag: Suspected Vulnerabilities
+  spec_file: synack-suspected-vulnerabilities-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.92
+  evidence: GET /v1/organizations/{organizationUid}/suspected-vulnerabilities  'Retrieve suspected vulnerabilities
+    for an organization'; schemas SuspectedVulnerabilityWithTriages, SuspectedVulnerabilitiesSummaries_SummarySeverity
+  reason: Operations create, retrieve and update suspected vulnerability findings against organizations
+    and assets, with severity/status summaries and triage — this is vulnerability identification and remediation
+    tracking, the core of Vulnerability Management.
+- tag: Patch Verifications
+  spec_file: synack-patch-verifications-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.9
+  evidence: POST /v1/vulnerabilities/{vulnerability_id}/patch_verifications 'Create a vulnerability patch
+    verification'
+  reason: Operations record and retrieve verification that a vulnerability's patch is effective — squarely
+    vulnerability remediation verification.
+- tag: Assessment Lifecycle
+  spec_file: synack-assessment-lifecycle-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.7
+  evidence: POST /v1/organizations/{organizationUid}/assessments/{assessmentUid}/pause 'Pause an assessment'
+  reason: Controls the run state of penetration-test/security assessments, which is the execution side
+    of vulnerability discovery and management for this vendor. Sub-capability choice carries some ambiguity
+    (pen-test assessment vs broader security governance).
+- tag: Assessments
+  spec_file: synack-assessments-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.7
+  evidence: POST /v2/organizations/{organizationUid}/assessments 'Create a new assessment'; GET /v1/assessments/{id}/testing_hours
+    'Get testing hours for an assessment'; schemas 'ScopeRule', 'AssetListing'
+  reason: Creates and scopes security assessments (penetration tests) over listed assets, including testing
+    hours and scope rules — the core vulnerability-discovery engagement surface. Mapped to Vulnerability
+    Management with moderate confidence since it is engagement setup rather than scan/remediate per se.
+- tag: Comments
+  spec_file: synack-comments-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.7
+  evidence: POST /v1/vulnerabilities/{vulnerability_id}/comments 'Create a vulnerability comment'
+  reason: Comments are attached to vulnerability records, supporting triage and remediation dialogue —
+    part of vulnerability management workflow rather than a generic collaboration feature.
+- tag: Vulnerability Statuses
+  spec_file: synack-vulnerability-statuses-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.7
+  evidence: GET /v1/vulnerability_statuses  getVulnerabilityStatuses  'Get vulnerability statuses'
+  reason: A single reference-data endpoint exposing the status values used in vulnerability remediation
+    workflow. Clearly within vulnerability management, but it is a lookup list with no schemas, so confidence
+    is moderate.
