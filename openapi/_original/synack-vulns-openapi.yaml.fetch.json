@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.synack.com/vulns-openapi.yaml",
+ "requested_url": "https://docs.synack.com/vulns-openapi.yaml",
+ "status": 200,
+ "content_type": "text/yaml",
+ "bytes": 41470,
+ "sha256": "b0bdf84e95fc4d514b11a0eb73693a68bc796c38b767a43fff0db26f481aee43",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}

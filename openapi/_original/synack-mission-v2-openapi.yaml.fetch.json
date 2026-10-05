@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.synack.com/mission-v2-openapi.yaml",
+ "requested_url": "https://docs.synack.com/mission-v2-openapi.yaml",
+ "status": 200,
+ "content_type": "text/yaml",
+ "bytes": 36267,
+ "sha256": "ddab6dae447008c52b3f7a3c038e712b13911292875ab992ebc859cf7edd9457",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}

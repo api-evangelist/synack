@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.synack.com/tagging-openapi.yaml",
+ "requested_url": "https://docs.synack.com/tagging-openapi.yaml",
+ "status": 200,
+ "content_type": "text/yaml",
+ "bytes": 17565,
+ "sha256": "7732715e550525389d5cad73f93f164192c747d01798003bd2d5dacd5f919ccc",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}

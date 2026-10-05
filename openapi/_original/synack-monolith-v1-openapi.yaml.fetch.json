@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.synack.com/monolith-v1-openapi.yaml",
+ "requested_url": "https://docs.synack.com/monolith-v1-openapi.yaml",
+ "status": 200,
+ "content_type": "text/yaml",
+ "bytes": 46401,
+ "sha256": "c9c25886ca969ed5f6e9d149e7f34cd326a34983d60ee507aa128539d24c62c6",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}

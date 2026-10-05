@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.synack.com/assessment-v1-openapi.yaml",
+ "requested_url": "https://docs.synack.com/assessment-v1-openapi.yaml",
+ "status": 200,
+ "content_type": "text/yaml",
+ "bytes": 15446,
+ "sha256": "faec09df146b2dac2341e54ecb8421092ca83bd7e05253dcf5bd34cbddda93a2",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}

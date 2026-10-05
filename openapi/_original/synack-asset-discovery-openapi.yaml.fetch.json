@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.synack.com/asset-discovery-openapi.yaml",
+ "requested_url": "https://docs.synack.com/asset-discovery-openapi.yaml",
+ "status": 200,
+ "content_type": "text/yaml",
+ "bytes": 29261,
+ "sha256": "271cb20dd8c7ed53d8e9636463245f9b049887791a7f2959f6e107bb65c63114",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
