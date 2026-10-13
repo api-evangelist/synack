@@ -1,0 +1,43 @@
+generated: '2026-10-13'
+method: searched
+checked:
+- https://aws.amazon.com/marketplace/
+- https://azuremarketplace.microsoft.com/
+marketplace_apps: []
+edges:
+- partner_name: AWS Marketplace
+  partner: amazon-web-services
+  partner_match: aggregator
+  type: marketplace
+  marketplace: aws-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=1b1c32c8-7d70-4b69-bf05-742a3daa3f64
+  listing_count: 3
+  apps:
+  - Synack Human-led Penetration Testing
+  - Sara AI Pentesting
+  - Synack Managed Vulnerability Disclosure Program (VDP)
+  seller_name: Synack
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
+- partner_name: Microsoft Azure Marketplace
+  partner: microsoft-azure
+  partner_match: aggregator
+  type: marketplace
+  marketplace: azure-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Synack%2C%20inc.
+  listing_count: 8
+  apps:
+  - Synack Strategic Security Testing Bundle
+  - Synack's Cloud Security Testing Bundle
+  - Synack's Security Testing Bundle for AI/LLM Chatbots
+  - Synack Integration for Microsoft Defender-for-Cloud
+  - Synack Human-led Penetration Testing
+  seller_name: Synack, inc.
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
