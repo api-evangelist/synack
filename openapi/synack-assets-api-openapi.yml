@@ -1927,195 +1927,232 @@ paths:
     - url: https://client.synack.us/api/streaming
       description: FedRAMP (Medium)
 components:
-  responses:
-    202StatusAccepted:
-      description: Request accepted and being processed.
-    SingleAssetResponse:
-      description: The current state of the requested asset.
-      headers:
-        ETag:
-          $ref: '#/components/headers/ETag'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/SingleAsset'
-    413RequestEntityTooLarge:
-      description: Returned generally when the size of the request body is too large to process, or specifically when the request contains too many items, typically in a bulk API operation.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    403Forbidden:
-      description: Forbidden
-    SingleAssetStat:
-      description: Response containing a single asset stat.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/AssetStat'
-    SinglePort:
-      description: The current state of a host port.
-      headers:
-        ETag:
-          $ref: '#/components/headers/ETag'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Port'
-    400BadRequest:
-      description: Bad Request
-    PaginatedDiscoveredAssetsResponse:
-      description: Paginated discovered asset summaries.
-      headers:
-        Pagination-Limit:
-          $ref: '#/components/headers/PaginationLimit'
-        Pagination-Current-Page:
-          $ref: '#/components/headers/PaginationCurrentPage'
-        Pagination-Total-Pages:
-          $ref: '#/components/headers/PaginationTotalPages'
-        Pagination-Total-Count:
-          $ref: '#/components/headers/PaginationTotalCount'
-        Link:
-          $ref: '#/components/headers/Link'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/DiscoveredAssetsPage'
-    409Conflict:
-      description: Conflict.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    401Unauthorized:
-      description: Unauthorized.
-    503ServiceUnavailable:
-      description: Service Unavailable.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    204NoContent:
-      description: No content.
-    SingleOrMultiAssetResponse:
-      description: A single asset or an array of assets.
-      headers:
-        ETag:
-          $ref: '#/components/headers/ETag'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/SingleOrMultiAsset'
-    AssetBulkCriticalityUpdateResponse:
-      description: Count of assets updated.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CriticalityUpdateCount'
-    WHOISResponse:
-      description: The whois data of the requested asset.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/WHOISResponse'
-    422EntityNotProcessable:
-      description: Entity Not Processable
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    500InternalServerError:
-      description: Internal Server Error.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    AssetBulkLifecycleStateUpdateResponse:
-      description: Count of lifecycle states updated.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/LifecycleUpdateCount'
-    404NotFound:
-      description: Not found.
-    PaginatedArrayOfAssets:
-      description: Paginated assets.
-      headers:
-        Pagination-Limit:
-          $ref: '#/components/headers/PaginationLimit'
-        Pagination-Current-Page:
-          $ref: '#/components/headers/PaginationCurrentPage'
-        Pagination-Total-Pages:
-          $ref: '#/components/headers/PaginationTotalPages'
-        Pagination-Total-Count:
-          $ref: '#/components/headers/PaginationTotalCount'
-        Link:
-          $ref: '#/components/headers/Link'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ArrayOfAssets'
+  parameters:
+    PortProtocolPath:
+      name: portProtocol
+      in: path
+      schema:
+        $ref: '#/components/schemas/PortProtocol'
+      required: true
+      description: Port protocol.
+    SortDirQuery:
+      name: sortDir
+      in: query
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        default: asc
+      required: false
+      description: Direction of sort-order for items in the response.
+    AssetUIDPath:
+      name: assetUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/AssetUID'
+      required: true
+      description: Unique identifier for an asset.
+    ListingUIDQuery:
+      name: listingUid[]
+      in: query
+      explode: true
+      schema:
+        type: array
+        items:
+          $ref: '#/components/schemas/ListingUID'
+      required: false
+      description: Unique identifier for an listing. If not supplied the request will apply to all listings the user is authorized to access.
+    AssetTypeQuery:
+      name: assetType[]
+      in: query
+      schema:
+        type: array
+        items:
+          $ref: '#/components/schemas/AssetType'
+      required: false
+      explode: true
+      description: Restrict the returned asset summaries to only assets of the specified type.
+    SingleOrganizationUIDQuery:
+      name: organizationUid
+      in: query
+      explode: true
+      schema:
+        $ref: '#/components/schemas/OrganizationUID'
+      required: true
+      description: Unique identifier for an organization. If not supplied the request will apply to all organizations the user is authorized to access.
+    HostTypeQuery:
+      name: hostType[]
+      in: query
+      schema:
+        type: array
+        items:
+          $ref: '#/components/schemas/HostType'
+      required: false
+      explode: true
+      description: 'Restrict the returned asset summaries to only the types of host assets requested when assetType also includes host.
+
+        '
+    OrganizationUIDQuery:
+      name: organizationUid[]
+      in: query
+      explode: true
+      schema:
+        type: array
+        items:
+          $ref: '#/components/schemas/OrganizationUID'
+      required: false
+      description: Unique identifier for an organization. If not supplied the request will apply to all organizations the user is authorized to access.
+    PageQuery:
+      name: page
+      in: query
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      required: false
+      description: 'Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.
+
+        '
+    PortNumberPath:
+      name: portNumber
+      in: path
+      schema:
+        $ref: '#/components/schemas/PortNumber'
+      required: true
+      description: Port number.
+    PerPageQuery:
+      name: perPage
+      in: query
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 5000
+      required: false
+      description: 'Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.
+
+        '
+    OrganizationUIDPath:
+      name: organizationUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/OrganizationUID'
+      required: true
+      description: Unique identifier for an organization.
+    IpRanges:
+      name: ipRanges[]
+      in: query
+      schema:
+        $ref: '#/components/schemas/ArrayOfIpRanges'
+      required: false
+      explode: true
+      description: Restrict the returned asset summaries to only assets of the specified ip ranges.
   schemas:
-    HTTPingSettings:
-      description: HTTPingSettings represents custom settings for webapp reachability checks. All fields are optional.
-      type: object
-      properties:
-        url:
-          type: string
-          description: URL to perform the check. If not defined, webapp main URL will be used.
-        insecure:
-          type: boolean
-          description: When set to `true`, bypasses SSL/TLS checks.
-        responseHeaderTimeout:
-          type: integer
-          minimum: 0
-          description: Max time waiting for the HTTP response header, in seconds.
-        timeout:
-          type: integer
-          minimum: 0
-          description: Max time waiting for the whole HTTP response, in seconds.
-        followRedirects:
-          type: boolean
-          description: When set to `false`, redirects are not followed and the last server response returned.
-        method:
-          type: string
-          description: HTTP method to use.
-        headers:
-          $ref: '#/components/schemas/HTTPingSettings_Headers'
-          description: Custom HTTP headers to send. It must be a string-to-string map.
-          example:
-            X-Custom-Header1: value1
-            X-Custom-Header2: value2
-        body:
-          type: string
-          description: HTTP request entity to send.
-        validCodes:
-          type: array
-          items:
-            type: integer
-            minimum: 0
-            description: HTTP response code
-          description: List of response status codes considered as valid. When defined, ping will be considered succeeded only when response status code exists in this list. Mutually exclusive with InvalidCodes.
-          example:
-          - 200
-          - 201
-          - 204
-        invalidCodes:
-          type: array
-          items:
-            type: integer
-            minimum: 0
-            description: HTTP response code
-          description: List of response status codes considered as invalid When defined, ping will be considered succeeded only when response status code does not exist in this list. Mutually exclusive with ValidCodes.
-          example:
-          - 400
-          - 401
-          - 403
-          - 500
-    OrganizationUID:
+    SeedUID:
       type: string
       pattern: ^[-_0-9a-z]{1,50}
-      description: Unique identifier for an organization.
+      description: Unique identifier for an E-ASM seed.
+      readOnly: true
+    PortNumber:
+      type: integer
+      format: int32
+      minimum: 0
+      maximum: 65535
+    PortObservedState:
+      type: string
+      enum:
+      - open
+      - closed
+      - filtered
+      description: Observed state reported by automated scanning.
+    ArrayOfAssets:
+      type: array
+      items:
+        $ref: '#/components/schemas/SingleAsset'
+    CloudCredentialFormat:
+      description: Describes format of the cloud credential
+      type: string
+      enum:
+      - aws_assume_role
+      - aws_secret_access
+      - azure_certificate
+      - azure_password
+      - gcp_cloud_asset
+      - gcp_compute_engine
+    ScopeRule:
+      allOf:
+      - $ref: '#/components/schemas/ScopeRuleSummary'
+      - $ref: '#/components/schemas/Updatable'
+    ExternalRelationship:
+      description: 'A relationship between two assets. Source asset points to an asset in AssetService `assets` table while Target asset points to some external asset stored outside of AssetService. The target is fully identified by two fields: `targetUid` and `targetService`. Generally the relationship may be read as `source`-asset `type` `target`-asset. There cannot be multiple relationships between a pair of assets with the same `type`. Relationships have a `startsAt` date-time and an optional `endsAt` time; a relationship is considered `active` at a point-in-time if the `startsAt` date is prior-to/equal-to the time point, and the `endsAt` time is unset or is after/equal-to the time point. Furthermore, for any given `type` linking a pair of assets, there can only be one active relationship at any given time point. A new relationship cannot be created with a `startsAt` time after an existing relationship''s `startsAt` when that relationship has an unset `endsAt` date-time, or the relationship has an `endsAt` after/equal-to the `startsAt` of the new relationship (such that these relationships active ranges would overlap).
+
+        '
+      allOf:
+      - type: object
+        required:
+        - type
+        - sourceAssetUid
+        - targetUid
+        - targetService
+        - startsAt
+        properties:
+          uid:
+            $ref: '#/components/schemas/AssetRelationshipUID'
+          type:
+            description: Type of relationship between assets. The direction of reading is `sourceAsset` -- `type` -- `targetAsset`.
+            type: string
+            enum:
+            - discoveredBy
+          sourceAssetUid:
+            $ref: '#/components/schemas/AssetUID'
+          targetUid:
+            $ref: '#/components/schemas/ExternalUID'
+          targetService:
+            description: The type of the external service, holding the "target" entity.
+            type: string
+            enum:
+            - assetDiscovery
+            - fractalScan
+            - xpanse
+          startsAt:
+            type: string
+            format: date-time
+            description: The date-time at which the relationship between the source and target assets was observed to begin.
+          endsAt:
+            type: string
+            format: date-time
+            description: The date-time at which the relationship between the source and target assets was observed to end.
+      - $ref: '#/components/schemas/Updatable'
+    MobileApplicationProperties:
+      allOf:
+      - $ref: '#/components/schemas/ApplicationAsset'
+      - type: object
+        required:
+        - applicationName
+        properties:
+          applicationName:
+            type: string
+            description: Name of the application.
+          operatingSystem:
+            $ref: '#/components/schemas/MobileOperatingSystem'
+          binaries:
+            type: array
+            items:
+              $ref: '#/components/schemas/ApplicationBinary'
+            readOnly: true
+          mfa:
+            type: boolean
+            description: Optional MFA/OTP/CAPTCHA
+          selfRegistration:
+            type: boolean
+            description: Optional self registration
+          ntlm:
+            type: boolean
+            description: Optional new technology lan manager.
+          sslCertificatePinning:
+            type: boolean
+            description: Optional SSL certifications pinning or root detection
     NetworkRef:
       type: object
       description: 'Reference to the network that an asset can be found on.
@@ -2128,26 +2165,501 @@ components:
       properties:
         networkUid:
           $ref: '#/components/schemas/UID'
+    ProblemDetails:
+      type: object
+      description: 'See [RFC 7807: Problem Details for HTTP APIs](https://tools.ietf.org/html/rfc7807)'
+      properties:
+        type:
+          type: string
+          readOnly: true
+        title:
+          type: string
+          readOnly: true
+        status:
+          type: integer
+          format: int32
+          minimum: 100
+          maximum: 511
+          description: HTTP Status code.
+          readOnly: true
+        detail:
+          type: string
+          description: Message detailing the problem.
+          readOnly: true
+        instance:
+          type: string
+          description: generated problem instance number to correlate with logs
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
+        failedValidations:
+          type: array
+          description: Array of indexed failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/IndexedFailedValidations'
+        maxBatchSize:
+          type: integer
+          description: Maximum processable batch size.
+          readOnly: true
+        batchSize:
+          type: integer
+          description: Batch size sent when batch is too large.
+          readOnly: true
+    HostAsset:
+      allOf:
+      - $ref: '#/components/schemas/Asset'
+      - type: object
+        properties:
+          host:
+            $ref: '#/components/schemas/HostProperties'
+    RelatedAsset:
+      type: object
+      properties:
+        assetUid:
+          $ref: '#/components/schemas/UID'
+        assetType:
+          $ref: '#/components/schemas/AssetType'
+        location:
+          type: string
+          description: 'Derived human-readable text representation of the asset, based on assetType and other properties.
+
+            '
+          readOnly: true
+        label:
+          type: string
+          description: 'Optional label for the asset. If present, label is part of the derived property of asset location, which enables creation of multiple assets with different labels under a single organization.
+
+            '
+          readOnly: true
+    WebApplicationProperties:
+      allOf:
+      - $ref: '#/components/schemas/ApplicationAsset'
+      - $ref: '#/components/schemas/NetworkRef'
+      - type: object
+        required:
+        - url
+        properties:
+          url:
+            type: string
+          reachabilityImageCaptureUrl:
+            type: string
+            format: uri
+            description: Optional URL to image capture of failed reachability check.
+          mfa:
+            type: boolean
+            description: Optional MFA/OTP/CAPTCHA
+          selfRegistration:
+            type: boolean
+            description: Optional self registration
+          ntlm:
+            type: boolean
+            description: Optional new technology lan manager.
+          httpingSettings:
+            $ref: '#/components/schemas/HTTPingSettings'
+          timesFinished:
+            type: integer
+            format: int32
+            minimum: 0
+            description: Number of times web application scan finished.
+          timesFailed:
+            type: integer
+            format: int32
+            minimum: 0
+            description: Number of times web application scan failed.
+          timesLastFailed:
+            type: integer
+            format: int32
+            minimum: 0
+            description: Number of times web application scan failed since the last finished scan.
+          scanState:
+            $ref: '#/components/schemas/ScanState'
+          scanStateUpdatedAt:
+            type: string
+            format: date-time
+            description: The date time the scan state was updated.
+          scanLastAcceptedAt:
+            type: string
+            format: date-time
+            description: The last date time the web application was accepted to scan.
+          lastSuccessfulScan:
+            type: string
+            format: date-time
+            description: The last date time the asset scan was successful.
+          lastFingerprint:
+            description: Last time a fingerprinting scan checked the asset.
+            type: string
+            format: date-time
+    FailedValidation:
+      type: object
+      required:
+      - message
+      properties:
+        property:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+        message:
+          type: string
+          readOnly: true
+    CloudAccountProperties:
+      description: Keeps credentials for accessing the cloud provider. Mandatory for assets of 'cloudaccount' type.
+      type: object
+      properties:
+        credentialData:
+          $ref: '#/components/schemas/Base64Data'
+        cloudPlatform:
+          $ref: '#/components/schemas/CloudPlatform'
+        cloudCredentialFormat:
+          $ref: '#/components/schemas/CloudCredentialFormat'
+      required:
+      - credentialData
+      - cloudPlatform
+      - cloudCredentialFormat
+    DiscoveredAssetsTotals:
+      type: object
+      properties:
+        all:
+          type: number
+          readOnly: true
+        unconfirmed:
+          type: number
+          readOnly: true
+        inTriage:
+          type: number
+          readOnly: true
+        triaged:
+          type: number
+          readOnly: true
+        confirmed:
+          type: number
+          readOnly: true
+        rejected:
+          type: number
+          readOnly: true
+    UserRoleScript:
+      allOf:
+      - type: object
+        description: Script used to test a mobile or web applications.
+        properties:
+          uid:
+            $ref: '#/components/schemas/UID'
+          status:
+            $ref: '#/components/schemas/CheckerStatus'
+          filename:
+            type: string
+            description: Generated script name.
+            readOnly: true
+          error:
+            type: string
+            description: Optional text of error message. Server will unset this property when status is set to any value other than invalid.
+          imageCaptureUrl:
+            type: string
+            format: uri
+            description: Optional Url to image capture of the script execution.
+          lastCheckedAt:
+            type: string
+            format: date-time
+            description: The most reecent date time the script was run.
+          lastSuccessfulAt:
+            type: string
+            format: date-time
+            description: The most recent date time the script was successfully run.
+    AssetRelationshipType:
+      type: string
+      description: Type or relationship between assets.
+      enum:
+      - discoveredBy
+    AuthenticationStrategies:
+      type: object
+      description: Map of authentication strategies for various scanners, keyed by asset scanner name.
+      properties:
+        tarantulaBurpV2:
+          $ref: '#/components/schemas/AuthenticationStrategy'
+        burp:
+          $ref: '#/components/schemas/AuthenticationStrategy'
+    WebRULE:
+      type: string
+      pattern: ^(/([a-zA-Z0-9_-~!$&'()+,;=:@.]|%[0-9a-fA-F]{2})+/)*(/?((([A-z]|[0-9]|[-_~])|%[0-9a-fA-F]{2}|[!$&'()*+,;=]|[:@])|[/?])*){0,1}//(#((([A-z]|[0-9]|[-_~.])|%[0-9a-fA-F]{2}|[!$&'()*+,;=]|[:@])|[/?])*){0,1}/?$
+      description: Rule for web asset validation
+    Scripts:
+      type: object
+      description: Map of scripts used by this strategy, keyed by script role.
+      properties:
+        authentication:
+          $ref: '#/components/schemas/UserRoleScript'
+        sessionValidation:
+          $ref: '#/components/schemas/UserRoleScript'
+        recordedLogin:
+          $ref: '#/components/schemas/UserRoleScript'
+    ScopeRuleApplicability:
+      type: string
+      enum:
+      - scanners
+      - srt
+      - both
+    AssetCriticality:
+      type: string
+      description: Indicates importance of the asset to the customer.
+      default: undefined
+      enum:
+      - high
+      - medium
+      - low
+      - undefined
+    UserRole:
+      allOf:
+      - type: object
+        properties:
+          uid:
+            $ref: '#/components/schemas/UID'
+          name:
+            type: string
+            description: Unique name for the role with the mobile or web application.
+          scannable:
+            type: boolean
+            description: Only roles with this property set to true will be scanned by automated scanners.
+            default: false
+          authenticationStrategies:
+            $ref: '#/components/schemas/AuthenticationStrategies'
+          credentials:
+            type: array
+            description: Credentials owned by this role.
+            readOnly: true
+            items:
+              $ref: '#/components/schemas/UserRoleCredentialSummary'
+          credentialCounts:
+            $ref: '#/components/schemas/CredentialCounts'
+      - $ref: '#/components/schemas/Updatable'
+    HTTPingSettings_Headers:
+      type: object
+      properties:
+        additionalProperties:
+          type: object
+          additionalProperties:
+            type: string
+    Creatable:
+      type: object
+      required:
+      - createdAt
+      - createdBy
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Automatically set by the server to the time the request was processed whenever the resource was created.
+        createdBy:
+          $ref: '#/components/schemas/OperationUserUID'
+    AssetOrigin:
+      type: string
+      description: Indicates the origin for the asset, i.e. whether the asset was provided manually or it was discovered by some sort of automation.
+      default: provided
+      enum:
+      - provided
+      - discovered
+    UserUID:
+      type: string
+      pattern: ^[-_0-9a-z]{1,100}
+      description: Unique identifier for a user.
+    WHOIS:
+      type: string
+      description: Whois results.
+    NetworkProperties:
+      type: object
+      properties:
+        gatewayId:
+          type: string
+          $ref: '#/components/schemas/GatewayID'
+          description: Identifier for Launchpoint-managed VPN gateway.
+    Scope:
+      description: 'Set to _in_-scope means automated and manual testing _should_ occur; _out_-of-scope means automated and manual testing _must not_ occur; _discovered_ means observed through automated discovery and may be automatically removed if not observed again during subseqent discovery activities.
+
+        '
+      type: string
+      enum:
+      - in
+      - out
+      - discovered
+      - blocked
+    UID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      readOnly: true
+      description: Unique Identifier.
+    DiscoveredAssetsPage:
+      type: object
+      properties:
+        totalByStatus:
+          $ref: '#/components/schemas/DiscoveredAssetsTotals'
+        discoveredAssets:
+          $ref: '#/components/schemas/ArrayOfAssetSummaries'
+    MobileOperatingSystem:
+      type: string
+      enum:
+      - ios
+      - android
+      description: The operating system for the asset.
+    ErrorCode:
+      type: integer
+      format: int32
+      description: Optional numeric error code set by an automated process such as scanning or checking.
+    CriticalityUpdateCount:
+      type: object
+      properties:
+        updatedCount:
+          type: integer
+          description: Number of assets updated.
+          default: 0
+    SingleAssetRelationship:
+      oneOf:
+      - $ref: '#/components/schemas/DiscoveredByRelationship'
+      discriminator:
+        propertyName: relationshipType
+        mapping:
+          discoveredBy: '#/components/schemas/DiscoveredByRelationship'
+    OrganizationUID:
+      type: string
+      pattern: ^[-_0-9a-z]{1,50}
+      description: Unique identifier for an organization.
+    OperationUserUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      readOnly: true
+      description: Automatically set by the server to the requesting user whenever the resource is updated. May be a user account or a service account if the action is performed by an automated.
+    LifecycleUpdateCount:
+      type: object
+      properties:
+        updatedCount:
+          type: integer
+          description: Number of assets updated.
+          default: 0
+    CredentialSharing:
+      type: string
+      description: Determines the limits on users that may be assigned; "one" permits only one user to be assigned, "many" places no limit, and "all" prevents any users to explicitly assigned as all users are implicitly allowed to use the credential.
+      enum:
+      - one
+      - many
+      - all
+    AssetListing:
+      type: object
+      description: Listings the asset is assigned to.
+      properties:
+        listingUid:
+          $ref: '#/components/schemas/ListingUID'
+        scope:
+          $ref: '#/components/schemas/Scope'
+        scopeRules:
+          description: Out of scope locations for this asset.
+          type: array
+          items:
+            $ref: '#/components/schemas/ScopeRule'
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Automatically set by the server to the time the listing asset association was created.
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Automatically set by the server to the time the listing asset association is updated.
+    AssetType:
+      type: string
+      enum:
+      - cloudaccount
+      - host
+      - network
+      - mobileapp
+      - webapp
     ListingUID:
       type: string
       pattern: ^[-_0-9a-z]{1,50}
       description: Unique identifier for an listing.
       readOnly: true
-    SingleAsset:
-      oneOf:
-      - $ref: '#/components/schemas/CloudAccountAsset'
-      - $ref: '#/components/schemas/HostAsset'
-      - $ref: '#/components/schemas/MobileApplicationAsset'
-      - $ref: '#/components/schemas/NetworkAsset'
-      - $ref: '#/components/schemas/WebApplicationAsset'
-      discriminator:
-        propertyName: assetType
-        mapping:
-          cloudaccount: '#/components/schemas/CloudAccountAsset'
-          host: '#/components/schemas/HostAsset'
-          mobileapp: '#/components/schemas/MobileApplicationAsset'
-          network: '#/components/schemas/NetworkAsset'
-          webapp: '#/components/schemas/WebApplicationAsset'
+    AuthenticationStrategy:
+      allOf:
+      - type: object
+        properties:
+          scripts:
+            $ref: '#/components/schemas/Scripts'
+    AssetUID:
+      type: string
+      pattern: ^[0-9a-f]{24}
+      description: Unique identifier for an asset.
+    WHOISRequest:
+      type: object
+      description: Whois request data.
+      properties:
+        whois:
+          $ref: '#/components/schemas/WHOIS'
+    CloudAccountAsset:
+      allOf:
+      - $ref: '#/components/schemas/Asset'
+      - type: object
+        properties:
+          cloudAccount:
+            $ref: '#/components/schemas/CloudAccountProperties'
+    AssetRelationship:
+      description: A relationship between two assets. Generally the relationship may be read as _source_-asset _relationship_-type _target_-asset. There cannot be multiple relationships between a pair of assets with the same relationship-type. Relationships have a starts-at date-time and an optional ends-at date-time; a relationship is considered _active_ at a point-in-time if the starts-at date is prior-to/equal-to the time-point, and the ends-at date-time is unset or is after/equal-to the time-point. Furthermore, for any given relationship-type linking a pair of assets, there can only be one active relationship at any give time point. A new relationship cannot be created with a start-at date-time after an existing relationship's starts-at when that relationship has an unset ends-at date-time, or the relationship has an ends-at after/equal-to the starts-at of the new relationship (such that these relationships active ranges would overlap).
+      allOf:
+      - type: object
+        required:
+        - sourceAssetUid
+        - targetAssetUid
+        - startsAt
+        - relationshipType
+        properties:
+          uid:
+            $ref: '#/components/schemas/AssetRelationshipUID'
+          sourceAssetUid:
+            $ref: '#/components/schemas/AssetUID'
+          targetAssetUid:
+            $ref: '#/components/schemas/AssetUID'
+          startsAt:
+            type: string
+            format: date-time
+            description: The date-time at which the relationship between the source and target asset is observed to first begin.
+          endsAt:
+            type: string
+            format: date-time
+            description: The date-time at which the relationship between the source and target asset was observed to end.
+          relationshipType:
+            description: Type or relationship between assets.
+            type: string
+            enum:
+            - discoveredBy
+      - $ref: '#/components/schemas/Updatable'
+    Updatable:
+      allOf:
+      - $ref: '#/components/schemas/Creatable'
+      - type: object
+        properties:
+          updatedAt:
+            type: string
+            format: date-time
+            readOnly: true
+            description: Automatically set by the server to the time the request was processed whenever the resource is updated.
+          updatedBy:
+            $ref: '#/components/schemas/OperationUserUID'
+    Base64Data:
+      type: string
+      description: Base64 encoding of data.
+      example: TXkgdm9pY2UgaXMgbXkgcGFzc3dvcmQu
+    AssetChangeStatus:
+      type: string
+      description: Indicates whether the asset is newly discovered, has changed since last evaluated, or is unchanged.
+      default: unchanged
+      enum:
+      - new
+      - changed
+      - unchanged
     Asset:
       allOf:
       - type: object
@@ -2274,58 +2786,405 @@ components:
             items:
               $ref: '#/components/schemas/AssetGateway'
       - $ref: '#/components/schemas/Updatable'
-    MobileOperatingSystem:
+    AssetRelationshipUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      description: Unique identifier for a scan.
+    ApplicationBinary:
+      type: object
+      properties:
+        version:
+          type: string
+          readOnly: true
+        downloadUrl:
+          type: string
+          format: uri
+    CredentialCounts:
+      description: Credential counts by credential status in context of a user role.
+      type: object
+      readOnly: true
+      properties:
+        unchecked:
+          type: integer
+          description: Total of credentials in context of a user role with unchecked status.
+        invalid:
+          type: integer
+          description: Total of credentials in context of a user role with invalid status.
+        valid:
+          type: integer
+          description: Total of credentials in context of a user role with valid status.
+    WHOISResponse:
+      type: object
+      description: Whois data.
+      properties:
+        whois:
+          $ref: '#/components/schemas/WHOIS'
+        asset_uid:
+          $ref: '#/components/schemas/AssetUID'
+    NetworkAsset:
+      allOf:
+      - $ref: '#/components/schemas/Asset'
+      - type: object
+        properties:
+          network:
+            $ref: '#/components/schemas/NetworkProperties'
+    AssetBulkLifecycleStateUpdate:
+      type: object
+      required:
+      - organizationUid
+      - uid
+      - lifecycleState
+      properties:
+        organizationUid:
+          $ref: '#/components/schemas/OrganizationUID'
+        assetUids:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssetUID'
+        lifecycleState:
+          $ref: '#/components/schemas/AssetLifecycleState'
+    IpRange:
+      type: string
+      description: IP Range could be a CIDR or an IP Range
+    ArrayOfRelatedAssets:
+      type: array
+      items:
+        $ref: '#/components/schemas/RelatedAsset'
+    SingleOrMultiAsset:
+      oneOf:
+      - $ref: '#/components/schemas/SingleAsset'
+      - type: array
+        items:
+          $ref: '#/components/schemas/SingleAsset'
+    ApplicationAsset:
+      type: object
+      properties:
+        userRoles:
+          description: User roles available for the application.
+          readOnly: true
+          type: array
+          items:
+            $ref: '#/components/schemas/UserRole'
+    IndexedFailedValidations:
+      type: object
+      properties:
+        index:
+          type: integer
+          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
+    CloudPlatform:
+      description: Identifies cloud platform
       type: string
       enum:
-      - ios
-      - android
-      description: The operating system for the asset.
-    ScopeRule:
+      - aws
+      - azure
+      - gcp
+    HTTPingSettings:
+      description: HTTPingSettings represents custom settings for webapp reachability checks. All fields are optional.
+      type: object
+      properties:
+        url:
+          type: string
+          description: URL to perform the check. If not defined, webapp main URL will be used.
+        insecure:
+          type: boolean
+          description: When set to `true`, bypasses SSL/TLS checks.
+        responseHeaderTimeout:
+          type: integer
+          minimum: 0
+          description: Max time waiting for the HTTP response header, in seconds.
+        timeout:
+          type: integer
+          minimum: 0
+          description: Max time waiting for the whole HTTP response, in seconds.
+        followRedirects:
+          type: boolean
+          description: When set to `false`, redirects are not followed and the last server response returned.
+        method:
+          type: string
+          description: HTTP method to use.
+        headers:
+          $ref: '#/components/schemas/HTTPingSettings_Headers'
+          description: Custom HTTP headers to send. It must be a string-to-string map.
+          example:
+            X-Custom-Header1: value1
+            X-Custom-Header2: value2
+        body:
+          type: string
+          description: HTTP request entity to send.
+        validCodes:
+          type: array
+          items:
+            type: integer
+            minimum: 0
+            description: HTTP response code
+          description: List of response status codes considered as valid. When defined, ping will be considered succeeded only when response status code exists in this list. Mutually exclusive with InvalidCodes.
+          example:
+          - 200
+          - 201
+          - 204
+        invalidCodes:
+          type: array
+          items:
+            type: integer
+            minimum: 0
+            description: HTTP response code
+          description: List of response status codes considered as invalid When defined, ping will be considered succeeded only when response status code does not exist in this list. Mutually exclusive with ValidCodes.
+          example:
+          - 400
+          - 401
+          - 403
+          - 500
+    GatewayID:
+      type: string
+      pattern: ^[0-9a-f]{16}
+      description: Identifier for Launchpoint-managed VPN gateway.
+    PortProtocol:
+      type: string
+      enum:
+      - tcp
+      - udp
+    ArrayOfAssetSummaries:
+      type: array
+      items:
+        $ref: '#/components/schemas/AssetSummary'
+    AssetBulkCriticalityUpdate:
+      type: object
+      required:
+      - organizationUid
+      - uid
+      - criticality
+      properties:
+        organizationUid:
+          $ref: '#/components/schemas/OrganizationUID'
+        assetUids:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssetUID'
+        criticality:
+          $ref: '#/components/schemas/AssetCriticality'
+    CheckerStatus:
+      type: string
+      enum:
+      - unchecked
+      - invalid
+      - valid
+      description: Status reported by automated checkers.
+    ScanState:
+      type: string
+      enum:
+      - new
+      - accepted
+      - queued
+      - dispatched
+      - failed
+      - finished
+      - in-progress
+      description: Scan state of asset.
+    AssetStat:
+      type: object
+      description: Stats for assets within a single organization.
+      properties:
+        activeAssets:
+          type: array
+          description: Totals for active assets.
+          items:
+            $ref: '#/components/schemas/AssetTypeTotal'
+    DiscoveredByRelationship:
+      description: Relationship indicating the source asset was discovered by scanning the target asset. Discovered-by relationships extend the uniqueness constraint to allow multiple pairs of this relationship-type between a pair of assets however each such relationship must have a unique asset-scanner property.
       allOf:
-      - $ref: '#/components/schemas/ScopeRuleSummary'
-      - $ref: '#/components/schemas/Updatable'
-    UserRoleScript:
+      - $ref: '#/components/schemas/AssetRelationship'
+      - type: object
+        required:
+        - assetScanner
+        properties:
+          assetScanner:
+            description: The asset-scanner that discovered the relationship.
+            type: string
+            enum:
+            - burp
+            - cloudEnumeration
+            - masscan
+            - nessus
+            - openVAS
+            - tarantulaBurpV2
+            - cidrExpansion
+            - amass
+            - fingerprinter
+            - easm
+    Port:
       allOf:
       - type: object
-        description: Script used to test a mobile or web applications.
+        required:
+        - scope
+        - observedState
+        properties:
+          number:
+            $ref: '#/components/schemas/PortNumber'
+          protocol:
+            $ref: '#/components/schemas/PortProtocol'
+          scope:
+            $ref: '#/components/schemas/Scope'
+          service:
+            type: string
+            description: 'Name of (expected) service running on port. Will use the [Service Name and Transport Protocol Port Number Registry](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml) for well-known ports.
+
+              '
+          observedState:
+            $ref: '#/components/schemas/PortObservedState'
+          detectedService:
+            type: string
+            description: 'Name of detected service running on port according to fingerprinting.
+
+              '
+            readOnly: true
+          detectedProductName:
+            type: string
+            description: 'Name of software product running on port according to fingerprinting.
+
+              '
+            readOnly: true
+          detectedProductVersion:
+            type: string
+            description: Version of software product running on port according to fingerprinting.
+            readOnly: true
+          detectedProductConfidenceLevel:
+            type: integer
+            format: int
+            minimum: 1
+            maximum: 10
+            description: Confidence level of detected product on port according to fingerprinting.
+            readOnly: true
+          detectedProductCPE:
+            type: string
+            description: 'CPE for detected product according to fingerprinting.
+
+              '
+            readOnly: true
+          serviceBanner:
+            type: string
+            description: Port banner according to fingerprinting.
+            readOnly: true
+      - $ref: '#/components/schemas/Updatable'
+    ArrayOfIpRanges:
+      type: array
+      items:
+        $ref: '#/components/schemas/IpRange'
+    AssetTypeTotal:
+      type: object
+      required:
+      - assetType
+      - underTest
+      - underManagement
+      properties:
+        assetType:
+          $ref: '#/components/schemas/AssetType'
+        underTest:
+          type: integer
+          description: Total of assets that are assigned to a listing with a scope of 'in'.
+        underManagement:
+          type: integer
+          description: Total of assets owned by the organization.
+    AssetGateway:
+      type: object
+      description: Gateways and listings the asset is assigned to.
+      properties:
+        gatewayId:
+          $ref: '#/components/schemas/GatewayID'
+        listingUid:
+          $ref: '#/components/schemas/ListingUID'
+    UserRoleCredentialSummary:
+      description: Credential used by an application in context of a user role.
+      type: object
+      properties:
+        uid:
+          $ref: '#/components/schemas/UID'
+        status:
+          $ref: '#/components/schemas/CheckerStatus'
+        lastCheckedAt:
+          type: string
+          format: date-time
+          description: The last date time the credential was checked.
+        sharing:
+          $ref: '#/components/schemas/CredentialSharing'
+    AssetSummary:
+      allOf:
+      - type: object
         properties:
           uid:
             $ref: '#/components/schemas/UID'
-          status:
-            $ref: '#/components/schemas/CheckerStatus'
-          filename:
+          organizationUid:
+            $ref: '#/components/schemas/OrganizationUID'
+          location:
             type: string
-            description: Generated script name.
             readOnly: true
-          error:
+            description: Derived human-readable text representation of the asset, based on assetType and other properties.
+          assetType:
+            $ref: '#/components/schemas/AssetType'
+            description: Derived from the properties associated with the asset.
+            readOnly: true
+          label:
             type: string
-            description: Optional text of error message. Server will unset this property when status is set to any value other than invalid.
-          imageCaptureUrl:
+            description: Optional label for the asset. If present, label is part of the derived property of asset location, which enables creation of multiple assets with different labels under a single organization.
+          origin:
+            $ref: '#/components/schemas/AssetOrigin'
+          changeStatus:
+            $ref: '#/components/schemas/AssetChangeStatus'
+          providerName:
+            description: Name of the cloud or hosting provider according to fingerprinting.
             type: string
-            format: uri
-            description: Optional Url to image capture of the script execution.
+            readOnly: true
           lastCheckedAt:
             type: string
             format: date-time
-            description: The most reecent date time the script was run.
-          lastSuccessfulAt:
+            description: The last date time the credential was checked.
+          lastReachableAt:
             type: string
             format: date-time
-            description: The most recent date time the script was successfully run.
-    HTTPingSettings_Headers:
-      type: object
-      properties:
-        additionalProperties:
-          type: object
-          additionalProperties:
+            description: The last date time the asset was successfully checked for reachability.
+          lastSuccessfulScan:
             type: string
-    NetworkProperties:
-      type: object
-      properties:
-        gatewayId:
-          type: string
-          $ref: '#/components/schemas/GatewayID'
-          description: Identifier for Launchpoint-managed VPN gateway.
+            format: date-time
+            description: The last date time the asset scan was successful.
+          lastFailedScan:
+            type: string
+            format: date-time
+            description: The last date time the asset scan was failed.
+          firstSeen:
+            type: string
+            format: date-time
+            description: 'For assets with an origin of discovered. The date time when the asset was first discovered.
+
+              '
+          lastSeen:
+            type: string
+            format: date-time
+            description: 'For assets with an origin of discovered. The date time when the asset was last discovered or fingerprinted.
+
+              '
+          status:
+            $ref: '#/components/schemas/CheckerStatus'
+          errorCode:
+            $ref: '#/components/schemas/ErrorCode'
+          listings:
+            description: Array of listings the asset belongs to.
+            readOnly: true
+            type: array
+            items:
+              $ref: '#/components/schemas/AssetListing'
+          relatedAssets:
+            description: Relationships which this asset participates in, either as a source or as a target.
+            readOnly: true
+            type: array
+            items:
+              $ref: '#/components/schemas/ArrayOfRelatedAssets'
+      - $ref: '#/components/schemas/Updatable'
     HostType:
       type: string
       enum:
@@ -2333,6 +3192,10 @@ components:
       - cidr
       - fqdn
       - as
+    ExternalUID:
+      type: string
+      pattern: ^[0-9a-zA-Z-_]{1,}$
+      description: Unique identifier for an external entity. It has much more loose requirements than AssetUID since in general we don't control these external services.
     HostProperties:
       allOf:
       - $ref: '#/components/schemas/NetworkRef'
@@ -2441,174 +3304,22 @@ components:
             type: string
             format: date-time
             description: The date time the scan state was updated.
-    NetworkAsset:
+    WebApplicationAsset:
       allOf:
       - $ref: '#/components/schemas/Asset'
       - type: object
         properties:
-          network:
-            $ref: '#/components/schemas/NetworkProperties'
-    ArrayOfRelatedAssets:
-      type: array
-      items:
-        $ref: '#/components/schemas/RelatedAsset'
-    AssetCriticality:
-      type: string
-      description: Indicates importance of the asset to the customer.
-      default: undefined
-      enum:
-      - high
-      - medium
-      - low
-      - undefined
-    PortProtocol:
-      type: string
-      enum:
-      - tcp
-      - udp
-    HostAsset:
-      allOf:
-      - $ref: '#/components/schemas/Asset'
-      - type: object
-        properties:
-          host:
-            $ref: '#/components/schemas/HostProperties'
-    AssetType:
-      type: string
-      enum:
-      - cloudaccount
-      - host
-      - network
-      - mobileapp
-      - webapp
-    PortNumber:
-      type: integer
-      format: int32
-      minimum: 0
-      maximum: 65535
-    AssetStat:
-      type: object
-      description: Stats for assets within a single organization.
-      properties:
-        activeAssets:
-          type: array
-          description: Totals for active assets.
-          items:
-            $ref: '#/components/schemas/AssetTypeTotal'
-    DiscoveredByRelationship:
-      description: Relationship indicating the source asset was discovered by scanning the target asset. Discovered-by relationships extend the uniqueness constraint to allow multiple pairs of this relationship-type between a pair of assets however each such relationship must have a unique asset-scanner property.
-      allOf:
-      - $ref: '#/components/schemas/AssetRelationship'
-      - type: object
-        required:
-        - assetScanner
-        properties:
-          assetScanner:
-            description: The asset-scanner that discovered the relationship.
-            type: string
-            enum:
-            - burp
-            - cloudEnumeration
-            - masscan
-            - nessus
-            - openVAS
-            - tarantulaBurpV2
-            - cidrExpansion
-            - amass
-            - fingerprinter
-            - easm
-    AssetOrigin:
-      type: string
-      description: Indicates the origin for the asset, i.e. whether the asset was provided manually or it was discovered by some sort of automation.
-      default: provided
-      enum:
-      - provided
-      - discovered
-    ArrayOfIpRanges:
-      type: array
-      items:
-        $ref: '#/components/schemas/IpRange'
-    CloudAccountProperties:
-      description: Keeps credentials for accessing the cloud provider. Mandatory for assets of 'cloudaccount' type.
+          webApplication:
+            $ref: '#/components/schemas/WebApplicationProperties'
+    OperatingSystem:
       type: object
       properties:
-        credentialData:
-          $ref: '#/components/schemas/Base64Data'
-        cloudPlatform:
-          $ref: '#/components/schemas/CloudPlatform'
-        cloudCredentialFormat:
-          $ref: '#/components/schemas/CloudCredentialFormat'
-      required:
-      - credentialData
-      - cloudPlatform
-      - cloudCredentialFormat
-    WHOISRequest:
-      type: object
-      description: Whois request data.
-      properties:
-        whois:
-          $ref: '#/components/schemas/WHOIS'
-    Port:
-      allOf:
-      - type: object
-        required:
-        - scope
-        - observedState
-        properties:
-          number:
-            $ref: '#/components/schemas/PortNumber'
-          protocol:
-            $ref: '#/components/schemas/PortProtocol'
-          scope:
-            $ref: '#/components/schemas/Scope'
-          service:
-            type: string
-            description: 'Name of (expected) service running on port. Will use the [Service Name and Transport Protocol Port Number Registry](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml) for well-known ports.
-
-              '
-          observedState:
-            $ref: '#/components/schemas/PortObservedState'
-          detectedService:
-            type: string
-            description: 'Name of detected service running on port according to fingerprinting.
-
-              '
-            readOnly: true
-          detectedProductName:
-            type: string
-            description: 'Name of software product running on port according to fingerprinting.
-
-              '
-            readOnly: true
-          detectedProductVersion:
-            type: string
-            description: Version of software product running on port according to fingerprinting.
-            readOnly: true
-          detectedProductConfidenceLevel:
-            type: integer
-            format: int
-            minimum: 1
-            maximum: 10
-            description: Confidence level of detected product on port according to fingerprinting.
-            readOnly: true
-          detectedProductCPE:
-            type: string
-            description: 'CPE for detected product according to fingerprinting.
-
-              '
-            readOnly: true
-          serviceBanner:
-            type: string
-            description: Port banner according to fingerprinting.
-            readOnly: true
-      - $ref: '#/components/schemas/Updatable'
-    CredentialSharing:
-      type: string
-      description: Determines the limits on users that may be assigned; "one" permits only one user to be assigned, "many" places no limit, and "all" prevents any users to explicitly assigned as all users are implicitly allowed to use the credential.
-      enum:
-      - one
-      - many
-      - all
+        name:
+          description: Name of operating system according to fingerprinting.
+          type: string
+        cpe:
+          type: string
+          description: CPE of operating system according to fingerprinting.
     AssetLifecycleState:
       type: string
       description: Indicates the asset position in asset lifecycle FSM.
@@ -2618,434 +3329,33 @@ components:
       - unconfirmed
       - ignored
       - archived
-    ArrayOfAssets:
-      type: array
-      items:
-        $ref: '#/components/schemas/SingleAsset'
-    ExternalUID:
-      type: string
-      pattern: ^[0-9a-zA-Z-_]{1,}$
-      description: Unique identifier for an external entity. It has much more loose requirements than AssetUID since in general we don't control these external services.
-    DiscoveredAssetsTotals:
-      type: object
-      properties:
-        all:
-          type: number
-          readOnly: true
-        unconfirmed:
-          type: number
-          readOnly: true
-        inTriage:
-          type: number
-          readOnly: true
-        triaged:
-          type: number
-          readOnly: true
-        confirmed:
-          type: number
-          readOnly: true
-        rejected:
-          type: number
-          readOnly: true
-    CloudAccountAsset:
-      allOf:
-      - $ref: '#/components/schemas/Asset'
-      - type: object
-        properties:
-          cloudAccount:
-            $ref: '#/components/schemas/CloudAccountProperties'
-    CriticalityUpdateCount:
-      type: object
-      properties:
-        updatedCount:
-          type: integer
-          description: Number of assets updated.
-          default: 0
-    LifecycleUpdateCount:
-      type: object
-      properties:
-        updatedCount:
-          type: integer
-          description: Number of assets updated.
-          default: 0
-    AssetRelationshipType:
-      type: string
-      description: Type or relationship between assets.
-      enum:
-      - discoveredBy
-    CloudPlatform:
-      description: Identifies cloud platform
-      type: string
-      enum:
-      - aws
-      - azure
-      - gcp
-    Updatable:
-      allOf:
-      - $ref: '#/components/schemas/Creatable'
-      - type: object
-        properties:
-          updatedAt:
-            type: string
-            format: date-time
-            readOnly: true
-            description: Automatically set by the server to the time the request was processed whenever the resource is updated.
-          updatedBy:
-            $ref: '#/components/schemas/OperationUserUID'
-    AssetTypeTotal:
-      type: object
-      required:
-      - assetType
-      - underTest
-      - underManagement
-      properties:
-        assetType:
-          $ref: '#/components/schemas/AssetType'
-        underTest:
-          type: integer
-          description: Total of assets that are assigned to a listing with a scope of 'in'.
-        underManagement:
-          type: integer
-          description: Total of assets owned by the organization.
-    MobileApplicationProperties:
-      allOf:
-      - $ref: '#/components/schemas/ApplicationAsset'
-      - type: object
-        required:
-        - applicationName
-        properties:
-          applicationName:
-            type: string
-            description: Name of the application.
-          operatingSystem:
-            $ref: '#/components/schemas/MobileOperatingSystem'
-          binaries:
-            type: array
-            items:
-              $ref: '#/components/schemas/ApplicationBinary'
-            readOnly: true
-          mfa:
-            type: boolean
-            description: Optional MFA/OTP/CAPTCHA
-          selfRegistration:
-            type: boolean
-            description: Optional self registration
-          ntlm:
-            type: boolean
-            description: Optional new technology lan manager.
-          sslCertificatePinning:
-            type: boolean
-            description: Optional SSL certifications pinning or root detection
-    ScopeRuleApplicability:
-      type: string
-      enum:
-      - scanners
-      - srt
-      - both
-    CredentialCounts:
-      description: Credential counts by credential status in context of a user role.
-      type: object
-      readOnly: true
-      properties:
-        unchecked:
-          type: integer
-          description: Total of credentials in context of a user role with unchecked status.
-        invalid:
-          type: integer
-          description: Total of credentials in context of a user role with invalid status.
-        valid:
-          type: integer
-          description: Total of credentials in context of a user role with valid status.
-    CloudCredentialFormat:
-      description: Describes format of the cloud credential
-      type: string
-      enum:
-      - aws_assume_role
-      - aws_secret_access
-      - azure_certificate
-      - azure_password
-      - gcp_cloud_asset
-      - gcp_compute_engine
-    SingleOrMultiAsset:
-      oneOf:
-      - $ref: '#/components/schemas/SingleAsset'
-      - type: array
-        items:
-          $ref: '#/components/schemas/SingleAsset'
-    AuthenticationStrategies:
-      type: object
-      description: Map of authentication strategies for various scanners, keyed by asset scanner name.
-      properties:
-        tarantulaBurpV2:
-          $ref: '#/components/schemas/AuthenticationStrategy'
-        burp:
-          $ref: '#/components/schemas/AuthenticationStrategy'
-    Scope:
-      description: 'Set to _in_-scope means automated and manual testing _should_ occur; _out_-of-scope means automated and manual testing _must not_ occur; _discovered_ means observed through automated discovery and may be automatically removed if not observed again during subseqent discovery activities.
-
-        '
-      type: string
-      enum:
-      - in
-      - out
-      - discovered
-      - blocked
-    WHOIS:
-      type: string
-      description: Whois results.
-    UserRole:
-      allOf:
-      - type: object
-        properties:
-          uid:
-            $ref: '#/components/schemas/UID'
-          name:
-            type: string
-            description: Unique name for the role with the mobile or web application.
-          scannable:
-            type: boolean
-            description: Only roles with this property set to true will be scanned by automated scanners.
-            default: false
-          authenticationStrategies:
-            $ref: '#/components/schemas/AuthenticationStrategies'
-          credentials:
-            type: array
-            description: Credentials owned by this role.
-            readOnly: true
-            items:
-              $ref: '#/components/schemas/UserRoleCredentialSummary'
-          credentialCounts:
-            $ref: '#/components/schemas/CredentialCounts'
-      - $ref: '#/components/schemas/Updatable'
-    ErrorCode:
-      type: integer
-      format: int32
-      description: Optional numeric error code set by an automated process such as scanning or checking.
-    UserUID:
-      type: string
-      pattern: ^[-_0-9a-z]{1,100}
-      description: Unique identifier for a user.
-    AssetUID:
-      type: string
-      pattern: ^[0-9a-f]{24}
-      description: Unique identifier for an asset.
-    SeedUID:
-      type: string
-      pattern: ^[-_0-9a-z]{1,50}
-      description: Unique identifier for an E-ASM seed.
-      readOnly: true
-    DiscoveredAssetsPage:
-      type: object
-      properties:
-        totalByStatus:
-          $ref: '#/components/schemas/DiscoveredAssetsTotals'
-        discoveredAssets:
-          $ref: '#/components/schemas/ArrayOfAssetSummaries'
-    Base64Data:
-      type: string
-      description: Base64 encoding of data.
-      example: TXkgdm9pY2UgaXMgbXkgcGFzc3dvcmQu
-    Creatable:
-      type: object
-      required:
-      - createdAt
-      - createdBy
-      properties:
-        createdAt:
-          type: string
-          format: date-time
-          readOnly: true
-          description: Automatically set by the server to the time the request was processed whenever the resource was created.
-        createdBy:
-          $ref: '#/components/schemas/OperationUserUID'
-    Scripts:
-      type: object
-      description: Map of scripts used by this strategy, keyed by script role.
-      properties:
-        authentication:
-          $ref: '#/components/schemas/UserRoleScript'
-        sessionValidation:
-          $ref: '#/components/schemas/UserRoleScript'
-        recordedLogin:
-          $ref: '#/components/schemas/UserRoleScript'
-    AssetBulkLifecycleStateUpdate:
-      type: object
-      required:
-      - organizationUid
-      - uid
-      - lifecycleState
-      properties:
-        organizationUid:
-          $ref: '#/components/schemas/OrganizationUID'
-        assetUids:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssetUID'
-        lifecycleState:
-          $ref: '#/components/schemas/AssetLifecycleState'
-    ProblemDetails:
-      type: object
-      description: 'See [RFC 7807: Problem Details for HTTP APIs](https://tools.ietf.org/html/rfc7807)'
-      properties:
-        type:
-          type: string
-          readOnly: true
-        title:
-          type: string
-          readOnly: true
-        status:
-          type: integer
-          format: int32
-          minimum: 100
-          maximum: 511
-          description: HTTP Status code.
-          readOnly: true
-        detail:
-          type: string
-          description: Message detailing the problem.
-          readOnly: true
-        instance:
-          type: string
-          description: generated problem instance number to correlate with logs
-          readOnly: true
-        failedValidation:
-          type: array
-          description: Array of failed validation rules.
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/FailedValidation'
-        failedValidations:
-          type: array
-          description: Array of indexed failed validation rules.
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/IndexedFailedValidations'
-        maxBatchSize:
-          type: integer
-          description: Maximum processable batch size.
-          readOnly: true
-        batchSize:
-          type: integer
-          description: Batch size sent when batch is too large.
-          readOnly: true
-    ExternalRelationship:
-      description: 'A relationship between two assets. Source asset points to an asset in AssetService `assets` table while Target asset points to some external asset stored outside of AssetService. The target is fully identified by two fields: `targetUid` and `targetService`. Generally the relationship may be read as `source`-asset `type` `target`-asset. There cannot be multiple relationships between a pair of assets with the same `type`. Relationships have a `startsAt` date-time and an optional `endsAt` time; a relationship is considered `active` at a point-in-time if the `startsAt` date is prior-to/equal-to the time point, and the `endsAt` time is unset or is after/equal-to the time point. Furthermore, for any given `type` linking a pair of assets, there can only be one active relationship at any given time point. A new relationship cannot be created with a `startsAt` time after an existing relationship''s `startsAt` when that relationship has an unset `endsAt` date-time, or the relationship has an `endsAt` after/equal-to the `startsAt` of the new relationship (such that these relationships active ranges would overlap).
-
-        '
-      allOf:
-      - type: object
-        required:
-        - type
-        - sourceAssetUid
-        - targetUid
-        - targetService
-        - startsAt
-        properties:
-          uid:
-            $ref: '#/components/schemas/AssetRelationshipUID'
-          type:
-            description: Type of relationship between assets. The direction of reading is `sourceAsset` -- `type` -- `targetAsset`.
-            type: string
-            enum:
-            - discoveredBy
-          sourceAssetUid:
-            $ref: '#/components/schemas/AssetUID'
-          targetUid:
-            $ref: '#/components/schemas/ExternalUID'
-          targetService:
-            description: The type of the external service, holding the "target" entity.
-            type: string
-            enum:
-            - assetDiscovery
-            - fractalScan
-            - xpanse
-          startsAt:
-            type: string
-            format: date-time
-            description: The date-time at which the relationship between the source and target assets was observed to begin.
-          endsAt:
-            type: string
-            format: date-time
-            description: The date-time at which the relationship between the source and target assets was observed to end.
-      - $ref: '#/components/schemas/Updatable'
-    OperationUserUID:
-      type: string
-      pattern: ^[0-9a-f]{12}
-      readOnly: true
-      description: Automatically set by the server to the requesting user whenever the resource is updated. May be a user account or a service account if the action is performed by an automated.
-    WHOISResponse:
-      type: object
-      description: Whois data.
-      properties:
-        whois:
-          $ref: '#/components/schemas/WHOIS'
-        asset_uid:
-          $ref: '#/components/schemas/AssetUID'
-    GatewayID:
-      type: string
-      pattern: ^[0-9a-f]{16}
-      description: Identifier for Launchpoint-managed VPN gateway.
-    UserRoleCredentialSummary:
-      description: Credential used by an application in context of a user role.
-      type: object
-      properties:
-        uid:
-          $ref: '#/components/schemas/UID'
-        status:
-          $ref: '#/components/schemas/CheckerStatus'
-        lastCheckedAt:
-          type: string
-          format: date-time
-          description: The last date time the credential was checked.
-        sharing:
-          $ref: '#/components/schemas/CredentialSharing'
-    AssetChangeStatus:
-      type: string
-      description: Indicates whether the asset is newly discovered, has changed since last evaluated, or is unchanged.
-      default: unchanged
-      enum:
-      - new
-      - changed
-      - unchanged
-    RelatedAsset:
-      type: object
-      properties:
-        assetUid:
-          $ref: '#/components/schemas/UID'
-        assetType:
-          $ref: '#/components/schemas/AssetType'
-        location:
-          type: string
-          description: 'Derived human-readable text representation of the asset, based on assetType and other properties.
-
-            '
-          readOnly: true
-        label:
-          type: string
-          description: 'Optional label for the asset. If present, label is part of the derived property of asset location, which enables creation of multiple assets with different labels under a single organization.
-
-            '
-          readOnly: true
-    WebRULE:
-      type: string
-      pattern: ^(/([a-zA-Z0-9_-~!$&'()+,;=:@.]|%[0-9a-fA-F]{2})+/)*(/?((([A-z]|[0-9]|[-_~])|%[0-9a-fA-F]{2}|[!$&'()*+,;=]|[:@])|[/?])*){0,1}//(#((([A-z]|[0-9]|[-_~.])|%[0-9a-fA-F]{2}|[!$&'()*+,;=]|[:@])|[/?])*){0,1}/?$
-      description: Rule for web asset validation
-    AssetRelationshipUID:
-      type: string
-      pattern: ^[0-9a-f]{12}
-      description: Unique identifier for a scan.
-    SingleAssetRelationship:
-      oneOf:
-      - $ref: '#/components/schemas/DiscoveredByRelationship'
-      discriminator:
-        propertyName: relationshipType
-        mapping:
-          discoveredBy: '#/components/schemas/DiscoveredByRelationship'
     ScopeRuleInclusion:
       type: string
       enum:
       - in
       - out
+    SingleAsset:
+      oneOf:
+      - $ref: '#/components/schemas/CloudAccountAsset'
+      - $ref: '#/components/schemas/HostAsset'
+      - $ref: '#/components/schemas/MobileApplicationAsset'
+      - $ref: '#/components/schemas/NetworkAsset'
+      - $ref: '#/components/schemas/WebApplicationAsset'
+      discriminator:
+        propertyName: assetType
+        mapping:
+          cloudaccount: '#/components/schemas/CloudAccountAsset'
+          host: '#/components/schemas/HostAsset'
+          mobileapp: '#/components/schemas/MobileApplicationAsset'
+          network: '#/components/schemas/NetworkAsset'
+          webapp: '#/components/schemas/WebApplicationAsset'
+    MobileApplicationAsset:
+      allOf:
+      - $ref: '#/components/schemas/Asset'
+      - type: object
+        properties:
+          mobileApplication:
+            $ref: '#/components/schemas/MobileApplicationProperties'
     ScopeRuleSummary:
       type: object
       description: Part of the scope of an asset that is included/excluded from a specific activity.
@@ -3064,323 +3374,12 @@ components:
           $ref: '#/components/schemas/ScopeRuleInclusion'
         appliesTo:
           $ref: '#/components/schemas/ScopeRuleApplicability'
-    FailedValidation:
-      type: object
-      required:
-      - message
-      properties:
-        property:
-          type: string
-          readOnly: true
-        value:
-          type: string
-          readOnly: true
-        message:
-          type: string
-          readOnly: true
-    IndexedFailedValidations:
+    Relationship:
       type: object
       properties:
-        index:
-          type: integer
-          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
-          readOnly: true
-        failedValidation:
-          type: array
-          description: Array of failed validation rules.
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/FailedValidation'
-    WebApplicationAsset:
-      allOf:
-      - $ref: '#/components/schemas/Asset'
-      - type: object
-        properties:
-          webApplication:
-            $ref: '#/components/schemas/WebApplicationProperties'
-    AssetGateway:
-      type: object
-      description: Gateways and listings the asset is assigned to.
-      properties:
-        gatewayId:
-          $ref: '#/components/schemas/GatewayID'
-        listingUid:
-          $ref: '#/components/schemas/ListingUID'
-    ScanState:
-      type: string
-      enum:
-      - new
-      - accepted
-      - queued
-      - dispatched
-      - failed
-      - finished
-      - in-progress
-      description: Scan state of asset.
-    ApplicationAsset:
-      type: object
-      properties:
-        userRoles:
-          description: User roles available for the application.
-          readOnly: true
-          type: array
-          items:
-            $ref: '#/components/schemas/UserRole'
-    WebApplicationProperties:
-      allOf:
-      - $ref: '#/components/schemas/ApplicationAsset'
-      - $ref: '#/components/schemas/NetworkRef'
-      - type: object
-        required:
-        - url
-        properties:
-          url:
-            type: string
-          reachabilityImageCaptureUrl:
-            type: string
-            format: uri
-            description: Optional URL to image capture of failed reachability check.
-          mfa:
-            type: boolean
-            description: Optional MFA/OTP/CAPTCHA
-          selfRegistration:
-            type: boolean
-            description: Optional self registration
-          ntlm:
-            type: boolean
-            description: Optional new technology lan manager.
-          httpingSettings:
-            $ref: '#/components/schemas/HTTPingSettings'
-          timesFinished:
-            type: integer
-            format: int32
-            minimum: 0
-            description: Number of times web application scan finished.
-          timesFailed:
-            type: integer
-            format: int32
-            minimum: 0
-            description: Number of times web application scan failed.
-          timesLastFailed:
-            type: integer
-            format: int32
-            minimum: 0
-            description: Number of times web application scan failed since the last finished scan.
-          scanState:
-            $ref: '#/components/schemas/ScanState'
-          scanStateUpdatedAt:
-            type: string
-            format: date-time
-            description: The date time the scan state was updated.
-          scanLastAcceptedAt:
-            type: string
-            format: date-time
-            description: The last date time the web application was accepted to scan.
-          lastSuccessfulScan:
-            type: string
-            format: date-time
-            description: The last date time the asset scan was successful.
-          lastFingerprint:
-            description: Last time a fingerprinting scan checked the asset.
-            type: string
-            format: date-time
-    AssetListing:
-      type: object
-      description: Listings the asset is assigned to.
-      properties:
-        listingUid:
-          $ref: '#/components/schemas/ListingUID'
-        scope:
-          $ref: '#/components/schemas/Scope'
-        scopeRules:
-          description: Out of scope locations for this asset.
-          type: array
-          items:
-            $ref: '#/components/schemas/ScopeRule'
-        createdAt:
-          type: string
-          format: date-time
-          readOnly: true
-          description: Automatically set by the server to the time the listing asset association was created.
-        updatedAt:
-          type: string
-          format: date-time
-          readOnly: true
-          description: Automatically set by the server to the time the listing asset association is updated.
-    MobileApplicationAsset:
-      allOf:
-      - $ref: '#/components/schemas/Asset'
-      - type: object
-        properties:
-          mobileApplication:
-            $ref: '#/components/schemas/MobileApplicationProperties'
-    ArrayOfAssetSummaries:
-      type: array
-      items:
-        $ref: '#/components/schemas/AssetSummary'
-    PortObservedState:
-      type: string
-      enum:
-      - open
-      - closed
-      - filtered
-      description: Observed state reported by automated scanning.
-    AssetRelationship:
-      description: A relationship between two assets. Generally the relationship may be read as _source_-asset _relationship_-type _target_-asset. There cannot be multiple relationships between a pair of assets with the same relationship-type. Relationships have a starts-at date-time and an optional ends-at date-time; a relationship is considered _active_ at a point-in-time if the starts-at date is prior-to/equal-to the time-point, and the ends-at date-time is unset or is after/equal-to the time-point. Furthermore, for any given relationship-type linking a pair of assets, there can only be one active relationship at any give time point. A new relationship cannot be created with a start-at date-time after an existing relationship's starts-at when that relationship has an unset ends-at date-time, or the relationship has an ends-at after/equal-to the starts-at of the new relationship (such that these relationships active ranges would overlap).
-      allOf:
-      - type: object
-        required:
-        - sourceAssetUid
-        - targetAssetUid
-        - startsAt
-        - relationshipType
-        properties:
-          uid:
-            $ref: '#/components/schemas/AssetRelationshipUID'
-          sourceAssetUid:
-            $ref: '#/components/schemas/AssetUID'
-          targetAssetUid:
-            $ref: '#/components/schemas/AssetUID'
-          startsAt:
-            type: string
-            format: date-time
-            description: The date-time at which the relationship between the source and target asset is observed to first begin.
-          endsAt:
-            type: string
-            format: date-time
-            description: The date-time at which the relationship between the source and target asset was observed to end.
-          relationshipType:
-            description: Type or relationship between assets.
-            type: string
-            enum:
-            - discoveredBy
-      - $ref: '#/components/schemas/Updatable'
-    UID:
-      type: string
-      pattern: ^[0-9a-f]{12}
-      readOnly: true
-      description: Unique Identifier.
-    ApplicationBinary:
-      type: object
-      properties:
-        version:
-          type: string
-          readOnly: true
-        downloadUrl:
-          type: string
-          format: uri
-    OperatingSystem:
-      type: object
-      properties:
-        name:
-          description: Name of operating system according to fingerprinting.
-          type: string
-        cpe:
-          type: string
-          description: CPE of operating system according to fingerprinting.
-    AuthenticationStrategy:
-      allOf:
-      - type: object
-        properties:
-          scripts:
-            $ref: '#/components/schemas/Scripts'
-    AssetBulkCriticalityUpdate:
-      type: object
-      required:
-      - organizationUid
-      - uid
-      - criticality
-      properties:
-        organizationUid:
-          $ref: '#/components/schemas/OrganizationUID'
-        assetUids:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssetUID'
-        criticality:
-          $ref: '#/components/schemas/AssetCriticality'
-    CheckerStatus:
-      type: string
-      enum:
-      - unchecked
-      - invalid
-      - valid
-      description: Status reported by automated checkers.
-    IpRange:
-      type: string
-      description: IP Range could be a CIDR or an IP Range
-    AssetSummary:
-      allOf:
-      - type: object
-        properties:
-          uid:
-            $ref: '#/components/schemas/UID'
-          organizationUid:
-            $ref: '#/components/schemas/OrganizationUID'
-          location:
-            type: string
-            readOnly: true
-            description: Derived human-readable text representation of the asset, based on assetType and other properties.
-          assetType:
-            $ref: '#/components/schemas/AssetType'
-            description: Derived from the properties associated with the asset.
-            readOnly: true
-          label:
-            type: string
-            description: Optional label for the asset. If present, label is part of the derived property of asset location, which enables creation of multiple assets with different labels under a single organization.
-          origin:
-            $ref: '#/components/schemas/AssetOrigin'
-          changeStatus:
-            $ref: '#/components/schemas/AssetChangeStatus'
-          providerName:
-            description: Name of the cloud or hosting provider according to fingerprinting.
-            type: string
-            readOnly: true
-          lastCheckedAt:
-            type: string
-            format: date-time
-            description: The last date time the credential was checked.
-          lastReachableAt:
-            type: string
-            format: date-time
-            description: The last date time the asset was successfully checked for reachability.
-          lastSuccessfulScan:
-            type: string
-            format: date-time
-            description: The last date time the asset scan was successful.
-          lastFailedScan:
-            type: string
-            format: date-time
-            description: The last date time the asset scan was failed.
-          firstSeen:
-            type: string
-            format: date-time
-            description: 'For assets with an origin of discovered. The date time when the asset was first discovered.
-
-              '
-          lastSeen:
-            type: string
-            format: date-time
-            description: 'For assets with an origin of discovered. The date time when the asset was last discovered or fingerprinted.
-
-              '
-          status:
-            $ref: '#/components/schemas/CheckerStatus'
-          errorCode:
-            $ref: '#/components/schemas/ErrorCode'
-          listings:
-            description: Array of listings the asset belongs to.
-            readOnly: true
-            type: array
-            items:
-              $ref: '#/components/schemas/AssetListing'
-          relatedAssets:
-            description: Relationships which this asset participates in, either as a source or as a target.
-            readOnly: true
-            type: array
-            items:
-              $ref: '#/components/schemas/ArrayOfRelatedAssets'
-      - $ref: '#/components/schemas/Updatable'
+        data: {}
+        links:
+          $ref: '#/components/schemas/Links'
     Links:
       type: object
       properties:
@@ -3388,12 +3387,21 @@ components:
           type: string
         prev:
           type: string
-    Relationship:
+    Data:
       type: object
       properties:
-        data: {}
+        attributes: {}
+        id:
+          type: string
         links:
           $ref: '#/components/schemas/Links'
+        meta: {}
+        relationships:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Relationship'
+        type:
+          $ref: '#/components/schemas/ResourceType'
     Document:
       type: object
       properties:
@@ -3446,26 +3454,145 @@ components:
       - tags
       - last_tested_counts
       - last_assets_scan
-    Data:
-      type: object
-      properties:
-        attributes: {}
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/Links'
-        meta: {}
-        relationships:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/Relationship'
-        type:
-          $ref: '#/components/schemas/ResourceType'
+  responses:
+    PaginatedArrayOfAssets:
+      description: Paginated assets.
+      headers:
+        Pagination-Limit:
+          $ref: '#/components/headers/PaginationLimit'
+        Pagination-Current-Page:
+          $ref: '#/components/headers/PaginationCurrentPage'
+        Pagination-Total-Pages:
+          $ref: '#/components/headers/PaginationTotalPages'
+        Pagination-Total-Count:
+          $ref: '#/components/headers/PaginationTotalCount'
+        Link:
+          $ref: '#/components/headers/Link'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ArrayOfAssets'
+    PaginatedDiscoveredAssetsResponse:
+      description: Paginated discovered asset summaries.
+      headers:
+        Pagination-Limit:
+          $ref: '#/components/headers/PaginationLimit'
+        Pagination-Current-Page:
+          $ref: '#/components/headers/PaginationCurrentPage'
+        Pagination-Total-Pages:
+          $ref: '#/components/headers/PaginationTotalPages'
+        Pagination-Total-Count:
+          $ref: '#/components/headers/PaginationTotalCount'
+        Link:
+          $ref: '#/components/headers/Link'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DiscoveredAssetsPage'
+    204NoContent:
+      description: No content.
+    403Forbidden:
+      description: Forbidden
+    401Unauthorized:
+      description: Unauthorized.
+    WHOISResponse:
+      description: The whois data of the requested asset.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WHOISResponse'
+    SingleOrMultiAssetResponse:
+      description: A single asset or an array of assets.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SingleOrMultiAsset'
+    404NotFound:
+      description: Not found.
+    422EntityNotProcessable:
+      description: Entity Not Processable
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    409Conflict:
+      description: Conflict.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    SinglePort:
+      description: The current state of a host port.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Port'
+    500InternalServerError:
+      description: Internal Server Error.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    AssetBulkLifecycleStateUpdateResponse:
+      description: Count of lifecycle states updated.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LifecycleUpdateCount'
+    413RequestEntityTooLarge:
+      description: Returned generally when the size of the request body is too large to process, or specifically when the request contains too many items, typically in a bulk API operation.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    SingleAssetResponse:
+      description: The current state of the requested asset.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SingleAsset'
+    AssetBulkCriticalityUpdateResponse:
+      description: Count of assets updated.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CriticalityUpdateCount'
+    400BadRequest:
+      description: Bad Request
+    503ServiceUnavailable:
+      description: Service Unavailable.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    SingleAssetStat:
+      description: Response containing a single asset stat.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AssetStat'
+    202StatusAccepted:
+      description: Request accepted and being processed.
   headers:
     Link:
       description: Standard link header.
       schema:
         type: string
+    PaginationCurrentPage:
+      description: Current page in a paginated response.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
     PaginationTotalCount:
       description: Total number of items in all pages of a paginated response.
       schema:
@@ -3482,139 +3609,12 @@ components:
         type: integer
         format: int32
         minimum: 1
-    PaginationCurrentPage:
-      description: Current page in a paginated response.
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
     PaginationTotalPages:
       description: Total number of pages in a paginated response.
       schema:
         type: integer
         format: int32
         minimum: 1
-  parameters:
-    AssetTypeQuery:
-      name: assetType[]
-      in: query
-      schema:
-        type: array
-        items:
-          $ref: '#/components/schemas/AssetType'
-      required: false
-      explode: true
-      description: Restrict the returned asset summaries to only assets of the specified type.
-    PerPageQuery:
-      name: perPage
-      in: query
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 5000
-      required: false
-      description: 'Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.
-
-        '
-    PortNumberPath:
-      name: portNumber
-      in: path
-      schema:
-        $ref: '#/components/schemas/PortNumber'
-      required: true
-      description: Port number.
-    OrganizationUIDPath:
-      name: organizationUid
-      in: path
-      schema:
-        $ref: '#/components/schemas/OrganizationUID'
-      required: true
-      description: Unique identifier for an organization.
-    AssetUIDPath:
-      name: assetUid
-      in: path
-      schema:
-        $ref: '#/components/schemas/AssetUID'
-      required: true
-      description: Unique identifier for an asset.
-    PortProtocolPath:
-      name: portProtocol
-      in: path
-      schema:
-        $ref: '#/components/schemas/PortProtocol'
-      required: true
-      description: Port protocol.
-    IpRanges:
-      name: ipRanges[]
-      in: query
-      schema:
-        $ref: '#/components/schemas/ArrayOfIpRanges'
-      required: false
-      explode: true
-      description: Restrict the returned asset summaries to only assets of the specified ip ranges.
-    OrganizationUIDQuery:
-      name: organizationUid[]
-      in: query
-      explode: true
-      schema:
-        type: array
-        items:
-          $ref: '#/components/schemas/OrganizationUID'
-      required: false
-      description: Unique identifier for an organization. If not supplied the request will apply to all organizations the user is authorized to access.
-    SingleOrganizationUIDQuery:
-      name: organizationUid
-      in: query
-      explode: true
-      schema:
-        $ref: '#/components/schemas/OrganizationUID'
-      required: true
-      description: Unique identifier for an organization. If not supplied the request will apply to all organizations the user is authorized to access.
-    SortDirQuery:
-      name: sortDir
-      in: query
-      schema:
-        type: string
-        enum:
-        - asc
-        - desc
-        default: asc
-      required: false
-      description: Direction of sort-order for items in the response.
-    HostTypeQuery:
-      name: hostType[]
-      in: query
-      schema:
-        type: array
-        items:
-          $ref: '#/components/schemas/HostType'
-      required: false
-      explode: true
-      description: 'Restrict the returned asset summaries to only the types of host assets requested when assetType also includes host.
-
-        '
-    ListingUIDQuery:
-      name: listingUid[]
-      in: query
-      explode: true
-      schema:
-        type: array
-        items:
-          $ref: '#/components/schemas/ListingUID'
-      required: false
-      description: Unique identifier for an listing. If not supplied the request will apply to all listings the user is authorized to access.
-    PageQuery:
-      name: page
-      in: query
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-      required: false
-      description: 'Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.
-
-        '
   securitySchemes:
     OAuth2:
       type: oauth2

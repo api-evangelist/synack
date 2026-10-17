@@ -73,8 +73,14 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   responses:
-    Conflict:
-      description: The resource is not in a state that permits the requested action.
+    InternalServerError:
+      description: Server error.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    NotFound:
+      description: Resource not found in the acting organization.
       content:
         application/problem+json:
           schema:
@@ -91,18 +97,27 @@ components:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/Problem'
-    NotFound:
-      description: Resource not found in the acting organization.
+    Conflict:
+      description: The resource is not in a state that permits the requested action.
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/Problem'
-    InternalServerError:
-      description: Server error.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/Problem'
+  parameters:
+    OrganizationUid:
+      name: organizationUid
+      in: path
+      required: true
+      description: The unique identifier of the organization.
+      schema:
+        type: string
+    AssessmentUid:
+      name: assessmentUid
+      in: path
+      required: true
+      description: The unique identifier of the assessment.
+      schema:
+        type: string
   schemas:
     Problem:
       type: object
@@ -127,21 +142,6 @@ components:
         logId:
           type: string
           description: Unique log message identifier for support.
-  parameters:
-    AssessmentUid:
-      name: assessmentUid
-      in: path
-      required: true
-      description: The unique identifier of the assessment.
-      schema:
-        type: string
-    OrganizationUid:
-      name: organizationUid
-      in: path
-      required: true
-      description: The unique identifier of the organization.
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

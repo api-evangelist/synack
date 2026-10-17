@@ -684,122 +684,126 @@ paths:
       summary: Assign user role credentials to user
       x-summary-source: derived
 components:
+  responses:
+    SingleAssetScript:
+      description: An application script.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AssetScript'
+    412PreconditionFailed:
+      description: Precondition Failed.
+    400BadRequest:
+      description: Bad Request
+    SingleOrMultiUserRoleCredentialResponse:
+      description: A single user role credential or an array of user role credentials.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SingleOrMultiUserRoleCredential'
+    500InternalServerError:
+      description: Internal Server Error.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    404NotFound:
+      description: Not found.
+    SingleUserRoleScript:
+      description: The current state of a user role script.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UserRoleScript'
+    503ServiceUnavailable:
+      description: Service Unavailable.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    413RequestEntityTooLarge:
+      description: Returned generally when the size of the request body is too large to process, or specifically when the request contains too many items, typically in a bulk API operation.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    SingleUserRole:
+      description: The current state of a user role.
+      headers:
+        ETag:
+          $ref: '#/components/headers/ETag'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UserRole'
+    MultiUserRoleCredentialResponse:
+      description: A single user role credential or an array of user role credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ArrayOfUserRoleCredentials'
+    PaginatedArrayOfUserRoleCredentials:
+      description: Paginated user role credentials for an organization.
+      headers:
+        Pagination-Limit:
+          $ref: '#/components/headers/PaginationLimit'
+        Pagination-Current-Page:
+          $ref: '#/components/headers/PaginationCurrentPage'
+        Pagination-Total-Pages:
+          $ref: '#/components/headers/PaginationTotalPages'
+        Pagination-Total-Count:
+          $ref: '#/components/headers/PaginationTotalCount'
+        Link:
+          $ref: '#/components/headers/Link'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ArrayOfUserRoleCredentials'
+    422EntityNotProcessable:
+      description: Entity Not Processable
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    409Conflict:
+      description: Conflict.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    PaginatedArrayOfUserRoles:
+      description: Paginated user roles for a mobile or web application asset.
+      headers:
+        Pagination-Limit:
+          $ref: '#/components/headers/PaginationLimit'
+        Pagination-Current-Page:
+          $ref: '#/components/headers/PaginationCurrentPage'
+        Pagination-Total-Pages:
+          $ref: '#/components/headers/PaginationTotalPages'
+        Pagination-Total-Count:
+          $ref: '#/components/headers/PaginationTotalCount'
+        Link:
+          $ref: '#/components/headers/Link'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ArrayOfUserRoles'
+    403Forbidden:
+      description: Forbidden
+    204NoContent:
+      description: No content.
+    401Unauthorized:
+      description: Unauthorized.
   schemas:
-    UserRoleCredentialUpdate:
-      description: Update to a credential used by an application in context of a user role.
-      type: object
-      properties:
-        credentialData:
-          $ref: '#/components/schemas/Base64Data'
-        status:
-          $ref: '#/components/schemas/CheckerStatus'
-        lastCheckedAt:
-          type: string
-          format: date-time
-          description: The last date time the credential was checked.
-        sharing:
-          $ref: '#/components/schemas/CredentialSharing'
-    OrganizationUID:
-      type: string
-      pattern: ^[-_0-9a-z]{1,50}
-      description: Unique identifier for an organization.
-    CredentialCounts:
-      description: Credential counts by credential status in context of a user role.
-      type: object
-      readOnly: true
-      properties:
-        unchecked:
-          type: integer
-          description: Total of credentials in context of a user role with unchecked status.
-        invalid:
-          type: integer
-          description: Total of credentials in context of a user role with invalid status.
-        valid:
-          type: integer
-          description: Total of credentials in context of a user role with valid status.
-    ScriptRole:
-      type: string
-      enum:
-      - authentication
-      - sessionValidation
-      - recordedLogin
-    UserRoleUID:
-      type: string
-      pattern: ^[0-9a-f]{12}
-      description: Unique identifier for a mobile or web application user role.
-      readOnly: true
-    ListingUID:
-      type: string
-      pattern: ^[-_0-9a-z]{1,50}
-      description: Unique identifier for an listing.
-      readOnly: true
-    FailedValidation:
-      type: object
-      required:
-      - message
-      properties:
-        property:
-          type: string
-          readOnly: true
-        value:
-          type: string
-          readOnly: true
-        message:
-          type: string
-          readOnly: true
-    IndexedFailedValidations:
-      type: object
-      properties:
-        index:
-          type: integer
-          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
-          readOnly: true
-        failedValidation:
-          type: array
-          description: Array of failed validation rules.
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/FailedValidation'
-    Updatable:
-      allOf:
-      - $ref: '#/components/schemas/Creatable'
-      - type: object
-        properties:
-          updatedAt:
-            type: string
-            format: date-time
-            readOnly: true
-            description: Automatically set by the server to the time the request was processed whenever the resource is updated.
-          updatedBy:
-            $ref: '#/components/schemas/OperationUserUID'
-    UserRoleScript:
-      allOf:
-      - type: object
-        description: Script used to test a mobile or web applications.
-        properties:
-          uid:
-            $ref: '#/components/schemas/UID'
-          status:
-            $ref: '#/components/schemas/CheckerStatus'
-          filename:
-            type: string
-            description: Generated script name.
-            readOnly: true
-          error:
-            type: string
-            description: Optional text of error message. Server will unset this property when status is set to any value other than invalid.
-          imageCaptureUrl:
-            type: string
-            format: uri
-            description: Optional Url to image capture of the script execution.
-          lastCheckedAt:
-            type: string
-            format: date-time
-            description: The most reecent date time the script was run.
-          lastSuccessfulAt:
-            type: string
-            format: date-time
-            description: The most recent date time the script was successfully run.
     AuthenticationStrategies:
       type: object
       description: Map of authentication strategies for various scanners, keyed by asset scanner name.
@@ -808,23 +812,23 @@ components:
           $ref: '#/components/schemas/AuthenticationStrategy'
         burp:
           $ref: '#/components/schemas/AuthenticationStrategy'
-    UserRoleCredentialUpdateMultiItem:
-      description: Item in a bulk update to a credentials used by an application in context of a user role.
-      allOf:
-      - $ref: '#/components/schemas/UserRoleCredentialUpdate'
-      - type: object
-        required:
-        - uid
-        properties:
-          uid:
-            $ref: '#/components/schemas/WritableUID'
-    CredentialSharing:
+    Scripts:
+      type: object
+      description: Map of scripts used by this strategy, keyed by script role.
+      properties:
+        authentication:
+          $ref: '#/components/schemas/UserRoleScript'
+        sessionValidation:
+          $ref: '#/components/schemas/UserRoleScript'
+        recordedLogin:
+          $ref: '#/components/schemas/UserRoleScript'
+    CheckerStatus:
       type: string
-      description: Determines the limits on users that may be assigned; "one" permits only one user to be assigned, "many" places no limit, and "all" prevents any users to explicitly assigned as all users are implicitly allowed to use the credential.
       enum:
-      - one
-      - many
-      - all
+      - unchecked
+      - invalid
+      - valid
+      description: Status reported by automated checkers.
     UserRole:
       allOf:
       - type: object
@@ -849,6 +853,68 @@ components:
           credentialCounts:
             $ref: '#/components/schemas/CredentialCounts'
       - $ref: '#/components/schemas/Updatable'
+    AuthenticationStrategy:
+      allOf:
+      - type: object
+        properties:
+          scripts:
+            $ref: '#/components/schemas/Scripts'
+    ListingUID:
+      type: string
+      pattern: ^[-_0-9a-z]{1,50}
+      description: Unique identifier for an listing.
+      readOnly: true
+    Creatable:
+      type: object
+      required:
+      - createdAt
+      - createdBy
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Automatically set by the server to the time the request was processed whenever the resource was created.
+        createdBy:
+          $ref: '#/components/schemas/OperationUserUID'
+    AssetUID:
+      type: string
+      pattern: ^[0-9a-f]{24}
+      description: Unique identifier for an asset.
+    UserUID:
+      type: string
+      pattern: ^[-_0-9a-z]{1,100}
+      description: Unique identifier for a user.
+    SingleOrMultiUserRoleCredential:
+      oneOf:
+      - $ref: '#/components/schemas/UserRoleCredential'
+      - type: array
+        items:
+          $ref: '#/components/schemas/UserRoleCredential'
+    UserRoleCredentialUpdateMultiItem:
+      description: Item in a bulk update to a credentials used by an application in context of a user role.
+      allOf:
+      - $ref: '#/components/schemas/UserRoleCredentialUpdate'
+      - type: object
+        required:
+        - uid
+        properties:
+          uid:
+            $ref: '#/components/schemas/WritableUID'
+    UserRoleCredentialSummary:
+      description: Credential used by an application in context of a user role.
+      type: object
+      properties:
+        uid:
+          $ref: '#/components/schemas/UID'
+        status:
+          $ref: '#/components/schemas/CheckerStatus'
+        lastCheckedAt:
+          type: string
+          format: date-time
+          description: The last date time the credential was checked.
+        sharing:
+          $ref: '#/components/schemas/CredentialSharing'
     UserRoleCredential:
       description: Credential used by an application in context of a user role.
       allOf:
@@ -885,10 +951,20 @@ components:
             items:
               $ref: '#/components/schemas/UserUID'
       - $ref: '#/components/schemas/Updatable'
-    ArrayOfUserRoleCredentials:
-      type: array
-      items:
-        $ref: '#/components/schemas/UserRoleCredential'
+    UserRoleCredentialUpdate:
+      description: Update to a credential used by an application in context of a user role.
+      type: object
+      properties:
+        credentialData:
+          $ref: '#/components/schemas/Base64Data'
+        status:
+          $ref: '#/components/schemas/CheckerStatus'
+        lastCheckedAt:
+          type: string
+          format: date-time
+          description: The last date time the credential was checked.
+        sharing:
+          $ref: '#/components/schemas/CredentialSharing'
     UserRoleScriptUpdate:
       type: object
       description: Updatable properties of a script in context of a user role.
@@ -910,51 +986,37 @@ components:
           type: string
           format: date-time
           description: The most recent date time the script was successfully run.
-    UserUID:
+    Updatable:
+      allOf:
+      - $ref: '#/components/schemas/Creatable'
+      - type: object
+        properties:
+          updatedAt:
+            type: string
+            format: date-time
+            readOnly: true
+            description: Automatically set by the server to the time the request was processed whenever the resource is updated.
+          updatedBy:
+            $ref: '#/components/schemas/OperationUserUID'
+    ScriptRole:
       type: string
-      pattern: ^[-_0-9a-z]{1,100}
-      description: Unique identifier for a user.
-    CredentialUID:
-      type: string
-      pattern: ^[0-9a-f]{12}
-      description: Unique identifier for a credential.
-    AssetUID:
-      type: string
-      pattern: ^[0-9a-f]{24}
-      description: Unique identifier for an asset.
+      enum:
+      - authentication
+      - sessionValidation
+      - recordedLogin
     Base64Data:
       type: string
       description: Base64 encoding of data.
       example: TXkgdm9pY2UgaXMgbXkgcGFzc3dvcmQu
-    Creatable:
-      type: object
-      required:
-      - createdAt
-      - createdBy
-      properties:
-        createdAt:
-          type: string
-          format: date-time
-          readOnly: true
-          description: Automatically set by the server to the time the request was processed whenever the resource was created.
-        createdBy:
-          $ref: '#/components/schemas/OperationUserUID'
-    Scripts:
-      type: object
-      description: Map of scripts used by this strategy, keyed by script role.
-      properties:
-        authentication:
-          $ref: '#/components/schemas/UserRoleScript'
-        sessionValidation:
-          $ref: '#/components/schemas/UserRoleScript'
-        recordedLogin:
-          $ref: '#/components/schemas/UserRoleScript'
-    SingleOrMultiUserRoleCredential:
-      oneOf:
-      - $ref: '#/components/schemas/UserRoleCredential'
-      - type: array
-        items:
-          $ref: '#/components/schemas/UserRoleCredential'
+    UID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      readOnly: true
+      description: Unique Identifier.
+    ArrayOfUserRoleCredentials:
+      type: array
+      items:
+        $ref: '#/components/schemas/UserRoleCredential'
     ProblemDetails:
       type: object
       description: 'See [RFC 7807: Problem Details for HTTP APIs](https://tools.ietf.org/html/rfc7807)'
@@ -1000,27 +1062,36 @@ components:
           type: integer
           description: Batch size sent when batch is too large.
           readOnly: true
-    OperationUserUID:
-      type: string
-      pattern: ^[0-9a-f]{12}
-      readOnly: true
-      description: Automatically set by the server to the requesting user whenever the resource is updated. May be a user account or a service account if the action is performed by an automated.
-    CheckerStatus:
-      type: string
-      enum:
-      - unchecked
-      - invalid
-      - valid
-      description: Status reported by automated checkers.
     ArrayOfUserRoles:
       type: array
       items:
         $ref: '#/components/schemas/UserRole'
-    UID:
+    MultiUserRoleCredentialUpdate:
+      type: array
+      items:
+        $ref: '#/components/schemas/UserRoleCredentialUpdateMultiItem'
+    WritableUID:
       type: string
       pattern: ^[0-9a-f]{12}
+      description: Unique Identifier for POST/PATCH/PUT request bodies.
+    OrganizationUID:
+      type: string
+      pattern: ^[-_0-9a-z]{1,50}
+      description: Unique identifier for an organization.
+    CredentialCounts:
+      description: Credential counts by credential status in context of a user role.
+      type: object
       readOnly: true
-      description: Unique Identifier.
+      properties:
+        unchecked:
+          type: integer
+          description: Total of credentials in context of a user role with unchecked status.
+        invalid:
+          type: integer
+          description: Total of credentials in context of a user role with invalid status.
+        valid:
+          type: integer
+          description: Total of credentials in context of a user role with valid status.
     ApplicationBinary:
       type: object
       properties:
@@ -1030,6 +1101,58 @@ components:
         downloadUrl:
           type: string
           format: uri
+    FailedValidation:
+      type: object
+      required:
+      - message
+      properties:
+        property:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+        message:
+          type: string
+          readOnly: true
+    UserRoleUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      description: Unique identifier for a mobile or web application user role.
+      readOnly: true
+    OperationUserUID:
+      type: string
+      pattern: ^[0-9a-f]{12}
+      readOnly: true
+      description: Automatically set by the server to the requesting user whenever the resource is updated. May be a user account or a service account if the action is performed by an automated.
+    UserRoleScript:
+      allOf:
+      - type: object
+        description: Script used to test a mobile or web applications.
+        properties:
+          uid:
+            $ref: '#/components/schemas/UID'
+          status:
+            $ref: '#/components/schemas/CheckerStatus'
+          filename:
+            type: string
+            description: Generated script name.
+            readOnly: true
+          error:
+            type: string
+            description: Optional text of error message. Server will unset this property when status is set to any value other than invalid.
+          imageCaptureUrl:
+            type: string
+            format: uri
+            description: Optional Url to image capture of the script execution.
+          lastCheckedAt:
+            type: string
+            format: date-time
+            description: The most reecent date time the script was run.
+          lastSuccessfulAt:
+            type: string
+            format: date-time
+            description: The most recent date time the script was successfully run.
     AssetScript:
       allOf:
       - type: object
@@ -1045,56 +1168,64 @@ components:
           scriptData:
             $ref: '#/components/schemas/Base64Data'
       - $ref: '#/components/schemas/Updatable'
-    MultiUserRoleCredentialUpdate:
-      type: array
-      items:
-        $ref: '#/components/schemas/UserRoleCredentialUpdateMultiItem'
-    AuthenticationStrategy:
-      allOf:
-      - type: object
-        properties:
-          scripts:
-            $ref: '#/components/schemas/Scripts'
-    WritableUID:
+    CredentialUID:
       type: string
       pattern: ^[0-9a-f]{12}
-      description: Unique Identifier for POST/PATCH/PUT request bodies.
-    UserRoleCredentialSummary:
-      description: Credential used by an application in context of a user role.
+      description: Unique identifier for a credential.
+    IndexedFailedValidations:
       type: object
       properties:
-        uid:
-          $ref: '#/components/schemas/UID'
-        status:
-          $ref: '#/components/schemas/CheckerStatus'
-        lastCheckedAt:
-          type: string
-          format: date-time
-          description: The last date time the credential was checked.
-        sharing:
-          $ref: '#/components/schemas/CredentialSharing'
-  parameters:
-    AssetUIDPath:
-      name: assetUid
-      in: path
+        index:
+          type: integer
+          description: Zero-based index indicating the which item in request containing an array of items has failed validation.
+          readOnly: true
+        failedValidation:
+          type: array
+          description: Array of failed validation rules.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FailedValidation'
+    CredentialSharing:
+      type: string
+      description: Determines the limits on users that may be assigned; "one" permits only one user to be assigned, "many" places no limit, and "all" prevents any users to explicitly assigned as all users are implicitly allowed to use the credential.
+      enum:
+      - one
+      - many
+      - all
+  headers:
+    PaginationTotalPages:
+      description: Total number of pages in a paginated response.
       schema:
-        $ref: '#/components/schemas/AssetUID'
-      required: true
-      description: Unique identifier for an asset.
-    ApplicationVersionPath:
-      name: version
-      in: path
+        type: integer
+        format: int32
+        minimum: 1
+    PaginationTotalCount:
+      description: Total number of items in all pages of a paginated response.
+      schema:
+        format: int32
+        minimum: 1
+    PaginationLimit:
+      description: Maximum number of items returned in a paginated response.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    PaginationCurrentPage:
+      description: Current page in a paginated response.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    ETag:
+      description: An identifier for a specific version of a resource
       schema:
         type: string
-      required: true
-      description: The version of an application.
-    ScriptUIDPath:
-      name: scriptUid
-      in: path
+        pattern: ^(?:W\/)?\".*\"$
+    Link:
+      description: Standard link header.
       schema:
-        $ref: '#/components/schemas/UID'
-      required: true
-      description: Unique identifier for an asset script.
+        type: string
+  parameters:
     SortDirQuery:
       name: sortDir
       in: query
@@ -1106,13 +1237,13 @@ components:
         default: asc
       required: false
       description: Direction of sort-order for items in the response.
-    ScannableQuery:
-      name: scannable
-      in: query
+    AssetUIDPath:
+      name: assetUid
+      in: path
       schema:
-        type: boolean
-      required: false
-      description: Constrains the response to include users roles with a matching value for the scannable property.
+        $ref: '#/components/schemas/AssetUID'
+      required: true
+      description: Unique identifier for an asset.
     UserRoleUIDPath:
       name: userRoleUid
       in: path
@@ -1120,6 +1251,13 @@ components:
         $ref: '#/components/schemas/UID'
       required: true
       description: Unique identifier for an asset user role.
+    ScannableQuery:
+      name: scannable
+      in: query
+      schema:
+        type: boolean
+      required: false
+      description: Constrains the response to include users roles with a matching value for the scannable property.
     PerPageQuery:
       name: perPage
       in: query
@@ -1132,6 +1270,23 @@ components:
       description: 'Requested page size for pagination. A server-selected default of 100 will be used when no perPage is requested via query parameter.
 
         '
+    CredentialUIDQuery:
+      name: credentialUid[]
+      in: query
+      explode: true
+      schema:
+        type: array
+        items:
+          $ref: '#/components/schemas/CredentialUID'
+      required: false
+      description: Unique identifier for a credential. If not supplied the request will apply to all credentials the user is authorized to access.
+    ApplicationVersionPath:
+      name: version
+      in: path
+      schema:
+        type: string
+      required: true
+      description: The version of an application.
     PageQuery:
       name: page
       in: query
@@ -1143,6 +1298,13 @@ components:
       description: 'Page to retrieve in paginated response. A server-selected default of 1 will be used when no page is requested via query parameter.
 
         '
+    ScriptUIDPath:
+      name: scriptUid
+      in: path
+      schema:
+        $ref: '#/components/schemas/UID'
+      required: true
+      description: Unique identifier for an asset script.
     IfMatch:
       name: If-Match
       in: header
@@ -1159,16 +1321,6 @@ components:
       schema:
         type: string
         pattern: ^(?:\".*\"|\*)$
-    CredentialUIDQuery:
-      name: credentialUid[]
-      in: query
-      explode: true
-      schema:
-        type: array
-        items:
-          $ref: '#/components/schemas/CredentialUID'
-      required: false
-      description: Unique identifier for a credential. If not supplied the request will apply to all credentials the user is authorized to access.
     CredentialUIDPath:
       name: credentialUid
       in: path
@@ -1176,158 +1328,6 @@ components:
         $ref: '#/components/schemas/UID'
       required: true
       description: Unique identifier for an asset credential.
-  headers:
-    Link:
-      description: Standard link header.
-      schema:
-        type: string
-    ETag:
-      description: An identifier for a specific version of a resource
-      schema:
-        type: string
-        pattern: ^(?:W\/)?\".*\"$
-    PaginationTotalPages:
-      description: Total number of pages in a paginated response.
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-    PaginationLimit:
-      description: Maximum number of items returned in a paginated response.
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-    PaginationCurrentPage:
-      description: Current page in a paginated response.
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-    PaginationTotalCount:
-      description: Total number of items in all pages of a paginated response.
-      schema:
-        format: int32
-        minimum: 1
-  responses:
-    SingleUserRoleScript:
-      description: The current state of a user role script.
-      headers:
-        ETag:
-          $ref: '#/components/headers/ETag'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UserRoleScript'
-    401Unauthorized:
-      description: Unauthorized.
-    SingleOrMultiUserRoleCredentialResponse:
-      description: A single user role credential or an array of user role credentials.
-      headers:
-        ETag:
-          $ref: '#/components/headers/ETag'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/SingleOrMultiUserRoleCredential'
-    SingleAssetScript:
-      description: An application script.
-      headers:
-        ETag:
-          $ref: '#/components/headers/ETag'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/AssetScript'
-    413RequestEntityTooLarge:
-      description: Returned generally when the size of the request body is too large to process, or specifically when the request contains too many items, typically in a bulk API operation.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    PaginatedArrayOfUserRoleCredentials:
-      description: Paginated user role credentials for an organization.
-      headers:
-        Pagination-Limit:
-          $ref: '#/components/headers/PaginationLimit'
-        Pagination-Current-Page:
-          $ref: '#/components/headers/PaginationCurrentPage'
-        Pagination-Total-Pages:
-          $ref: '#/components/headers/PaginationTotalPages'
-        Pagination-Total-Count:
-          $ref: '#/components/headers/PaginationTotalCount'
-        Link:
-          $ref: '#/components/headers/Link'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ArrayOfUserRoleCredentials'
-    400BadRequest:
-      description: Bad Request
-    412PreconditionFailed:
-      description: Precondition Failed.
-    503ServiceUnavailable:
-      description: Service Unavailable.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    500InternalServerError:
-      description: Internal Server Error.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    422EntityNotProcessable:
-      description: Entity Not Processable
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    204NoContent:
-      description: No content.
-    409Conflict:
-      description: Conflict.
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetails'
-    PaginatedArrayOfUserRoles:
-      description: Paginated user roles for a mobile or web application asset.
-      headers:
-        Pagination-Limit:
-          $ref: '#/components/headers/PaginationLimit'
-        Pagination-Current-Page:
-          $ref: '#/components/headers/PaginationCurrentPage'
-        Pagination-Total-Pages:
-          $ref: '#/components/headers/PaginationTotalPages'
-        Pagination-Total-Count:
-          $ref: '#/components/headers/PaginationTotalCount'
-        Link:
-          $ref: '#/components/headers/Link'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ArrayOfUserRoles'
-    403Forbidden:
-      description: Forbidden
-    404NotFound:
-      description: Not found.
-    MultiUserRoleCredentialResponse:
-      description: A single user role credential or an array of user role credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ArrayOfUserRoleCredentials'
-    SingleUserRole:
-      description: The current state of a user role.
-      headers:
-        ETag:
-          $ref: '#/components/headers/ETag'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UserRole'
   securitySchemes:
     OAuth2:
       type: oauth2

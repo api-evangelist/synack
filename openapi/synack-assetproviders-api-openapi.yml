@@ -63,6 +63,12 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Relationship:
+      type: object
+      properties:
+        data: {}
+        links:
+          $ref: '#/components/schemas/Links'
     Links:
       type: object
       properties:
@@ -70,12 +76,21 @@ components:
           type: string
         prev:
           type: string
-    Relationship:
+    Data:
       type: object
       properties:
-        data: {}
+        attributes: {}
+        id:
+          type: string
         links:
           $ref: '#/components/schemas/Links'
+        meta: {}
+        relationships:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Relationship'
+        type:
+          $ref: '#/components/schemas/ResourceType'
     Document:
       type: object
       properties:
@@ -128,21 +143,6 @@ components:
       - tags
       - last_tested_counts
       - last_assets_scan
-    Data:
-      type: object
-      properties:
-        attributes: {}
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/Links'
-        meta: {}
-        relationships:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/Relationship'
-        type:
-          $ref: '#/components/schemas/ResourceType'
   securitySchemes:
     bearerAuth:
       type: http
